@@ -1,0 +1,63 @@
+<header>
+  <div class="left">
+    <button type="button" routerLink="/tabs/settings">
+      <span class="header-icon"><i class="bwi bwi-angle-left" aria-hidden="true"></i></span>
+      <span>{{ "back" | i18n }}</span>
+    </button>
+  </div>
+  <h1 class="center">
+    <span class="title">{{ "helpFeedback" | i18n }}</span>
+  </h1>
+  <div class="right"></div>
+</header>
+<main tabindex="-1">
+  <div class="box list">
+    <h2 class="box-header">Official</h2>
+    <div class="box-content single-line">
+      <!-- <h2 class="box-header">{{ "security" | i18n }}</h2>       -->
+
+      <button
+        type="button"
+        class="box-content-row box-content-row-flex text-default"
+        appStopClick
+        (click)="launchHelp()"
+      >
+        <div class="icon">
+          <i class="bwi bwi-shield bwi-lg row-sub-icon" aria-hidden="true"></i>
+        </div>
+        <!-- <div class="row-main">{{ "helpFeedback" | i18n }}</div> -->
+        <div class="row-main">Help center</div>
+        <i class="bwi bwi-external-link bwi-lg row-sub-icon" aria-hidden="true"></i>
+      </button>
+      <button
+        type="button"
+        class="box-content-row box-content-row-flex text-default"
+        appStopClick
+        (click)="launchContactForm()"
+      >
+        <div class="icon">
+          <i class="bwi bwi-shield bwi-lg row-sub-icon" aria-hidden="true"></i>
+        </div>
+        <!-- <div class="row-main">{{ "helpFeedback" | i18n }}</div> -->
+        <div class="row-main">Contact Bitwarden support</div>
+        <i class="bwi bwi-external-link bwi-lg row-sub-icon" aria-hidden="true"></i>
+      </button>
+    </div>
+    <h2 class="box-header">Community</h2>
+    <div class="box-content single-line">
+      <button
+        type="button"
+        class="box-content-row box-content-row-flex text-default"
+        appStopClick
+        (click)="launchForums()"
+      >
+        <div class="icon">
+          <i class="bwi bwi-discourse bwi-lg row-sub-icon" aria-hidden="true"></i>
+        </div>
+        <!-- <div class="row-main">{{ "helpFeedback" | i18n }}</div> -->
+        <div class="row-main">Community forums</div>
+        <i class="bwi bwi-external-link bwi-lg row-sub-icon" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+</main>

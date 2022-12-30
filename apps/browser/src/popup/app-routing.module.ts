@@ -27,6 +27,7 @@ import { ExcludedDomainsComponent } from "./settings/excluded-domains.component"
 import { ExportComponent } from "./settings/export.component";
 import { FolderAddEditComponent } from "./settings/folder-add-edit.component";
 import { FoldersComponent } from "./settings/folders.component";
+import { HelpAndFeedbackComponent } from "./settings/help-and-feedback.component";
 import { OptionsComponent } from "./settings/options.component";
 import { PremiumComponent } from "./settings/premium.component";
 import { SettingsComponent } from "./settings/settings.component";
@@ -257,6 +258,12 @@ const routes: Routes = [
     component: UpdateTempPasswordComponent,
     canActivate: [AuthGuard],
     data: { state: "update-temp-password" },
+  },
+  {
+    path: "help-and-feedback",
+    component: HelpAndFeedbackComponent,
+    canActivate: [AuthGuard],
+    data: { state: "help-and-feedback" },
   },
   {
     path: "tabs",
