@@ -3,10 +3,18 @@ import { SendApiService } from "@bitwarden/common/services/send/send-api.service
 
 import { apiServiceFactory, ApiServiceInitOptions } from "./api-service.factory";
 import { CachedServices, factory, FactoryOptions } from "./factory-options";
+import {
+  SendFileUploadServiceInitOptions,
+  sendFileUploadServiceFactory,
+} from "./send-file-upload-service.factory";
+import { sendServiceFactory, SendServiceInitOptions } from "./send-service.factory";
 
 type SendApiServiceFactoryOptions = FactoryOptions;
 
-export type SearchServiceInitOptions = SendApiServiceFactoryOptions & ApiServiceInitOptions;
+export type SearchServiceInitOptions = SendApiServiceFactoryOptions &
+  ApiServiceInitOptions &
+  SendServiceInitOptions &
+  SendFileUploadServiceInitOptions;
 
 export function sendApiServiceFactory(
   cache: { searchService?: SendApiServiceAbstraction } & CachedServices,
@@ -16,6 +24,11 @@ export function sendApiServiceFactory(
     cache,
     "sendApiService",
     opts,
-    async () => new SendApiService(await apiServiceFactory(cache, opts))
+    async () =>
+      new SendApiService(
+        await apiServiceFactory(cache, opts),
+        await sendFileUploadServiceFactory(cache, opts),
+        await sendServiceFactory(cache, opts)
+      )
   );
 }
