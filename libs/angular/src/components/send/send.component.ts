@@ -136,7 +136,7 @@ export class SendComponent implements OnInit, OnDestroy {
     }
 
     try {
-      this.actionPromise = this.sendService.removePasswordWithServer(s.id);
+      this.actionPromise = this.sendApiService.removePasswordWithServer(s.id);
       await this.actionPromise;
       if (this.onSuccessfulRemovePassword != null) {
         this.onSuccessfulRemovePassword();
@@ -167,7 +167,7 @@ export class SendComponent implements OnInit, OnDestroy {
     }
 
     try {
-      this.actionPromise = this.sendService.deleteWithServer(s.id);
+      this.actionPromise = this.sendApiService.deleteWithServer(s.id);
       await this.actionPromise;
 
       if (this.onSuccessfulDelete != null) {

@@ -8,6 +8,7 @@ import { LogService } from "@bitwarden/common/abstractions/log.service";
 import { MessagingService } from "@bitwarden/common/abstractions/messaging.service";
 import { PlatformUtilsService } from "@bitwarden/common/abstractions/platformUtils.service";
 import { PolicyService } from "@bitwarden/common/abstractions/policy/policy.service.abstraction";
+import { SendApiService } from "@bitwarden/common/abstractions/send/send-api.service.abstraction";
 import { SendService } from "@bitwarden/common/abstractions/send/send.service.abstraction";
 import { StateService } from "@bitwarden/common/abstractions/state.service";
 import { PolicyType } from "@bitwarden/common/enums/policyType";
@@ -58,7 +59,8 @@ export class AddEditComponent implements OnInit, OnDestroy {
     protected messagingService: MessagingService,
     protected policyService: PolicyService,
     private logService: LogService,
-    protected stateService: StateService
+    protected stateService: StateService,
+    protected sendApiService: SendApiService
   ) {
     this.typeOptions = [
       { name: i18nService.t("sendTypeFile"), value: SendType.File },
@@ -191,7 +193,7 @@ export class AddEditComponent implements OnInit, OnDestroy {
     }
 
     this.formPromise = this.encryptSend(file).then(async (encSend) => {
-      const uploadPromise = this.sendService.saveWithServer(encSend);
+      const uploadPromise = this.sendApiService.saveWithServer(encSend);
       await uploadPromise;
       if (this.send.id == null) {
         this.send.id = encSend[0].id;
@@ -252,7 +254,7 @@ export class AddEditComponent implements OnInit, OnDestroy {
     }
 
     try {
-      this.deletePromise = this.sendService.deleteWithServer(this.send.id);
+      this.deletePromise = this.sendApiService.deleteWithServer(this.send.id);
       await this.deletePromise;
       this.platformUtilsService.showToast("success", null, this.i18nService.t("deletedSend"));
       await this.load();

@@ -22,7 +22,6 @@ import { EnvironmentService as EnvironmentServiceAbstraction } from "@bitwarden/
 import { EventCollectionService as EventCollectionServiceAbstraction } from "@bitwarden/common/abstractions/event/event-collection.service";
 import { EventUploadService as EventUploadServiceAbstraction } from "@bitwarden/common/abstractions/event/event-upload.service";
 import { ExportService as ExportServiceAbstraction } from "@bitwarden/common/abstractions/export.service";
-import { FileUploadService as FileUploadServiceAbstraction } from "@bitwarden/common/abstractions/fileUpload.service";
 import { FolderApiServiceAbstraction } from "@bitwarden/common/abstractions/folder/folder-api.service.abstraction";
 import {
   FolderService as FolderServiceAbstraction,
@@ -91,7 +90,8 @@ import { EnvironmentService } from "@bitwarden/common/services/environment.servi
 import { EventCollectionService } from "@bitwarden/common/services/event/event-collection.service";
 import { EventUploadService } from "@bitwarden/common/services/event/event-upload.service";
 import { ExportService } from "@bitwarden/common/services/export.service";
-import { FileUploadService } from "@bitwarden/common/services/fileUpload.service";
+import { CipherFileUploadService } from "@bitwarden/common/services/fileUpload/cipher-file-upload.service";
+import { SendFileUploadService } from "@bitwarden/common/services/fileUpload/send-file-upload.service";
 import { FolderApiService } from "@bitwarden/common/services/folder/folder-api.service";
 import { FolderService } from "@bitwarden/common/services/folder/folder.service";
 import { FormValidationErrorsService } from "@bitwarden/common/services/formValidationErrors.service";
@@ -220,12 +220,22 @@ import { AbstractThemingService } from "./theming/theming.service.abstraction";
       ],
     },
     {
+      provide: SendFileUploadService,
+      useClass: SendFileUploadService,
+      deps: [LogService],
+    },
+    {
+      provide: CipherFileUploadService,
+      useClass: CipherFileUploadService,
+      deps: [LogService],
+    },
+    {
       provide: CipherServiceAbstraction,
       useFactory: (
         cryptoService: CryptoServiceAbstraction,
         settingsService: SettingsServiceAbstraction,
         apiService: ApiServiceAbstraction,
-        fileUploadService: FileUploadServiceAbstraction,
+        fileUploadService: CipherFileUploadService,
         i18nService: I18nServiceAbstraction,
         injector: Injector,
         logService: LogService,
@@ -247,7 +257,7 @@ import { AbstractThemingService } from "./theming/theming.service.abstraction";
         CryptoServiceAbstraction,
         SettingsServiceAbstraction,
         ApiServiceAbstraction,
-        FileUploadServiceAbstraction,
+        CipherFileUploadService,
         I18nServiceAbstraction,
         Injector, // TODO: Get rid of this circular dependency!
         LogService,
@@ -343,14 +353,19 @@ import { AbstractThemingService } from "./theming/theming.service.abstraction";
       ],
     },
     {
-      provide: SendApiServiceAbstraction,
-      useClass: SendApiService,
-      deps: [ApiServiceAbstraction],
+      provide: SendServiceAbstraction,
+      useClass: SendService,
+      deps: [
+        CryptoServiceAbstraction,
+        I18nServiceAbstraction,
+        CryptoFunctionServiceAbstraction,
+        StateServiceAbstraction,
+      ],
     },
     {
-      provide: FileUploadServiceAbstraction,
-      useClass: FileUploadService,
-      deps: [LogService, ApiServiceAbstraction, SendApiServiceAbstraction],
+      provide: SendApiServiceAbstraction,
+      useClass: SendApiService,
+      deps: [ApiServiceAbstraction, SendFileUploadService, SendServiceAbstraction],
     },
     {
       provide: SyncServiceAbstraction,
@@ -500,18 +515,6 @@ import { AbstractThemingService } from "./theming/theming.service.abstraction";
         ApiServiceAbstraction,
         StateServiceAbstraction,
         OrganizationServiceAbstraction,
-      ],
-    },
-    {
-      provide: SendServiceAbstraction,
-      useClass: SendService,
-      deps: [
-        CryptoServiceAbstraction,
-        I18nServiceAbstraction,
-        CryptoFunctionServiceAbstraction,
-        StateServiceAbstraction,
-        SendApiServiceAbstraction,
-        FileUploadServiceAbstraction,
       ],
     },
     {
