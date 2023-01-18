@@ -4,9 +4,7 @@ import { BehaviorSubject, firstValueFrom } from "rxjs";
 import { CryptoService } from "@bitwarden/common/abstractions/crypto.service";
 import { CryptoFunctionService } from "@bitwarden/common/abstractions/cryptoFunction.service";
 import { EncryptService } from "@bitwarden/common/abstractions/encrypt.service";
-import { FileUploadService } from "@bitwarden/common/abstractions/fileUpload.service";
 import { I18nService } from "@bitwarden/common/abstractions/i18n.service";
-import { SendApiService } from "@bitwarden/common/abstractions/send/send-api.service.abstraction";
 import { StateService } from "@bitwarden/common/abstractions/state.service";
 import { SendData } from "@bitwarden/common/models/data/send.data";
 import { EncString } from "@bitwarden/common/models/domain/enc-string";
@@ -19,8 +17,6 @@ describe("SendService", () => {
   const cryptoService = mock<CryptoService>();
   const i18nService = mock<I18nService>();
   const cryptoFunctionService = mock<CryptoFunctionService>();
-  const sendApiService = mock<SendApiService>();
-  const fileUploadService = mock<FileUploadService>();
   const encryptService = mock<EncryptService>();
 
   let sendService: SendService;
@@ -46,14 +42,7 @@ describe("SendService", () => {
       .calledWith(any())
       .mockResolvedValue([sendView("1", "Test Send")]);
 
-    sendService = new SendService(
-      cryptoService,
-      i18nService,
-      cryptoFunctionService,
-      stateService,
-      sendApiService,
-      fileUploadService
-    );
+    sendService = new SendService(cryptoService, i18nService, cryptoFunctionService, stateService);
   });
 
   afterEach(() => {

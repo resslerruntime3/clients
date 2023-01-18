@@ -2,9 +2,7 @@ import { BehaviorSubject, concatMap } from "rxjs";
 
 import { CryptoService } from "../../abstractions/crypto.service";
 import { CryptoFunctionService } from "../../abstractions/cryptoFunction.service";
-import { FileUploadService } from "../../abstractions/fileUpload.service";
 import { I18nService } from "../../abstractions/i18n.service";
-import { SendApiService } from "../../abstractions/send/send-api.service.abstraction";
 import { InternalSendService as InternalSendServiceAbstraction } from "../../abstractions/send/send.service.abstraction";
 import { StateService } from "../../abstractions/state.service";
 import { SEND_KDF_ITERATIONS } from "../../enums/kdfType";
@@ -17,9 +15,6 @@ import { Send } from "../../models/domain/send";
 import { SendFile } from "../../models/domain/send-file";
 import { SendText } from "../../models/domain/send-text";
 import { SymmetricCryptoKey } from "../../models/domain/symmetric-crypto-key";
-import { SendRequest } from "../../models/request/send.request";
-import { ErrorResponse } from "../../models/response/error.response";
-import { SendResponse } from "../../models/response/send.response";
 import { SendView } from "../../models/view/send.view";
 
 export class SendService implements InternalSendServiceAbstraction {
@@ -33,9 +28,7 @@ export class SendService implements InternalSendServiceAbstraction {
     private cryptoService: CryptoService,
     private i18nService: I18nService,
     private cryptoFunctionService: CryptoFunctionService,
-    private stateService: StateService,
-    private sendApiService: SendApiService,
-    private fileUploadService: FileUploadService
+    private stateService: StateService
   ) {
     this.stateService.activeAccountUnlocked$
       .pipe(
@@ -167,79 +160,11 @@ export class SendService implements InternalSendServiceAbstraction {
     return decSends;
   }
 
-  async saveWithServer(sendData: [Send, EncArrayBuffer]): Promise<any> {
-    const request = new SendRequest(sendData[0], sendData[1]?.buffer.byteLength);
-    let response: SendResponse;
-    if (sendData[0].id == null) {
-      if (sendData[0].type === SendType.Text) {
-        response = await this.sendApiService.postSend(request);
-      } else {
-        try {
-          const uploadDataResponse = await this.sendApiService.postFileTypeSend(request);
-          response = uploadDataResponse.sendResponse;
-
-          await this.fileUploadService.uploadSendFile(
-            uploadDataResponse,
-            sendData[0].file.fileName,
-            sendData[1]
-          );
-        } catch (e) {
-          if (e instanceof ErrorResponse && (e as ErrorResponse).statusCode === 404) {
-            response = await this.legacyServerSendFileUpload(sendData, request);
-          } else if (e instanceof ErrorResponse) {
-            throw new Error((e as ErrorResponse).getSingleMessage());
-          } else {
-            throw e;
-          }
-        }
-      }
-      sendData[0].id = response.id;
-      sendData[0].accessId = response.accessId;
-    } else {
-      response = await this.sendApiService.putSend(sendData[0].id, request);
-    }
-
-    const data = new SendData(response);
-    await this.upsert(data);
-  }
-
-  /**
-   * @deprecated Mar 25 2021: This method has been deprecated in favor of direct uploads.
-   * This method still exists for backward compatibility with old server versions.
-   */
-  async legacyServerSendFileUpload(
-    sendData: [Send, EncArrayBuffer],
-    request: SendRequest
-  ): Promise<SendResponse> {
-    const fd = new FormData();
-    try {
-      const blob = new Blob([sendData[1].buffer], { type: "application/octet-stream" });
-      fd.append("model", JSON.stringify(request));
-      fd.append("data", blob, sendData[0].file.fileName.encryptedString);
-    } catch (e) {
-      if (Utils.isNode && !Utils.isBrowser) {
-        fd.append("model", JSON.stringify(request));
-        fd.append(
-          "data",
-          Buffer.from(sendData[1].buffer) as any,
-          {
-            filepath: sendData[0].file.fileName.encryptedString,
-            contentType: "application/octet-stream",
-          } as any
-        );
-      } else {
-        throw e;
-      }
-    }
-    return await this.sendApiService.postSendFileLegacy(fd);
-  }
-
   async upsert(send: SendData | SendData[]): Promise<any> {
     let sends = await this.stateService.getEncryptedSends();
     if (sends == null) {
       sends = {};
     }
-
     if (send instanceof SendData) {
       const s = send as SendData;
       sends[s.id] = s;
@@ -279,17 +204,6 @@ export class SendService implements InternalSendServiceAbstraction {
     }
 
     await this.replace(sends);
-  }
-
-  async deleteWithServer(id: string): Promise<any> {
-    await this.sendApiService.deleteSend(id);
-    await this.delete(id);
-  }
-
-  async removePasswordWithServer(id: string): Promise<any> {
-    const response = await this.sendApiService.putSendRemovePassword(id);
-    const data = new SendData(response);
-    await this.upsert(data);
   }
 
   async replace(sends: { [id: string]: SendData }): Promise<any> {
@@ -345,7 +259,6 @@ export class SendService implements InternalSendServiceAbstraction {
     const decryptedSends = await Promise.all(decryptSendPromises);
 
     decryptedSends.sort(Utils.getSortFunction(this.i18nService, "name"));
-
     return decryptedSends;
   }
 }

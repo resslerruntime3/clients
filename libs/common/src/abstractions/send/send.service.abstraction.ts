@@ -29,9 +29,6 @@ export abstract class SendService {
    * @deprecated Only use in CLI
    */
   getAllDecryptedFromState: () => Promise<SendView[]>;
-  removePasswordWithServer: (id: string) => Promise<any>;
-  deleteWithServer: (id: string) => Promise<any>;
-  saveWithServer: (sendData: [Send, EncArrayBuffer]) => Promise<any>;
 }
 
 export abstract class InternalSendService extends SendService {

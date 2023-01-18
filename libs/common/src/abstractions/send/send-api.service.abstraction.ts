@@ -1,3 +1,5 @@
+import { EncArrayBuffer } from "../../models/domain/enc-array-buffer";
+import { Send } from "../../models/domain/send";
 import { SendAccessRequest } from "../../models/request/send-access.request";
 import { SendRequest } from "../../models/request/send.request";
 import { ListResponse } from "../../models/response/list.response";
@@ -32,4 +34,7 @@ export abstract class SendApiService {
     apiUrl?: string
   ) => Promise<SendFileDownloadDataResponse>;
   renewSendFileUploadUrl: (sendId: string, fileId: string) => Promise<SendFileUploadDataResponse>;
+  removePasswordWithServer: (id: string) => Promise<any>;
+  deleteWithServer: (id: string) => Promise<any>;
+  saveWithServer: (sendData: [Send, EncArrayBuffer]) => Promise<any>;
 }
