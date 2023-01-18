@@ -1,9 +1,10 @@
+import { SendApiService } from "@bitwarden/common/abstractions/send/send-api.service.abstraction";
 import { SendService } from "@bitwarden/common/abstractions/send/send.service.abstraction";
 
 import { Response } from "../../models/response";
 
 export class SendDeleteCommand {
-  constructor(private sendService: SendService) {}
+  constructor(private sendService: SendService, private sendApiService: SendApiService) {}
 
   async run(id: string) {
     const send = await this.sendService.getFromState(id);
@@ -13,7 +14,7 @@ export class SendDeleteCommand {
     }
 
     try {
-      await this.sendService.deleteWithServer(id);
+      await this.sendApiService.deleteWithServer(id);
       return Response.success();
     } catch (e) {
       return Response.error(e);

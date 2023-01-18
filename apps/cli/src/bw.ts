@@ -24,7 +24,8 @@ import { CryptoService } from "@bitwarden/common/services/crypto.service";
 import { EncryptServiceImplementation } from "@bitwarden/common/services/cryptography/encrypt.service.implementation";
 import { EnvironmentService } from "@bitwarden/common/services/environment.service";
 import { ExportService } from "@bitwarden/common/services/export.service";
-import { FileUploadService } from "@bitwarden/common/services/fileUpload.service";
+import { CipherFileUploadService } from "@bitwarden/common/services/fileUpload/cipher-file-upload.service";
+import { SendFileUploadService } from "@bitwarden/common/services/fileUpload/send-file-upload.service";
 import { FolderApiService } from "@bitwarden/common/services/folder/folder-api.service";
 import { FolderService } from "@bitwarden/common/services/folder/folder.service";
 import { ImportService } from "@bitwarden/common/services/import.service";
@@ -106,7 +107,8 @@ export class Main {
   sendProgram: SendProgram;
   logService: ConsoleLogService;
   sendService: SendService;
-  fileUploadService: FileUploadService;
+  sendFileUploadService: SendFileUploadService;
+  cipherFileUploadService: CipherFileUploadService;
   keyConnectorService: KeyConnectorService;
   userVerificationService: UserVerificationService;
   stateService: StateService;
@@ -210,27 +212,28 @@ export class Main {
 
     this.settingsService = new SettingsService(this.stateService);
 
-    this.sendApiService = this.sendApiService = new SendApiService(this.apiService);
+    this.sendFileUploadService = new SendFileUploadService(this.logService);
 
-    this.fileUploadService = new FileUploadService(
-      this.logService,
-      this.apiService,
-      this.sendApiService
-    );
+    this.cipherFileUploadService = new CipherFileUploadService(this.logService);
+
     this.sendService = new SendService(
       this.cryptoService,
       this.i18nService,
       this.cryptoFunctionService,
-      this.stateService,
-      this.sendApiService,
-      this.fileUploadService
+      this.stateService
+    );
+
+    this.sendApiService = this.sendApiService = new SendApiService(
+      this.apiService,
+      this.sendFileUploadService,
+      this.sendService
     );
 
     this.cipherService = new CipherService(
       this.cryptoService,
       this.settingsService,
       this.apiService,
-      this.fileUploadService,
+      this.cipherFileUploadService,
       this.i18nService,
       null,
       this.logService,
