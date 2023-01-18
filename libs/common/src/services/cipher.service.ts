@@ -49,6 +49,8 @@ import { FieldView } from "../models/view/field.view";
 import { PasswordHistoryView } from "../models/view/password-history.view";
 import { View } from "../models/view/view";
 
+import { CipherFileApiMethods } from "./fileUpload/cipher-file-upload-methods";
+
 const DomainMatchBlacklist = new Map<string, Set<string>>([
   ["google.com", new Set(["script.google.com"])],
 ]);
@@ -68,7 +70,11 @@ export class CipherService implements CipherServiceAbstraction {
     private logService: LogService,
     private stateService: StateService,
     private encryptService: EncryptService
-  ) {}
+  ) {
+    this.cipherFileApiMethods = new CipherFileApiMethods(apiService);
+  }
+
+  cipherFileApiMethods: CipherFileApiMethods;
 
   async getDecryptedCipherCache(): Promise<CipherView[]> {
     const decryptedCiphers = await this.stateService.getDecryptedCiphers();
@@ -740,11 +746,12 @@ export class CipherService implements CipherServiceAbstraction {
     try {
       const uploadDataResponse = await this.apiService.postCipherAttachment(cipher.id, request);
       response = admin ? uploadDataResponse.cipherMiniResponse : uploadDataResponse.cipherResponse;
-      await this.fileUploadService.uploadCipherAttachment(
-        admin,
+      await this.fileUploadService.upload(
         uploadDataResponse,
         encFileName,
-        encData
+        encData,
+        this.cipherFileApiMethods,
+        response
       );
     } catch (e) {
       if (
