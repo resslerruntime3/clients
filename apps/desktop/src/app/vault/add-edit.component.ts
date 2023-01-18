@@ -15,6 +15,7 @@ import { OrganizationService } from "@bitwarden/common/abstractions/organization
 import { PasswordRepromptService } from "@bitwarden/common/abstractions/passwordReprompt.service";
 import { PlatformUtilsService } from "@bitwarden/common/abstractions/platformUtils.service";
 import { PolicyService } from "@bitwarden/common/abstractions/policy/policy.service.abstraction";
+import { SendApiService } from "@bitwarden/common/abstractions/send/send-api.service.abstraction";
 import { StateService } from "@bitwarden/common/abstractions/state.service";
 
 const BroadcasterSubscriptionId = "AddEditComponent";
@@ -41,7 +42,8 @@ export class AddEditComponent extends BaseAddEditComponent implements OnChanges,
     private broadcasterService: BroadcasterService,
     private ngZone: NgZone,
     logService: LogService,
-    organizationService: OrganizationService
+    organizationService: OrganizationService,
+    sendApiService: SendApiService
   ) {
     super(
       cipherService,
@@ -56,7 +58,8 @@ export class AddEditComponent extends BaseAddEditComponent implements OnChanges,
       policyService,
       logService,
       passwordRepromptService,
-      organizationService
+      organizationService,
+      sendApiService
     );
   }
 
