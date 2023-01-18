@@ -15,6 +15,7 @@ import { EncArrayBuffer } from "@bitwarden/common/models/domain/enc-array-buffer
 import { EncString } from "@bitwarden/common/models/domain/enc-string";
 import { SymmetricCryptoKey } from "@bitwarden/common/models/domain/symmetric-crypto-key";
 import { CipherService } from "@bitwarden/common/services/cipher.service";
+import { CipherFileUploadService } from "@bitwarden/common/services/fileUpload/cipher-file-upload.service";
 
 const ENCRYPTED_TEXT = "This data has been encrypted";
 const ENCRYPTED_BYTES = Substitute.for<EncArrayBuffer>();
@@ -37,7 +38,7 @@ describe("Cipher Service", () => {
     stateService = Substitute.for<StateService>();
     settingsService = Substitute.for<SettingsService>();
     apiService = Substitute.for<ApiService>();
-    fileUploadService = Substitute.for<FileUploadService>();
+    fileUploadService = Substitute.for<CipherFileUploadService>();
     i18nService = Substitute.for<I18nService>();
     searchService = Substitute.for<SearchService>();
     logService = Substitute.for<LogService>();
@@ -68,6 +69,6 @@ describe("Cipher Service", () => {
 
     fileUploadService
       .received(1)
-      .uploadCipherAttachment(Arg.any(), Arg.any(), new EncString(ENCRYPTED_TEXT), ENCRYPTED_BYTES);
+      .upload(Arg.any(), Arg.any(), ENCRYPTED_BYTES, Arg.any(), Arg.any());
   });
 });
