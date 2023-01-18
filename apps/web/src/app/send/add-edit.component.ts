@@ -40,7 +40,8 @@ export class AddEditComponent extends BaseAddEditComponent {
       messagingService,
       policyService,
       logService,
-      stateService
+      stateService,
+      sendApiService
     );
   }
 

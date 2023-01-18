@@ -13,6 +13,7 @@ import { PasswordGenerationService } from "@bitwarden/common/abstractions/passwo
 import { PasswordRepromptService } from "@bitwarden/common/abstractions/passwordReprompt.service";
 import { PlatformUtilsService } from "@bitwarden/common/abstractions/platformUtils.service";
 import { PolicyService } from "@bitwarden/common/abstractions/policy/policy.service.abstraction";
+import { SendApiService } from "@bitwarden/common/abstractions/send/send-api.service.abstraction";
 import { StateService } from "@bitwarden/common/abstractions/state.service";
 import { TotpService } from "@bitwarden/common/abstractions/totp.service";
 import { Cipher } from "@bitwarden/common/models/domain/cipher";
@@ -43,7 +44,8 @@ export class EmergencyAddEditComponent extends BaseAddEditComponent {
     policyService: PolicyService,
     passwordRepromptService: PasswordRepromptService,
     organizationService: OrganizationService,
-    logService: LogService
+    logService: LogService,
+    sendApiService: SendApiService
   ) {
     super(
       cipherService,
@@ -60,7 +62,8 @@ export class EmergencyAddEditComponent extends BaseAddEditComponent {
       policyService,
       organizationService,
       logService,
-      passwordRepromptService
+      passwordRepromptService,
+      sendApiService
     );
   }
 
