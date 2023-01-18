@@ -4,7 +4,7 @@ import { Arg, Substitute, SubstituteOf } from "@fluffy-spoon/substitute";
 import { ApiService } from "@bitwarden/common/abstractions/api.service";
 import { CryptoService } from "@bitwarden/common/abstractions/crypto.service";
 import { EncryptService } from "@bitwarden/common/abstractions/encrypt.service";
-import { FileUploadService } from "@bitwarden/common/abstractions/fileUpload.service";
+import { FileUploadService } from "@bitwarden/common/abstractions/file-upload.service";
 import { I18nService } from "@bitwarden/common/abstractions/i18n.service";
 import { LogService } from "@bitwarden/common/abstractions/log.service";
 import { SearchService } from "@bitwarden/common/abstractions/search.service";

@@ -1,4 +1,4 @@
-import { FileUploadService as AbstractFileUploadService } from "@bitwarden/common/abstractions/fileUpload.service";
+import { FileUploadService as AbstractFileUploadService } from "@bitwarden/common/abstractions/file-upload.service";
 import { CipherFileUploadService } from "@bitwarden/common/services/fileUpload/cipher-file-upload.service";
 
 import { FactoryOptions, CachedServices, factory } from "./factory-options";

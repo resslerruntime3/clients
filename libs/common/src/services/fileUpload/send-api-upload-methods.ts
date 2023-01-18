@@ -1,6 +1,6 @@
 import { SendApiService } from "../../abstractions/send/send-api.service.abstraction";
 import { SendFileUploadDataResponse } from "../../models/response/send-file-upload-data.response";
-import { FileUploadApiMethods } from "../../types/fileUploadApiMethods";
+import { FileUploadApiMethods } from "../../types/file-upload-api-methods";
 
 export class SendFileApiMethods implements FileUploadApiMethods {
   constructor(private sendApiService: SendApiService) {}

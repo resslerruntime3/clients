@@ -1,6 +1,6 @@
 import { ApiService } from "../../abstractions/api.service";
 import { AttachmentUploadDataResponse } from "../../models/response/attachment-upload-data.response";
-import { FileUploadApiMethods } from "../../types/fileUploadApiMethods";
+import { FileUploadApiMethods } from "../../types/file-upload-api-methods";
 
 export class CipherFileApiMethods implements FileUploadApiMethods {
   constructor(private apiService: ApiService) {}

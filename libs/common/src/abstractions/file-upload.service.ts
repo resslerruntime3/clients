@@ -3,7 +3,7 @@ import { EncString } from "../models/domain/enc-string";
 import { AttachmentUploadDataResponse } from "../models/response/attachment-upload-data.response";
 import { CipherResponse } from "../models/response/cipher.response";
 import { SendFileUploadDataResponse } from "../models/response/send-file-upload-data.response";
-import { FileUploadApiMethods } from "../types/fileUploadApiMethods";
+import { FileUploadApiMethods } from "../types/file-upload-api-methods";
 
 export abstract class FileUploadService {
   upload: (

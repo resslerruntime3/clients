@@ -4,7 +4,7 @@ import { ApiService } from "../abstractions/api.service";
 import { CipherService as CipherServiceAbstraction } from "../abstractions/cipher.service";
 import { CryptoService } from "../abstractions/crypto.service";
 import { EncryptService } from "../abstractions/encrypt.service";
-import { FileUploadService } from "../abstractions/fileUpload.service";
+import { FileUploadService } from "../abstractions/file-upload.service";
 import { I18nService } from "../abstractions/i18n.service";
 import { LogService } from "../abstractions/log.service";
 import { SearchService } from "../abstractions/search.service";

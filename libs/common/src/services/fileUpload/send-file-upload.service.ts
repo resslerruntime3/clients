@@ -1,8 +1,8 @@
 import { LogService } from "../../abstractions/log.service";
 import { SendFileUploadDataResponse } from "../../models/response/send-file-upload-data.response";
-import { FileUploadApiMethods } from "../../types/fileUploadApiMethods";
+import { FileUploadApiMethods } from "../../types/file-upload-api-methods";
 
-import { FileUploadService } from "./fileUpload.service";
+import { FileUploadService } from "./file-upload.service";
 import { SendFileApiMethods } from "./send-api-upload-methods";
 
 export class SendFileUploadService extends FileUploadService {
