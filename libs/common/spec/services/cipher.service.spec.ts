@@ -4,7 +4,7 @@ import { Arg, Substitute, SubstituteOf } from "@fluffy-spoon/substitute";
 import { ApiService } from "@bitwarden/common/abstractions/api.service";
 import { CryptoService } from "@bitwarden/common/abstractions/crypto.service";
 import { EncryptService } from "@bitwarden/common/abstractions/encrypt.service";
-import { FileUploadService } from "@bitwarden/common/abstractions/file-upload.service";
+import { CipherFileUploadService } from "@bitwarden/common/abstractions/file-upload/cipher-file-upload.service";
 import { I18nService } from "@bitwarden/common/abstractions/i18n.service";
 import { LogService } from "@bitwarden/common/abstractions/log.service";
 import { SearchService } from "@bitwarden/common/abstractions/search.service";
@@ -15,7 +15,6 @@ import { EncArrayBuffer } from "@bitwarden/common/models/domain/enc-array-buffer
 import { EncString } from "@bitwarden/common/models/domain/enc-string";
 import { SymmetricCryptoKey } from "@bitwarden/common/models/domain/symmetric-crypto-key";
 import { CipherService } from "@bitwarden/common/services/cipher.service";
-import { CipherFileUploadService } from "@bitwarden/common/services/fileUpload/cipher-file-upload.service";
 
 const ENCRYPTED_TEXT = "This data has been encrypted";
 const ENCRYPTED_BYTES = Substitute.for<EncArrayBuffer>();
@@ -25,7 +24,7 @@ describe("Cipher Service", () => {
   let stateService: SubstituteOf<StateService>;
   let settingsService: SubstituteOf<SettingsService>;
   let apiService: SubstituteOf<ApiService>;
-  let fileUploadService: SubstituteOf<FileUploadService>;
+  let cipherFileUploadService: SubstituteOf<CipherFileUploadService>;
   let i18nService: SubstituteOf<I18nService>;
   let searchService: SubstituteOf<SearchService>;
   let logService: SubstituteOf<LogService>;
@@ -38,7 +37,7 @@ describe("Cipher Service", () => {
     stateService = Substitute.for<StateService>();
     settingsService = Substitute.for<SettingsService>();
     apiService = Substitute.for<ApiService>();
-    fileUploadService = Substitute.for<CipherFileUploadService>();
+    cipherFileUploadService = Substitute.for<CipherFileUploadService>();
     i18nService = Substitute.for<I18nService>();
     searchService = Substitute.for<SearchService>();
     logService = Substitute.for<LogService>();
@@ -51,12 +50,12 @@ describe("Cipher Service", () => {
       cryptoService,
       settingsService,
       apiService,
-      fileUploadService,
       i18nService,
       () => searchService,
       logService,
       stateService,
-      encryptService
+      encryptService,
+      cipherFileUploadService
     );
   });
 
@@ -67,7 +66,7 @@ describe("Cipher Service", () => {
 
     await cipherService.saveAttachmentRawWithServer(new Cipher(), fileName, fileData);
 
-    fileUploadService
+    cipherFileUploadService
       .received(1)
       .upload(Arg.any(), Arg.any(), ENCRYPTED_BYTES, Arg.any(), Arg.any());
   });

@@ -1,5 +1,5 @@
 import { ApiService } from "../../abstractions/api.service";
-import { FileUploadService } from "../../abstractions/file-upload.service";
+import { FileUploadService } from "../../abstractions/file-upload/file-upload.service";
 import { SendApiService as SendApiServiceAbstraction } from "../../abstractions/send/send-api.service.abstraction";
 import { InternalSendService } from "../../abstractions/send/send.service.abstraction";
 import { SendType } from "../../enums/sendType";

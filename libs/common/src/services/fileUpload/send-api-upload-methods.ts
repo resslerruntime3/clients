@@ -5,7 +5,7 @@ import { FileUploadApiMethods } from "../../types/file-upload-api-methods";
 export class SendFileApiMethods implements FileUploadApiMethods {
   constructor(private sendApiService: SendApiService) {}
 
-  postFile(sendId: string, fileId: string, fileData: FormData): Promise<any> {
+  postDirect(sendId: string, fileId: string, fileData: FormData): Promise<any> {
     return this.sendApiService.postSendFile(sendId, fileId, fileData);
   }
 
@@ -13,7 +13,7 @@ export class SendFileApiMethods implements FileUploadApiMethods {
     return this.sendApiService.renewSendFileUploadUrl(sendId, fileId);
   }
 
-  delete(sendId: string): Promise<any> {
+  rollback(sendId: string): Promise<any> {
     return this.sendApiService.deleteSend(sendId);
   }
 }

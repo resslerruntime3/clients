@@ -1,4 +1,4 @@
-import { FileUploadService } from "../../abstractions/file-upload.service";
+import { FileUploadService } from "../../abstractions/file-upload/file-upload.service";
 import { LogService } from "../../abstractions/log.service";
 import { SendFileUploadDataResponse } from "../../models/response/send-file-upload-data.response";
 import { FileUploadApiMethods } from "../../types/file-upload-api-methods";
@@ -15,7 +15,7 @@ export class SendFileUploadService extends FileUploadService {
     data: FormData,
     fileUploadMethods: SendFileApiMethods
   ): Promise<any> {
-    return fileUploadMethods.postFile(
+    return fileUploadMethods.postDirect(
       uploadData.sendResponse.id,
       uploadData.sendResponse.file.id,
       data
@@ -26,7 +26,7 @@ export class SendFileUploadService extends FileUploadService {
     uploadData: SendFileUploadDataResponse,
     fileUploadMethods: FileUploadApiMethods
   ): Promise<any> {
-    return await fileUploadMethods.delete(uploadData.sendResponse.id);
+    return await fileUploadMethods.rollback(uploadData.sendResponse.id);
   }
 
   async renew(
