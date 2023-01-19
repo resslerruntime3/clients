@@ -1,11 +1,10 @@
+import { FileUploadService } from "../../abstractions/file-upload.service";
 import { LogService } from "../../abstractions/log.service";
 import { AttachmentUploadDataResponse } from "../../models/response/attachment-upload-data.response";
 import { CipherResponse } from "../../models/response/cipher.response";
 import { FileUploadApiMethods } from "../../types/file-upload-api-methods";
 
 import { CipherFileApiMethods } from "./cipher-file-upload-methods";
-import { FileUploadService } from "./file-upload.service";
-
 export class CipherFileUploadService extends FileUploadService {
   constructor(protected logService: LogService) {
     super(logService);
