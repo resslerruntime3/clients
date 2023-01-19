@@ -22,6 +22,9 @@ import { EnvironmentService as EnvironmentServiceAbstraction } from "@bitwarden/
 import { EventCollectionService as EventCollectionServiceAbstraction } from "@bitwarden/common/abstractions/event/event-collection.service";
 import { EventUploadService as EventUploadServiceAbstraction } from "@bitwarden/common/abstractions/event/event-upload.service";
 import { ExportService as ExportServiceAbstraction } from "@bitwarden/common/abstractions/export.service";
+import { CipherFileUploadService as CipherFileUploadServiceAbstraction } from "@bitwarden/common/abstractions/file-upload/cipher-file-upload.service";
+import { FileUploadService as FileUploadServiceAbstraction } from "@bitwarden/common/abstractions/file-upload/file-upload.service";
+import { SendFileUploadService as SendFileUploadServiceAbstraction } from "@bitwarden/common/abstractions/file-upload/send-file-upload.service";
 import { FolderApiServiceAbstraction } from "@bitwarden/common/abstractions/folder/folder-api.service.abstraction";
 import {
   FolderService as FolderServiceAbstraction,
@@ -91,6 +94,7 @@ import { EventCollectionService } from "@bitwarden/common/services/event/event-c
 import { EventUploadService } from "@bitwarden/common/services/event/event-upload.service";
 import { ExportService } from "@bitwarden/common/services/export.service";
 import { CipherFileUploadService } from "@bitwarden/common/services/fileUpload/cipher-file-upload.service";
+import { FileUploadService } from "@bitwarden/common/services/fileUpload/file-upload.service";
 import { SendFileUploadService } from "@bitwarden/common/services/fileUpload/send-file-upload.service";
 import { FolderApiService } from "@bitwarden/common/services/folder/folder-api.service";
 import { FolderService } from "@bitwarden/common/services/folder/folder.service";
@@ -220,14 +224,19 @@ import { AbstractThemingService } from "./theming/theming.service.abstraction";
       ],
     },
     {
-      provide: SendFileUploadService,
-      useClass: SendFileUploadService,
-      deps: [LogService],
+      provide: FileUploadServiceAbstraction,
+      useClass: FileUploadService,
+      deps: [LoginServiceAbstraction],
     },
     {
-      provide: CipherFileUploadService,
+      provide: SendFileUploadServiceAbstraction,
+      useClass: SendFileUploadService,
+      deps: [SendApiServiceAbstraction, FileUploadServiceAbstraction],
+    },
+    {
+      provide: CipherFileUploadServiceAbstraction,
       useClass: CipherFileUploadService,
-      deps: [LogService],
+      deps: [ApiServiceAbstraction, FileUploadServiceAbstraction],
     },
     {
       provide: CipherServiceAbstraction,
@@ -235,34 +244,34 @@ import { AbstractThemingService } from "./theming/theming.service.abstraction";
         cryptoService: CryptoServiceAbstraction,
         settingsService: SettingsServiceAbstraction,
         apiService: ApiServiceAbstraction,
-        fileUploadService: CipherFileUploadService,
         i18nService: I18nServiceAbstraction,
         injector: Injector,
         logService: LogService,
         stateService: StateServiceAbstraction,
-        encryptService: EncryptService
+        encryptService: EncryptService,
+        fileUploadService: CipherFileUploadServiceAbstraction
       ) =>
         new CipherService(
           cryptoService,
           settingsService,
           apiService,
-          fileUploadService,
           i18nService,
           () => injector.get(SearchServiceAbstraction),
           logService,
           stateService,
-          encryptService
+          encryptService,
+          fileUploadService
         ),
       deps: [
         CryptoServiceAbstraction,
         SettingsServiceAbstraction,
         ApiServiceAbstraction,
-        CipherFileUploadService,
         I18nServiceAbstraction,
         Injector, // TODO: Get rid of this circular dependency!
         LogService,
         StateServiceAbstraction,
         EncryptService,
+        CipherFileUploadServiceAbstraction,
       ],
     },
     {
@@ -365,7 +374,7 @@ import { AbstractThemingService } from "./theming/theming.service.abstraction";
     {
       provide: SendApiServiceAbstraction,
       useClass: SendApiService,
-      deps: [ApiServiceAbstraction, SendFileUploadService, SendServiceAbstraction],
+      deps: [ApiServiceAbstraction, SendFileUploadServiceAbstraction, SendServiceAbstraction],
     },
     {
       provide: SyncServiceAbstraction,

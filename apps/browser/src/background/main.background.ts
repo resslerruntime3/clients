@@ -10,7 +10,9 @@ import { EncryptService } from "@bitwarden/common/abstractions/encrypt.service";
 import { EventCollectionService as EventCollectionServiceAbstraction } from "@bitwarden/common/abstractions/event/event-collection.service";
 import { EventUploadService as EventUploadServiceAbstraction } from "@bitwarden/common/abstractions/event/event-upload.service";
 import { ExportService as ExportServiceAbstraction } from "@bitwarden/common/abstractions/export.service";
-import { FileUploadService as FileUploadServiceAbstraction } from "@bitwarden/common/abstractions/file-upload.service";
+import { CipherFileUploadService as CipherFileUploadServiceAbstraction } from "@bitwarden/common/abstractions/file-upload/cipher-file-upload.service";
+import { FileUploadService as FileUploadServiceAbstraction } from "@bitwarden/common/abstractions/file-upload/file-upload.service";
+import { SendFileUploadService as SendFileUploadServiceAbstraction } from "@bitwarden/common/abstractions/file-upload/send-file-upload.service";
 import { FolderApiServiceAbstraction } from "@bitwarden/common/abstractions/folder/folder-api.service.abstraction";
 import { InternalFolderService as InternalFolderServiceAbstraction } from "@bitwarden/common/abstractions/folder/folder.service.abstraction";
 import { I18nService as I18nServiceAbstraction } from "@bitwarden/common/abstractions/i18n.service";
@@ -60,6 +62,7 @@ import { EventCollectionService } from "@bitwarden/common/services/event/event-c
 import { EventUploadService } from "@bitwarden/common/services/event/event-upload.service";
 import { ExportService } from "@bitwarden/common/services/export.service";
 import { CipherFileUploadService } from "@bitwarden/common/services/fileUpload/cipher-file-upload.service";
+import { FileUploadService } from "@bitwarden/common/services/fileUpload/file-upload.service";
 import { SendFileUploadService } from "@bitwarden/common/services/fileUpload/send-file-upload.service";
 import { FolderApiService } from "@bitwarden/common/services/folder/folder-api.service";
 import { KeyConnectorService } from "@bitwarden/common/services/keyConnector.service";
@@ -158,8 +161,9 @@ export default class MainBackground {
   policyService: InternalPolicyServiceAbstraction;
   popupUtilsService: PopupUtilsService;
   sendService: InternalSendServiceAbstraction;
-  cipherFileUploadService: FileUploadServiceAbstraction;
-  sendFileUploadService: FileUploadServiceAbstraction;
+  fileUploadService: FileUploadServiceAbstraction;
+  cipherFileUploadService: CipherFileUploadServiceAbstraction;
+  sendFileUploadService: SendFileUploadServiceAbstraction;
   organizationService: InternalOrganizationServiceAbstraction;
   providerService: ProviderServiceAbstraction;
   keyConnectorService: KeyConnectorServiceAbstraction;
@@ -307,18 +311,25 @@ export default class MainBackground {
       (expired: boolean) => this.logout(expired)
     );
     this.settingsService = new BrowserSettingsService(this.stateService);
-    this.cipherFileUploadService = new CipherFileUploadService(this.logService);
-    this.sendFileUploadService = new SendFileUploadService(this.logService);
+    this.fileUploadService = new FileUploadService(this.logService);
+    this.cipherFileUploadService = new CipherFileUploadService(
+      this.apiService,
+      this.fileUploadService
+    );
+    this.sendFileUploadService = new SendFileUploadService(
+      this.sendApiService,
+      this.fileUploadService
+    );
     this.cipherService = new CipherService(
       this.cryptoService,
       this.settingsService,
       this.apiService,
-      this.cipherFileUploadService,
       this.i18nService,
       () => this.searchService,
       this.logService,
       this.stateService,
-      this.encryptService
+      this.encryptService,
+      this.cipherFileUploadService
     );
     this.folderService = new BrowserFolderService(
       this.cryptoService,
