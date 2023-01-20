@@ -317,7 +317,8 @@ export default class MainBackground {
       this.fileUploadService
     );
     this.sendFileUploadService = new SendFileUploadService(
-      this.sendApiService,
+      this.sendService,
+      this.apiService,
       this.fileUploadService
     );
     this.cipherService = new CipherService(

@@ -44,14 +44,14 @@ export function cipherServiceFactory(
         await cryptoServiceFactory(cache, opts),
         await settingsServiceFactory(cache, opts),
         await apiServiceFactory(cache, opts),
-        await cipherFileUploadServiceFactory(cache, opts),
         await i18nServiceFactory(cache, opts),
         opts.cipherServiceOptions?.searchServiceFactory === undefined
           ? () => cache.searchService
           : opts.cipherServiceOptions.searchServiceFactory,
         await logServiceFactory(cache, opts),
         await stateServiceFactory(cache, opts),
-        await encryptServiceFactory(cache, opts)
+        await encryptServiceFactory(cache, opts),
+        await cipherFileUploadServiceFactory(cache, opts)
       )
   );
 }

@@ -231,7 +231,7 @@ import { AbstractThemingService } from "./theming/theming.service.abstraction";
     {
       provide: SendFileUploadServiceAbstraction,
       useClass: SendFileUploadService,
-      deps: [SendApiServiceAbstraction, FileUploadServiceAbstraction],
+      deps: [SendServiceAbstraction, ApiServiceAbstraction, FileUploadServiceAbstraction],
     },
     {
       provide: CipherFileUploadServiceAbstraction,

@@ -11,14 +11,14 @@ import { sendServiceFactory, SendServiceInitOptions } from "./send-service.facto
 
 type SendApiServiceFactoryOptions = FactoryOptions;
 
-export type SearchServiceInitOptions = SendApiServiceFactoryOptions &
+export type FileUploadServiceInitOptions = SendApiServiceFactoryOptions &
   ApiServiceInitOptions &
   SendServiceInitOptions &
   SendFileUploadServiceInitOptions;
 
 export function sendApiServiceFactory(
   cache: { searchService?: SendApiServiceAbstraction } & CachedServices,
-  opts: SearchServiceInitOptions
+  opts: FileUploadServiceInitOptions
 ): Promise<SendApiServiceAbstraction> {
   return factory(
     cache,

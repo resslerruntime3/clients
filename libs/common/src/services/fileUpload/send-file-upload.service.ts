@@ -1,6 +1,7 @@
+import { ApiService } from "../../abstractions/api.service";
 import { FileUploadService } from "../../abstractions/file-upload/file-upload.service";
 import { SendFileUploadService as SendFileUploadServiceAbstraction } from "../../abstractions/file-upload/send-file-upload.service";
-import { SendApiService } from "../../abstractions/send/send-api.service.abstraction";
+import { InternalSendService } from "../../abstractions/send/send.service.abstraction";
 import { SendType } from "../../enums/sendType";
 import { Utils } from "../../misc/utils";
 import { EncArrayBuffer } from "../../models/domain/enc-array-buffer";
@@ -10,12 +11,18 @@ import { ErrorResponse } from "../../models/response/error.response";
 import { SendFileUploadDataResponse } from "../../models/response/send-file-upload-data.response";
 import { SendResponse } from "../../models/response/send.response";
 import { FileUploadApiMethods } from "../../types/file-upload-api-methods";
+import { SendApiService } from "../send/send-api.service";
 
 export class SendFileUploadService implements SendFileUploadServiceAbstraction {
   constructor(
-    private sendApiService: SendApiService,
+    sendService: InternalSendService,
+    apiService: ApiService,
     private fileUploadService: FileUploadService
-  ) {}
+  ) {
+    this.sendApiService = new SendApiService(apiService, this, sendService);
+  }
+
+  sendApiService: SendApiService;
 
   async upload(sendData: [Send, EncArrayBuffer]): Promise<SendResponse> {
     const request = new SendRequest(sendData[0], sendData[1]?.buffer.byteLength);

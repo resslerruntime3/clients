@@ -82,7 +82,6 @@ export class CipherFileUploadService implements CipherFileUploadServiceAbstracti
   private generateRenewFileUploadUrlCallback(
     uploadData: AttachmentUploadDataResponse,
     response: CipherResponse,
-
     isAdmin: boolean
   ) {
     return async () => {
