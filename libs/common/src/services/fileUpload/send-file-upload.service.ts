@@ -51,6 +51,10 @@ export class SendFileUploadService implements SendFileUploadServiceAbstraction {
           }
         }
       }
+      sendData[0].id = response.id;
+      sendData[0].accessId = response.accessId;
+    } else {
+      response = await this.sendApiService.putSend(sendData[0].id, request);
     }
     return response;
   }

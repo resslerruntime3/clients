@@ -14,7 +14,7 @@ export function fileUploadServiceFactory(
 ): Promise<FileUploadServiceAbstraction> {
   return factory(
     cache,
-    "sendApiService",
+    "fileUploadService",
     opts,
     async () => new FileUploadService(await logServiceFactory(cache, opts))
   );

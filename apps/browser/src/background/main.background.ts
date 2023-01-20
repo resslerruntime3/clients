@@ -410,7 +410,18 @@ export default class MainBackground {
       lockedCallback,
       logoutCallback
     );
-
+    this.containerService = new ContainerService(this.cryptoService, this.encryptService);
+    this.sendService = new BrowserSendService(
+      this.cryptoService,
+      this.i18nService,
+      this.cryptoFunctionService,
+      this.stateService
+    );
+    this.sendApiService = new SendApiService(
+      this.apiService,
+      this.sendFileUploadService,
+      this.sendService
+    );
     this.providerService = new ProviderService(this.stateService);
     this.syncService = new SyncService(
       this.apiService,
@@ -454,18 +465,6 @@ export default class MainBackground {
       this.totpService,
       this.eventCollectionService,
       this.logService
-    );
-    this.containerService = new ContainerService(this.cryptoService, this.encryptService);
-    this.sendService = new BrowserSendService(
-      this.cryptoService,
-      this.i18nService,
-      this.cryptoFunctionService,
-      this.stateService
-    );
-    this.sendApiService = new SendApiService(
-      this.apiService,
-      this.sendFileUploadService,
-      this.sendService
     );
     this.auditService = new AuditService(this.cryptoFunctionService, this.apiService);
     this.exportService = new ExportService(
