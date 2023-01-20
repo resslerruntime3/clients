@@ -5,11 +5,11 @@ import { SymmetricCryptoKey } from "../../models/domain/symmetric-crypto-key";
 import { CipherResponse } from "../../models/response/cipher.response";
 
 export abstract class CipherFileUploadService {
-  abstract upload(
+  upload: (
     cipher: Cipher,
     encFileName: EncString,
     encData: EncArrayBuffer,
     admin: boolean,
     dataEncKey: [SymmetricCryptoKey, EncString]
-  ): Promise<CipherResponse>;
+  ) => Promise<CipherResponse>;
 }

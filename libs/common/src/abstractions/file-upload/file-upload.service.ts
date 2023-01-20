@@ -4,10 +4,10 @@ import { EncString } from "../../models/domain/enc-string";
 import { FileUploadApiMethods } from "../../types/file-upload-api-methods";
 
 export abstract class FileUploadService {
-  abstract upload(
+  upload: (
     uploadData: { url: string; fileUploadType: FileUploadType },
     fileName: EncString,
     encryptedFileData: EncArrayBuffer,
     fileUploadMethods: FileUploadApiMethods
-  ): Promise<void>;
+  ) => Promise<void>;
 }
