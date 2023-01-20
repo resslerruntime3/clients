@@ -50,9 +50,9 @@ export class SendFileUploadService implements SendFileUploadServiceAbstraction {
             throw e;
           }
         }
-        return response;
       }
     }
+    return response;
   }
 
   private generateMethods(
