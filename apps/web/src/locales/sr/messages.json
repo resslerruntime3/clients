@@ -929,17 +929,17 @@
   "confirmFilePassword": {
     "message": "Потврдити лозинку датотеке"
   },
-  "accountBackupOptionDescription": {
-    "message": "Користите кључ за шифровање налога да шифрујете извоз и ограничите увоз само на тренутни Bitwarden налогу."
+  "accountRestrictedOptionDescription": {
+    "message": "Користите кључ за шифровање вашег налога, изведен из корисничког имена и главне лозинке, да шифрујете извоз и ограничите увоз само на тренутни Bitwarden налог."
   },
   "passwordProtectedOptionDescription": {
     "message": "Подесите лозинку за шифровање извоза и увоз у било који Bitwarden налог користећи лозинку за дешифровање."
   },
-  "fileTypeHeading": {
-    "message": "Тип датотеке"
+  "exportTypeHeading": {
+    "message": "Тип извоза"
   },
-  "accountBackup": {
-    "message": "Резервна копија налога"
+  "accountRestricted": {
+    "message": "Налог је ограничен"
   },
   "passwordProtected": {
     "message": "Заштићено лозинком"
@@ -1821,6 +1821,22 @@
         "example": "$10"
       }
     }
+  },
+  "premiumPriceWithFamilyPlan": {
+    "message": "Go premium for just $PRICE$ /year, or get premium accounts for $FAMILYPLANUSERCOUNT$ users and unlimited family sharing with a ",
+    "placeholders": {
+      "price": {
+        "content": "$1",
+        "example": "$10"
+      },
+      "familyplanusercount": {
+        "content": "$2",
+        "example": "6"
+      }
+    }
+  },
+  "bitwardenFamiliesPlan": {
+    "message": "Bitwarden Families plan."
   },
   "addons": {
     "message": "Додаци"
@@ -5475,6 +5491,45 @@
   "notYou": {
     "message": "Нисте Ви?"
   },
+  "pickAnAvatarColor": {
+    "message": "Изабрати боју аватара"
+  },
+  "customizeAvatar": {
+    "message": "Прилагодити аватар"
+  },
+  "avatarUpdated": {
+    "message": "Аватар ажуриран"
+  },
+  "brightBlue": {
+    "message": "Јаркоплава"
+  },
+  "green": {
+    "message": "Зелена"
+  },
+  "orange": {
+    "message": "Наранџаста"
+  },
+  "lavender": {
+    "message": "Лаванда"
+  },
+  "yellow": {
+    "message": "Жута"
+  },
+  "indigo": {
+    "message": "Индиго"
+  },
+  "teal": {
+    "message": "Плавозелена"
+  },
+  "salmon": {
+    "message": "Лосос"
+  },
+  "pink": {
+    "message": "Розе"
+  },
+  "customColor": {
+    "message": "Сопствена боја"
+  },
   "multiSelectPlaceholder": {
     "message": "-- Тип за филтрирање --"
   },
@@ -5521,6 +5576,15 @@
   },
   "deleteSecrets": {
     "message": "Обрисати тајне"
+  },
+  "secretProjectAssociationDescription": {
+    "message": "Select projects that the secret will be associated with. Only organization users with access to these projects will be able to see the secret."
+  },
+  "typeOrSelectProjects": {
+    "message": "Type or select Projects"
+  },
+  "typeOrSelectProject": {
+    "message": "Type or select Project"
   },
   "project": {
     "message": "Пројекат"
@@ -5784,10 +5848,10 @@
     "message": "Овај члан може приступити и изменити све ставке."
   },
   "moreFromBitwarden": {
-    "message": "More from Bitwarden"
+    "message": "Више од Bitwarden"
   },
   "switchProducts": {
-    "message": "Switch Products"
+    "message": "Пребацити призвод"
   },
   "freeOrgInvLimitReachedManageBilling": {
     "message": "Free organizations may have up to $SEATCOUNT$ members. Upgrade to a paid plan to invite more members.",

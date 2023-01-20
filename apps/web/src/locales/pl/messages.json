@@ -929,17 +929,17 @@
   "confirmFilePassword": {
     "message": "Potwierdź hasło pliku"
   },
-  "accountBackupOptionDescription": {
-    "message": "Wykorzystuje szyfrowanie konta Bitwarden, a nie hasło główne, aby chronić eksport. Ten eksport może być zaimportowany tylko na tym koncie. Użyj tego, aby utworzyć kopię zapasową, której nie można użyć nigdzie indziej."
+  "accountRestrictedOptionDescription": {
+    "message": "Użyj klucza szyfrowania konta, pochodzącego z nazwy użytkownika konta i hasła głównego, aby zaszyfrować eksport i ograniczyć import tylko do bieżącego konta Bitwarden."
   },
   "passwordProtectedOptionDescription": {
     "message": "Utwórz hasło wygenerowane przez użytkownika, aby chronić eksport. Użyj tego, aby utworzyć eksport, który może być używany na innych kontach."
   },
-  "fileTypeHeading": {
-    "message": "Rodzaj pliku"
+  "exportTypeHeading": {
+    "message": "Typ eksportu"
   },
-  "accountBackup": {
-    "message": "Kopia zapasowa konta"
+  "accountRestricted": {
+    "message": "Konto ograniczone"
   },
   "passwordProtected": {
     "message": "Zabezpieczone hasłem"
@@ -1822,6 +1822,22 @@
       }
     }
   },
+  "premiumPriceWithFamilyPlan": {
+    "message": "Przejdź na konto Premium za jedyne $PRICE$ rocznie lub kup konta Premium dla $FAMILYPLANUSERCOUNT$ użytkowników i nieograniczone udostępnianie rodzinne dzięki ",
+    "placeholders": {
+      "price": {
+        "content": "$1",
+        "example": "$10"
+      },
+      "familyplanusercount": {
+        "content": "$2",
+        "example": "6"
+      }
+    }
+  },
+  "bitwardenFamiliesPlan": {
+    "message": "planowi rodzinnemu Bitwarden."
+  },
   "addons": {
     "message": "Dodatki"
   },
@@ -2528,7 +2544,7 @@
     "message": "Sejf organizacji został wyeksportowany."
   },
   "editedOrgSettings": {
-    "message": "Ustawienia organizacji zostały zmienione."
+    "message": "Ustawienia organizacji zostały zaktualizowane."
   },
   "createdItemId": {
     "message": "Element $ID$ został utworzony.",
@@ -3567,10 +3583,10 @@
     "message": "Sposób blokowania sejfu"
   },
   "vaultTimeoutActionLockDesc": {
-    "message": "Aby uzyskać dostęp do sejfu, musisz wpisać hasło główne lub odblokować go inną metodą."
+    "message": "Wpisz hasło główne lub odblokuj sejf inną metodą, aby uzyskać do niego dostęp."
   },
   "vaultTimeoutActionLogOutDesc": {
-    "message": "Po wylogowaniu się z sejfu, musisz ponownie zalogować się, aby uzyskać do niego dostęp."
+    "message": "Zaloguj się ponownie, aby uzyskać dostęp do sejfu."
   },
   "lock": {
     "message": "Zablokuj",
@@ -5125,19 +5141,19 @@
     "message": "Token synchronizacji płatności"
   },
   "active": {
-    "message": "Aktywna"
+    "message": "Aktywny"
   },
   "inactive": {
-    "message": "Nieaktywna"
+    "message": "Nieaktywny"
   },
   "sentAwaitingSync": {
-    "message": "Wysłano (oczekiwanie na synchronizację)"
+    "message": "Wysłany (oczekiwanie na synchronizację)"
   },
   "sent": {
     "message": "Wysłano"
   },
   "requestRemoved": {
-    "message": "Usunięto (oczekiwanie na synchronizację)"
+    "message": "Usunięty (oczekiwanie na synchronizację)"
   },
   "requested": {
     "message": "Zażądano"
@@ -5475,6 +5491,45 @@
   "notYou": {
     "message": "To nie Ty?"
   },
+  "pickAnAvatarColor": {
+    "message": "Wybierz kolor awatara"
+  },
+  "customizeAvatar": {
+    "message": "Dostosuj awatara"
+  },
+  "avatarUpdated": {
+    "message": "Zaktualizowano awatar"
+  },
+  "brightBlue": {
+    "message": "Jasnoniebieski"
+  },
+  "green": {
+    "message": "Zielony"
+  },
+  "orange": {
+    "message": "Pomarańczowy"
+  },
+  "lavender": {
+    "message": "Lawendowy"
+  },
+  "yellow": {
+    "message": "Żółty"
+  },
+  "indigo": {
+    "message": "Indygo"
+  },
+  "teal": {
+    "message": "Morski"
+  },
+  "salmon": {
+    "message": "Łososiowy"
+  },
+  "pink": {
+    "message": "Różowy"
+  },
+  "customColor": {
+    "message": "Kolor użytkownika"
+  },
   "multiSelectPlaceholder": {
     "message": "-- Pisz, aby filtrować --"
   },
@@ -5522,6 +5577,15 @@
   "deleteSecrets": {
     "message": "Usuń sekrety"
   },
+  "secretProjectAssociationDescription": {
+    "message": "Wybierz projekty, z którymi będzie skojarzony sekret. Tylko użytkownicy organizacji z dostępem do tych projektów będą mogli zobaczyć sekret."
+  },
+  "typeOrSelectProjects": {
+    "message": "Wpisz lub wybierz projekty"
+  },
+  "typeOrSelectProject": {
+    "message": "Wpisz lub wybierz projekt"
+  },
   "project": {
     "message": "Projekt"
   },
@@ -5556,7 +5620,7 @@
     "message": "Para nazwa/wartość"
   },
   "secretEdited": {
-    "message": "Sekret został edytowany"
+    "message": "Sekret został zaktualizowany"
   },
   "secretCreated": {
     "message": "Sekret został utworzony"
@@ -5598,7 +5662,7 @@
     "message": "Dodaj projekt"
   },
   "projectEdited": {
-    "message": "Projekt został edytowany"
+    "message": "Projekt został zaktualizowany"
   },
   "projectSaved": {
     "message": "Projekt został zapisany"
@@ -5697,7 +5761,7 @@
     "message": "Sekret został przeniesiony do kosza"
   },
   "searchProjects": {
-    "message": "Wyszukaj w projektach"
+    "message": "Szukaj w projektach"
   },
   "accessTokens": {
     "message": "Tokeny dostępu"

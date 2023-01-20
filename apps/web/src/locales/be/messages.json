@@ -929,17 +929,17 @@
   "confirmFilePassword": {
     "message": "Пацвердзіць пароль файла"
   },
-  "accountBackupOptionDescription": {
-    "message": "Выкарыстоўвайце ключ шыфравання вашага ўліковага запісу, каб зашыфраваць экспартаванне і абмежаваць імпартаванне толькі бягучага ўліковага запісу Bitwarden."
+  "accountRestrictedOptionDescription": {
+    "message": "Выкарыстоўвайце свой ключ шыфравання, які атрыманы з імя карыстальніка і асноўнага пароля, каб зашыфраваць экспартаванне і абмежаваць імпартаванне толькі бягучага ўліковага запісу Bitwarden."
   },
   "passwordProtectedOptionDescription": {
     "message": "Прызначце пароль, каб зашыфраваць экспартаванне і імпартуйце яго ў любы ўліковы запіс Bitwarden з выкарыстаннем пароля для расшыфроўкі."
   },
-  "fileTypeHeading": {
-    "message": "Тып файла"
+  "exportTypeHeading": {
+    "message": "Тып экспартавання"
   },
-  "accountBackup": {
-    "message": "Рэзервовая копія ўліковага запісу"
+  "accountRestricted": {
+    "message": "Абмежавана ўліковым запісам"
   },
   "passwordProtected": {
     "message": "Абаронена паролем"
@@ -1821,6 +1821,22 @@
         "example": "$10"
       }
     }
+  },
+  "premiumPriceWithFamilyPlan": {
+    "message": "Перайдзіце на прэміяльны тарыфны план усяго за $PRICE$/год або атрымайце прэміяльныя ўліковыя запісы для $FAMILYPLANUSERCOUNT$ карыстальнікаў і неабмежаванае сямейнае абагуленне з ",
+    "placeholders": {
+      "price": {
+        "content": "$1",
+        "example": "$10"
+      },
+      "familyplanusercount": {
+        "content": "$2",
+        "example": "6"
+      }
+    }
+  },
+  "bitwardenFamiliesPlan": {
+    "message": "Тарыфны план Bitwarden Families."
   },
   "addons": {
     "message": "Дадаткі"
@@ -5475,6 +5491,45 @@
   "notYou": {
     "message": "Не вы?"
   },
+  "pickAnAvatarColor": {
+    "message": "Выберыце колер аватара"
+  },
+  "customizeAvatar": {
+    "message": "Дапасаваць аватар"
+  },
+  "avatarUpdated": {
+    "message": "Аватар абноўлены"
+  },
+  "brightBlue": {
+    "message": "Ярка-блакітны"
+  },
+  "green": {
+    "message": "Зялёны"
+  },
+  "orange": {
+    "message": "Аранжавы"
+  },
+  "lavender": {
+    "message": "Пурпурны"
+  },
+  "yellow": {
+    "message": "Жоўты"
+  },
+  "indigo": {
+    "message": "Індыга"
+  },
+  "teal": {
+    "message": "Сіне-зялёны"
+  },
+  "salmon": {
+    "message": "Ласосевы"
+  },
+  "pink": {
+    "message": "Ружовы"
+  },
+  "customColor": {
+    "message": "Карыстальніцкі колер"
+  },
   "multiSelectPlaceholder": {
     "message": "- Увядзіце для фільтрацыі -"
   },
@@ -5488,15 +5543,15 @@
     "message": "Ачысціць усё"
   },
   "toggleCharacterCount": {
-    "message": "Toggle character count",
+    "message": "Пераключыць лічыльнік сімвалаў",
     "description": "'Character count' describes a feature that displays a number next to each character of the password."
   },
   "passwordCharacterCount": {
-    "message": "Password character count",
+    "message": "Колькасць сімвалаў пароля",
     "description": "'Character count' describes a feature that displays a number next to each character of the password."
   },
   "hide": {
-    "message": "Hide"
+    "message": "Схаваць"
   },
   "projects": {
     "message": "Праекты"
@@ -5521,6 +5576,15 @@
   },
   "deleteSecrets": {
     "message": "Выдаліць сакрэты"
+  },
+  "secretProjectAssociationDescription": {
+    "message": "Выберыце праекты з якімі будзе звязаны сакрэт. Толькі карыстальнікі арганізацыі з доступам да гэтых праектаў змогуць бачыць сакрэт."
+  },
+  "typeOrSelectProjects": {
+    "message": "Увядзіце або выберыце праекты"
+  },
+  "typeOrSelectProject": {
+    "message": "Увядзіце або выберыце праект"
   },
   "project": {
     "message": "Праект"
@@ -5784,10 +5848,10 @@
     "message": "Гэты ўдзельнік можа атрымліваць доступ і змяняць усе элементы."
   },
   "moreFromBitwarden": {
-    "message": "More from Bitwarden"
+    "message": "Больш ад Bitwarden"
   },
   "switchProducts": {
-    "message": "Switch Products"
+    "message": "Змяніць прадукты"
   },
   "freeOrgInvLimitReachedManageBilling": {
     "message": "Колькасць бясплатных удзельнікаў у бясплатных арганізацыях можа дасягаць: $SEATCOUNT$. Перайдзіце на платны тарыфны план, каб запрасіць больш удзельнікаў.",

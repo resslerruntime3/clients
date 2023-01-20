@@ -234,6 +234,7 @@ const devServer =
                   'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU='
                   'sha256-JVRXyYPueLWdwGwY9m/7u4QlZ1xeQdqUj2t8OVIzZE4='
                   'sha256-or0p3LaHetJ4FRq+flVORVFFNsOjQGWrDvX8Jf7ACWg='
+                  'sha256-jvLh2uL2/Pq/gpvNJMaEL4C+TNhBeGadLIUyPcVRZvY='
                   'sha256-Oca9ZYU1dwNscIhdNV7tFBsr4oqagBhZx9/p4w8GOcg='
                 ;img-src
                   'self'
@@ -261,7 +262,7 @@ const devServer =
                   https://notifications.bitwarden.com
                   https://cdn.bitwarden.net
                   https://api.pwnedpasswords.com
-                  https://2fa.directory/api/v3/totp.json
+                  https://api.2fa.directory/v3/totp.json
                   https://api.stripe.com
                   https://www.paypal.com
                   https://api.braintreegateway.com

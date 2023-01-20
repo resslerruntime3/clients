@@ -929,17 +929,17 @@
   "confirmFilePassword": {
     "message": "Fayl parolunu təsdiqlə"
   },
-  "accountBackupOptionDescription": {
-    "message": "Xaricə köçürməni qorumaq üçün ana parolu yox, Bitwarden hesab şifrələməsini istifadə edir. Bu xaricə köçürmə, yalnız hazırkı hesaba köçürülə bilər. Başqa yerdə istifadə edilə bilməyəcək bir nüsxə yaratmaq üçün bunu istifadə edin."
+  "accountRestrictedOptionDescription": {
+    "message": "Xaricə köçürməni şifrələmək və daxilə köçürməni yalnız mövcud Bitwarden hesabı ilə məhdudlaşdırmaq üçün hesabınızın istifadəçi adı və Ana Parolundan əldə edilən hesab şifrələmə açarınızı istifadə edin."
   },
   "passwordProtectedOptionDescription": {
     "message": "Xaricə köçürməni qorumaq üçün istifadəçi tərəfindən yaradılan bir parol yaradın. Digər hesablarda istifadə ediləcək bir xaricə köçürmə yaratmaq üçün bunu istifadə edin."
   },
-  "fileTypeHeading": {
-    "message": "Fayl növü"
+  "exportTypeHeading": {
+    "message": "Xaricə köçürmə növü"
   },
-  "accountBackup": {
-    "message": "Hesab nüsxələmə"
+  "accountRestricted": {
+    "message": "Hesab məhdudlaşdırıldı"
   },
   "passwordProtected": {
     "message": "Parolla qorunur"
@@ -1821,6 +1821,22 @@
         "example": "$10"
       }
     }
+  },
+  "premiumPriceWithFamilyPlan": {
+    "message": "Sadəcə $PRICE$ qiymətinə illik premium-a abunə olun və ya Bitwarden Ailələr planı ilə $FAMILYPLANUSERCOUNT$ istifadəçiləri üçün premium hesablar və ",
+    "placeholders": {
+      "price": {
+        "content": "$1",
+        "example": "$10"
+      },
+      "familyplanusercount": {
+        "content": "$2",
+        "example": "6"
+      }
+    }
+  },
+  "bitwardenFamiliesPlan": {
+    "message": "limitsiz ailə paylaşımı əldə edin."
   },
   "addons": {
     "message": "Əlavələr"
@@ -5475,6 +5491,45 @@
   "notYou": {
     "message": "Siz deyilsiniz?"
   },
+  "pickAnAvatarColor": {
+    "message": "Bir avatar rəngi götürün"
+  },
+  "customizeAvatar": {
+    "message": "Avatarı özəlləşdir"
+  },
+  "avatarUpdated": {
+    "message": "Avatar güncəlləndi"
+  },
+  "brightBlue": {
+    "message": "Parlaq mavi"
+  },
+  "green": {
+    "message": "Yaşıl"
+  },
+  "orange": {
+    "message": "Narıncı"
+  },
+  "lavender": {
+    "message": "Lavanda"
+  },
+  "yellow": {
+    "message": "Sarı"
+  },
+  "indigo": {
+    "message": "Tünd mavi"
+  },
+  "teal": {
+    "message": "Dəniz mavisi"
+  },
+  "salmon": {
+    "message": "Salmon"
+  },
+  "pink": {
+    "message": "Çəhrayı"
+  },
+  "customColor": {
+    "message": "Özəl rəng"
+  },
   "multiSelectPlaceholder": {
     "message": "-- Filtrləmək üçün yazın --"
   },
@@ -5521,6 +5576,15 @@
   },
   "deleteSecrets": {
     "message": "\"Sirr\"ləri sil"
+  },
+  "secretProjectAssociationDescription": {
+    "message": "Sirrin əlaqələndiriləcəyi layihələri seçin. Yalnız bu layihələrə müraciəti olan təşkilat istifadəçiləri sirri görə biləcək."
+  },
+  "typeOrSelectProjects": {
+    "message": "Layihələri yazın və ya seçin"
+  },
+  "typeOrSelectProject": {
+    "message": "Layihə yazın və ya seçin"
   },
   "project": {
     "message": "Layihə"

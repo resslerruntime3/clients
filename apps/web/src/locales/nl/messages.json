@@ -929,17 +929,17 @@
   "confirmFilePassword": {
     "message": "Bestandswachtwoord bevestigen"
   },
-  "accountBackupOptionDescription": {
-    "message": "Maakt gebruik van Bitwarden-accountversleuteling, niet het hoofdwachtwoord, om de export te beveiligen. Je kunt deze export alleen importeren in het huidige account. Gebruik dit om een back-up te maken die je elders niet kunt gebruiken."
+  "accountRestrictedOptionDescription": {
+    "message": "Gebruik de encryptiesleutel van je account, afgeleid van je gebruikersnaam en hoodfwachtwoord, om de export te versleutelen en importeren te beperken tot het huidige Bitwarden-account."
   },
   "passwordProtectedOptionDescription": {
     "message": "Maak een door de gebruiker gegenereerd wachtwoord aan om de export te beschermen. Gebruik dit om een export te maken die je in andere accounts kunt gebruiken."
   },
-  "fileTypeHeading": {
-    "message": "Bestandstype"
+  "exportTypeHeading": {
+    "message": "Exporttype"
   },
-  "accountBackup": {
-    "message": "Account back-up"
+  "accountRestricted": {
+    "message": "Account beperkt"
   },
   "passwordProtected": {
     "message": "Beveiligd met wachtwoord"
@@ -1609,7 +1609,7 @@
     "message": "Gelekte wachtwoorden"
   },
   "exposedPasswordsReportDesc": {
-    "message": "Gelekte wachtwoorden zijn wachtwoorden die zijn ontdekt in bekende datalekken die publiekelijk zijn vrijgegeven of door hackers op het dark web worden verkocht."
+    "message": "Passwords exposed in a data breach are easy targets for attackers. Change these passwords to prevent potential break-ins."
   },
   "exposedPasswordsFound": {
     "message": "Gelekte wachtwoorden gevonden"
@@ -1821,6 +1821,22 @@
         "example": "$10"
       }
     }
+  },
+  "premiumPriceWithFamilyPlan": {
+    "message": "Neem Premium voor maar $PRICE$ /jaar of krijg Premium-accounts voor $FAMILYPLANUSERCOUNT$ gebruikers en ongelimiteerd delen met de family met ",
+    "placeholders": {
+      "price": {
+        "content": "$1",
+        "example": "$10"
+      },
+      "familyplanusercount": {
+        "content": "$2",
+        "example": "6"
+      }
+    }
+  },
+  "bitwardenFamiliesPlan": {
+    "message": "Bitwarden Families."
   },
   "addons": {
     "message": "Add-ons"
@@ -5475,6 +5491,45 @@
   "notYou": {
     "message": "Ben jij dit niet?"
   },
+  "pickAnAvatarColor": {
+    "message": "Kies een kleur voor je avatar"
+  },
+  "customizeAvatar": {
+    "message": "Avatar aanpassen"
+  },
+  "avatarUpdated": {
+    "message": "Avatar bijgewerkt"
+  },
+  "brightBlue": {
+    "message": "Helderblauw"
+  },
+  "green": {
+    "message": "Groen"
+  },
+  "orange": {
+    "message": "Oranje"
+  },
+  "lavender": {
+    "message": "Lavendel"
+  },
+  "yellow": {
+    "message": "Geel"
+  },
+  "indigo": {
+    "message": "Indigo"
+  },
+  "teal": {
+    "message": "Groenblauw"
+  },
+  "salmon": {
+    "message": "Zalm"
+  },
+  "pink": {
+    "message": "Roze"
+  },
+  "customColor": {
+    "message": "Aangepaste kleur"
+  },
   "multiSelectPlaceholder": {
     "message": "-- Type om te filteren --"
   },
@@ -5499,46 +5554,55 @@
     "message": "Verbergen"
   },
   "projects": {
-    "message": "Projects"
+    "message": "Projecten"
   },
   "lastEdited": {
-    "message": "Last Edited"
+    "message": "Laatst bewerkt"
   },
   "editSecret": {
-    "message": "Edit Secret"
+    "message": "Bewerk geheim"
   },
   "addSecret": {
-    "message": "Add Secret"
+    "message": "Geheim toevoegen"
   },
   "copySecretName": {
-    "message": "Copy Secret Name"
+    "message": "Kopieer geheime naam"
   },
   "copySecretValue": {
-    "message": "Copy Secret Value"
+    "message": "Geheime waarde kopiëren"
   },
   "deleteSecret": {
-    "message": "Delete Secret"
+    "message": "Geheim verwijderen"
   },
   "deleteSecrets": {
-    "message": "Delete Secrets"
+    "message": "Geheimen verwijderen"
+  },
+  "secretProjectAssociationDescription": {
+    "message": "Kies projecten om het geheim aan te koppelen. Alleen gebruikers uit de organisatie met toegang tot deze projecten kunnen het geheim zien."
+  },
+  "typeOrSelectProjects": {
+    "message": "Typ of kies projecten"
+  },
+  "typeOrSelectProject": {
+    "message": "Typ of kies een project"
   },
   "project": {
     "message": "Project"
   },
   "editProject": {
-    "message": "Edit Project"
+    "message": "Bewerk project"
   },
   "viewProject": {
-    "message": "View Project"
+    "message": "Bekijk project"
   },
   "deleteProject": {
-    "message": "Delete Project"
+    "message": "Verwijder project"
   },
   "deleteProjects": {
-    "message": "Delete Projects"
+    "message": "Verwijder projecten"
   },
   "secret": {
-    "message": "Secret"
+    "message": "Geheim"
   },
   "serviceAccount": {
     "message": "Service Account"

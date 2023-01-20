@@ -929,17 +929,17 @@
   "confirmFilePassword": {
     "message": "Confirmar contraseña del archivo"
   },
-  "accountBackupOptionDescription": {
-    "message": "Aproveche el cifrado de su cuenta de Bitwarden, no la contraseña maestra, para proteger la exportación. Esta exportación sólo puede importarse a la cuenta actual. Utilice esto para crear una copia de seguridad que no se puede utilizar en otro lugar."
+  "accountRestrictedOptionDescription": {
+    "message": "Utilice la clave de cifrado de su cuenta, derivada del nombre de usuario y contraseña maestra de su cuenta, para cifrar la exportación y restringir la importación sólo a la cuenta actual de Bitwarden."
   },
   "passwordProtectedOptionDescription": {
     "message": "Crear una contraseña generada por el usuario para proteger la exportación. Utilice esto para crear una exportación que pueda ser usada en otras cuentas."
   },
-  "fileTypeHeading": {
-    "message": "Tipo de archivo"
+  "exportTypeHeading": {
+    "message": "Tipo de exportación"
   },
-  "accountBackup": {
-    "message": "Copia de seguridad de la cuenta"
+  "accountRestricted": {
+    "message": "Cuenta restringida"
   },
   "passwordProtected": {
     "message": "Protegida con contraseña"
@@ -1609,7 +1609,7 @@
     "message": "Infome de contraseñas expuestas"
   },
   "exposedPasswordsReportDesc": {
-    "message": "Exposed passwords are passwords have been uncovered in known data breaches that were released publicly or sold on the dark web by hackers."
+    "message": "Las contraseñas expuestas en una brecha de datos son blancos fáciles para los atacantes. Cambia estas contraseñas para evitar futuras brechas."
   },
   "exposedPasswordsFound": {
     "message": "Contraseñas expuestas encontradas"
@@ -1821,6 +1821,22 @@
         "example": "$10"
       }
     }
+  },
+  "premiumPriceWithFamilyPlan": {
+    "message": "Pasate a premium por solo $PRICE$ /año, o consigue cuentas premium para $FAMILYPLANUSERCOUNT$ usuarios y una familia ilimitada compartiendo con un ",
+    "placeholders": {
+      "price": {
+        "content": "$1",
+        "example": "$10"
+      },
+      "familyplanusercount": {
+        "content": "$2",
+        "example": "6"
+      }
+    }
+  },
+  "bitwardenFamiliesPlan": {
+    "message": "Plan familiar Bitwarden."
   },
   "addons": {
     "message": "Complementos"
@@ -3462,7 +3478,7 @@
     "description": "'OAuth 2.0' is a programming protocol. It should probably not be translated."
   },
   "viewApiKey": {
-    "message": "Ver Clave API"
+    "message": "Ver clave API"
   },
   "rotateApiKey": {
     "message": "Regenerar clave API"
@@ -5475,6 +5491,45 @@
   "notYou": {
     "message": "¿No eres tú?"
   },
+  "pickAnAvatarColor": {
+    "message": "Elige un color de avatar"
+  },
+  "customizeAvatar": {
+    "message": "Avatar personalizado"
+  },
+  "avatarUpdated": {
+    "message": "Avatar actualizado"
+  },
+  "brightBlue": {
+    "message": "Azul brillante"
+  },
+  "green": {
+    "message": "Verde"
+  },
+  "orange": {
+    "message": "Naranja"
+  },
+  "lavender": {
+    "message": "Lavanda"
+  },
+  "yellow": {
+    "message": "Amarillo"
+  },
+  "indigo": {
+    "message": "Indigo"
+  },
+  "teal": {
+    "message": "Verde azulado"
+  },
+  "salmon": {
+    "message": "Salmón"
+  },
+  "pink": {
+    "message": "Rosa"
+  },
+  "customColor": {
+    "message": "Color personalizado"
+  },
   "multiSelectPlaceholder": {
     "message": "-- Escriba para filtrar --"
   },
@@ -5522,6 +5577,15 @@
   "deleteSecrets": {
     "message": "Eliminar secretos"
   },
+  "secretProjectAssociationDescription": {
+    "message": "Seleccione los proyectos con los que se asociará el secreto. Sólo los usuarios de la organización con acceso a estos proyectos podrán ver el secreto."
+  },
+  "typeOrSelectProjects": {
+    "message": "Escriba o seleccione proyectos"
+  },
+  "typeOrSelectProject": {
+    "message": "Escriba o seleccione un proyecto"
+  },
   "project": {
     "message": "Proyecto"
   },
@@ -5529,7 +5593,7 @@
     "message": "Editar proyecto"
   },
   "viewProject": {
-    "message": "Ver Project"
+    "message": "Ver proyecto"
   },
   "deleteProject": {
     "message": "Eliminar proyecto"
@@ -5553,7 +5617,7 @@
     "message": "Secretos"
   },
   "nameValuePair": {
-    "message": "Nombre/Valor par"
+    "message": "Par de Nombre/Valor"
   },
   "secretEdited": {
     "message": "Secreto editado"

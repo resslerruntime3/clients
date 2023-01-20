@@ -929,17 +929,17 @@
   "confirmFilePassword": {
     "message": "Bekræft filadgangskode"
   },
-  "accountBackupOptionDescription": {
-    "message": "Brug din kontos krypteringsnøgle til at kryptere eksporten og begrænse importen til udelukkende den aktuelle Bitwarden-konto."
+  "accountRestrictedOptionDescription": {
+    "message": "Brug kontokrypteringsnøglen, dannet af dit kontobrugernavn samt hovedadgangskode, for at kryptere eksporten og hindre import til andre end den aktuelle Bitwarden-konto."
   },
   "passwordProtectedOptionDescription": {
     "message": "Opsæt en adgangskode til både at kryptere eksporten samt dekryptere denne ved import til enhver Bitwarden-konto."
   },
-  "fileTypeHeading": {
-    "message": "Filtype"
+  "exportTypeHeading": {
+    "message": "Eksporttype"
   },
-  "accountBackup": {
-    "message": "Kontosikkerhedskopi"
+  "accountRestricted": {
+    "message": "Konto begrænset"
   },
   "passwordProtected": {
     "message": "Adgangskodebeskyttet"
@@ -1821,6 +1821,22 @@
         "example": "$10"
       }
     }
+  },
+  "premiumPriceWithFamilyPlan": {
+    "message": "Køb Premium for kun $PRICE$ /år, eller køb Premium-konti til $FAMILYPLANUSERCOUNT$ brugere og ubegrænset familiedeling med et ",
+    "placeholders": {
+      "price": {
+        "content": "$1",
+        "example": "$10"
+      },
+      "familyplanusercount": {
+        "content": "$2",
+        "example": "6"
+      }
+    }
+  },
+  "bitwardenFamiliesPlan": {
+    "message": "Bitwarden Families-abonnement."
   },
   "addons": {
     "message": "Tilføjelser"
@@ -5475,6 +5491,45 @@
   "notYou": {
     "message": "Ikke dig?"
   },
+  "pickAnAvatarColor": {
+    "message": "Vælg avatarfarve"
+  },
+  "customizeAvatar": {
+    "message": "Tilpas avatar"
+  },
+  "avatarUpdated": {
+    "message": "Avatar opdateret"
+  },
+  "brightBlue": {
+    "message": "Klar blå"
+  },
+  "green": {
+    "message": "Grøn"
+  },
+  "orange": {
+    "message": "Orange"
+  },
+  "lavender": {
+    "message": "Lavendel"
+  },
+  "yellow": {
+    "message": "Gul"
+  },
+  "indigo": {
+    "message": "Mørkeblå (indigo)"
+  },
+  "teal": {
+    "message": "Blågrøn"
+  },
+  "salmon": {
+    "message": "Laksefarvet"
+  },
+  "pink": {
+    "message": "Lyserød"
+  },
+  "customColor": {
+    "message": "Tilpasset farve"
+  },
   "multiSelectPlaceholder": {
     "message": "-- Skriv for at filtrere --"
   },
@@ -5521,6 +5576,15 @@
   },
   "deleteSecrets": {
     "message": "Slet hemmeligheder"
+  },
+  "secretProjectAssociationDescription": {
+    "message": "Vælg projekter, som hemmeligheden vil blive tilknyttet. Den vil kun kunne ses af organisationsbrugere med adgang til disse projekter."
+  },
+  "typeOrSelectProjects": {
+    "message": "Angiv eller vælg Projekter"
+  },
+  "typeOrSelectProject": {
+    "message": "Angiv eller vælg Projekt"
   },
   "project": {
     "message": "Projekt"

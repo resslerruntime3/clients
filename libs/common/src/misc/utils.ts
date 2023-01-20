@@ -431,6 +431,10 @@ export class Utils {
     return this.global.bitwardenContainerService;
   }
 
+  static validateHexColor(color: string) {
+    return /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(color);
+  }
+
   /**
    * Converts map to a Record<string, V> with the same data. Inverse of recordToMap
    * Useful in toJSON methods, since Maps are not serializable
@@ -497,6 +501,10 @@ export class Utils {
       }
     })(win.navigator.userAgent || win.navigator.vendor || (win as any).opera);
     return mobile || win.navigator.userAgent.match(/iPad/i) != null;
+  }
+
+  static delay(ms: number): Promise<void> {
+    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
   private static isAppleMobile(win: Window) {

@@ -174,7 +174,7 @@
     "message": "Verwyder"
   },
   "unassigned": {
-    "message": "Unassigned"
+    "message": "Nie-toegewys"
   },
   "noneFolder": {
     "message": "Geen vouer",
@@ -263,7 +263,7 @@
     "message": "Gunsteling"
   },
   "unfavorite": {
-    "message": "Unfavorite"
+    "message": "Nie-gunsteling"
   },
   "edit": {
     "message": "Wysig"
@@ -452,7 +452,7 @@
     "message": "Kies alles"
   },
   "unselectAll": {
-    "message": "Unselect all"
+    "message": "Onkies alles"
   },
   "launch": {
     "message": "Lanseer"
@@ -929,17 +929,17 @@
   "confirmFilePassword": {
     "message": "Bevestig lêerwagwoord"
   },
-  "accountBackupOptionDescription": {
-    "message": "Use your account encryption key to encrypt the export and restrict import to only the current Bitwarden account."
+  "accountRestrictedOptionDescription": {
+    "message": "Use your account encryption key, derived from your account's username and Master Password, to encrypt the export and restrict import to only the current Bitwarden account."
   },
   "passwordProtectedOptionDescription": {
-    "message": "Set a password to encrypt the export and import it to any Bitwarden account using the password for decryption."
+    "message": "Set a file password to encrypt the export and import it to any Bitwarden account using the password for decryption."
   },
-  "fileTypeHeading": {
-    "message": "Lêertipe"
+  "exportTypeHeading": {
+    "message": "Export type"
   },
-  "accountBackup": {
-    "message": "Rekeningrugsteun"
+  "accountRestricted": {
+    "message": "Account restricted"
   },
   "passwordProtected": {
     "message": "Password protected"
@@ -1821,6 +1821,22 @@
         "example": "$10"
       }
     }
+  },
+  "premiumPriceWithFamilyPlan": {
+    "message": "Go premium for just $PRICE$ /year, or get premium accounts for $FAMILYPLANUSERCOUNT$ users and unlimited family sharing with a ",
+    "placeholders": {
+      "price": {
+        "content": "$1",
+        "example": "$10"
+      },
+      "familyplanusercount": {
+        "content": "$2",
+        "example": "6"
+      }
+    }
+  },
+  "bitwardenFamiliesPlan": {
+    "message": "Bitwarden Families plan."
   },
   "addons": {
     "message": "Toevoegings"
@@ -5475,6 +5491,45 @@
   "notYou": {
     "message": "Not you?"
   },
+  "pickAnAvatarColor": {
+    "message": "Kies 'n avatar kleur"
+  },
+  "customizeAvatar": {
+    "message": "Pas avatar aan"
+  },
+  "avatarUpdated": {
+    "message": "Avatar opgedateer"
+  },
+  "brightBlue": {
+    "message": "Bright Blue"
+  },
+  "green": {
+    "message": "Green"
+  },
+  "orange": {
+    "message": "Orange"
+  },
+  "lavender": {
+    "message": "Lavender"
+  },
+  "yellow": {
+    "message": "Yellow"
+  },
+  "indigo": {
+    "message": "Indigo"
+  },
+  "teal": {
+    "message": "Teal"
+  },
+  "salmon": {
+    "message": "Salmon"
+  },
+  "pink": {
+    "message": "Pink"
+  },
+  "customColor": {
+    "message": "Custom Color"
+  },
   "multiSelectPlaceholder": {
     "message": "-- Type to Filter --"
   },
@@ -5521,6 +5576,15 @@
   },
   "deleteSecrets": {
     "message": "Delete Secrets"
+  },
+  "secretProjectAssociationDescription": {
+    "message": "Select projects that the secret will be associated with. Only organization users with access to these projects will be able to see the secret."
+  },
+  "typeOrSelectProjects": {
+    "message": "Type or select Projects"
+  },
+  "typeOrSelectProject": {
+    "message": "Type or select Project"
   },
   "project": {
     "message": "Project"

@@ -60,6 +60,7 @@
 ./libs/common/src/misc/nodeUtils.ts
 ./libs/common/src/misc/linkedFieldOption.decorator.ts
 ./libs/common/src/misc/serviceUtils.ts
+./libs/common/src/misc/serviceUtils.spec.ts
 ./libs/common/src/types/twoFactorResponse.ts
 ./libs/common/src/types/authResponse.ts
 ./libs/common/src/types/syncEventArgs.ts
@@ -205,7 +206,6 @@
 ./apps/browser/src/safari/safari/SafariWebExtensionHandler.swift
 ./apps/browser/src/safari/safari/Info.plist
 ./apps/browser/src/safari/desktop.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
-./apps/browser/src/commands/autoFillActiveTabCommand.ts
 ./apps/browser/src/listeners/onCommandListener.ts
 ./apps/browser/src/listeners/onInstallListener.ts
 ./apps/browser/src/services/browserFileDownloadService.ts

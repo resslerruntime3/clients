@@ -929,17 +929,17 @@
   "confirmFilePassword": {
     "message": "确认文件密码"
   },
-  "accountBackupOptionDescription": {
-    "message": "使用您的账户加密密钥来加密导出的数据，并且限制只能导入到当前的 Bitwarden 账户。"
+  "accountRestrictedOptionDescription": {
+    "message": "Use your account encryption key, derived from your account's username and Master Password, to encrypt the export and restrict import to only the current Bitwarden account."
   },
   "passwordProtectedOptionDescription": {
     "message": "设置一个密码用来加密导出的数据，并使用此密码解密以导入到任意 Bitwarden 账户。"
   },
-  "fileTypeHeading": {
-    "message": "文件类型"
+  "exportTypeHeading": {
+    "message": "导出类型"
   },
-  "accountBackup": {
-    "message": "账户备份"
+  "accountRestricted": {
+    "message": "Account restricted"
   },
   "passwordProtected": {
     "message": "密码保护"
@@ -1821,6 +1821,22 @@
         "example": "$10"
       }
     }
+  },
+  "premiumPriceWithFamilyPlan": {
+    "message": "Go premium for just $PRICE$ /year, or get premium accounts for $FAMILYPLANUSERCOUNT$ users and unlimited family sharing with a ",
+    "placeholders": {
+      "price": {
+        "content": "$1",
+        "example": "$10"
+      },
+      "familyplanusercount": {
+        "content": "$2",
+        "example": "6"
+      }
+    }
+  },
+  "bitwardenFamiliesPlan": {
+    "message": "Bitwarden 家庭计划。"
   },
   "addons": {
     "message": "附加项目"
@@ -5475,6 +5491,45 @@
   "notYou": {
     "message": "不是你？"
   },
+  "pickAnAvatarColor": {
+    "message": "选择头像颜色"
+  },
+  "customizeAvatar": {
+    "message": "自定义头像"
+  },
+  "avatarUpdated": {
+    "message": "头像已更新"
+  },
+  "brightBlue": {
+    "message": "亮蓝色"
+  },
+  "green": {
+    "message": "绿色"
+  },
+  "orange": {
+    "message": "橙色"
+  },
+  "lavender": {
+    "message": "熏衣草紫"
+  },
+  "yellow": {
+    "message": "黄色"
+  },
+  "indigo": {
+    "message": "靛青色"
+  },
+  "teal": {
+    "message": "蓝绿色"
+  },
+  "salmon": {
+    "message": "鲑红"
+  },
+  "pink": {
+    "message": "粉红色"
+  },
+  "customColor": {
+    "message": "自定义颜色"
+  },
   "multiSelectPlaceholder": {
     "message": "-- 键入以筛选 --"
   },
@@ -5521,6 +5576,15 @@
   },
   "deleteSecrets": {
     "message": "删除机密"
+  },
+  "secretProjectAssociationDescription": {
+    "message": "选择与机密相关联的项目。仅有权访问该项目的组织用户能查看该机密。"
+  },
+  "typeOrSelectProjects": {
+    "message": "输入或选择项目"
+  },
+  "typeOrSelectProject": {
+    "message": "输入或选择项目"
   },
   "project": {
     "message": "项目"

@@ -929,17 +929,17 @@
   "confirmFilePassword": {
     "message": "Подтвердить пароль к файлу"
   },
-  "accountBackupOptionDescription": {
-    "message": "Используйте ключ шифрования своей учетной записи, чтобы зашифровать экспорт и ограничить импорт только текущей учетной записью Bitwarden."
+  "accountRestrictedOptionDescription": {
+    "message": "Использовать ключ шифрования вашего аккаунта, полученный из имени пользователя и мастер-пароля, для шифрования экспорта и ограничения импорта только для текущего аккаунта Bitwarden."
   },
   "passwordProtectedOptionDescription": {
-    "message": "Установите пароль для шифрования экспорта и импортируйте его в любую учетную запись Bitwarden, используя пароль для расшифровки."
+    "message": "Установите пароль файла для шифрования экспорта и импортируйте его в любую учетную запись Bitwarden, используя пароль для расшифровки."
   },
-  "fileTypeHeading": {
-    "message": "Тип файла"
+  "exportTypeHeading": {
+    "message": "Тип экспорта"
   },
-  "accountBackup": {
-    "message": "Резервное копирование аккаунта"
+  "accountRestricted": {
+    "message": "Ограничено аккаунтом"
   },
   "passwordProtected": {
     "message": "Пароль защищен"
@@ -1821,6 +1821,22 @@
         "example": "$10"
       }
     }
+  },
+  "premiumPriceWithFamilyPlan": {
+    "message": "Перейдите на Премиум всего за $PRICE$ /год или получите Премиум для $FAMILYPLANUSERCOUNT$ пользователей и неограниченный семейный обмен с ",
+    "placeholders": {
+      "price": {
+        "content": "$1",
+        "example": "$10"
+      },
+      "familyplanusercount": {
+        "content": "$2",
+        "example": "6"
+      }
+    }
+  },
+  "bitwardenFamiliesPlan": {
+    "message": "планом Bitwarden Families."
   },
   "addons": {
     "message": "Дополнения"
@@ -5188,7 +5204,7 @@
     "message": "Экспорт хранилища организации"
   },
   "exportingPersonalVaultDescription": {
-    "message": "Будут экспортированы только личные элементы хранилища, связанные с $EMAIL$. Элементы хранилища организации включены не будут.",
+    "message": "Будут экспортированы только отдельные элементы хранилища, связанные с $EMAIL$. Элементы хранилища организации включены не будут. Экспортируется только информация об элементах хранилища, не включая связанную историю паролей или вложений.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -5262,7 +5278,7 @@
     "message": "Общий email домена"
   },
   "catchallEmailDesc": {
-    "message": "Использовать общую почту домена."
+    "message": "Использовать общий email домена."
   },
   "random": {
     "message": "Случайно",
@@ -5475,6 +5491,45 @@
   "notYou": {
     "message": "Не вы?"
   },
+  "pickAnAvatarColor": {
+    "message": "Выбрать цвет аватара"
+  },
+  "customizeAvatar": {
+    "message": "Настроить аватар"
+  },
+  "avatarUpdated": {
+    "message": "Аватар обновлен"
+  },
+  "brightBlue": {
+    "message": "Ярко-голубой"
+  },
+  "green": {
+    "message": "Зеленый"
+  },
+  "orange": {
+    "message": "Оранжевый"
+  },
+  "lavender": {
+    "message": "Лавандовый"
+  },
+  "yellow": {
+    "message": "Желтый"
+  },
+  "indigo": {
+    "message": "Фиолетовый"
+  },
+  "teal": {
+    "message": "Бирюзовый"
+  },
+  "salmon": {
+    "message": "Лососевый"
+  },
+  "pink": {
+    "message": "Розовый"
+  },
+  "customColor": {
+    "message": "Пользовательский цвет"
+  },
   "multiSelectPlaceholder": {
     "message": "-- Тип фильтра --"
   },
@@ -5521,6 +5576,15 @@
   },
   "deleteSecrets": {
     "message": "Удалить секреты"
+  },
+  "secretProjectAssociationDescription": {
+    "message": "Выберите проекты, с которыми будет связан секрет. Только пользователи организации, имеющие доступ к этим проектам, смогут увидеть секрет."
+  },
+  "typeOrSelectProjects": {
+    "message": "Введите или выберите проекты"
+  },
+  "typeOrSelectProject": {
+    "message": "Введите или выберите проекты"
   },
   "project": {
     "message": "Проект"
@@ -5784,7 +5848,7 @@
     "message": "Эта пользователь может иметь доступ и изменять все элементы."
   },
   "moreFromBitwarden": {
-    "message": "Дополнительная информация о Bitwarden"
+    "message": "Больше от Bitwarden"
   },
   "switchProducts": {
     "message": "Изменить продукты"

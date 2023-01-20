@@ -929,17 +929,17 @@
   "confirmFilePassword": {
     "message": "Vahvista tiedoston salasana"
   },
-  "accountBackupOptionDescription": {
-    "message": "Salaa vienti tilisi salausavaimella, joka rajoittaa sen tuonnin vain tälle Bitwarden-tilille."
+  "accountRestrictedOptionDescription": {
+    "message": "Salaa vienti ja rajoita tuonti vain nykyiselle Bitwarden-tilille tilisi käyttäjätunnukseen ja pääsalasanaan pohjautuvalla salausavaimella."
   },
   "passwordProtectedOptionDescription": {
-    "message": "Salaa vienti salasanalla, joka mahdollistaa sen tuonnin mille tahansa Bitwarden-tilille."
+    "message": "Salaa vientitiedosto salasanalla, joka mahdollistaa sen tuonnin mille tahansa Bitwarden-tilille."
   },
-  "fileTypeHeading": {
-    "message": "Tiedostotyyppi"
+  "exportTypeHeading": {
+    "message": "Viennin tyyppi"
   },
-  "accountBackup": {
-    "message": "Tilin varmuuskopiointi"
+  "accountRestricted": {
+    "message": "Tiliä on rajoitettu"
   },
   "passwordProtected": {
     "message": "Salasanasuojattu"
@@ -1553,11 +1553,11 @@
     "message": "Raportit"
   },
   "reportsDesc": {
-    "message": "Tunnista ja paikkaa verkkopalvelutunnustesi tietoturva-aukkoja painamalla alla olevia raportteja.",
+    "message": "Tunnista ja paikkaa käyttäjätiliesi tietoturva-aukkoja alla olevien raporttien avulla.",
     "description": "Vault health reports can be used to evaluate the security of your Bitwarden individual or organization vault."
   },
   "orgsReportsDesc": {
-    "message": "Tunnista ja sulje aukot organisaatiosi tietoturvassa alla olevien raporttien avulla.",
+    "message": "Tunnista ja paikkaa organisatiosi käyttäjätilien tietoturva-aukkoja alla olevien raporttien avulla.",
     "description": "Vault health reports can be used to evaluate the security of your Bitwarden individual or organization Vault."
   },
   "unsecuredWebsitesReport": {
@@ -1821,6 +1821,22 @@
         "example": "$10"
       }
     }
+  },
+  "premiumPriceWithFamilyPlan": {
+    "message": "Hanki Premium vain $PRICE$ vuosihintaan tai vaihtoehtoisesti premium-tilit $FAMILYPLANUSERCOUNT$ käyttäjälle ja rajoittamattomalla perhejaolla ",
+    "placeholders": {
+      "price": {
+        "content": "$1",
+        "example": "$10"
+      },
+      "familyplanusercount": {
+        "content": "$2",
+        "example": "6"
+      }
+    }
+  },
+  "bitwardenFamiliesPlan": {
+    "message": "Bitwarden Perheille -tilauksella."
   },
   "addons": {
     "message": "Laajennukset"
@@ -3131,7 +3147,7 @@
     "message": "Yritys tai yhteisö"
   },
   "bankAccountTypeIndividual": {
-    "message": "Henkilökohtainen"
+    "message": "Yksityinen (henkilökohtainen)"
   },
   "enterInstallationId": {
     "message": "Syötä asennuksesi ID-tunnus"
@@ -4056,7 +4072,7 @@
     "message": "Organisaation omistajat ja ylläpitäjät on vapautettu tämän käytännön piiristä."
   },
   "personalOwnershipSubmitError": {
-    "message": "Yrityskäytännön johdosta kohteiden tallennus henkilökohtaiseen holviin ei ole mahdollista. Muuta omistusasetus organisaatiolle ja valitse käytettävissä olevista kokoelmista."
+    "message": "Yrityskäytännön johdosta kohteiden tallennus yksityinen holviisi ei ole mahdollista. Muuta omistusasetus organisaatiolle ja valitse käytettävissä olevista kokoelmista."
   },
   "disableSend": {
     "message": "Poista Send"
@@ -4207,10 +4223,10 @@
     "message": "Organisaatiokäytäntö vaikuttaa omistajuusvalintoihisi."
   },
   "personalOwnershipPolicyInEffectImports": {
-    "message": "Organisaatiokäytäntö estää kohteiden tuonnin henkilökohtaiseen holviisi."
+    "message": "Organisaatiokäytäntö estää kohteiden tuonnin yksityiseen holviisi."
   },
   "personalOwnershipCheckboxDesc": {
-    "message": "Poista henkilökohtaisen omistajuuden valinta käytöstä organisaation käyttäjiltä"
+    "message": "Poista yksityisen omistajuuden valinta käytöstä organisaation käyttäjiltä"
   },
   "textHiddenByDefault": {
     "message": "Piilota teksti oletuksena kun Send avataan",
@@ -4714,7 +4730,7 @@
     "message": "Holvin vienti poistettiin"
   },
   "personalVaultExportPolicyInEffect": {
-    "message": "Yksi tai useampi organisaatiokäytäntö estää henkilökohtaisen holvisi viennin."
+    "message": "Yksi tai useampi organisaatiokäytäntö estää yksityisen holvisi viennin."
   },
   "selectType": {
     "message": "Valitse SSO-tyyppi"
@@ -5182,13 +5198,13 @@
     "message": "Istuntosi on aikakatkaistu. Palaa takaisin ja yritä kirjautua uudelleen."
   },
   "exportingPersonalVaultTitle": {
-    "message": "Henkilökohtaisen holvin vienti"
+    "message": "Yksityisen holvin vienti"
   },
   "exportingOrganizationVaultTitle": {
     "message": "Organisaation holvin vienti"
   },
   "exportingPersonalVaultDescription": {
-    "message": "Vain tunnukseen $EMAIL$ liitetyt henkilökohtaisen holvin kohteet viedään. Organisaation kohteet eivät sisälly tähän.",
+    "message": "Vain tunnukseen $EMAIL$ liitetyt yksityisen holvin kohteet viedään. Organisaation holvin kohteita ei sisällytetä. Vain holvin kohteiden tiedot viedään ilman niihin liittyviä salasanojen historiatietoja tai liitteitä.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -5197,7 +5213,7 @@
     }
   },
   "exportingOrganizationVaultDescription": {
-    "message": "Vain organisaatioon $ORGANIZATION$ liitetyt holvin kohteet viedään. Henkilökohtaiset ja muiden organisaatioiden kohteet eivät sisälly tähän.",
+    "message": "Vain organisaatioon $ORGANIZATION$ liitetyt holvin kohteet viedään. Yksityisen holvin ja muiden organisaatioiden kohteita ei sisällytetä.",
     "placeholders": {
       "organization": {
         "content": "$1",
@@ -5475,6 +5491,45 @@
   "notYou": {
     "message": "Etkö se ollut sinä?"
   },
+  "pickAnAvatarColor": {
+    "message": "Valitse hahmon väri"
+  },
+  "customizeAvatar": {
+    "message": "Mukauta hahmoa"
+  },
+  "avatarUpdated": {
+    "message": "Hahmo päivitettiin"
+  },
+  "brightBlue": {
+    "message": "Kirkas sininen"
+  },
+  "green": {
+    "message": "Vihreä"
+  },
+  "orange": {
+    "message": "Oranssi"
+  },
+  "lavender": {
+    "message": "Laventeli"
+  },
+  "yellow": {
+    "message": "Keltainen"
+  },
+  "indigo": {
+    "message": "Syvän sininen"
+  },
+  "teal": {
+    "message": "Sinivihreä"
+  },
+  "salmon": {
+    "message": "Lohenpunainen"
+  },
+  "pink": {
+    "message": "Pinkki"
+  },
+  "customColor": {
+    "message": "Oma väri"
+  },
   "multiSelectPlaceholder": {
     "message": "-- Suodatettava tyyppi --"
   },
@@ -5521,6 +5576,15 @@
   },
   "deleteSecrets": {
     "message": "Poista salaisuudet"
+  },
+  "secretProjectAssociationDescription": {
+    "message": "Valitse projektit, joihin salaisuus liitetään. Salaisuuden voivat nähdä vain ne organisaation käyttäjät, joilla on näiden projektien käyttöoikeus."
+  },
+  "typeOrSelectProjects": {
+    "message": "Syötä tai valitse projektit"
+  },
+  "typeOrSelectProject": {
+    "message": "Syötä tai valitse projekti"
   },
   "project": {
     "message": "Projekti"
@@ -5571,7 +5635,7 @@
     "message": "Näytettäviä salaisuuksia ei ole"
   },
   "secretsNoItemsMessage": {
-    "message": "Aloita lisäämällä uusi salaisuus tai tuomalla salaisuudet."
+    "message": "Aloita lisäämällä uusi salaisuus tai tuomalla niitä."
   },
   "serviceAccountsNoItemsTitle": {
     "message": "Mitään näytettävää ei vielä ole"
@@ -5631,13 +5695,13 @@
     "message": "Palvelutilin nimi"
   },
   "newSaSelectAccess": {
-    "message": "Kirjoita tai valitse projektit tai salaisuudet"
+    "message": "Syötä tai valitse projektit tai salaisuudet"
   },
   "newSaTypeToFilter": {
     "message": "Suodata kirjoittamalla"
   },
   "deleteProjectsToast": {
-    "message": "Projektit poistettiin"
+    "message": "Projekteja poistettiin"
   },
   "deleteProjectToast": {
     "message": "Projekti ja kaikki siihen liittyvät salaisuudet poistettiin"
@@ -5652,7 +5716,7 @@
     }
   },
   "deleteProjectInputLabel": {
-    "message": "Jatka kirjoittamalla \"$CONFIRM$\"",
+    "message": "Jatka syöttämällä \"$CONFIRM$\"",
     "placeholders": {
       "confirm": {
         "content": "$1",
@@ -5700,7 +5764,7 @@
     "message": "Hae projekteista"
   },
   "accessTokens": {
-    "message": "Hae käyttötunnisteista"
+    "message": "Käyttötunnisteet"
   },
   "createAccessToken": {
     "message": "Luo käyttötunniste"

@@ -929,17 +929,17 @@
   "confirmFilePassword": {
     "message": "Potvrdiť heslo súboru"
   },
-  "accountBackupOptionDescription": {
-    "message": "Na ochranu exportu využíva šifrovanie vášho účtu Bitwarden, nie hlavné heslo. Tento export je možné importovať len do aktuálneho účtu. Použite ho na vytvorenie zálohy, ktorú nie je možné použiť inde."
+  "accountRestrictedOptionDescription": {
+    "message": "Na zašifrovanie exportu a obmedzenie importu len na aktuálny účet Bitwarden použite šifrovací kľúč účtu odvodený z používateľského mena a hlavného hesla účtu."
   },
   "passwordProtectedOptionDescription": {
     "message": "Na ochranu exportu vytvorte heslo vygenerované používateľom. Použite ho na vytvorenie exportu, ktorý možno použiť v iných účtoch."
   },
-  "fileTypeHeading": {
-    "message": "Typ súboru"
+  "exportTypeHeading": {
+    "message": "Typ exportu"
   },
-  "accountBackup": {
-    "message": "Zálohovanie účtu"
+  "accountRestricted": {
+    "message": "Obmedzený účet"
   },
   "passwordProtected": {
     "message": "Chránené heslom"
@@ -1821,6 +1821,22 @@
         "example": "$10"
       }
     }
+  },
+  "premiumPriceWithFamilyPlan": {
+    "message": "Prejdite na prémium len za $PRICE$ /rok alebo získajte prémium kontá pre $FAMILYPLANUSERCOUNT$ používateľov a neobmedzené zdieľanie v rodine s ",
+    "placeholders": {
+      "price": {
+        "content": "$1",
+        "example": "$10"
+      },
+      "familyplanusercount": {
+        "content": "$2",
+        "example": "6"
+      }
+    }
+  },
+  "bitwardenFamiliesPlan": {
+    "message": "Bitwarden plán pre Rodiny."
   },
   "addons": {
     "message": "Doplnky"
@@ -5475,6 +5491,45 @@
   "notYou": {
     "message": "Nie ste to vy?"
   },
+  "pickAnAvatarColor": {
+    "message": "Výber farby avatara"
+  },
+  "customizeAvatar": {
+    "message": "Prispôsobenie avatara"
+  },
+  "avatarUpdated": {
+    "message": "Avatar bol aktualizovaný"
+  },
+  "brightBlue": {
+    "message": "Svetlomodrá"
+  },
+  "green": {
+    "message": "Zelená"
+  },
+  "orange": {
+    "message": "Oranžová"
+  },
+  "lavender": {
+    "message": "Levanduľová"
+  },
+  "yellow": {
+    "message": "Žltá"
+  },
+  "indigo": {
+    "message": "Indigová"
+  },
+  "teal": {
+    "message": "Modrozelená"
+  },
+  "salmon": {
+    "message": "Lososová"
+  },
+  "pink": {
+    "message": "Ružová"
+  },
+  "customColor": {
+    "message": "Vlastná farba"
+  },
   "multiSelectPlaceholder": {
     "message": "-- Začnite písať pre filtrovanie --"
   },
@@ -5521,6 +5576,15 @@
   },
   "deleteSecrets": {
     "message": "Delete Secrets"
+  },
+  "secretProjectAssociationDescription": {
+    "message": "Vyberte projekty ku ktorým bude heslo patriť. Iba tí používatelia organizácie, ktorí majú prístup k zvoleným projektom budú môcť vidieť heslo."
+  },
+  "typeOrSelectProjects": {
+    "message": "Zadajte alebo vyberte Projekty"
+  },
+  "typeOrSelectProject": {
+    "message": "Zadajte alebo vyberte Projekt"
   },
   "project": {
     "message": "Project"

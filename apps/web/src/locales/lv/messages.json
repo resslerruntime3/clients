@@ -929,17 +929,17 @@
   "confirmFilePassword": {
     "message": "Apstiprināt datnes paroli"
   },
-  "accountBackupOptionDescription": {
-    "message": "Jāizmanto konta šifrēšanas atslēga, lai šifrētu izdošanu un ierobežotu ievietošanu tikai pašreizējā Bitwarden kontā."
+  "accountRestrictedOptionDescription": {
+    "message": "Izmantot konta šifrēšanas atslēgu, kas iegūta no lietotājvārda un galvenās paroles, lai šifrētu izdošanu un atļautu ievietošanu tikai pašreizējā Bitwarden kontā."
   },
   "passwordProtectedOptionDescription": {
     "message": "Uzstādīt paroli, lai šifrētu izdošanu un tad to ievietotu jebkurā Bitwarden kontā, izmantojot atšifrēšanas paroli."
   },
-  "fileTypeHeading": {
-    "message": "Datnes veids"
+  "exportTypeHeading": {
+    "message": "Izdošanas veids"
   },
-  "accountBackup": {
-    "message": "Konta rezerves kopija"
+  "accountRestricted": {
+    "message": "Konts ir ierobežots"
   },
   "passwordProtected": {
     "message": "Aizsargāts ar paroli"
@@ -1582,7 +1582,7 @@
     "message": "Nevienam glabātavas vienumam nav nedrošu URI."
   },
   "inactive2faReport": {
-    "message": "Neizmantoto 2FA pārskats"
+    "message": "Pierakstīšanās vienumi bez divpakāpju pārbaudes"
   },
   "inactive2faReportDesc": {
     "message": "Divfaktoru autentificēšanās (2FA) ir būtisks drošības iestatījums, kas palīdz nodrošināt kontus. Ja tīmekļa vietne to piedāvā, vienmēr vajadzētu iespējot divfaktoru autentificēšanos."
@@ -1690,13 +1690,13 @@
     }
   },
   "dataBreachReport": {
-    "message": "Datu pārākumu pārskats"
+    "message": "Datu noplūde"
   },
   "breachDesc": {
-    "message": "\"Pārkāpums\" ir notikums, kurā urķi ir nelikumīgi piekļuvuši tās datiem un tad tos ir publicējuši. Jāpārskata datu veidi, kas ir ietekmēti (e-pasta adreses, paroles, bankas kartes utt.) un jāveic atbilstošas darbības, piemēram, paroļu nomaiņa."
+    "message": "Kontu noplūde var atklāt personisko informāciju. Noplūdušos kontus var padarīt drošus, iespējojot divpakāpju pārbaudi vai izveidojot spēcīgāku paroli."
   },
   "breachCheckUsernameEmail": {
-    "message": "Jāpārbauda jebkurš lietotājvārds vai e-pasta adrese, kas tiek izmantota."
+    "message": "Pārbaudīt jebkuru lietotājvārdu vai e-pasta adresi, kas tiek izmantota."
   },
   "checkBreaches": {
     "message": "Pārbaudīt datu pārkāpumus"
@@ -1821,6 +1821,22 @@
         "example": "$10"
       }
     }
+  },
+  "premiumPriceWithFamilyPlan": {
+    "message": "Iegūsti premium tikai par $PRICE$ gadā vai iegūsti premium kontus lietotājiem $FAMILYPLANUSERCOUNT$ un neierobežotu ģimenes koplietošanu ar ",
+    "placeholders": {
+      "price": {
+        "content": "$1",
+        "example": "$10"
+      },
+      "familyplanusercount": {
+        "content": "$2",
+        "example": "6"
+      }
+    }
+  },
+  "bitwardenFamiliesPlan": {
+    "message": "Bitwarden Families plāns."
   },
   "addons": {
     "message": "Papildinājumi"
@@ -5419,7 +5435,7 @@
     "description": "the text, 'SCIM', is an acronymn and should not be translated."
   },
   "inputRequired": {
-    "message": "Ievade ir nepieciešama."
+    "message": "Jāievada vērtība."
   },
   "inputEmail": {
     "message": "Ievadītā vērtība nav e-pasta adrese."
@@ -5475,6 +5491,45 @@
   "notYou": {
     "message": "Tas neesi Tu?"
   },
+  "pickAnAvatarColor": {
+    "message": "Izvēlies avatāra krāsu"
+  },
+  "customizeAvatar": {
+    "message": "Pielāgot avatāru"
+  },
+  "avatarUpdated": {
+    "message": "Avatārs atjaunināts"
+  },
+  "brightBlue": {
+    "message": "Spilgti Zils"
+  },
+  "green": {
+    "message": "Zaļš"
+  },
+  "orange": {
+    "message": "Oranžs"
+  },
+  "lavender": {
+    "message": "Lavanda"
+  },
+  "yellow": {
+    "message": "Dzeltens"
+  },
+  "indigo": {
+    "message": "Indigo"
+  },
+  "teal": {
+    "message": "Zilganzaļa"
+  },
+  "salmon": {
+    "message": "Lasis"
+  },
+  "pink": {
+    "message": "Rozā"
+  },
+  "customColor": {
+    "message": "Pielāgota Krāsa"
+  },
   "multiSelectPlaceholder": {
     "message": "-- Rakstīt, lai atlasītu --"
   },
@@ -5488,15 +5543,15 @@
     "message": "Notīrīt visu"
   },
   "toggleCharacterCount": {
-    "message": "Toggle character count",
+    "message": "Pārslēgt rakstzīmju skaita attēlošanu",
     "description": "'Character count' describes a feature that displays a number next to each character of the password."
   },
   "passwordCharacterCount": {
-    "message": "Password character count",
+    "message": "Paroles rakstzīmju skaits",
     "description": "'Character count' describes a feature that displays a number next to each character of the password."
   },
   "hide": {
-    "message": "Hide"
+    "message": "Paslēpt"
   },
   "projects": {
     "message": "Projekti"
@@ -5521,6 +5576,15 @@
   },
   "deleteSecrets": {
     "message": "Izdzēst noslēpumus"
+  },
+  "secretProjectAssociationDescription": {
+    "message": "Atlasi projektus, ar kuriem noslēpums tiks saistīts. Noslēpumu varēs redzēt tikai tie organizācijas lietotāji, kuriem ir piekļuve šiem projektiem."
+  },
+  "typeOrSelectProjects": {
+    "message": "Ieraksti vai atlasi Projekti"
+  },
+  "typeOrSelectProject": {
+    "message": "Ieraksti vai atlasi Projekts"
   },
   "project": {
     "message": "Projekts"
@@ -5784,10 +5848,10 @@
     "message": "Šis dalībnieks var piekļūt visiem vienumiem un mainīt tos."
   },
   "moreFromBitwarden": {
-    "message": "More from Bitwarden"
+    "message": "Vairāk no Bitwarden"
   },
   "switchProducts": {
-    "message": "Switch Products"
+    "message": "Pārslēgt pakalpojumus"
   },
   "freeOrgInvLimitReachedManageBilling": {
     "message": "Apvienībās, kuras izmanto Bitwarden bez maksas, var būt līdz $SEATCOUNT$ dalībniekiem. Jāpāriet uz maksas plānu, lai uzaicinātu vairāk dalībnieku.",
