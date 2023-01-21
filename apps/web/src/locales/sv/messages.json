@@ -1,6 +1,6 @@
 {
   "pageTitle": {
-    "message": "$APP_NAME$ webbvalv",
+    "message": "$APP_NAME$ Webbvalv",
     "description": "The title of the website in the browser window.",
     "placeholders": {
       "app_name": {
@@ -227,7 +227,7 @@
     "description": "Toggling an expand/collapse state."
   },
   "generatePassword": {
-    "message": "Skapa lösenord"
+    "message": "Generera lösenord"
   },
   "checkPassword": {
     "message": "Kontrollera om lösenordet har avslöjats."
@@ -277,12 +277,33 @@
   "searchFavorites": {
     "message": "Sök i favoriter"
   },
-  "searchType": {
-    "message": "Sök efter typ",
-    "description": "Search item type"
+  "searchLogin": {
+    "message": "Search logins",
+    "description": "Search Login type"
+  },
+  "searchCard": {
+    "message": "Search cards",
+    "description": "Search Card type"
+  },
+  "searchIdentity": {
+    "message": "Search identities",
+    "description": "Search Identity type"
+  },
+  "searchSecureNote": {
+    "message": "Search secure notes",
+    "description": "Search Secure Note type"
   },
   "searchVault": {
     "message": "Sök i valvet"
+  },
+  "searchMyVault": {
+    "message": "Search my vault"
+  },
+  "searchOrganization": {
+    "message": "Search organization"
+  },
+  "searchMembers": {
+    "message": "Search members"
   },
   "allItems": {
     "message": "Alla objekt"
@@ -365,6 +386,9 @@
   "select": {
     "message": "Välj"
   },
+  "newItem": {
+    "message": "New item"
+  },
   "addItem": {
     "message": "Lägg till objekt"
   },
@@ -373,6 +397,12 @@
   },
   "viewItem": {
     "message": "Visa objekt"
+  },
+  "new": {
+    "message": "New"
+  },
+  "item": {
+    "message": "Objekt"
   },
   "ex": {
     "message": "t.ex.",
@@ -438,6 +468,9 @@
   },
   "vaultItems": {
     "message": "Valvobjekt"
+  },
+  "filter": {
+    "message": "Filter"
   },
   "moveSelectedToOrg": {
     "message": "Flytta valda till organisation"
@@ -522,19 +555,19 @@
     "message": "Är du säker på att du vill skicka detta objekt till papperskorgen?"
   },
   "deletedItem": {
-    "message": "Skickade objekt till papperskorgen"
+    "message": "Objekt skickades till papperskorgen"
   },
   "deletedItems": {
-    "message": "Skickade objekt till papperskorgen"
+    "message": "Objekt skickades till papperskorgen"
   },
   "movedItems": {
-    "message": "Flyttade objekt"
+    "message": "Objekt flyttades"
   },
   "overwritePasswordConfirmation": {
     "message": "Är du säker på att du vill skriva över det nuvarande lösenordet?"
   },
   "editedFolder": {
-    "message": "Mapp sparad"
+    "message": "Folder saved"
   },
   "addedFolder": {
     "message": "Lade till mapp"
@@ -543,13 +576,19 @@
     "message": "Är du säker på att du vill radera denna mapp?"
   },
   "deletedFolder": {
-    "message": "Mapp raderad"
+    "message": "Folder deleted"
+  },
+  "editInfo": {
+    "message": "Edit info"
+  },
+  "access": {
+    "message": "Access"
   },
   "loggedOut": {
     "message": "Utloggad"
   },
   "loginExpired": {
-    "message": "Din inloggningssession har löpt ut."
+    "message": "Din inloggningssession har upphört."
   },
   "logOutConfirmation": {
     "message": "Är du säker på att du vill logga ut?"
@@ -633,7 +672,7 @@
     "message": "Lösenordsledtråd"
   },
   "enterEmailToGetHint": {
-    "message": "Ange din e-postadress för att få din huvudlösenordsledtråd skickad till dig."
+    "message": "Ange din e-postadress för att få din huvudlösenordsledtråd."
   },
   "getMasterPasswordHint": {
     "message": "Hämta huvudlösenordsledtråd"
@@ -702,6 +741,9 @@
   "noItemsInList": {
     "message": "Det finns inga objekt att visa."
   },
+  "noPermissionToViewAllCollectionItems": {
+    "message": "You do not have permission to view all items in this collection."
+  },
   "noCollectionsInList": {
     "message": "Det finns inga samlingar att visa."
   },
@@ -710,6 +752,9 @@
   },
   "noUsersInList": {
     "message": "Det finns inga användare att visa."
+  },
+  "noMembersInList": {
+    "message": "There are no members to list."
   },
   "noEventsInList": {
     "message": "Det finns inga händelser att visa."
@@ -855,6 +900,18 @@
       }
     }
   },
+  "deleteSelectedCollectionsDesc": {
+    "message": "$COUNT$ collection(s) will be permanently deleted.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "150"
+      }
+    }
+  },
+  "deleteSelectedConfirmation": {
+    "message": "Är du säker på att du vill fortsätta?"
+  },
   "moveSelectedItemsDesc": {
     "message": "Välj en mapp som du vill flytta de $COUNT$ markerade objekten till.",
     "placeholders": {
@@ -929,17 +986,17 @@
   "confirmFilePassword": {
     "message": "Bekräfta fillösenord"
   },
-  "accountBackupOptionDescription": {
-    "message": "Kryptera exportfilen med ditt kontos krypteringsnyckel så att filen endast kan importeras till ditt Bitwarden-konto."
+  "accountRestrictedOptionDescription": {
+    "message": "Use your account encryption key, derived from your account's username and Master Password, to encrypt the export and restrict import to only the current Bitwarden account."
   },
   "passwordProtectedOptionDescription": {
     "message": "Välj ett fillösenord för att kryptera exportfilen. Filen kan sedan importeras till valfritt Bitwarden-konto med hjälp av fillösenordet."
   },
-  "fileTypeHeading": {
-    "message": "Filtyp"
+  "exportTypeHeading": {
+    "message": "Export type"
   },
-  "accountBackup": {
-    "message": "Kontobackup"
+  "accountRestricted": {
+    "message": "Account restricted"
   },
   "passwordProtected": {
     "message": "Lösenordsskyddad"
@@ -1558,7 +1615,7 @@
   },
   "orgsReportsDesc": {
     "message": "Identifiera och åtgärda säkerhetsluckor i din organisations konton genom att klicka på rapporterna nedan.",
-    "description": "Vault health reports can be used to evaluate the security of your Bitwarden individual or organization Vault."
+    "description": "Vault health reports can be used to evaluate the security of your Bitwarden individual or organization vault."
   },
   "unsecuredWebsitesReport": {
     "message": "Rapport om osäkra webbplatser"
@@ -1609,7 +1666,7 @@
     "message": "Rapport om avslöjade lösenord"
   },
   "exposedPasswordsReportDesc": {
-    "message": "Avslöjade lösenord är lösenord som har äventyrats i kända dataintrång som släppts offentligt eller sålts av hackare på \"dark web\"."
+    "message": "Passwords exposed in a data breach are easy targets for attackers. Change these passwords to prevent potential break-ins."
   },
   "exposedPasswordsFound": {
     "message": "Avslöjade lösenord hittades"
@@ -1787,7 +1844,7 @@
     "description": "Another way of saying \"Get a Premium membership\""
   },
   "premiumUpdated": {
-    "message": "Du har uppgraderat till premium."
+    "message": "Du har uppgraderat till Premium."
   },
   "premiumUpgradeUnlockFeatures": {
     "message": "Uppgradera ditt konto till ett premium-medlemskap och lås upp några riktigt bra extrafunktioner."
@@ -1821,6 +1878,22 @@
         "example": "$10"
       }
     }
+  },
+  "premiumPriceWithFamilyPlan": {
+    "message": "Go premium for just $PRICE$ /year, or get premium accounts for $FAMILYPLANUSERCOUNT$ users and unlimited family sharing with a ",
+    "placeholders": {
+      "price": {
+        "content": "$1",
+        "example": "$10"
+      },
+      "familyplanusercount": {
+        "content": "$2",
+        "example": "6"
+      }
+    }
+  },
+  "bitwardenFamiliesPlan": {
+    "message": "Bitwarden Families plan."
   },
   "addons": {
     "message": "Tillägg"
@@ -2106,7 +2179,7 @@
     "message": "Företagsnamn"
   },
   "chooseYourPlan": {
-    "message": "Välj abonnemang"
+    "message": "Välj din plan"
   },
   "users": {
     "message": "Användare"
@@ -2356,6 +2429,15 @@
   "deleteGroupConfirmation": {
     "message": "Är du säker på att du vill radera denna grupp?"
   },
+  "deleteMultipleGroupsConfirmation": {
+    "message": "Are you sure you want to delete the following $QUANTITY$ group(s)?",
+    "placeholders": {
+      "quantity": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
   "removeUserConfirmation": {
     "message": "Är du säker på att du vill ta bort denna användare?"
   },
@@ -2373,6 +2455,9 @@
   },
   "externalIdDesc": {
     "message": "Det externa id:t kan användas som referens eller för att länka denna resurs till ett externt system såsom en användarkatalog."
+  },
+  "nestCollectionUnder": {
+    "message": "Nest collection under"
   },
   "accessControl": {
     "message": "Åtkomstkontroll"
@@ -2395,14 +2480,14 @@
   "editCollection": {
     "message": "Redigera samling"
   },
+  "collectionInfo": {
+    "message": "Collection info"
+  },
   "deleteCollectionConfirmation": {
     "message": "Är du säker på att du vill radera denna samling?"
   },
-  "editUser": {
-    "message": "Redigera användare"
-  },
-  "inviteUser": {
-    "message": "Bjud in användare"
+  "editMember": {
+    "message": "Redigera medlem"
   },
   "inviteUserDesc": {
     "message": "Bjud in en ny användare till din organisation genom att ange e-postadressen som tillhör deras Bitwarden-konto nedan. Om de inte redan har ett Bitwarden-konto kommer de uppmanas att skapa ett."
@@ -2444,7 +2529,7 @@
     "message": "Ägare"
   },
   "ownerDesc": {
-    "message": "Användaren med den högsta åtkomsten som kan hantera alla aspekter av din organisation."
+    "message": "Hantera alla aspekter av din organisation, inklusive fakturering och prenumerationer"
   },
   "clientOwnerDesc": {
     "message": "This user should be independent of the Provider. If the Provider is disassociated with the organization, this user will maintain ownership of the organization."
@@ -2453,19 +2538,19 @@
     "message": "Administratör"
   },
   "adminDesc": {
-    "message": "Administratörer kan komma åt och hantera alla objekt, samlingar och användare i din organisation."
+    "message": "Manage organization access, all collections, members, reporting, and security settings"
   },
   "user": {
     "message": "Användare"
   },
   "userDesc": {
-    "message": "En vanlig användare med tillgång till de samlingar i din organisation som den har tilldelats."
+    "message": "Access and add items to assigned collections"
   },
   "manager": {
     "message": "Hanterare"
   },
   "managerDesc": {
-    "message": "Hanterare kan komma åt och hantera de samlingar i din organisation som de har blivit tilldelade."
+    "message": "Create, delete, and manage access in assigned collections"
   },
   "all": {
     "message": "Alla"
@@ -2501,16 +2586,16 @@
     "message": "Webbvalv"
   },
   "loggedIn": {
-    "message": "Inloggad."
+    "message": "Loggade in"
   },
   "changedPassword": {
-    "message": "Ändrade kontolösenord."
+    "message": "Ändrade kontolösenord"
   },
   "enabledUpdated2fa": {
-    "message": "Aktiverade/uppdaterade tvåstegsverifiering."
+    "message": "Two-step login saved"
   },
   "disabled2fa": {
-    "message": "Inaktiverade tvåstegsverifiering."
+    "message": "Inaktiverade tvåstegsverifiering"
   },
   "recovered2fa": {
     "message": "Återställde kontot från tvåstegsverifiering."
@@ -2522,7 +2607,7 @@
     "message": "Inloggningsförsöket misslyckades med felaktig tvåstegsverifiering."
   },
   "exportedVault": {
-    "message": "Exporterade valv."
+    "message": "Exporterade valv"
   },
   "exportedOrganizationVault": {
     "message": "Exporterade organisationsvalv."
@@ -2668,6 +2753,9 @@
       }
     }
   },
+  "deletedCollections": {
+    "message": "Deleted collections"
+  },
   "deletedCollectionId": {
     "message": "Raderade samlingen $ID$.",
     "placeholders": {
@@ -2710,6 +2798,15 @@
       "id": {
         "content": "$1",
         "example": "Developers"
+      }
+    }
+  },
+  "deletedManyGroups": {
+    "message": "Deleted $QUANTITY$ group(s).",
+    "placeholders": {
+      "quantity": {
+        "content": "$1",
+        "example": "3"
       }
     }
   },
@@ -2891,7 +2988,7 @@
     "message": "Redigera vilka grupper den här användaren tillhör."
   },
   "invitedUsers": {
-    "message": "Bjöd in användare."
+    "message": "Bjöd in användare"
   },
   "resendInvitation": {
     "message": "Skicka inbjudan igen"
@@ -2900,7 +2997,7 @@
     "message": "Skicka e-postmeddelande igen"
   },
   "hasBeenReinvited": {
-    "message": "$USER$ har bjudits in igen.",
+    "message": "$USER$ har bjudits in igen",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -2936,7 +3033,7 @@
     "message": "Slutdatum"
   },
   "verifyEmail": {
-    "message": "Verifiera e-postadress"
+    "message": "Verifiera e-postadressen"
   },
   "verifyEmailDesc": {
     "message": "Verifiera din e-postadress för att få tillgång till alla funktioner."
@@ -2948,7 +3045,7 @@
     "message": "Kolla din inkorg för en verifieringslänk."
   },
   "emailVerified": {
-    "message": "Din e-postadress har verifierats."
+    "message": "E-postadressen har verifierats"
   },
   "emailVerifiedFailed": {
     "message": "Det gick inte att verifiera din e-postadress. Prova att skicka ett nytt verifieringsmeddelande."
@@ -3063,7 +3160,7 @@
     "description": "A billing plan/package. For example: Families, Teams, Enterprise, etc."
   },
   "changeBillingPlan": {
-    "message": "Uppgradera abbonemanget",
+    "message": "Uppgradera plan",
     "description": "A billing plan/package. For example: Families, Teams, Enterprise, etc."
   },
   "changeBillingPlanUpgrade": {
@@ -3374,7 +3471,7 @@
     "message": "Vem äger detta objekt?"
   },
   "strong": {
-    "message": "Stark",
+    "message": "Starkt",
     "description": "ex. A strong password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "good": {
@@ -3567,7 +3664,7 @@
     "message": "Åtgärd när valvets tidsgräns överskrids"
   },
   "vaultTimeoutActionLockDesc": {
-    "message": "Ett låst valv kräver att du anger ditt huvudlösenord för att komma åt det igen."
+    "message": "Huvudlösenord eller annan upplåsningsmetod krävs för att komma åt ditt valv igen."
   },
   "vaultTimeoutActionLogOutDesc": {
     "message": "Ett utloggat valv kräver att du autentiserar för att komma åt det igen."
@@ -3650,7 +3747,7 @@
     }
   },
   "restoredItemId": {
-    "message": "Återställde objektet $ID$.",
+    "message": "Återställde objektet $ID$",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3695,7 +3792,7 @@
     "message": "Logga in genom organisationens inloggningsportal. Ange organisationens identifierare för att börja."
   },
   "enterpriseSingleSignOn": {
-    "message": "Single Sign-On för företag"
+    "message": "Enterprise single sign-on"
   },
   "ssoHandOff": {
     "message": "Du kan nu stänga denna flik och fortsätta i tillägget."
@@ -3716,7 +3813,7 @@
     "message": "Organisationens identifierare krävs."
   },
   "ssoIdentifier": {
-    "message": "SSO identifier"
+    "message": "SSO-identifierare"
   },
   "ssoIdentifierHint": {
     "message": "Provide this ID to your members to login with SSO."
@@ -4095,7 +4192,7 @@
     "message": "Följande organisationspolicyer är aktiva just nu:"
   },
   "sendDisableHideEmailInEffect": {
-    "message": "Användare får inte dölja sin e-postadress för mottagare när de skapar eller redigerar en Send.",
+    "message": "Användare tillåts inte dölja sin e-postadress för mottagare när de skapar eller redigerar en Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "modifiedPolicyId": {
@@ -4117,7 +4214,7 @@
     "message": "Anpassad"
   },
   "customDesc": {
-    "message": "Tillåter mer detaljerad kontroll av användarbehörigheter för avancerade konfigurationer."
+    "message": "Grant customized permissions to members"
   },
   "customDescNonEnterpriseStart": {
     "message": "Custom roles is an ",
@@ -4474,7 +4571,7 @@
     "message": "Tema"
   },
   "themeDesc": {
-    "message": "Choose a theme for your web vault."
+    "message": "Välj ett tema för ditt webbvalv."
   },
   "themeSystem": {
     "message": "Använd systemtema"
@@ -4492,10 +4589,10 @@
     "message": "Status för massåtgärd"
   },
   "bulkConfirmMessage": {
-    "message": "Bekräftade."
+    "message": "Bekräftade"
   },
   "bulkReinviteMessage": {
-    "message": "Bjöd in igen."
+    "message": "Bjöd in igen"
   },
   "bulkRemovedMessage": {
     "message": "Tog bort"
@@ -4507,7 +4604,7 @@
     "message": "Restored organization access successfully"
   },
   "bulkFilteredMessage": {
-    "message": "Exkluderad, inte tillämplig för denna åtgärd."
+    "message": "Exkluderad, inte tillämplig för denna åtgärd"
   },
   "fingerprint": {
     "message": "Fingeravtryck"
@@ -4653,7 +4750,7 @@
     "message": "Master password saved"
   },
   "updateMasterPassword": {
-    "message": "Update master password"
+    "message": "Uppdatera huvudlösenord"
   },
   "updateMasterPasswordWarning": {
     "message": "Your master password was recently changed by an administrator in your organization. In order to access the vault, you must update your master password now. Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
@@ -4984,10 +5081,10 @@
     "message": "Lämna organisation"
   },
   "removeMasterPassword": {
-    "message": "Remove master password"
+    "message": "Ta bort huvudlösenord"
   },
   "removedMasterPassword": {
-    "message": "Master password removed"
+    "message": "Huvudlösenord togs bort"
   },
   "allowSso": {
     "message": "Allow SSO authentication"
@@ -4996,7 +5093,7 @@
     "message": "Once set up, your configuration will be saved and members will be able to authenticate using their Identity Provider credentials."
   },
   "ssoPolicyHelpStart": {
-    "message": "Use the",
+    "message": "Använd",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Use the require single-sign-on authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpLink": {
@@ -5026,10 +5123,10 @@
     "message": "\"Login with SSO and Key Connector Decryption\" is activated. This policy will only apply to owners and admins."
   },
   "enabledSso": {
-    "message": "SSO turned on"
+    "message": "SSO aktiverad"
   },
   "disabledSso": {
-    "message": "SSO turned on"
+    "message": "SSO inaktiverad"
   },
   "enabledKeyConnector": {
     "message": "Key Connector activated"
@@ -5059,7 +5156,7 @@
     "message": "Sponsoring organization"
   },
   "keyConnectorTest": {
-    "message": "Test"
+    "message": "Testa"
   },
   "keyConnectorTestSuccess": {
     "message": "Success! Key Connector reached."
@@ -5188,7 +5285,7 @@
     "message": "Exporting organization vault"
   },
   "exportingPersonalVaultDescription": {
-    "message": "Only the individual vault items associated with $EMAIL$ will be exported. Organization vault items will not be included.",
+    "message": "Only the individual vault items associated with $EMAIL$ will be exported. Organization vault items will not be included. Only vault item information will be exported and will not include associated password history or attachments.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -5209,19 +5306,19 @@
     "message": "Access denied. You do not have permission to view this page."
   },
   "masterPassword": {
-    "message": "Master password"
+    "message": "Huvudlösenord"
   },
   "security": {
     "message": "Säkerhet"
   },
   "keys": {
-    "message": "Keys"
+    "message": "Nycklar"
   },
   "billingHistory": {
-    "message": "Billing history"
+    "message": "Faktureringshistorik"
   },
   "backToReports": {
-    "message": "Tillbaka till Rapporter"
+    "message": "Tillbaka till rapporter"
   },
   "organizationPicker": {
     "message": "Organization picker"
@@ -5240,7 +5337,7 @@
     "message": "What would you like to generate?"
   },
   "passwordType": {
-    "message": "Password type"
+    "message": "Lösenordstyp"
   },
   "regenerateUsername": {
     "message": "Regenerate username"
@@ -5272,7 +5369,7 @@
     "message": "Random word"
   },
   "service": {
-    "message": "Service"
+    "message": "Tjänst"
   },
   "unknownCipher": {
     "message": "Unknown item, you may need to request permission to access this item."
@@ -5442,6 +5539,15 @@
       }
     }
   },
+  "inputForbiddenCharacters": {
+    "message": "The following characters are not allowed: $CHARACTERS$",
+    "placeholders": {
+      "characters": {
+        "content": "$1",
+        "example": "@, #, $, %"
+      }
+    }
+  },
   "fieldsNeedAttention": {
     "message": "$COUNT$ field(s) above need your attention.",
     "placeholders": {
@@ -5470,13 +5576,52 @@
     "message": "Antal användare"
   },
   "loggingInAs": {
-    "message": "Logga in som"
+    "message": "Loggar in som"
   },
   "notYou": {
-    "message": "Not you?"
+    "message": "Är det inte du?"
+  },
+  "pickAnAvatarColor": {
+    "message": "Välj en avatarfärg"
+  },
+  "customizeAvatar": {
+    "message": "Anpassa avatar"
+  },
+  "avatarUpdated": {
+    "message": "Avatar har uppdaterats"
+  },
+  "brightBlue": {
+    "message": "Ljusblå"
+  },
+  "green": {
+    "message": "Grön"
+  },
+  "orange": {
+    "message": "Orange"
+  },
+  "lavender": {
+    "message": "Lavendel"
+  },
+  "yellow": {
+    "message": "Gul"
+  },
+  "indigo": {
+    "message": "Indigo"
+  },
+  "teal": {
+    "message": "Teal"
+  },
+  "salmon": {
+    "message": "Salmon"
+  },
+  "pink": {
+    "message": "Rosa"
+  },
+  "customColor": {
+    "message": "Anpassad färg"
   },
   "multiSelectPlaceholder": {
-    "message": "-- Type to Filter --"
+    "message": "-- Type to filter --"
   },
   "multiSelectLoading": {
     "message": "Retrieving options..."
@@ -5496,7 +5641,7 @@
     "description": "'Character count' describes a feature that displays a number next to each character of the password."
   },
   "hide": {
-    "message": "Hide"
+    "message": "Dölj"
   },
   "projects": {
     "message": "Projekt"
@@ -5522,6 +5667,15 @@
   "deleteSecrets": {
     "message": "Delete Secrets"
   },
+  "secretProjectAssociationDescription": {
+    "message": "Select projects that the secret will be associated with. Only organization users with access to these projects will be able to see the secret."
+  },
+  "typeOrSelectProjects": {
+    "message": "Type or select Projects"
+  },
+  "typeOrSelectProject": {
+    "message": "Type or select Project"
+  },
   "project": {
     "message": "Projekt"
   },
@@ -5545,9 +5699,6 @@
   },
   "serviceAccounts": {
     "message": "Service Accounts"
-  },
-  "new": {
-    "message": "New"
   },
   "secrets": {
     "message": "Secrets"
@@ -5682,7 +5833,7 @@
     "message": "Deleting projects is permanent and irreversible."
   },
   "projectsNoItemsTitle": {
-    "message": "No projects to display"
+    "message": "Inga projekt att visa"
   },
   "projectsNoItemsMessage": {
     "message": "Add a new project to get started organizing secrets."
@@ -5709,7 +5860,7 @@
     "message": "Upphör"
   },
   "canRead": {
-    "message": "Can Read"
+    "message": "Kan läsa"
   },
   "accessTokensNoItemsTitle": {
     "message": "No access tokens to show"
@@ -5757,10 +5908,46 @@
     "message": "Medlem"
   },
   "update": {
-    "message": "Update"
+    "message": "Uppdatera"
+  },
+  "plusNMore": {
+    "message": "+ $QUANTITY$ more",
+    "placeholders": {
+      "quantity": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "groupInfo": {
+    "message": "Group info"
+  },
+  "editGroupMembersDesc": {
+    "message": "Grant members access to the group's assigned collections."
+  },
+  "editGroupCollectionsDesc": {
+    "message": "Grant access to collections by adding them to this group."
+  },
+  "accessAllCollectionsDesc": {
+    "message": "Grant access to all current and future collections."
+  },
+  "accessAllCollectionsHelp": {
+    "message": "If checked, this will replace all other collection permissions."
+  },
+  "selectMembers": {
+    "message": "Select members"
+  },
+  "selectCollections": {
+    "message": "Select collections"
   },
   "role": {
     "message": "Roll"
+  },
+  "removeMember": {
+    "message": "Remove member"
+  },
+  "collection": {
+    "message": "Collection"
   },
   "canView": {
     "message": "Can view"
@@ -5769,10 +5956,19 @@
     "message": "Can view, except passwords"
   },
   "canEdit": {
-    "message": "Can edit"
+    "message": "Kan redigera"
   },
   "canEditExceptPass": {
     "message": "Can edit, except passwords"
+  },
+  "noCollectionsAdded": {
+    "message": "No collections added"
+  },
+  "noMembersAdded": {
+    "message": "No members added"
+  },
+  "noGroupsAdded": {
+    "message": "No groups added"
   },
   "group": {
     "message": "Grupp"
@@ -5783,14 +5979,47 @@
   "memberAccessAll": {
     "message": "This member can access and modify all items."
   },
+  "membersColumnHeader": {
+    "message": "Medlem/Grupp"
+  },
+  "groupAndMemberColumnHeader": {
+    "message": "Medlem"
+  },
+  "selectGroupsAndMembers": {
+    "message": "Select groups and members"
+  },
+  "selectGroups": {
+    "message": "Välj grupper"
+  },
+  "userPermissionOverrideHelper": {
+    "message": "Permissions set for a member will replace permissions set by that member's group"
+  },
+  "noMembersOrGroupsAdded": {
+    "message": "No members or groups added"
+  },
+  "deleted": {
+    "message": "Deleted"
+  },
+  "memberStatusFilter": {
+    "message": "Member status filter"
+  },
+  "inviteMember": {
+    "message": "Bjud in medlem"
+  },
+  "needsConfirmation": {
+    "message": "Needs confirmation"
+  },
+  "memberRole": {
+    "message": "Medlemsroll"
+  },
   "moreFromBitwarden": {
-    "message": "More from Bitwarden"
+    "message": "Mer från Bitwarden"
   },
   "switchProducts": {
     "message": "Switch Products"
   },
   "freeOrgInvLimitReachedManageBilling": {
-    "message": "Free organizations may have up to $SEATCOUNT$ members. Upgrade to a paid plan to invite more members.",
+    "message": "Gratis organisationer kan ha upp till $SEATCOUNT$ medlemmar. Uppgradera till en betald plan för att bjuda in fler medlemmar.",
     "placeholders": {
       "seatcount": {
         "content": "$1",
@@ -5799,7 +6028,7 @@
     }
   },
   "freeOrgInvLimitReachedNoManageBilling": {
-    "message": "Free organizations may have up to $SEATCOUNT$ members. Contact your organization owner to upgrade.",
+    "message": "Gratis organisationer kan ha upp till $SEATCOUNT$ medlemmar. Kontakta din organisations ägare för att uppgradera.",
     "placeholders": {
       "seatcount": {
         "content": "$1",

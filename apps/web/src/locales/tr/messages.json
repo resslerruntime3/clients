@@ -277,12 +277,33 @@
   "searchFavorites": {
     "message": "Favorilerde ara"
   },
-  "searchType": {
-    "message": "Arama türü",
-    "description": "Search item type"
+  "searchLogin": {
+    "message": "Hesaplarda ara",
+    "description": "Search Login type"
+  },
+  "searchCard": {
+    "message": "Kartlarda ara",
+    "description": "Search Card type"
+  },
+  "searchIdentity": {
+    "message": "Kimliklerde ara",
+    "description": "Search Identity type"
+  },
+  "searchSecureNote": {
+    "message": "Güvenli notlarda ara",
+    "description": "Search Secure Note type"
   },
   "searchVault": {
     "message": "Kasada ara"
+  },
+  "searchMyVault": {
+    "message": "Kasamda ara"
+  },
+  "searchOrganization": {
+    "message": "Kuruluşta ara"
+  },
+  "searchMembers": {
+    "message": "Üyelerde ara"
   },
   "allItems": {
     "message": "Tüm kayıtlar"
@@ -365,6 +386,9 @@
   "select": {
     "message": "Seç"
   },
+  "newItem": {
+    "message": "Yeni kayıt"
+  },
   "addItem": {
     "message": "Kayıt ekle"
   },
@@ -373,6 +397,12 @@
   },
   "viewItem": {
     "message": "Kaydı göster"
+  },
+  "new": {
+    "message": "Yeni"
+  },
+  "item": {
+    "message": "Kayıt"
   },
   "ex": {
     "message": "örn.",
@@ -438,6 +468,9 @@
   },
   "vaultItems": {
     "message": "Kasa kayıtları"
+  },
+  "filter": {
+    "message": "Filtre"
   },
   "moveSelectedToOrg": {
     "message": "Seçilenleri kuruluşa taşı"
@@ -544,6 +577,12 @@
   },
   "deletedFolder": {
     "message": "Klasör silindi"
+  },
+  "editInfo": {
+    "message": "Bilgiyi düzenle"
+  },
+  "access": {
+    "message": "Erişim"
   },
   "loggedOut": {
     "message": "Çıkış yapıldı"
@@ -702,6 +741,9 @@
   "noItemsInList": {
     "message": "Listelenecek kayıt yok."
   },
+  "noPermissionToViewAllCollectionItems": {
+    "message": "Bu koleksiyondaki tüm kayıtları görmek için izniniz yok."
+  },
   "noCollectionsInList": {
     "message": "Listelenecek koleksiyon yok."
   },
@@ -710,6 +752,9 @@
   },
   "noUsersInList": {
     "message": "Listelenecek kullanıcı yok."
+  },
+  "noMembersInList": {
+    "message": "Listelenecek üye yok."
   },
   "noEventsInList": {
     "message": "Listelenecek olay yok."
@@ -847,13 +892,25 @@
     "message": "Bu kaydın şu anda paylaşıldığı koleksiyonları düzenler. Kuruluştaki kullanıcılardan yalnızca bu koleksiyonlara erişimi olanlar bu kaydı görebilir."
   },
   "deleteSelectedItemsDesc": {
-    "message": "Silinmek üzere $COUNT$ kayıt seçtiniz. Bu kayıtların hepsini silmek istediğinizden emin misiniz?",
+    "message": "$COUNT$ kayıt çöp kutusuna gönderilecek.",
     "placeholders": {
       "count": {
         "content": "$1",
         "example": "150"
       }
     }
+  },
+  "deleteSelectedCollectionsDesc": {
+    "message": "$COUNT$ koleksiyon kalıcı olarak silinecek.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "150"
+      }
+    }
+  },
+  "deleteSelectedConfirmation": {
+    "message": "Devam etmek istediğinizden emin misiniz?"
   },
   "moveSelectedItemsDesc": {
     "message": "Seçtiğiniz $COUNT$ kaydı taşımak istediğiniz klasörü seçin.",
@@ -929,17 +986,17 @@
   "confirmFilePassword": {
     "message": "Dosya parolasını onaylayın"
   },
-  "accountBackupOptionDescription": {
-    "message": "Dışa aktarmayı şifrelemek ve içe aktarmayı yalnızca geçerli Bitwarden hesabıyla sınırlandırmak için hesap şifreleme anahtarınızı kullanın."
+  "accountRestrictedOptionDescription": {
+    "message": "Dışa aktarmayı şifrelemek ve içe aktarmayı yalnızca mevcut Bitwarden hesabıyla kısıtlamak için, hesabınızın kullanıcı adı ve ana parolasından türetilen hesap şifreleme anahtarınızı kullanın."
   },
   "passwordProtectedOptionDescription": {
     "message": "Dışa aktardığınız dosyayı şifrelemek ve bir Bitwarden hesabına içe aktarmak için kullanacağınız parolayı belirleyin."
   },
-  "fileTypeHeading": {
-    "message": "Dosya türü"
+  "exportTypeHeading": {
+    "message": "Dışa aktarma türü"
   },
-  "accountBackup": {
-    "message": "Hesap yedeği"
+  "accountRestricted": {
+    "message": "Hesap kısıtlı"
   },
   "passwordProtected": {
     "message": "Parola korumalı"
@@ -1558,7 +1615,7 @@
   },
   "orgsReportsDesc": {
     "message": "Aşağıdaki raporlara tıklayarak kuruluş hesaplarınızdaki güvenlik açıklarını tanımlayın ve kapatın.",
-    "description": "Vault health reports can be used to evaluate the security of your Bitwarden individual or organization Vault."
+    "description": "Vault health reports can be used to evaluate the security of your Bitwarden individual or organization vault."
   },
   "unsecuredWebsitesReport": {
     "message": "Güvensiz web siteleri"
@@ -1821,6 +1878,22 @@
         "example": "$10"
       }
     }
+  },
+  "premiumPriceWithFamilyPlan": {
+    "message": "Yalnızca $PRICE$/yıl karşılığında premium'a geçin veya $FAMILYPLANUSERCOUNT$ kullanıcıları için premium hesaplar ve bir kullanıcıyla sınırsız aile paylaşımı elde edin ",
+    "placeholders": {
+      "price": {
+        "content": "$1",
+        "example": "$10"
+      },
+      "familyplanusercount": {
+        "content": "$2",
+        "example": "6"
+      }
+    }
+  },
+  "bitwardenFamiliesPlan": {
+    "message": "Bitwarden Aileleri planı."
   },
   "addons": {
     "message": "Eklentiler"
@@ -2356,6 +2429,15 @@
   "deleteGroupConfirmation": {
     "message": "Bu grubu silmek isteğinizden emin misiniz?"
   },
+  "deleteMultipleGroupsConfirmation": {
+    "message": "Aşağıdaki $QUANTITY$ grubu silmek istediğinizden emin misiniz?",
+    "placeholders": {
+      "quantity": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
   "removeUserConfirmation": {
     "message": "Bu kullanıcıyı silmek istediğinizden emin misiniz?"
   },
@@ -2363,7 +2445,7 @@
     "message": "Bir üye kaldırıldıktan sonra kuruluş verilerine erişemez ve bu işlem geri alınamaz. Üyeyi kuruluşa geri eklemek için yeniden davet etmeniz ve kişinin daveti kabul etmesi gerekir."
   },
   "revokeUserConfirmation": {
-    "message": "Bir üye feshedildiğinde, artık kuruluş verilerine erişimi olmaz. Üye erişimini hızlı bir şekilde geri yüklemek için İptal Edildi sekmesine gidin."
+    "message": "Bir üye fesh edildiğinde, artık kuruluş verilerine erişimi olmaz. Üye erişimini hızlı bir şekilde geri yüklemek için İptal Edildi sekmesine gidin."
   },
   "removeUserConfirmationKeyConnector": {
     "message": "Uyarı! Bu kullanıcı, şifrelemesini yönetmek için Key Connector'a ihtiyaç duyuyor. Bu kullanıcıyı kuruluşunuzdan çıkarırsanız hesabı kalıcı olarak devre dışı kalacaktır. Bu işlem geri alınamaz. Devam etmek istiyor musunuz?"
@@ -2373,6 +2455,9 @@
   },
   "externalIdDesc": {
     "message": "Harici kimlik, referans olarak veya bu kaynağı kullanıcı dizini gibi harici bir sisteme bağlamak için kullanılabilir."
+  },
+  "nestCollectionUnder": {
+    "message": "Nest collection under"
   },
   "accessControl": {
     "message": "Erişim kontrolü"
@@ -2395,14 +2480,14 @@
   "editCollection": {
     "message": "Koleksiyonu düzenle"
   },
+  "collectionInfo": {
+    "message": "Koleksiyon bilgileri"
+  },
   "deleteCollectionConfirmation": {
     "message": "Bu koleksiyonu silmek istediğinizden emin misiniz?"
   },
-  "editUser": {
-    "message": "Kullanıcıyı düzenle"
-  },
-  "inviteUser": {
-    "message": "Kullanıcı davet et"
+  "editMember": {
+    "message": "Üyeyi düzenle"
   },
   "inviteUserDesc": {
     "message": "Aşağıya Bitwarden hesabının e-posta adresini girerek kuruluşunuza yeni bir kullanıcı davet edin. Halihazırda bir Bitwarden hesabı yoksa yeni bir hesap oluşturması istenecektir."
@@ -2444,7 +2529,7 @@
     "message": "Sahip"
   },
   "ownerDesc": {
-    "message": "Kuruluşunuzun tüm alanlarını yönetebilen en yüksek erişimli kullanıcı."
+    "message": "Ödeme ve abonelikler de dahil olmak üzere kuruluşunuzun tüm ayarlarını yönetebilir"
   },
   "clientOwnerDesc": {
     "message": "Bu kullanıcı Sağlayıcıdan bağımsız olmalıdır. Sağlayıcının kuruluşla ilişkisi kesilirse, bu kullanıcı kuruluşun sahipliğini sürdürür."
@@ -2453,19 +2538,19 @@
     "message": "Yönetici"
   },
   "adminDesc": {
-    "message": "Yöneticiler kuruluşunuzdaki tüm kayıtlara, koleksiyonlara ve kullanıcılara erişebilir ve onları yönetebilir."
+    "message": "Kuruluş erişimini, tüm koleksiyonları, üyeleri, raporlamayı ve güvenlik ayarlarını yönetebilir"
   },
   "user": {
     "message": "Kullanıcı"
   },
   "userDesc": {
-    "message": "Kuruluşunuzda atanmış koleksiyonlara erişimi olan normal bir kullanıcı."
+    "message": "Atanmış koleksiyonlara erişebilir ve kayıt ekleyebilir"
   },
   "manager": {
     "message": "Yetkili"
   },
   "managerDesc": {
-    "message": "Yetkililer kuruluşunuzdaki kendilerine atanmış koleksiyonlara erişebilir ve onları yönetebilir."
+    "message": "Atanmış koleksiyonlarda erişim oluşturabilir, silebilir ve yönetebilir"
   },
   "all": {
     "message": "Tümü"
@@ -2668,6 +2753,9 @@
       }
     }
   },
+  "deletedCollections": {
+    "message": "Silinmiş koleksiyonlar"
+  },
   "deletedCollectionId": {
     "message": "$ID$ koleksiyonu silindi.",
     "placeholders": {
@@ -2710,6 +2798,15 @@
       "id": {
         "content": "$1",
         "example": "Developers"
+      }
+    }
+  },
+  "deletedManyGroups": {
+    "message": "$QUANTITY$ grup silindi.",
+    "placeholders": {
+      "quantity": {
+        "content": "$1",
+        "example": "3"
       }
     }
   },
@@ -2924,10 +3021,10 @@
     }
   },
   "confirmUsers": {
-    "message": "Kullanıcıları onayla"
+    "message": "Üyeleri onayla"
   },
   "usersNeedConfirmed": {
-    "message": "Davetlerinizi kabul eden ancak hâlâ onaylanması gereken kullanıcılarınız var. Kullanıcılar onaylanana kadar kuruluşa erişemez."
+    "message": "Davetlerinizi kabul eden ancak hâlâ onaylanması gereken üyeleriniz var. Üyeler onaylanana kadar kuruluşa erişemez."
   },
   "startDate": {
     "message": "Başlangıç tarihi"
@@ -3137,7 +3234,7 @@
     "message": "Yükleme numarasını girin"
   },
   "limitSubscriptionDesc": {
-    "message": "Aboneliğiniz için kullanıcı sayısı sınırını belirleyin. Bu sınıra ulaşıldıktan sonra yeni üye davet edemezsiniz."
+    "message": "Aboneliğiniz için kullanıcı sayısı sınırı. Bu sınıra ulaşıldıktan sonra yeni üye davet edemezsiniz."
   },
   "maxSeatLimit": {
     "message": "Maksimum kullanıcı sayısı (isteğe bağlı)",
@@ -3182,10 +3279,10 @@
     "message": "Aboneliğinizin yönetimiyle ilgili ek yardım için lütfen müşteri hizmetleri ile iletişime geçin."
   },
   "subscriptionUserSeatsUnlimitedAutoscale": {
-    "message": "Aboneliğinizde yapacağınız değişiklikler toplam faturanızın değişmesine yol açacaktır. Yeni davet edilen kullanıcıların sayısı abonelik paketinizdeki kullanıcı sayınızı aşarsa ek kullanıcılar için derhal ödeme alınır."
+    "message": "Aboneliğinizde yapacağınız değişiklikler toplam faturanızın değişmesine yol açacaktır. Yeni davet edilen üyelerin sayısı abonelik paketinizdeki üye sayısını aşarsa ek üyeler için derhal ödeme alınır."
   },
   "subscriptionUserSeatsLimitedAutoscale": {
-    "message": "Aboneliğinizde yapacağınız değişiklikler toplam faturanızın değişmesine yol açacaktır. Yeni davet edilen kullanıcıların sayısı abonelik paketinizdeki kullanıcı sayınızı aşarsa $MAX$ kullanıcı sınırınıza ulaşana dek ek kullanıcılar için ödeme alınır.",
+    "message": "Aboneliğinizde yapacağınız değişiklikler toplam faturanızın değişmesine yol açacaktır. Yeni davet edilen üyelerin sayısı abonelik paketinizdeki üye sayısını aşarsa $MAX$ üye sınırınıza ulaşana dek ek üyeler için ödeme alınır.",
     "placeholders": {
       "max": {
         "content": "$1",
@@ -3194,7 +3291,7 @@
     }
   },
   "subscriptionFreePlan": {
-    "message": "Paketinizi yükseltmeden $COUNT$ kullanıcıdan fazlasını davet edemezsiniz.",
+    "message": "Paketinizi yükseltmeden $COUNT$ üyeden fazlasını davet edemezsiniz.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3203,7 +3300,7 @@
     }
   },
   "subscriptionFamiliesPlan": {
-    "message": "Paketinizi yükseltmeden en fazla $COUNT$ kullanıcı davet edebilirsiniz. Yükseltme yapmak için lütfen müşteri hizmetleri ile iletişime geçin.",
+    "message": "Paketinizi yükseltmeden en fazla $COUNT$ üye davet edebilirsiniz. Yükseltme yapmak için lütfen müşteri hizmetleri ile iletişime geçin.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3212,7 +3309,7 @@
     }
   },
   "subscriptionSponsoredFamiliesPlan": {
-    "message": "Paketiniz toplam $COUNT$ kullanıcıya izin veriyor. Paketinizin ücretini başka bir kuruluş ödüyor.",
+    "message": "Paketiniz toplam $COUNT$ üyeye izin veriyor. Paketiniz sponsor tarafından karşılanıyor ve ücretini başka bir kuruluş ödüyor.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3221,7 +3318,7 @@
     }
   },
   "subscriptionMaxReached": {
-    "message": "Aboneliğinizde yapacağınız değişiklikler toplam faturanızın değişmesine yol açacaktır. Aboneliğinizin kullanıcı sayısını artırmadan en fazla $COUNT$ kullanıcı davet edebilirsiniz.",
+    "message": "Aboneliğinizde yapacağınız değişiklikler toplam faturanızın değişmesine yol açacaktır. Aboneliğinizin kullanıcı sayısını artırmadan en fazla $COUNT$ üye davet edebilirsiniz.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3266,7 +3363,7 @@
     "message": "Daha yüksek güvenlik ve daha yeni özelliklere erişim sağlayan daha büyük şifreleme anahtarlarına geçtik. Şifreleme anahtarınızı kolayca güncelleyebilirsiniz. Ana parolanızı aşağıya yazmanız yeterli. Bu güncelleme bir süre sonra zorunlu hale gelecektir."
   },
   "updateEncryptionKeyWarning": {
-    "message": "After updating your encryption key, you are required to log out and back in to all Bitwarden applications that you are currently using (such as the mobile app or browser extensions). Failure to log out and back in (which downloads your new encryption key) may result in data corruption. We will attempt to log you out automatically, however, it may be delayed."
+    "message": "Şifreleme anahtarınızı güncelledikten sonra, şu anda kullanmakta olduğunuz tüm Bitwarden uygulamalarında (mobil uygulama veya tarayıcı uzantıları gibi) oturumunuzu kapatıp tekrar açmanız gerekir. Yeni şifreleme anahtarınızı indirme için oturumu kapatıp tekrar açmamamız verilerin bozulmasına neden olabilir. Oturumunuzu otomatik olarak kapatmaya çalışacağız, ancak bu gecikebilir."
   },
   "updateEncryptionKeyExportWarning": {
     "message": "Şifrelenmiş dışa aktarmalarınız da geçersiz olacaktır."
@@ -3353,10 +3450,10 @@
     "description": "ex. Date this password was updated"
   },
   "organizationIsDisabled": {
-    "message": "Kuruluş devre dışı."
+    "message": "Kuruluş askıya alındı"
   },
   "disabledOrganizationFilterError": {
-    "message": "Devre dışı kuruluşlardaki kayıtlara erişilemez. Destek almak için kuruluş sahibinizle iletişime geçin."
+    "message": "Askıya alınmış kuruluşlardaki kayıtlara erişilemez. Destek almak için kuruluş sahibinizle iletişime geçin."
   },
   "licenseIsExpired": {
     "message": "Lisans süresi doldu."
@@ -3426,13 +3523,13 @@
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "fingerprintMatchInfo": {
-    "message": "Lütfen kasanızın kilidinin açık olduğundan ve Parmak İzi ifadesinin diğer cihazla eşleştiğinden emin olun."
+    "message": "Lütfen kasanızın kilidinin açık olduğundan ve parmak izi ifadesinin diğer cihazla eşleştiğinden emin olun."
   },
   "fingerprintPhraseHeader": {
     "message": "Parmak izi ifadesi"
   },
   "dontAskFingerprintAgain": {
-    "message": "Parmak izi ifadesini doğrulamamı bir daha isteme",
+    "message": "Davet edilen kullanıcıların parmak izi ifedelerini doğrulamalarını isteme (önerilmez)",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "free": {
@@ -3504,7 +3601,7 @@
     "message": "Sahip veya Yönetici olmayan ve hesapları için iki adımlı oturum açma özelliğini açmamış kuruluş üyeleri kuruluştan çıkarılır ve kendilerine değişiklik hakkında bilgi veren bir e-posta gönderilir."
   },
   "twoStepLoginPolicyUserWarning": {
-    "message": "İki aşamalı girişin etkinleştirilmesi gereken bir kuruluşa üyesisiniz. İki aşamalı giriş sağlayıcılarının tümünü devre dışı bırakırsanız bu kuruluşlardan otomatik olarak kaldırılırsınız."
+    "message": "İki aşamalı girişin ayarlanması gereken bir kuruluşa üyesisiniz. İki aşamalı giriş sağlayıcılarının tümünü kapatırsanız bu kuruluşlardan otomatik olarak kaldırılırsınız."
   },
   "passwordGeneratorPolicyDesc": {
     "message": "Parola üreticisi gereksinimleri ayarlayın."
@@ -3567,10 +3664,10 @@
     "message": "Kasa zaman aşımı eylemi"
   },
   "vaultTimeoutActionLockDesc": {
-    "message": "Kilitli bir kasaya tekrar erişebilmek için ana parolanızı tekrar girmeniz gerekir."
+    "message": "Kasaya tekrar erişmek için ana parolayı veya başka bir kilit açma yöntemini kullanmanız gerekir."
   },
   "vaultTimeoutActionLogOutDesc": {
-    "message": "Çıkış yapılmış bir kasaya yeniden erişmek için kimliğinizi doğrulamanız gerekir."
+    "message": "Kasanıza yeniden erişmek için kimliğinizi doğrulamanız gerekiyor."
   },
   "lock": {
     "message": "Kilitle",
@@ -3641,7 +3738,7 @@
     "message": "Kayıtları geri yükle"
   },
   "restoreSelectedItemsDesc": {
-    "message": "Geri yüklenmesi için $COUNT$ kayıt seçtiniz. Bu kayıtların tamamını geri yüklemek istediğinizden emin misiniz?",
+    "message": "Geri yüklenmesi için $COUNT$ kayıt seçtiniz. Bu kayıtları geri yüklemek istediğinizden emin misiniz?",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3719,13 +3816,13 @@
     "message": "SSO tanımlayıcı"
   },
   "ssoIdentifierHint": {
-    "message": "SSO ile giriş yapan üyelere bu kimliği sağlayın."
+    "message": "SSO ile giriş yapan üyelere bu kimliği bildirin."
   },
   "unlinkSso": {
     "message": "SSO bağlantısını kes"
   },
   "unlinkSsoConfirmation": {
-    "message": "Bu kuruluş için TOA bağlantısını kaldırmak istediğinizden emin misiniz?"
+    "message": "Bu kuruluşun SSO bağlantısını kaldırmak istediğinizden emin misiniz?"
   },
   "linkSso": {
     "message": "SSO bağla"
@@ -3743,10 +3840,10 @@
     "message": "Sahip veya yönetici olmayan ve zaten başka bir kuruluşun üyesi olan kuruluş üyeleri kuruluşunuzdan kaldırılır."
   },
   "requireSso": {
-    "message": "Tek oturum açma kimlik doğrulaması"
+    "message": "Tek oturum açma kimlik doğrulamasını zorunlu tut"
   },
   "requireSsoPolicyDesc": {
-    "message": "Kullanıcıların kurumsal tek oturum açma (SSO) yöntemiyle oturum açmasını zorunlu kılın."
+    "message": "Üyelerin kurumsal tek oturum açma (SSO) yöntemiyle oturum açmasını zorunlu kılın."
   },
   "prerequisite": {
     "message": "Önkoşul"
@@ -3755,7 +3852,7 @@
     "message": "Bu ilkeyi etkinleştirmeden önce tek kuruluş kurumsal ilkesi etkinleştirilmelidir."
   },
   "requireSsoPolicyReqError": {
-    "message": "Tek kuruluş ilkesi etkin değil."
+    "message": "Tek kuruluş ilkesi ayarlanmamış."
   },
   "requireSsoExemption": {
     "message": "Kuruluş sahipleri ve yöneticileri bu ilkenin uygulanmasından muaf tutulur."
@@ -4062,11 +4159,11 @@
     "message": "Send'i sil"
   },
   "disableSendPolicyDesc": {
-    "message": "Kullanıcıların Bitwarden Send oluşturmasına veya düzenlemesine izin verme. Mevcut Send'leri silmeye yine de izin verilir.",
+    "message": "Üyelerin Send oluşturmasına veya düzenlemesine izin verme.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "disableSendExemption": {
-    "message": "Kuruluş ilkelerini yönetebilen kullanıcılar bu ilkenin uygulanmasından muaf tutulur."
+    "message": "Kuruluş ilkelerini yönetebilen kuruluş üyeler bu ilkenin uygulanmasından muaf tutulur."
   },
   "sendDisabled": {
     "message": "Send silindi",
@@ -4085,10 +4182,10 @@
     "description": "'Sends' is a plural noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsExemption": {
-    "message": "Kuruluş ilkelerini yönetebilen kullanıcılar bu ilkenin uygulanmasından muaf tutulur."
+    "message": "Kuruluş ilkelerini yönetebilen kuruluş üyeler bu ilkenin uygulanmasından muaf tutulur."
   },
   "disableHideEmail": {
-    "message": "Kullanıcıların Send oluştururken veya düzenlerken alıcılardan e-posta adreslerini gizlemelerini yasakla.",
+    "message": "Send oluştururken veya düzenlerken üyelerin e-posta adreslerini her zaman alıcılara göster.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsPolicyInEffect": {
@@ -4117,18 +4214,18 @@
     "message": "Özel"
   },
   "customDesc": {
-    "message": "Gelişmiş yapılandırma için kullanıcı izinleri üzerinde daha detaylı kontrol sağlar."
+    "message": "Üyelere özel izinler ata"
   },
   "customDescNonEnterpriseStart": {
-    "message": "Özel roller kurumsal planın bir özelliğidir.",
+    "message": "Özel roller ",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Custom roles is an enterprise feature. Contact our support team to upgrade your subscription'"
   },
   "customDescNonEnterpriseLink": {
-    "message": "Kurumsal Özellik",
+    "message": "kurumsal bir özelliktir",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Custom roles is an enterprise feature. Contact our support team to upgrade your subscription'"
   },
   "customDescNonEnterpriseEnd": {
-    "message": "Aboneliğinizi yükseltmek için destek ekibimizle iletişime geçin",
+    "message": ". Aboneliğinizi yükseltmek için destek ekibimizle iletişime geçin",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Custom roles is an enterprise feature. Contact our support team to upgrade your subscription'"
   },
   "customNonEnterpriseError": {
@@ -4195,7 +4292,7 @@
     "message": "Parola sıfırlamayı yönetme"
   },
   "disableRequiredError": {
-    "message": "Bu ilke devre dışı bırakılmadan önce $POLICYNAME$ ilkesini elle devre dışı bırakmanız gerekir.",
+    "message": "Bu ilkeyi kapatmak için önce $POLICYNAME$ ilkesini kapatmanız bırakmanız gerekir.",
     "placeholders": {
       "policyName": {
         "content": "$1",
@@ -4207,7 +4304,7 @@
     "message": "Bir kuruluş ilkesi sahiplik seçeneklerinizi etkiliyor."
   },
   "personalOwnershipPolicyInEffectImports": {
-    "message": "Bir kuruluş politikası, öğeleri kişisel kasanıza içe aktarmayı devre dışı bıraktı."
+    "message": "Bir kuruluş ilkesi, kayıtları kişisel kasanıza içe aktarmayı devre dışı bıraktı."
   },
   "personalOwnershipCheckboxDesc": {
     "message": "Kuruluş kullanıcıları için kişisel sahipliği kapatma"
@@ -4540,7 +4637,7 @@
     "message": "Sağlayıcı adı"
   },
   "providerSetup": {
-    "message": "Sağlayıcı kuruldu."
+    "message": "Sağlayıcı başarıyla kuruldu"
   },
   "clients": {
     "message": "Müşteriler"
@@ -5442,6 +5539,15 @@
       }
     }
   },
+  "inputForbiddenCharacters": {
+    "message": "Şu karakterlere izin verilmez: $CHARACTERS$",
+    "placeholders": {
+      "characters": {
+        "content": "$1",
+        "example": "@, #, $, %"
+      }
+    }
+  },
   "fieldsNeedAttention": {
     "message": "Üstteki $COUNT$ alan(lar) la ilgilenmeniz gerekiyor.",
     "placeholders": {
@@ -5474,6 +5580,45 @@
   },
   "notYou": {
     "message": "Siz değil misiniz?"
+  },
+  "pickAnAvatarColor": {
+    "message": "Bir avatar rengi seçin"
+  },
+  "customizeAvatar": {
+    "message": "Kişiselleştirilmiş avatar"
+  },
+  "avatarUpdated": {
+    "message": "Avatar güncellendi"
+  },
+  "brightBlue": {
+    "message": "Parlak Mavi"
+  },
+  "green": {
+    "message": "Yeşil"
+  },
+  "orange": {
+    "message": "Turuncu"
+  },
+  "lavender": {
+    "message": "Lavanta"
+  },
+  "yellow": {
+    "message": "Sarı"
+  },
+  "indigo": {
+    "message": "İndigo"
+  },
+  "teal": {
+    "message": "Deniz mavisi"
+  },
+  "salmon": {
+    "message": "Somon"
+  },
+  "pink": {
+    "message": "Pembe"
+  },
+  "customColor": {
+    "message": "Özel Renk"
   },
   "multiSelectPlaceholder": {
     "message": "-- Filtrelemek İçin Yazın --"
@@ -5522,6 +5667,15 @@
   "deleteSecrets": {
     "message": "Sırları Sil"
   },
+  "secretProjectAssociationDescription": {
+    "message": "Sırrın ilişkilendirileceği projeleri seçin. Yalnızca bu projelere erişimi olan kuruluş kullanıcıları sırrı görebilir."
+  },
+  "typeOrSelectProjects": {
+    "message": "Projeleri yazın veya seçin"
+  },
+  "typeOrSelectProject": {
+    "message": "Projeyi yazın veya seçin"
+  },
   "project": {
     "message": "Proje"
   },
@@ -5545,9 +5699,6 @@
   },
   "serviceAccounts": {
     "message": "Hizmet Hesapları"
-  },
-  "new": {
-    "message": "Yeni"
   },
   "secrets": {
     "message": "Sırlar"
@@ -5661,7 +5812,7 @@
     }
   },
   "deleteProjectConfirmMessage": {
-    "message": "Projeyi sil",
+    "message": "$PROJECT$ sil",
     "placeholders": {
       "project": {
         "content": "$1",
@@ -5759,8 +5910,44 @@
   "update": {
     "message": "Güncelle"
   },
+  "plusNMore": {
+    "message": "+ $QUANTITY$ grup daha",
+    "placeholders": {
+      "quantity": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "groupInfo": {
+    "message": "Grup bilgileri"
+  },
+  "editGroupMembersDesc": {
+    "message": "Üyelere grubun atanmış koleksiyonlarına erişim izni verin."
+  },
+  "editGroupCollectionsDesc": {
+    "message": "Bu gruba ekleyerek koleksiyonlara erişim izni verin."
+  },
+  "accessAllCollectionsDesc": {
+    "message": "Mevcut ve gelecekteki tüm koleksiyonlara erişim izni verin."
+  },
+  "accessAllCollectionsHelp": {
+    "message": "İşaretlenirse bu, diğer tüm koleksiyon izinlerinin yerini alacaktır."
+  },
+  "selectMembers": {
+    "message": "Üyeleri seç"
+  },
+  "selectCollections": {
+    "message": "Koleksiyonları seç"
+  },
   "role": {
     "message": "Rol"
+  },
+  "removeMember": {
+    "message": "Üyeyi kaldır"
+  },
+  "collection": {
+    "message": "Koleksiyon"
   },
   "canView": {
     "message": "Görüntüleyebilir"
@@ -5774,6 +5961,15 @@
   "canEditExceptPass": {
     "message": "Parolalar hariç düzenleyebilir"
   },
+  "noCollectionsAdded": {
+    "message": "Hiç koleksiyon eklenmedi"
+  },
+  "noMembersAdded": {
+    "message": "Hiç üye eklenmedi"
+  },
+  "noGroupsAdded": {
+    "message": "Hiç grup eklenmedi"
+  },
   "group": {
     "message": "Grup"
   },
@@ -5782,6 +5978,39 @@
   },
   "memberAccessAll": {
     "message": "Bu kullanıcı tüm kayıtlara erişebilir ve kayıtları değiştirebilir."
+  },
+  "membersColumnHeader": {
+    "message": "Üye/Grup"
+  },
+  "groupAndMemberColumnHeader": {
+    "message": "Üye"
+  },
+  "selectGroupsAndMembers": {
+    "message": "Grupları ve üyeleri seç"
+  },
+  "selectGroups": {
+    "message": "Grupları seç"
+  },
+  "userPermissionOverrideHelper": {
+    "message": "Bir üye için ayarlanan izinler, o üyenin grubu tarafından ayarlanan izinlerin yerini alacak"
+  },
+  "noMembersOrGroupsAdded": {
+    "message": "Hiç üye veya grup eklenmedi"
+  },
+  "deleted": {
+    "message": "Silindi"
+  },
+  "memberStatusFilter": {
+    "message": "Üye durumu filtresi"
+  },
+  "inviteMember": {
+    "message": "Üye davet et"
+  },
+  "needsConfirmation": {
+    "message": "Onay gerekli"
+  },
+  "memberRole": {
+    "message": "Üye rolü"
   },
   "moreFromBitwarden": {
     "message": "Diğer Bitwarden ürünleri"

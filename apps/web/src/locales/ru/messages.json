@@ -277,12 +277,33 @@
   "searchFavorites": {
     "message": "Поиск в избранном"
   },
-  "searchType": {
-    "message": "Поиск по типу",
-    "description": "Search item type"
+  "searchLogin": {
+    "message": "Поиск логинов",
+    "description": "Search Login type"
+  },
+  "searchCard": {
+    "message": "Поиск карт",
+    "description": "Search Card type"
+  },
+  "searchIdentity": {
+    "message": "Поиск личностей",
+    "description": "Search Identity type"
+  },
+  "searchSecureNote": {
+    "message": "Поиск заметок",
+    "description": "Search Secure Note type"
   },
   "searchVault": {
     "message": "Поиск в хранилище"
+  },
+  "searchMyVault": {
+    "message": "Искать в моем хранилище"
+  },
+  "searchOrganization": {
+    "message": "Поиск организации"
+  },
+  "searchMembers": {
+    "message": "Поиск участников"
   },
   "allItems": {
     "message": "Все элементы"
@@ -365,6 +386,9 @@
   "select": {
     "message": "Выбрать"
   },
+  "newItem": {
+    "message": "Новый элемент"
+  },
   "addItem": {
     "message": "Добавить элемент"
   },
@@ -373,6 +397,12 @@
   },
   "viewItem": {
     "message": "Просмотр элемента"
+  },
+  "new": {
+    "message": "Новый"
+  },
+  "item": {
+    "message": "Элемент"
   },
   "ex": {
     "message": "напр.",
@@ -438,6 +468,9 @@
   },
   "vaultItems": {
     "message": "Элементы хранилища"
+  },
+  "filter": {
+    "message": "Фильтр"
   },
   "moveSelectedToOrg": {
     "message": "Переместить выбранное в организацию"
@@ -544,6 +577,12 @@
   },
   "deletedFolder": {
     "message": "Папка удалена"
+  },
+  "editInfo": {
+    "message": "Изменить информацию"
+  },
+  "access": {
+    "message": "Доступ"
   },
   "loggedOut": {
     "message": "Вы вышли из хранилища"
@@ -702,6 +741,9 @@
   "noItemsInList": {
     "message": "Нет элементов для отображения."
   },
+  "noPermissionToViewAllCollectionItems": {
+    "message": "У вас нет разрешения на просмотр всех элементов этой коллекции."
+  },
   "noCollectionsInList": {
     "message": "Нет коллекций для отображения."
   },
@@ -710,6 +752,9 @@
   },
   "noUsersInList": {
     "message": "Нет пользователей для отображения."
+  },
+  "noMembersInList": {
+    "message": "Нет участников для отображения."
   },
   "noEventsInList": {
     "message": "Нет событий для отображения."
@@ -855,6 +900,18 @@
       }
     }
   },
+  "deleteSelectedCollectionsDesc": {
+    "message": "$COUNT$ коллекция(-ий) будут удалены навсегда.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "150"
+      }
+    }
+  },
+  "deleteSelectedConfirmation": {
+    "message": "Вы действительно хотите продолжить?"
+  },
   "moveSelectedItemsDesc": {
     "message": "Выберите папку, в которую вы хотите переместить выбранные элементы ($COUNT$ шт.).",
     "placeholders": {
@@ -929,17 +986,17 @@
   "confirmFilePassword": {
     "message": "Подтвердить пароль к файлу"
   },
-  "accountBackupOptionDescription": {
-    "message": "Используйте ключ шифрования своей учетной записи, чтобы зашифровать экспорт и ограничить импорт только текущей учетной записью Bitwarden."
+  "accountRestrictedOptionDescription": {
+    "message": "Использовать ключ шифрования вашего аккаунта, полученный из имени пользователя и мастер-пароля, для шифрования экспорта и ограничения импорта только для текущего аккаунта Bitwarden."
   },
   "passwordProtectedOptionDescription": {
-    "message": "Установите пароль для шифрования экспорта и импортируйте его в любую учетную запись Bitwarden, используя пароль для расшифровки."
+    "message": "Установите пароль файла для шифрования экспорта и импортируйте его в любую учетную запись Bitwarden, используя пароль для расшифровки."
   },
-  "fileTypeHeading": {
-    "message": "Тип файла"
+  "exportTypeHeading": {
+    "message": "Тип экспорта"
   },
-  "accountBackup": {
-    "message": "Резервное копирование аккаунта"
+  "accountRestricted": {
+    "message": "Ограничено аккаунтом"
   },
   "passwordProtected": {
     "message": "Пароль защищен"
@@ -1558,7 +1615,7 @@
   },
   "orgsReportsDesc": {
     "message": "Выявите и устраните проблемы с безопасностью в аккаунтах вашей организации, просмотрев отчеты ниже.",
-    "description": "Vault health reports can be used to evaluate the security of your Bitwarden individual or organization Vault."
+    "description": "Vault health reports can be used to evaluate the security of your Bitwarden individual or organization vault."
   },
   "unsecuredWebsitesReport": {
     "message": "Небезопасные сайты"
@@ -1821,6 +1878,22 @@
         "example": "$10"
       }
     }
+  },
+  "premiumPriceWithFamilyPlan": {
+    "message": "Перейдите на Премиум всего за $PRICE$ /год или получите Премиум для $FAMILYPLANUSERCOUNT$ пользователей и неограниченный семейный обмен с ",
+    "placeholders": {
+      "price": {
+        "content": "$1",
+        "example": "$10"
+      },
+      "familyplanusercount": {
+        "content": "$2",
+        "example": "6"
+      }
+    }
+  },
+  "bitwardenFamiliesPlan": {
+    "message": "планом Bitwarden Families."
   },
   "addons": {
     "message": "Дополнения"
@@ -2356,6 +2429,15 @@
   "deleteGroupConfirmation": {
     "message": "Вы действительно хотите удалить эту группу?"
   },
+  "deleteMultipleGroupsConfirmation": {
+    "message": "Вы уверены, что хотите удалить следующие $QUANTITY$ групп?",
+    "placeholders": {
+      "quantity": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
   "removeUserConfirmation": {
     "message": "Вы действительно хотите удалить этого пользователя?"
   },
@@ -2373,6 +2455,9 @@
   },
   "externalIdDesc": {
     "message": "Внешний идентификатор может быть использован в качестве ссылки или для связи этого ресурса с внешней системой, такой как каталог пользователя."
+  },
+  "nestCollectionUnder": {
+    "message": "Nest collection under"
   },
   "accessControl": {
     "message": "Контроль доступа"
@@ -2395,14 +2480,14 @@
   "editCollection": {
     "message": "Редактировать коллекцию"
   },
+  "collectionInfo": {
+    "message": "Информация о коллекции"
+  },
   "deleteCollectionConfirmation": {
     "message": "Вы действительно хотите удалить эту коллекцию?"
   },
-  "editUser": {
-    "message": "Редактировать пользователя"
-  },
-  "inviteUser": {
-    "message": "Пригласить пользователя"
+  "editMember": {
+    "message": "Изменить участника"
   },
   "inviteUserDesc": {
     "message": "Пригласите нового пользователя в свою организацию, введя ниже адрес email его аккаунта Bitwarden. Если у него пока нет аккаунта Bitwarden, ему будет предложено его создать."
@@ -2668,6 +2753,9 @@
       }
     }
   },
+  "deletedCollections": {
+    "message": "Коллекция удалена"
+  },
   "deletedCollectionId": {
     "message": "Удалена коллекция $ID$.",
     "placeholders": {
@@ -2710,6 +2798,15 @@
       "id": {
         "content": "$1",
         "example": "Developers"
+      }
+    }
+  },
+  "deletedManyGroups": {
+    "message": "Удалены $QUANTITY$ групп.",
+    "placeholders": {
+      "quantity": {
+        "content": "$1",
+        "example": "3"
       }
     }
   },
@@ -5188,7 +5285,7 @@
     "message": "Экспорт хранилища организации"
   },
   "exportingPersonalVaultDescription": {
-    "message": "Будут экспортированы только личные элементы хранилища, связанные с $EMAIL$. Элементы хранилища организации включены не будут.",
+    "message": "Будут экспортированы только отдельные элементы хранилища, связанные с $EMAIL$. Элементы хранилища организации включены не будут. Экспортируется только информация об элементах хранилища, не включая связанную историю паролей или вложений.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -5262,7 +5359,7 @@
     "message": "Общий email домена"
   },
   "catchallEmailDesc": {
-    "message": "Использовать общую почту домена."
+    "message": "Использовать общий email домена."
   },
   "random": {
     "message": "Случайно",
@@ -5442,6 +5539,15 @@
       }
     }
   },
+  "inputForbiddenCharacters": {
+    "message": "Не допускаются следующие символы: $CHARACTERS$",
+    "placeholders": {
+      "characters": {
+        "content": "$1",
+        "example": "@, #, $, %"
+      }
+    }
+  },
   "fieldsNeedAttention": {
     "message": "$COUNT$ поля(ей) выше требуют вашего внимания.",
     "placeholders": {
@@ -5474,6 +5580,45 @@
   },
   "notYou": {
     "message": "Не вы?"
+  },
+  "pickAnAvatarColor": {
+    "message": "Выбрать цвет аватара"
+  },
+  "customizeAvatar": {
+    "message": "Настроить аватар"
+  },
+  "avatarUpdated": {
+    "message": "Аватар обновлен"
+  },
+  "brightBlue": {
+    "message": "Ярко-голубой"
+  },
+  "green": {
+    "message": "Зеленый"
+  },
+  "orange": {
+    "message": "Оранжевый"
+  },
+  "lavender": {
+    "message": "Лавандовый"
+  },
+  "yellow": {
+    "message": "Желтый"
+  },
+  "indigo": {
+    "message": "Фиолетовый"
+  },
+  "teal": {
+    "message": "Бирюзовый"
+  },
+  "salmon": {
+    "message": "Лососевый"
+  },
+  "pink": {
+    "message": "Розовый"
+  },
+  "customColor": {
+    "message": "Пользовательский цвет"
   },
   "multiSelectPlaceholder": {
     "message": "-- Тип фильтра --"
@@ -5522,6 +5667,15 @@
   "deleteSecrets": {
     "message": "Удалить секреты"
   },
+  "secretProjectAssociationDescription": {
+    "message": "Выберите проекты, с которыми будет связан секрет. Только пользователи организации, имеющие доступ к этим проектам, смогут увидеть секрет."
+  },
+  "typeOrSelectProjects": {
+    "message": "Введите или выберите проекты"
+  },
+  "typeOrSelectProject": {
+    "message": "Введите или выберите проекты"
+  },
   "project": {
     "message": "Проект"
   },
@@ -5545,9 +5699,6 @@
   },
   "serviceAccounts": {
     "message": "Сервисные аккаунты"
-  },
-  "new": {
-    "message": "Новый"
   },
   "secrets": {
     "message": "Секреты"
@@ -5759,8 +5910,44 @@
   "update": {
     "message": "Обновить"
   },
+  "plusNMore": {
+    "message": "еще + $QUANTITY$",
+    "placeholders": {
+      "quantity": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "groupInfo": {
+    "message": "Информация о группе"
+  },
+  "editGroupMembersDesc": {
+    "message": "Предоставить участникам группы доступ к назначенным коллекциям."
+  },
+  "editGroupCollectionsDesc": {
+    "message": "Предоставить доступ к коллекциям, при добавлении их в эту группу."
+  },
+  "accessAllCollectionsDesc": {
+    "message": "Предоставить доступ ко всем текущим и будущим коллекциям."
+  },
+  "accessAllCollectionsHelp": {
+    "message": "Если отмечено, это заменит все остальные разрешения на коллекцию."
+  },
+  "selectMembers": {
+    "message": "Выбрать участников"
+  },
+  "selectCollections": {
+    "message": "Выбрать коллекции"
+  },
   "role": {
     "message": "Роль"
+  },
+  "removeMember": {
+    "message": "Удалить участника"
+  },
+  "collection": {
+    "message": "Коллекция"
   },
   "canView": {
     "message": "Может просматривать"
@@ -5774,6 +5961,15 @@
   "canEditExceptPass": {
     "message": "Может редактировать, кроме паролей"
   },
+  "noCollectionsAdded": {
+    "message": "Нет добавленных коллекций"
+  },
+  "noMembersAdded": {
+    "message": "Нет добавленных участников"
+  },
+  "noGroupsAdded": {
+    "message": "Нет добавленных групп"
+  },
   "group": {
     "message": "Группа"
   },
@@ -5783,8 +5979,41 @@
   "memberAccessAll": {
     "message": "Эта пользователь может иметь доступ и изменять все элементы."
   },
+  "membersColumnHeader": {
+    "message": "Участник/Группа"
+  },
+  "groupAndMemberColumnHeader": {
+    "message": "Участник"
+  },
+  "selectGroupsAndMembers": {
+    "message": "Выбор групп и участников"
+  },
+  "selectGroups": {
+    "message": "Выбрать группы"
+  },
+  "userPermissionOverrideHelper": {
+    "message": "Разрешения, установленные для участника, заменят разрешения, установленные группой этого участника"
+  },
+  "noMembersOrGroupsAdded": {
+    "message": "Не добавлены участники или группы"
+  },
+  "deleted": {
+    "message": "Удалено"
+  },
+  "memberStatusFilter": {
+    "message": "Фильтр по статусу участника"
+  },
+  "inviteMember": {
+    "message": "Пригласить участника"
+  },
+  "needsConfirmation": {
+    "message": "Требуется подтверждение"
+  },
+  "memberRole": {
+    "message": "Роль участника"
+  },
   "moreFromBitwarden": {
-    "message": "Дополнительная информация о Bitwarden"
+    "message": "Больше от Bitwarden"
   },
   "switchProducts": {
     "message": "Изменить продукты"
