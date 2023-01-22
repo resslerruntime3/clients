@@ -63,9 +63,9 @@ import { MultithreadEncryptServiceImplementation } from "@bitwarden/common/servi
 import { EventCollectionService } from "@bitwarden/common/services/event/event-collection.service";
 import { EventUploadService } from "@bitwarden/common/services/event/event-upload.service";
 import { ExportService } from "@bitwarden/common/services/export.service";
-import { CipherFileUploadService } from "@bitwarden/common/services/fileUpload/cipher-file-upload.service";
-import { FileUploadService } from "@bitwarden/common/services/fileUpload/file-upload.service";
-import { SendFileUploadService } from "@bitwarden/common/services/fileUpload/send-file-upload.service";
+import { CipherFileUploadService } from "@bitwarden/common/services/file-upload/cipher-file-upload.service";
+import { FileUploadService } from "@bitwarden/common/services/file-upload/file-upload.service";
+import { SendFileUploadService } from "@bitwarden/common/services/file-upload/send-file-upload.service";
 import { FolderApiService } from "@bitwarden/common/services/folder/folder-api.service";
 import { KeyConnectorService } from "@bitwarden/common/services/keyConnector.service";
 import { MemoryStorageService } from "@bitwarden/common/services/memoryStorage.service";

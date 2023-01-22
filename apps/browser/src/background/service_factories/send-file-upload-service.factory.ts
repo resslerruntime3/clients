@@ -1,5 +1,5 @@
 import { SendFileUploadService as SendFileUploadServiceAbstraction } from "@bitwarden/common/abstractions/file-upload/send-file-upload.service";
-import { SendFileUploadService } from "@bitwarden/common/services/fileUpload/send-file-upload.service";
+import { SendFileUploadService } from "@bitwarden/common/services/file-upload/send-file-upload.service";
 
 import { apiServiceFactory, ApiServiceInitOptions } from "./api-service.factory";
 import { FactoryOptions, CachedServices, factory } from "./factory-options";

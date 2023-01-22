@@ -3,9 +3,9 @@ import { LogService } from "../../abstractions/log.service";
 import { FileUploadType } from "../../enums/fileUploadType";
 import { EncArrayBuffer } from "../../models/domain/enc-array-buffer";
 import { EncString } from "../../models/domain/enc-string";
-import { AzureFileUploadService } from "../../services/azureFileUpload.service";
-import { BitwardenFileUploadService } from "../../services/bitwardenFileUpload.service";
 import { FileUploadApiMethods } from "../../types/file-upload-api-methods";
+import { AzureFileUploadService } from "../azureFileUpload.service";
+import { BitwardenFileUploadService } from "../bitwardenFileUpload.service";
 
 export class FileUploadService implements FileUploadServiceAbstraction {
   private azureFileUploadService: AzureFileUploadService;
