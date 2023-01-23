@@ -20,7 +20,6 @@ import { EventUploadService } from "@bitwarden/common/abstractions/event/event-u
 import { ExportService } from "@bitwarden/common/abstractions/export.service";
 import { CipherFileUploadService } from "@bitwarden/common/abstractions/file-upload/cipher-file-upload.service";
 import { FileUploadService } from "@bitwarden/common/abstractions/file-upload/file-upload.service";
-import { SendFileUploadService } from "@bitwarden/common/abstractions/file-upload/send-file-upload.service";
 import { FileDownloadService } from "@bitwarden/common/abstractions/fileDownload/fileDownload.service";
 import { FolderApiServiceAbstraction } from "@bitwarden/common/abstractions/folder/folder-api.service.abstraction";
 import { FolderService } from "@bitwarden/common/abstractions/folder/folder.service.abstraction";
@@ -40,7 +39,7 @@ import { ProviderService } from "@bitwarden/common/abstractions/provider.service
 import { SearchService as SearchServiceAbstraction } from "@bitwarden/common/abstractions/search.service";
 import { SendApiService as SendApiServiceAbstraction } from "@bitwarden/common/abstractions/send/send-api.service.abstraction";
 import {
-  InternalSendService,
+  InternalSendService as InternalSendServiceAbstraction,
   SendService,
 } from "@bitwarden/common/abstractions/send/send.service.abstraction";
 import { SettingsService } from "@bitwarden/common/abstractions/settings.service";
@@ -168,11 +167,6 @@ function getBgService<T>(service: keyof MainBackground) {
       useFactory: getBgService<CipherFileUploadService>("cipherFileUploadService"),
       deps: [],
     },
-    {
-      provide: SendFileUploadService,
-      useFactory: getBgService<SendFileUploadService>("sendFileUploadService"),
-      deps: [],
-    },
     { provide: CipherService, useFactory: getBgService<CipherService>("cipherService"), deps: [] },
     {
       provide: CryptoFunctionService,
@@ -270,20 +264,12 @@ function getBgService<T>(service: keyof MainBackground) {
       deps: [CryptoService, I18nService, CryptoFunctionService, StateServiceAbstraction],
     },
     {
-      provide: InternalSendService,
+      provide: InternalSendServiceAbstraction,
       useExisting: SendService,
     },
     {
       provide: SendApiServiceAbstraction,
       useFactory: getBgService<SendApiService>("sendApiService"),
-      // useFactory: (
-      //   sendService: InternalSendService,
-      //   sendFileUploadService: SendFileUploadService,
-      //   apiService: ApiService
-      // ) => {
-      //   return new SendApiService(apiService, sendFileUploadService, sendService);
-      // },
-      // deps: [ApiService, SendFileUploadService, InternalSendService],
     },
     { provide: SyncService, useFactory: getBgService<SyncService>("syncService"), deps: [] },
     {

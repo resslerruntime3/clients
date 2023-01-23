@@ -223,12 +223,6 @@ export class Main {
       this.stateService
     );
 
-    this.sendFileUploadService = new SendFileUploadService(
-      this.sendService,
-      this.apiService,
-      this.fileUploadService
-    );
-
     this.cipherFileUploadService = new CipherFileUploadService(
       this.apiService,
       this.fileUploadService
@@ -236,7 +230,7 @@ export class Main {
 
     this.sendApiService = this.sendApiService = new SendApiService(
       this.apiService,
-      this.sendFileUploadService,
+      this.fileUploadService,
       this.sendService
     );
 

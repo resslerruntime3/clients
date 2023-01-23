@@ -65,7 +65,6 @@ import { EventUploadService } from "@bitwarden/common/services/event/event-uploa
 import { ExportService } from "@bitwarden/common/services/export.service";
 import { CipherFileUploadService } from "@bitwarden/common/services/file-upload/cipher-file-upload.service";
 import { FileUploadService } from "@bitwarden/common/services/file-upload/file-upload.service";
-import { SendFileUploadService } from "@bitwarden/common/services/file-upload/send-file-upload.service";
 import { FolderApiService } from "@bitwarden/common/services/folder/folder-api.service";
 import { KeyConnectorService } from "@bitwarden/common/services/keyConnector.service";
 import { MemoryStorageService } from "@bitwarden/common/services/memoryStorage.service";
@@ -306,11 +305,6 @@ export default class MainBackground {
       this.apiService,
       this.fileUploadService
     );
-    this.sendFileUploadService = new SendFileUploadService(
-      this.sendService,
-      this.apiService,
-      this.fileUploadService
-    );
     this.cipherService = new CipherService(
       this.cryptoService,
       this.settingsService,
@@ -419,7 +413,7 @@ export default class MainBackground {
     );
     this.sendApiService = new SendApiService(
       this.apiService,
-      this.sendFileUploadService,
+      this.fileUploadService,
       this.sendService
     );
     this.providerService = new ProviderService(this.stateService);

@@ -25,7 +25,6 @@ import { EventUploadService as EventUploadServiceAbstraction } from "@bitwarden/
 import { ExportService as ExportServiceAbstraction } from "@bitwarden/common/abstractions/export.service";
 import { CipherFileUploadService as CipherFileUploadServiceAbstraction } from "@bitwarden/common/abstractions/file-upload/cipher-file-upload.service";
 import { FileUploadService as FileUploadServiceAbstraction } from "@bitwarden/common/abstractions/file-upload/file-upload.service";
-import { SendFileUploadService as SendFileUploadServiceAbstraction } from "@bitwarden/common/abstractions/file-upload/send-file-upload.service";
 import { FolderApiServiceAbstraction } from "@bitwarden/common/abstractions/folder/folder-api.service.abstraction";
 import {
   FolderService as FolderServiceAbstraction,
@@ -97,7 +96,6 @@ import { EventUploadService } from "@bitwarden/common/services/event/event-uploa
 import { ExportService } from "@bitwarden/common/services/export.service";
 import { CipherFileUploadService } from "@bitwarden/common/services/file-upload/cipher-file-upload.service";
 import { FileUploadService } from "@bitwarden/common/services/file-upload/file-upload.service";
-import { SendFileUploadService } from "@bitwarden/common/services/file-upload/send-file-upload.service";
 import { FolderApiService } from "@bitwarden/common/services/folder/folder-api.service";
 import { FolderService } from "@bitwarden/common/services/folder/folder.service";
 import { FormValidationErrorsService } from "@bitwarden/common/services/formValidationErrors.service";
@@ -229,11 +227,6 @@ import { AbstractThemingService } from "./theming/theming.service.abstraction";
       provide: FileUploadServiceAbstraction,
       useClass: FileUploadService,
       deps: [LoginServiceAbstraction],
-    },
-    {
-      provide: SendFileUploadServiceAbstraction,
-      useClass: SendFileUploadService,
-      deps: [SendServiceAbstraction, ApiServiceAbstraction, FileUploadServiceAbstraction],
     },
     {
       provide: CipherFileUploadServiceAbstraction,
@@ -381,7 +374,7 @@ import { AbstractThemingService } from "./theming/theming.service.abstraction";
     {
       provide: SendApiServiceAbstraction,
       useClass: SendApiService,
-      deps: [ApiServiceAbstraction, SendFileUploadServiceAbstraction, SendServiceAbstraction],
+      deps: [ApiServiceAbstraction, FileUploadServiceAbstraction, SendServiceAbstraction],
     },
     {
       provide: SyncServiceAbstraction,

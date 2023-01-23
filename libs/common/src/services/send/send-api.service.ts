@@ -1,5 +1,5 @@
 import { ApiService } from "../../abstractions/api.service";
-import { SendFileUploadService } from "../../abstractions/file-upload/send-file-upload.service";
+import { FileUploadService } from "../../abstractions/file-upload/file-upload.service";
 import { SendApiService as SendApiServiceAbstraction } from "../../abstractions/send/send-api.service.abstraction";
 import { InternalSendService } from "../../abstractions/send/send.service.abstraction";
 import { SendData } from "../../models/data/send.data";
@@ -13,13 +13,18 @@ import { SendFileDownloadDataResponse } from "../../models/response/send-file-do
 import { SendFileUploadDataResponse } from "../../models/response/send-file-upload-data.response";
 import { SendResponse } from "../../models/response/send.response";
 import { SendAccessView } from "../../models/view/send-access.view";
+import { SendFileUploadService } from "../file-upload/send-file-upload.service";
 
 export class SendApiService implements SendApiServiceAbstraction {
   constructor(
     private apiService: ApiService,
-    private sendFileUploadService: SendFileUploadService,
+    private fileUploadService: FileUploadService,
     private sendService: InternalSendService
-  ) {}
+  ) {
+    this.sendFileUploadService = new SendFileUploadService(this, fileUploadService);
+  }
+
+  sendFileUploadService: SendFileUploadService;
 
   async getSend(id: string): Promise<SendResponse> {
     const r = await this.apiService.send("GET", "/sends/" + id, null, true, true);
