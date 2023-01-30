@@ -28,8 +28,8 @@ import { CodebookCsvImporter } from "../importers/codebook-csv-importer";
 import { DashlaneCsvImporter } from "../importers/dashlane/dashlane-csv-importer";
 import { DashlaneJsonImporter } from "../importers/dashlane/dashlane-json-importer";
 import { EncryptrCsvImporter } from "../importers/encryptr-csv-importer";
-import { EnpassCsvImporter } from "../importers/enpass-csv-importer";
-import { EnpassJsonImporter } from "../importers/enpass-json-importer";
+import { EnpassCsvImporter } from "../importers/enpass/enpass-csv-importer";
+import { EnpassJsonImporter } from "../importers/enpass/enpass-json-importer";
 import { FirefoxCsvImporter } from "../importers/firefox-csv-importer";
 import { FSecureFskImporter } from "../importers/fsecure/fsecure-fsk-importer";
 import { GnomeJsonImporter } from "../importers/gnome-json-importer";
@@ -59,6 +59,7 @@ import { PasswordBossJsonImporter } from "../importers/passwordboss-json-importe
 import { PasswordDragonXmlImporter } from "../importers/passworddragon-xml-importer";
 import { PasswordSafeXmlImporter } from "../importers/passwordsafe-xml-importer";
 import { PasswordWalletTxtImporter } from "../importers/passwordwallet-txt-importer";
+import { PsonoJsonImporter } from "../importers/psono/psono-json-importer";
 import { RememBearCsvImporter } from "../importers/remembear-csv-importer";
 import { RoboFormCsvImporter } from "../importers/roboform-csv-importer";
 import { SafariCsvImporter } from "../importers/safari-csv-importer";
@@ -280,6 +281,8 @@ export class ImportService implements ImportServiceAbstraction {
         return new YotiCsvImporter();
       case "nordpasscsv":
         return new NordPassCsvImporter();
+      case "psonojson":
+        return new PsonoJsonImporter();
       case "passkyjson":
         return new PasskyJsonImporter();
       default:
