@@ -1,6 +1,6 @@
 import { ImportOption, ImportType } from "../../enums/importOptions";
-import { ImportError } from "../../importers/import-error";
 import { Importer } from "../../importers/importer";
+import { ImportResult } from "../../models/domain/import-result";
 
 export abstract class ImportService {
   featuredImportOptions: readonly ImportOption[];
@@ -10,10 +10,10 @@ export abstract class ImportService {
     importer: Importer,
     fileContents: string,
     organizationId?: string
-  ) => Promise<ImportError>;
+  ) => Promise<ImportResult>;
   getImporter: (
     format: ImportType | "bitwardenpasswordprotected",
-    organizationId: string,
-    password?: string
+    promptForPassword_callback: () => Promise<string>,
+    organizationId: string
   ) => Importer;
 }

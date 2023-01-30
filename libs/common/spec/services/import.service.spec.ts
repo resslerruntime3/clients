@@ -1,5 +1,4 @@
-// eslint-disable-next-line no-restricted-imports
-import { Substitute, SubstituteOf } from "@fluffy-spoon/substitute";
+import { mock, MockProxy } from "jest-mock-extended";
 
 import { CipherService } from "@bitwarden/common/abstractions/cipher.service";
 import { CollectionService } from "@bitwarden/common/abstractions/collection.service";
@@ -14,20 +13,20 @@ import { ImportService } from "@bitwarden/common/services/import/import.service"
 
 describe("ImportService", () => {
   let importService: ImportService;
-  let cipherService: SubstituteOf<CipherService>;
-  let folderService: SubstituteOf<FolderService>;
-  let importApiService: SubstituteOf<ImportApiServiceAbstraction>;
-  let i18nService: SubstituteOf<I18nService>;
-  let collectionService: SubstituteOf<CollectionService>;
-  let cryptoService: SubstituteOf<CryptoService>;
+  let cipherService: MockProxy<CipherService>;
+  let folderService: MockProxy<FolderService>;
+  let importApiService: MockProxy<ImportApiServiceAbstraction>;
+  let i18nService: MockProxy<I18nService>;
+  let collectionService: MockProxy<CollectionService>;
+  let cryptoService: MockProxy<CryptoService>;
 
   beforeEach(() => {
-    cipherService = Substitute.for<CipherService>();
-    folderService = Substitute.for<FolderService>();
-    importApiService = Substitute.for<ImportApiServiceAbstraction>();
-    i18nService = Substitute.for<I18nService>();
-    collectionService = Substitute.for<CollectionService>();
-    cryptoService = Substitute.for<CryptoService>();
+    cipherService = mock<CipherService>();
+    folderService = mock<FolderService>();
+    importApiService = mock<ImportApiServiceAbstraction>();
+    i18nService = mock<I18nService>();
+    collectionService = mock<CollectionService>();
+    cryptoService = mock<CryptoService>();
 
     importService = new ImportService(
       cipherService,
@@ -44,12 +43,15 @@ describe("ImportService", () => {
       let importer: Importer;
       const organizationId = Utils.newGuid();
       const password = Utils.newGuid();
+      const promptForPassword_callback = async () => {
+        return password;
+      };
 
       beforeEach(() => {
         importer = importService.getImporter(
           "bitwardenpasswordprotected",
-          organizationId,
-          password
+          promptForPassword_callback,
+          organizationId
         );
       });
 
@@ -57,12 +59,13 @@ describe("ImportService", () => {
         expect(importer).toBeInstanceOf(BitwardenPasswordProtectedImporter);
       });
 
-      it("has the appropriate organization Id", () => {
-        expect(importer.organizationId).toEqual(organizationId);
+      it("has the promptForPassword_callback set", async () => {
+        expect(importer.promptForPassword_callback).not.toBeNull();
+        expect(await importer.promptForPassword_callback()).toEqual(password);
       });
 
-      it("has the appropriate password", () => {
-        expect(Object.entries(importer)).toEqual(expect.arrayContaining([["password", password]]));
+      it("has the appropriate organization Id", () => {
+        expect(importer.organizationId).toEqual(organizationId);
       });
     });
   });

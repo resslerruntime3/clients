@@ -17,6 +17,7 @@ import { ConsoleLogService } from "../services/consoleLog.service";
 
 export abstract class BaseImporter {
   organizationId: string = null;
+  promptForPassword_callback: () => Promise<string>;
 
   protected logService: LogService = new ConsoleLogService(false);
 
