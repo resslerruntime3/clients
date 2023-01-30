@@ -238,6 +238,9 @@
   "ms": {
     "message": "Pani"
   },
+  "mx": {
+    "message": "Pan(i)"
+  },
   "dr": {
     "message": "Doktor"
   },
@@ -1998,7 +2001,7 @@
     "message": "Szukaj w sejfie"
   },
   "forwardedEmail": {
-    "message": "Alias przekazywanego adresu"
+    "message": "Alias przekierowania"
   },
   "forwardedEmailDesc": {
     "message": "Wygeneruj alias adresu e-mail z zewnętrznej usługi przekazywania."

@@ -133,6 +133,9 @@
   "ms": {
     "message": "Hörmətli"
   },
+  "mx": {
+    "message": "Hörmətli"
+  },
   "dr": {
     "message": "Dr"
   },
@@ -277,12 +280,36 @@
   "searchFavorites": {
     "message": "Sevimliləri axtar"
   },
-  "searchType": {
-    "message": "Axtarış növü",
-    "description": "Search item type"
+  "searchLogin": {
+    "message": "Girişlərdə axtar",
+    "description": "Search Login type"
+  },
+  "searchCard": {
+    "message": "Kartlarda axtar",
+    "description": "Search Card type"
+  },
+  "searchIdentity": {
+    "message": "Kimliklərdə axtar",
+    "description": "Search Identity type"
+  },
+  "searchSecureNote": {
+    "message": "Güvənli qeydlərdə axtar",
+    "description": "Search Secure Note type"
   },
   "searchVault": {
     "message": "Anbarda axtar"
+  },
+  "searchMyVault": {
+    "message": "Anbarımda axtar"
+  },
+  "searchOrganization": {
+    "message": "Təşkilatda axtar"
+  },
+  "searchMembers": {
+    "message": "Üzvlərdə axtar"
+  },
+  "searchGroups": {
+    "message": "Search groups"
   },
   "allItems": {
     "message": "Bütün elementlər"
@@ -365,6 +392,9 @@
   "select": {
     "message": "Seçin"
   },
+  "newItem": {
+    "message": "Yeni element"
+  },
   "addItem": {
     "message": "Element əlavə et"
   },
@@ -373,6 +403,13 @@
   },
   "viewItem": {
     "message": "Elementə bax"
+  },
+  "new": {
+    "message": "Yeni",
+    "description": "for adding new items"
+  },
+  "item": {
+    "message": "Element"
   },
   "ex": {
     "message": "məs.",
@@ -438,6 +475,9 @@
   },
   "vaultItems": {
     "message": "Anbar elementləri"
+  },
+  "filter": {
+    "message": "Filtr"
   },
   "moveSelectedToOrg": {
     "message": "Seçiləni təşkilata daşı"
@@ -544,6 +584,12 @@
   },
   "deletedFolder": {
     "message": "Qovluq silindi"
+  },
+  "editInfo": {
+    "message": "Məlumata düzəliş et"
+  },
+  "access": {
+    "message": "Müraciət"
   },
   "loggedOut": {
     "message": "Çıxış edildi"
@@ -702,6 +748,9 @@
   "noItemsInList": {
     "message": "Siyahılanacaq heç bir element yoxdur."
   },
+  "noPermissionToViewAllCollectionItems": {
+    "message": "Bu kolleksiyadakı bütün elementlərə baxmaq üçün icazəniz yoxdur."
+  },
   "noCollectionsInList": {
     "message": "Siyahılanacaq heç bir kolleksiya yoxdur."
   },
@@ -710,6 +759,9 @@
   },
   "noUsersInList": {
     "message": "Siyahılanacaq heç bir element yoxdur."
+  },
+  "noMembersInList": {
+    "message": "Siyahılanacaq heç bir üzv yoxdur."
   },
   "noEventsInList": {
     "message": "Siyahılanacaq heç bir element yoxdur."
@@ -854,6 +906,18 @@
         "example": "150"
       }
     }
+  },
+  "deleteSelectedCollectionsDesc": {
+    "message": "$COUNT$ kolleksiya həmişəlik silinəcək.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "150"
+      }
+    }
+  },
+  "deleteSelectedConfirmation": {
+    "message": "Davam etmək istədiyinizə əminsiniz?"
   },
   "moveSelectedItemsDesc": {
     "message": "Seçdiyiniz $COUNT$ elementi daşımaq istədiyiniz qovluğu seçin.",
@@ -1558,7 +1622,7 @@
   },
   "orgsReportsDesc": {
     "message": "Aşağıdakı hesabatlara klikləyərək təşkilatınızın hesablarındakı güvənlik boşluqlarına baxın və onları bağlayın.",
-    "description": "Vault health reports can be used to evaluate the security of your Bitwarden individual or organization Vault."
+    "description": "Vault health reports can be used to evaluate the security of your Bitwarden individual or organization vault."
   },
   "unsecuredWebsitesReport": {
     "message": "Güvənli olmayan veb saytlar"
@@ -1821,6 +1885,22 @@
         "example": "$10"
       }
     }
+  },
+  "premiumPriceWithFamilyPlan": {
+    "message": "Sadəcə $PRICE$ qiymətinə illik premium-a abunə olun və ya Bitwarden Ailələr planı ilə $FAMILYPLANUSERCOUNT$ istifadəçiləri üçün premium hesablar və ",
+    "placeholders": {
+      "price": {
+        "content": "$1",
+        "example": "$10"
+      },
+      "familyplanusercount": {
+        "content": "$2",
+        "example": "6"
+      }
+    }
+  },
+  "bitwardenFamiliesPlan": {
+    "message": "limitsiz ailə paylaşımı əldə edin."
   },
   "addons": {
     "message": "Əlavələr"
@@ -2356,6 +2436,15 @@
   "deleteGroupConfirmation": {
     "message": "Bu qrupu silmək istədiyinizə əminsiniz?"
   },
+  "deleteMultipleGroupsConfirmation": {
+    "message": "Aşağıdakı $QUANTITY$ qrupu silmək istədiyinizə əminsiniz?",
+    "placeholders": {
+      "quantity": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
   "removeUserConfirmation": {
     "message": "Bu istifadəçini çıxartmaq istədiyinizə əminsiniz?"
   },
@@ -2373,6 +2462,9 @@
   },
   "externalIdDesc": {
     "message": "Xarici kimlik, referans olaraq və ya bu mənbəni istifadəçi kataloqu kimi xarici bir sistemə bağlamaq üçün istifadə edilir."
+  },
+  "nestCollectionUnder": {
+    "message": "Nest collection under"
   },
   "accessControl": {
     "message": "Müraciət nəzarəti"
@@ -2395,14 +2487,23 @@
   "editCollection": {
     "message": "Kolleksiyaya düzəliş et"
   },
+  "collectionInfo": {
+    "message": "Kolleksiya məlumatı"
+  },
   "deleteCollectionConfirmation": {
     "message": "Bu kolleksiyanı silmək istədiyinizə əminsiniz?"
   },
-  "editUser": {
-    "message": "İstifadəçiyə düzəliş et"
+  "editMember": {
+    "message": "Üzvə düzəliş et"
   },
-  "inviteUser": {
-    "message": "İstifadəçini dəvət et"
+  "fieldOnTabRequiresAttention": {
+    "message": "A field on the '$TAB$' tab requires your attention.",
+    "placeholders": {
+      "tab": {
+        "content": "$1",
+        "example": "Collection info"
+      }
+    }
   },
   "inviteUserDesc": {
     "message": "Aşağıda Bitwarden hesabının e-poçt ünvanını daxil edərək təşkilatınıza yeni bir istifadəçi dəvət edə bilərsiniz. Əgər Bitwarden hesabı yoxdursa, yeni bir hesab yaratmaları üçün istək göndəriləcək."
@@ -2668,6 +2769,9 @@
       }
     }
   },
+  "deletedCollections": {
+    "message": "Silinmiş kolleksiyalar"
+  },
   "deletedCollectionId": {
     "message": "$ID$ kolleksiyası silindi.",
     "placeholders": {
@@ -2710,6 +2814,15 @@
       "id": {
         "content": "$1",
         "example": "Developers"
+      }
+    }
+  },
+  "deletedManyGroups": {
+    "message": "$QUANTITY$ qrup silindi.",
+    "placeholders": {
+      "quantity": {
+        "content": "$1",
+        "example": "3"
       }
     }
   },
@@ -5442,6 +5555,27 @@
       }
     }
   },
+  "inputForbiddenCharacters": {
+    "message": "Aşağıdakı simvollara icazə verilmir: $CHARACTERS$",
+    "placeholders": {
+      "characters": {
+        "content": "$1",
+        "example": "@, #, $, %"
+      }
+    }
+  },
+  "multipleInputEmails": {
+    "message": "1 or more emails are invalid"
+  },
+  "tooManyEmails": {
+    "message": "You can only submit up to $COUNT$ emails at a time",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "20"
+      }
+    }
+  },
   "fieldsNeedAttention": {
     "message": "Yuxarıdakı $COUNT$ sahənin diqqətinizə ehtiyacı var.",
     "placeholders": {
@@ -5562,13 +5696,13 @@
     "message": "\"Sirr\"ləri sil"
   },
   "secretProjectAssociationDescription": {
-    "message": "Select projects that the secret will be associated with. Only organization users with access to these projects will be able to see the secret."
+    "message": "Sirrin əlaqələndiriləcəyi layihələri seçin. Yalnız bu layihələrə müraciəti olan təşkilat istifadəçiləri sirri görə biləcək."
   },
   "typeOrSelectProjects": {
-    "message": "Type or select Projects"
+    "message": "Layihələri yazın və ya seçin"
   },
   "typeOrSelectProject": {
-    "message": "Type or select Project"
+    "message": "Layihə yazın və ya seçin"
   },
   "project": {
     "message": "Layihə"
@@ -5593,9 +5727,6 @@
   },
   "serviceAccounts": {
     "message": "Servis hesabları"
-  },
-  "new": {
-    "message": "Yeni"
   },
   "secrets": {
     "message": "\"Sirr\"lər"
@@ -5704,7 +5835,7 @@
     "placeholders": {
       "confirm": {
         "content": "$1",
-        "example": "Delete 3 Projects"
+        "example": "Delete 3 projects"
       }
     }
   },
@@ -5807,8 +5938,44 @@
   "update": {
     "message": "Güncəllə"
   },
+  "plusNMore": {
+    "message": "daha $QUANTITY$ ədəd",
+    "placeholders": {
+      "quantity": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "groupInfo": {
+    "message": "Qrup məlumatı"
+  },
+  "editGroupMembersDesc": {
+    "message": "Üzvlərə qrupun təyin edilmiş kolleksiyalarına müraciət icazəsi verin."
+  },
+  "editGroupCollectionsDesc": {
+    "message": "Bu qrupa əlavə edərək kolleksiyalara müraciət icazəsi verin."
+  },
+  "accessAllCollectionsDesc": {
+    "message": "Hazırkı və gələcəkdəki bütün kolleksiyalara müraciət icazəsi verin."
+  },
+  "accessAllCollectionsHelp": {
+    "message": "İşarələnsə bu, digər bütün kolleksiya icazələrini əvəz edəcək."
+  },
+  "selectMembers": {
+    "message": "Üzv seç"
+  },
+  "selectCollections": {
+    "message": "Kolleksiya seç"
+  },
   "role": {
     "message": "Rol"
+  },
+  "removeMember": {
+    "message": "Üzv sil"
+  },
+  "collection": {
+    "message": "Kolleksiya"
   },
   "canView": {
     "message": "Baxa bilər"
@@ -5822,6 +5989,15 @@
   "canEditExceptPass": {
     "message": "Parollar istisna olmaqla düzəliş edə bilər"
   },
+  "noCollectionsAdded": {
+    "message": "Heç bir kolleksiya əlavə edilmədi"
+  },
+  "noMembersAdded": {
+    "message": "Heç bir üzv əlavə edilmədi"
+  },
+  "noGroupsAdded": {
+    "message": "Heç bir qrup əlavə edilmədi"
+  },
   "group": {
     "message": "Qrup"
   },
@@ -5830,6 +6006,39 @@
   },
   "memberAccessAll": {
     "message": "Bu üzv, bütün elementlərə müraciət edə və onları dəyişdirə bilər."
+  },
+  "membersColumnHeader": {
+    "message": "Üzv/Qrup"
+  },
+  "groupAndMemberColumnHeader": {
+    "message": "Üzv"
+  },
+  "selectGroupsAndMembers": {
+    "message": "Qrup və üzv seç"
+  },
+  "selectGroups": {
+    "message": "Qrupları seç"
+  },
+  "userPermissionOverrideHelper": {
+    "message": "Bir üzv üçün tənzimlənən icazələr, həmin üzvün qrupu tərəfindən tənzimlənən icazələri əvəz edəcək"
+  },
+  "noMembersOrGroupsAdded": {
+    "message": "Heç bir üzv və ya qrup əlavə edilmədi"
+  },
+  "deleted": {
+    "message": "Silindi"
+  },
+  "memberStatusFilter": {
+    "message": "Üzv status filtri"
+  },
+  "inviteMember": {
+    "message": "Üzv dəvət et"
+  },
+  "needsConfirmation": {
+    "message": "Təsdiqləmə lazımdır"
+  },
+  "memberRole": {
+    "message": "Üzv rolu"
   },
   "moreFromBitwarden": {
     "message": "\"Bitwarden\"dən daha çoxu"
@@ -5872,5 +6081,14 @@
         "example": "2"
       }
     }
+  },
+  "lowKdfIterations": {
+    "message": "Low KDF Iterations"
+  },
+  "lowKdfIterationsDesc": {
+    "message": "Increase your KDF encryption settings to improve the security of your account."
+  },
+  "changeKdfSettings": {
+    "message": "Change KDF settings"
   }
 }

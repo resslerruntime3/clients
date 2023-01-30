@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
+import { firstValueFrom, lastValueFrom } from "rxjs";
 import { first } from "rxjs/operators";
 
 import { ModalService } from "@bitwarden/angular/services/modal.service";
@@ -20,11 +21,16 @@ import {
 } from "@bitwarden/common/models/response/collection.response";
 import { ListResponse } from "@bitwarden/common/models/response/list.response";
 import { CollectionView } from "@bitwarden/common/models/view/collection.view";
-import { DialogService } from "@bitwarden/components";
+import {
+  DialogService,
+  SimpleDialogCloseType,
+  SimpleDialogOptions,
+  SimpleDialogType,
+} from "@bitwarden/components";
 
-import { CollectionAddEditComponent } from "./collection-add-edit.component";
+import { CollectionDialogResult, openCollectionDialog } from "../shared";
+
 import { EntityUsersComponent } from "./entity-users.component";
-import { OrgUpgradeDialogComponent } from "./org-upgrade-dialog/org-upgrade-dialog.component";
 
 @Component({
   selector: "app-org-manage-collections",
@@ -60,7 +66,8 @@ export class CollectionsComponent implements OnInit {
     private searchService: SearchService,
     private logService: LogService,
     private organizationService: OrganizationService,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private router: Router
   ) {}
 
   async ngOnInit() {
@@ -120,10 +127,10 @@ export class CollectionsComponent implements OnInit {
     this.didScroll = this.pagedCollections.length > this.pageSize;
   }
 
-  async edit(collection: CollectionView) {
-    const canCreate = collection == null && this.canCreate;
-    const canEdit = collection != null && this.canEdit(collection);
-    const canDelete = collection != null && this.canDelete(collection);
+  async edit(collection?: CollectionView) {
+    const canCreate = collection == undefined && this.canCreate;
+    const canEdit = collection != undefined && this.canEdit(collection);
+    const canDelete = collection != undefined && this.canDelete(collection);
 
     if (!(canCreate || canEdit || canDelete)) {
       this.platformUtilsService.showToast("error", null, this.i18nService.t("missingPermissions"));
@@ -136,46 +143,53 @@ export class CollectionsComponent implements OnInit {
       this.collections.length === this.organization.maxCollections
     ) {
       // Show org upgrade modal
-      const dialogBodyText = this.organization.canManageBilling
-        ? this.i18nService.t(
-            "freeOrgMaxCollectionReachedManageBilling",
-            this.organization.maxCollections.toString()
-          )
-        : this.i18nService.t(
-            "freeOrgMaxCollectionReachedNoManageBilling",
-            this.organization.maxCollections.toString()
-          );
+      // It might be worth creating a simple
+      // org upgrade dialog service to launch the dialog here and in the people.comp
+      // once the enterprise pod is done w/ their organization module refactor.
+      const orgUpgradeSimpleDialogOpts: SimpleDialogOptions = {
+        title: this.i18nService.t("upgradeOrganization"),
+        content: this.i18nService.t(
+          this.organization.canManageBilling
+            ? "freeOrgMaxCollectionReachedManageBilling"
+            : "freeOrgMaxCollectionReachedNoManageBilling",
+          this.organization.maxCollections
+        ),
+        type: SimpleDialogType.PRIMARY,
+      };
 
-      this.dialogService.open(OrgUpgradeDialogComponent, {
-        data: {
-          orgId: this.organization.id,
-          dialogBodyText: dialogBodyText,
-          orgCanManageBilling: this.organization.canManageBilling,
-        },
+      if (this.organization.canManageBilling) {
+        orgUpgradeSimpleDialogOpts.acceptButtonText = this.i18nService.t("upgrade");
+      } else {
+        orgUpgradeSimpleDialogOpts.acceptButtonText = this.i18nService.t("ok");
+        orgUpgradeSimpleDialogOpts.cancelButtonText = null; // hide secondary btn
+      }
+
+      const simpleDialog = this.dialogService.openSimpleDialog(orgUpgradeSimpleDialogOpts);
+
+      firstValueFrom(simpleDialog.closed).then((result: SimpleDialogCloseType | undefined) => {
+        if (!result) {
+          return;
+        }
+
+        if (result == SimpleDialogCloseType.ACCEPT && this.organization.canManageBilling) {
+          this.router.navigate(
+            ["/organizations", this.organization.id, "billing", "subscription"],
+            { queryParams: { upgrade: true } }
+          );
+        }
       });
+
       return;
     }
 
-    const [modal] = await this.modalService.openViewRef(
-      CollectionAddEditComponent,
-      this.addEditModalRef,
-      (comp) => {
-        comp.organizationId = this.organizationId;
-        comp.collectionId = collection != null ? collection.id : null;
-        comp.canSave = canCreate || canEdit;
-        comp.canDelete = canDelete;
-        // eslint-disable-next-line rxjs-angular/prefer-takeuntil
-        comp.onSavedCollection.subscribe(() => {
-          modal.close();
-          this.load();
-        });
-        // eslint-disable-next-line rxjs-angular/prefer-takeuntil
-        comp.onDeletedCollection.subscribe(() => {
-          modal.close();
-          this.removeCollection(collection);
-        });
-      }
-    );
+    const dialog = openCollectionDialog(this.dialogService, {
+      data: { collectionId: collection?.id, organizationId: this.organizationId },
+    });
+
+    const result = await lastValueFrom(dialog.closed);
+    if (result === CollectionDialogResult.Saved || result === CollectionDialogResult.Deleted) {
+      this.load();
+    }
   }
 
   add() {

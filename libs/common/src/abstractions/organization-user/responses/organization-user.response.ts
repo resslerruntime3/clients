@@ -13,6 +13,8 @@ export class OrganizationUserResponse extends BaseResponse {
   accessAll: boolean;
   permissions: PermissionsApi;
   resetPasswordEnrolled: boolean;
+  collections: SelectionReadOnlyResponse[] = [];
+  groups: string[] = [];
 
   constructor(response: any) {
     super(response);
@@ -23,6 +25,15 @@ export class OrganizationUserResponse extends BaseResponse {
     this.permissions = new PermissionsApi(this.getResponseProperty("Permissions"));
     this.accessAll = this.getResponseProperty("AccessAll");
     this.resetPasswordEnrolled = this.getResponseProperty("ResetPasswordEnrolled");
+
+    const collections = this.getResponseProperty("Collections");
+    if (collections != null) {
+      this.collections = collections.map((c: any) => new SelectionReadOnlyResponse(c));
+    }
+    const groups = this.getResponseProperty("Groups");
+    if (groups != null) {
+      this.groups = groups;
+    }
   }
 }
 
@@ -42,20 +53,16 @@ export class OrganizationUserUserDetailsResponse extends OrganizationUserRespons
 }
 
 export class OrganizationUserDetailsResponse extends OrganizationUserResponse {
-  collections: SelectionReadOnlyResponse[] = [];
-
   constructor(response: any) {
     super(response);
-    const collections = this.getResponseProperty("Collections");
-    if (collections != null) {
-      this.collections = collections.map((c: any) => new SelectionReadOnlyResponse(c));
-    }
   }
 }
 
 export class OrganizationUserResetPasswordDetailsReponse extends BaseResponse {
   kdf: KdfType;
   kdfIterations: number;
+  kdfMemory?: number;
+  kdfParallelism?: number;
   resetPasswordKey: string;
   encryptedPrivateKey: string;
 
@@ -63,6 +70,8 @@ export class OrganizationUserResetPasswordDetailsReponse extends BaseResponse {
     super(response);
     this.kdf = this.getResponseProperty("Kdf");
     this.kdfIterations = this.getResponseProperty("KdfIterations");
+    this.kdfMemory = this.getResponseProperty("KdfMemory");
+    this.kdfParallelism = this.getResponseProperty("KdfParallelism");
     this.resetPasswordKey = this.getResponseProperty("ResetPasswordKey");
     this.encryptedPrivateKey = this.getResponseProperty("EncryptedPrivateKey");
   }

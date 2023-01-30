@@ -238,6 +238,9 @@
   "ms": {
     "message": "Srta."
   },
+  "mx": {
+    "message": "Mx"
+  },
   "dr": {
     "message": "Dr."
   },
@@ -1459,7 +1462,7 @@
     "message": "Una o més polítiques d’organització afecten la configuració del generador."
   },
   "vaultTimeoutAction": {
-    "message": "Acció del temps d'espera de la caixa forta"
+    "message": "Acció quan acabe el temps d'espera de la caixa forta"
   },
   "vaultTimeoutActionLockDesc": {
     "message": "Una caixa forta bloquejada requereix que torneu a introduir la contrasenya principal per accedir-ne de nou."
@@ -2032,7 +2035,7 @@
     "message": "Caixa forta"
   },
   "loginWithMasterPassword": {
-    "message": "Inicia sessió amb la contrasenya mestra"
+    "message": "Inici de sessió amb contrasenya mestra"
   },
   "loggingInAs": {
     "message": "Has iniciat sessió com"

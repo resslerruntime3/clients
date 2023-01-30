@@ -1123,6 +1123,9 @@
   "dr": {
     "message": "Dr"
   },
+  "mx": {
+    "message": "Mx"
+  },
   "firstName": {
     "message": "Όνομα"
   },
@@ -1312,7 +1315,7 @@
     "description": "ex. Date this item was updated"
   },
   "dateCreated": {
-    "message": "Created",
+    "message": "Δημιουργήθηκε",
     "description": "ex. Date this item was created"
   },
   "datePasswordUpdated": {
@@ -2006,13 +2009,13 @@
     "message": "Έκδοση διακομιστή"
   },
   "selfHosted": {
-    "message": "Self-hosted"
+    "message": "Αυτο-φιλοξενείται"
   },
   "thirdParty": {
-    "message": "Third-party"
+    "message": "Τρίτο μέρος"
   },
   "thirdPartyServerMessage": {
-    "message": "Connected to third-party server implementation, $SERVERNAME$. Please verify bugs using the official server, or report them to the third-party server.",
+    "message": "Συνδέθηκε με υλοποίηση διακομιστή τρίτων, $SERVERNAME$. Παρακαλώ επαληθεύστε τα σφάλματα χρησιμοποιώντας τον επίσημο διακομιστή, ή αναφέρετε τα στον διακομιστή τρίτων.",
     "placeholders": {
       "servername": {
         "content": "$1",
@@ -2021,7 +2024,7 @@
     }
   },
   "lastSeenOn": {
-    "message": "last seen on: $DATE$",
+    "message": "ημερομηνία τελευταίας προβολής: $DATE$",
     "placeholders": {
       "date": {
         "content": "$1",
@@ -2030,18 +2033,48 @@
     }
   },
   "loginWithMasterPassword": {
-    "message": "Log in with master password"
+    "message": "Συνδεθείτε με τον κύριο κωδικό πρόσβασης"
   },
   "loggingInAs": {
-    "message": "Logging in as"
+    "message": "Σύνδεση ως"
   },
   "notYou": {
-    "message": "Not you?"
+    "message": "Δεν είστε εσείς;"
   },
   "newAroundHere": {
-    "message": "New around here?"
+    "message": "Νέος/α στα μέρη μας;"
   },
   "rememberEmail": {
-    "message": "Remember email"
+    "message": "Απομνημόνευση email"
+  },
+  "exposedMasterPassword": {
+    "message": "Exposed Master Password"
+  },
+  "exposedMasterPasswordDesc": {
+    "message": "Password found in a data breach. Use a unique password to protect your account. Are you sure you want to use an exposed password?"
+  },
+  "weakAndExposedMasterPassword": {
+    "message": "Weak and Exposed Master Password"
+  },
+  "weakAndBreachedMasterPasswordDesc": {
+    "message": "Weak password identified and found in a data breach. Use a strong and unique password to protect your account. Are you sure you want to use this password?"
+  },
+  "checkForBreaches": {
+    "message": "Check known data breaches for this password"
+  },
+  "important": {
+    "message": "Important:"
+  },
+  "masterPasswordHint": {
+    "message": "Your master password cannot be recovered if you forget it!"
+  },
+  "characterMinimum": {
+    "message": "$LENGTH$ character minimum",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
   }
 }

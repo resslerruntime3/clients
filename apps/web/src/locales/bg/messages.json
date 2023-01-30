@@ -133,6 +133,9 @@
   "ms": {
     "message": "Г-жа"
   },
+  "mx": {
+    "message": "Mx"
+  },
   "dr": {
     "message": "Д-р"
   },
@@ -277,12 +280,36 @@
   "searchFavorites": {
     "message": "Търсене в любими"
   },
-  "searchType": {
-    "message": "Търсене по вид",
-    "description": "Search item type"
+  "searchLogin": {
+    "message": "Търсене в записите",
+    "description": "Search Login type"
+  },
+  "searchCard": {
+    "message": "Търсене в картите",
+    "description": "Search Card type"
+  },
+  "searchIdentity": {
+    "message": "Търсене в идентификаторите",
+    "description": "Search Identity type"
+  },
+  "searchSecureNote": {
+    "message": "Търсене в защитените бележки",
+    "description": "Search Secure Note type"
   },
   "searchVault": {
     "message": "Търсене в трезора"
+  },
+  "searchMyVault": {
+    "message": "Търсене в трезора"
+  },
+  "searchOrganization": {
+    "message": "Търсене в организацията"
+  },
+  "searchMembers": {
+    "message": "Търсене в членовете"
+  },
+  "searchGroups": {
+    "message": "Търсене в групите"
   },
   "allItems": {
     "message": "Всички елементи"
@@ -365,6 +392,9 @@
   "select": {
     "message": "Избор"
   },
+  "newItem": {
+    "message": "Нов елемент"
+  },
   "addItem": {
     "message": "Добавяне на елемент"
   },
@@ -373,6 +403,13 @@
   },
   "viewItem": {
     "message": "Преглед на елемента"
+  },
+  "new": {
+    "message": "Ново",
+    "description": "for adding new items"
+  },
+  "item": {
+    "message": "Елемент"
   },
   "ex": {
     "message": "напр.",
@@ -438,6 +475,9 @@
   },
   "vaultItems": {
     "message": "Елементи в трезора"
+  },
+  "filter": {
+    "message": "Филтриране"
   },
   "moveSelectedToOrg": {
     "message": "Преместване на избраните в организация"
@@ -544,6 +584,12 @@
   },
   "deletedFolder": {
     "message": "Изтрита папка"
+  },
+  "editInfo": {
+    "message": "Редактиране на информацията"
+  },
+  "access": {
+    "message": "Достъп"
   },
   "loggedOut": {
     "message": "Бяхте отписани"
@@ -702,6 +748,9 @@
   "noItemsInList": {
     "message": "Няма елементи за показване."
   },
+  "noPermissionToViewAllCollectionItems": {
+    "message": "Нямате права да преглеждате всички елементи в тази колекция."
+  },
   "noCollectionsInList": {
     "message": "Няма колекции за показване."
   },
@@ -710,6 +759,9 @@
   },
   "noUsersInList": {
     "message": "Няма потребители за показване."
+  },
+  "noMembersInList": {
+    "message": "Няма членове за показване."
   },
   "noEventsInList": {
     "message": "Няма събития за показване."
@@ -854,6 +906,18 @@
         "example": "150"
       }
     }
+  },
+  "deleteSelectedCollectionsDesc": {
+    "message": "Брой колекции, които ще бъдат изтрити окончателно: $COUNT$.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "150"
+      }
+    }
+  },
+  "deleteSelectedConfirmation": {
+    "message": "Наистина ли искате да продължите?"
   },
   "moveSelectedItemsDesc": {
     "message": "Избор на папка, в която да се преместят $COUNT$ избрани записи.",
@@ -1558,7 +1622,7 @@
   },
   "orgsReportsDesc": {
     "message": "Открийте и отстранете проблемите със защитата на профилите в организацията си като щракнете върху докладите по-долу.",
-    "description": "Vault health reports can be used to evaluate the security of your Bitwarden individual or organization Vault."
+    "description": "Vault health reports can be used to evaluate the security of your Bitwarden individual or organization vault."
   },
   "unsecuredWebsitesReport": {
     "message": "Доклад за сайтове без защита"
@@ -1821,6 +1885,22 @@
         "example": "$10"
       }
     }
+  },
+  "premiumPriceWithFamilyPlan": {
+    "message": "Преминете към платен план само за $PRICE$ /година, или към групов план за $FAMILYPLANUSERCOUNT$ потребители и неограничено семейно споделяне със ",
+    "placeholders": {
+      "price": {
+        "content": "$1",
+        "example": "$10"
+      },
+      "familyplanusercount": {
+        "content": "$2",
+        "example": "6"
+      }
+    }
+  },
+  "bitwardenFamiliesPlan": {
+    "message": "Семейния план на Битуорден."
   },
   "addons": {
     "message": "Добавки"
@@ -2356,6 +2436,15 @@
   "deleteGroupConfirmation": {
     "message": "Сигурни ли сте, че искате да изтриете тази група?"
   },
+  "deleteMultipleGroupsConfirmation": {
+    "message": "Наистина ли искате да изтриете следната/следните $QUANTITY$ група/групи?",
+    "placeholders": {
+      "quantity": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
   "removeUserConfirmation": {
     "message": "Сигурни ли сте, че искате да изтриете този потребител?"
   },
@@ -2373,6 +2462,9 @@
   },
   "externalIdDesc": {
     "message": "Външните идентификатори указват връзката на този елемент с друга система, напр. директорийна услуга с потребители и групи."
+  },
+  "nestCollectionUnder": {
+    "message": "Влагане на колекцията под"
   },
   "accessControl": {
     "message": "Управление на достъпа"
@@ -2395,14 +2487,23 @@
   "editCollection": {
     "message": "Редактиране на колекция"
   },
+  "collectionInfo": {
+    "message": "Информация за колекцията"
+  },
   "deleteCollectionConfirmation": {
     "message": "Сигурни ли сте, че искате да изтриете тази колекция?"
   },
-  "editUser": {
-    "message": "Редактиране на потребител"
+  "editMember": {
+    "message": "Редактиране на члена"
   },
-  "inviteUser": {
-    "message": "Поканване на потребител"
+  "fieldOnTabRequiresAttention": {
+    "message": "Поле в раздела „$TAB$“ има нужда от внимание.",
+    "placeholders": {
+      "tab": {
+        "content": "$1",
+        "example": "Collection info"
+      }
+    }
   },
   "inviteUserDesc": {
     "message": "Може да поканите потребител да стане член на организацията като попълните адреса му за електронна поща, с който е регистриран в Битуорден, по-долу. В случай, че потребителят не е регистриран, той автоматично ще получи покана и да се регистрира."
@@ -2668,6 +2769,9 @@
       }
     }
   },
+  "deletedCollections": {
+    "message": "Изтрити колекции"
+  },
   "deletedCollectionId": {
     "message": "Колекция № $ID$ е изтрита.",
     "placeholders": {
@@ -2710,6 +2814,15 @@
       "id": {
         "content": "$1",
         "example": "Developers"
+      }
+    }
+  },
+  "deletedManyGroups": {
+    "message": "Изтрити групи: $QUANTITY$.",
+    "placeholders": {
+      "quantity": {
+        "content": "$1",
+        "example": "3"
       }
     }
   },
@@ -4138,7 +4251,7 @@
     "message": "Права"
   },
   "permission": {
-    "message": "Permission"
+    "message": "Право"
   },
   "managerPermissions": {
     "message": "Права на управителя"
@@ -4165,10 +4278,10 @@
     "message": "Създаване на нови колекции"
   },
   "editAnyCollection": {
-    "message": "Edit any collection"
+    "message": "Редактиране на всякакви колекции"
   },
   "deleteAnyCollection": {
-    "message": "Delete any collection"
+    "message": "Изтриване на всякакви колекции"
   },
   "manageAssignedCollections": {
     "message": "Управление на възложените колекции"
@@ -5252,14 +5365,14 @@
     "message": "Тип потребителско име"
   },
   "plusAddressedEmail": {
-    "message": "Plus addressed email",
+    "message": "Адрес на е-поща с плюс",
     "description": "Username generator option that appends a random sub-address to the username. For example: address+subaddress@email.com"
   },
   "plusAddressedEmailDesc": {
     "message": "Използвайте възможностите за под-адресиране на е-поща на своя доставчик."
   },
   "catchallEmail": {
-    "message": "Catch-all email"
+    "message": "Хващаща всичко е-поща"
   },
   "catchallEmailDesc": {
     "message": "Use your domain's configured catch-all inbox."
@@ -5442,6 +5555,27 @@
       }
     }
   },
+  "inputForbiddenCharacters": {
+    "message": "Следните знаци не са позволени: $CHARACTERS$",
+    "placeholders": {
+      "characters": {
+        "content": "$1",
+        "example": "@, #, $, %"
+      }
+    }
+  },
+  "multipleInputEmails": {
+    "message": "1 или повече е-пощи са неправилни"
+  },
+  "tooManyEmails": {
+    "message": "Може да добавяте по не повече от $COUNT$ е-пощи наведнъж",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "20"
+      }
+    }
+  },
   "fieldsNeedAttention": {
     "message": "$COUNT$ поле(та) по-горе се нуждае/ят от вниманието Ви.",
     "placeholders": {
@@ -5562,13 +5696,13 @@
     "message": "Изтриване на тайните"
   },
   "secretProjectAssociationDescription": {
-    "message": "Select projects that the secret will be associated with. Only organization users with access to these projects will be able to see the secret."
+    "message": "Изберете проектите, с които ще бъде свързана тази тайна. Само потребителите в организацията, които имат достъп до тези проекти, ще могат да виждат тайната."
   },
   "typeOrSelectProjects": {
-    "message": "Type or select Projects"
+    "message": "Пишете тук или изберете проекти"
   },
   "typeOrSelectProject": {
-    "message": "Type or select Project"
+    "message": "Пишете тук или изберете проект"
   },
   "project": {
     "message": "Проект"
@@ -5589,13 +5723,10 @@
     "message": "Тайна"
   },
   "serviceAccount": {
-    "message": "Service Account"
+    "message": "Service account"
   },
   "serviceAccounts": {
-    "message": "Service Accounts"
-  },
-  "new": {
-    "message": "Ново"
+    "message": "Service accounts"
   },
   "secrets": {
     "message": "Тайни"
@@ -5613,7 +5744,7 @@
     "message": "Нова тайна"
   },
   "newServiceAccount": {
-    "message": "New Service Account"
+    "message": "New service account"
   },
   "secretsNoItemsTitle": {
     "message": "Няма тайни за показване"
@@ -5625,22 +5756,22 @@
     "message": "Все още няма нищо за показване"
   },
   "serviceAccountsNoItemsMessage": {
-    "message": "Create a new Service Account to get started automating secret access."
+    "message": "Create a new service account to get started automating secret access."
   },
   "searchSecrets": {
     "message": "Търсене в тайните"
   },
   "deleteServiceAccounts": {
-    "message": "Delete Service Accounts"
+    "message": "Delete service accounts"
   },
   "deleteServiceAccount": {
-    "message": "Delete Service Account"
+    "message": "Delete service account"
   },
   "viewServiceAccount": {
-    "message": "View Service Account"
+    "message": "View service account"
   },
   "searchServiceAccounts": {
-    "message": "Search Service Accounts"
+    "message": "Search service accounts"
   },
   "addProject": {
     "message": "Добавяне на проект"
@@ -5667,7 +5798,7 @@
     "message": "Тайните са преместени в кошчето"
   },
   "serviceAccountCreated": {
-    "message": "Service Account Created"
+    "message": "Service account created"
   },
   "smAccess": {
     "message": "Достъп"
@@ -5704,7 +5835,7 @@
     "placeholders": {
       "confirm": {
         "content": "$1",
-        "example": "Delete 3 Projects"
+        "example": "Delete 3 projects"
       }
     }
   },
@@ -5745,10 +5876,10 @@
     "message": "Secret sent to trash"
   },
   "searchProjects": {
-    "message": "Search Projects"
+    "message": "Search projects"
   },
   "accessTokens": {
-    "message": "Access tokens"
+    "message": "Идентификатори за достъп"
   },
   "createAccessToken": {
     "message": "Създаване на идентификатор за достъп"
@@ -5807,8 +5938,44 @@
   "update": {
     "message": "Обновяване"
   },
+  "plusNMore": {
+    "message": "+ още $QUANTITY$",
+    "placeholders": {
+      "quantity": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "groupInfo": {
+    "message": "Информация за групата"
+  },
+  "editGroupMembersDesc": {
+    "message": "Дайте достъп на членовете до колекциите, свързани с групата."
+  },
+  "editGroupCollectionsDesc": {
+    "message": "Дайте достъп до колекциите, като ги добавите към тази група."
+  },
+  "accessAllCollectionsDesc": {
+    "message": "Дайте достъп до всички текущи и бъдещи колекции."
+  },
+  "accessAllCollectionsHelp": {
+    "message": "Ако е избрано, това ще замени всички останали права свързани с колекцията."
+  },
+  "selectMembers": {
+    "message": "Изберете членове"
+  },
+  "selectCollections": {
+    "message": "Изберете колекции"
+  },
   "role": {
     "message": "Роля"
+  },
+  "removeMember": {
+    "message": "Премахване на члена"
+  },
+  "collection": {
+    "message": "Колекция"
   },
   "canView": {
     "message": "Може да преглежда"
@@ -5822,6 +5989,15 @@
   "canEditExceptPass": {
     "message": "Може да редактира, без пароли"
   },
+  "noCollectionsAdded": {
+    "message": "Няма добавени колекции"
+  },
+  "noMembersAdded": {
+    "message": "Няма добавени членове"
+  },
+  "noGroupsAdded": {
+    "message": "Няма добавени групи"
+  },
   "group": {
     "message": "Група"
   },
@@ -5830,6 +6006,39 @@
   },
   "memberAccessAll": {
     "message": "Този член има достъп до всички записи и може да ги редактира."
+  },
+  "membersColumnHeader": {
+    "message": "Член/група"
+  },
+  "groupAndMemberColumnHeader": {
+    "message": "Член"
+  },
+  "selectGroupsAndMembers": {
+    "message": "Изберете групи и членове"
+  },
+  "selectGroups": {
+    "message": "Изберете групи"
+  },
+  "userPermissionOverrideHelper": {
+    "message": "Правата дадени на един член ще заменят правата дадени му от неговата група"
+  },
+  "noMembersOrGroupsAdded": {
+    "message": "Няма добавени членове или групи"
+  },
+  "deleted": {
+    "message": "Deleted"
+  },
+  "memberStatusFilter": {
+    "message": "Member status filter"
+  },
+  "inviteMember": {
+    "message": "Invite member"
+  },
+  "needsConfirmation": {
+    "message": "Изисква потвърждение"
+  },
+  "memberRole": {
+    "message": "Роля на члена"
   },
   "moreFromBitwarden": {
     "message": "Още от Битуорден"
@@ -5872,5 +6081,14 @@
         "example": "2"
       }
     }
+  },
+  "lowKdfIterations": {
+    "message": "Малко повторения за KDF"
+  },
+  "lowKdfIterationsDesc": {
+    "message": "Увеличете настройките си за шифроване чрез KDF, за да защитите по-добре регистрацията си."
+  },
+  "changeKdfSettings": {
+    "message": "Промяна на настройките за KDF"
   }
 }

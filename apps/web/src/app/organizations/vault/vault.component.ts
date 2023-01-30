@@ -8,10 +8,10 @@ import {
   ViewContainerRef,
 } from "@angular/core";
 import { ActivatedRoute, Params, Router } from "@angular/router";
-import { first } from "rxjs/operators";
+import { combineLatest, firstValueFrom, lastValueFrom, Subject } from "rxjs";
+import { first, switchMap, takeUntil } from "rxjs/operators";
 
 import { ModalService } from "@bitwarden/angular/services/modal.service";
-import { VaultFilter } from "@bitwarden/angular/vault/vault-filter/models/vault-filter.model";
 import { BroadcasterService } from "@bitwarden/common/abstractions/broadcaster.service";
 import { CipherService } from "@bitwarden/common/abstractions/cipher.service";
 import { I18nService } from "@bitwarden/common/abstractions/i18n.service";
@@ -20,12 +20,26 @@ import { OrganizationService } from "@bitwarden/common/abstractions/organization
 import { PasswordRepromptService } from "@bitwarden/common/abstractions/passwordReprompt.service";
 import { PlatformUtilsService } from "@bitwarden/common/abstractions/platformUtils.service";
 import { SyncService } from "@bitwarden/common/abstractions/sync/sync.service.abstraction";
-import { CipherType } from "@bitwarden/common/enums/cipherType";
+import { ProductType } from "@bitwarden/common/enums/productType";
 import { Organization } from "@bitwarden/common/models/domain/organization";
+import { TreeNode } from "@bitwarden/common/models/domain/tree-node";
 import { CipherView } from "@bitwarden/common/models/view/cipher.view";
+import {
+  DialogService,
+  SimpleDialogCloseType,
+  SimpleDialogOptions,
+  SimpleDialogType,
+} from "@bitwarden/components";
 
-import { VaultService } from "../../vault/shared/vault.service";
+import { VaultFilterService } from "../../vault/vault-filter/services/abstractions/vault-filter.service";
+import { VaultFilter } from "../../vault/vault-filter/shared/models/vault-filter.model";
+import { CollectionFilter } from "../../vault/vault-filter/shared/models/vault-filter.type";
+import { CollectionAdminService } from "../core";
 import { EntityEventsComponent } from "../manage/entity-events.component";
+import {
+  CollectionDialogResult,
+  openCollectionDialog,
+} from "../shared/components/collection-dialog";
 
 import { AddEditComponent } from "./add-edit.component";
 import { AttachmentsComponent } from "./attachments.component";
@@ -53,139 +67,170 @@ export class VaultComponent implements OnInit, OnDestroy {
   eventsModalRef: ViewContainerRef;
 
   organization: Organization;
-  collectionId: string = null;
-  type: CipherType = null;
   trashCleanupWarning: string = null;
   activeFilter: VaultFilter = new VaultFilter();
-
-  // This is a hack to avoid redundant api calls that fetch OrganizationVaultFilterComponent collections
-  // When it makes sense to do so we should leverage some other communication method for change events that isn't directly tied to the query param for organizationId
-  // i.e. exposing the VaultFiltersService to the OrganizationSwitcherComponent to make relevant updates from a change event instead of just depending on the router
-  firstLoaded = true;
+  private destroy$ = new Subject<void>();
 
   constructor(
     private route: ActivatedRoute,
     private organizationService: OrganizationService,
+    protected vaultFilterService: VaultFilterService,
     private router: Router,
     private changeDetectorRef: ChangeDetectorRef,
     private syncService: SyncService,
     private i18nService: I18nService,
     private modalService: ModalService,
+    private dialogService: DialogService,
     private messagingService: MessagingService,
     private broadcasterService: BroadcasterService,
     private ngZone: NgZone,
     private platformUtilsService: PlatformUtilsService,
-    private vaultService: VaultService,
     private cipherService: CipherService,
-    private passwordRepromptService: PasswordRepromptService
+    private passwordRepromptService: PasswordRepromptService,
+    private collectionAdminService: CollectionAdminService
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     this.trashCleanupWarning = this.i18nService.t(
       this.platformUtilsService.isSelfHost()
         ? "trashCleanupWarningSelfHosted"
         : "trashCleanupWarning"
     );
-    // eslint-disable-next-line rxjs-angular/prefer-takeuntil, rxjs/no-async-subscribe
-    this.route.parent.params.subscribe(async (params: any) => {
-      this.organization = await this.organizationService.get(params.organizationId);
-      this.vaultFilterComponent.organization = this.organization;
-      this.vaultItemsComponent.organization = this.organization;
 
-      /* eslint-disable-next-line rxjs-angular/prefer-takeuntil, rxjs/no-async-subscribe, rxjs/no-nested-subscribe */
-      this.route.queryParams.pipe(first()).subscribe(async (qParams) => {
-        this.vaultItemsComponent.searchText = this.vaultFilterComponent.searchText = qParams.search;
-        if (!this.organization.canViewAllCollections) {
-          await this.syncService.fullSync(false);
-          this.broadcasterService.subscribe(BroadcasterSubscriptionId, (message: any) => {
-            this.ngZone.run(async () => {
-              switch (message.command) {
-                case "syncCompleted":
-                  if (message.successfully) {
-                    await Promise.all([
-                      this.vaultFilterComponent.reloadCollectionsAndFolders(),
-                      this.vaultItemsComponent.refresh(),
-                    ]);
-                    this.changeDetectorRef.detectChanges();
-                  }
-                  break;
-              }
-            });
-          });
-        }
+    this.route.parent.params.pipe(takeUntil(this.destroy$)).subscribe((params) => {
+      this.organization = this.organizationService.get(params.organizationId);
+    });
 
-        if (this.firstLoaded) {
-          await this.vaultFilterComponent.reloadCollectionsAndFolders();
-        }
-        this.firstLoaded = true;
+    this.route.queryParams.pipe(first(), takeUntil(this.destroy$)).subscribe((qParams) => {
+      this.vaultItemsComponent.searchText = this.vaultFilterComponent.searchText = qParams.search;
+    });
 
-        await this.vaultItemsComponent.reload();
-
-        if (qParams.viewEvents != null) {
-          const cipher = this.vaultItemsComponent.ciphers.filter(
-            (c) => c.id === qParams.viewEvents
-          );
-          if (cipher.length > 0) {
-            this.viewEvents(cipher[0]);
+    // verifies that the organization has been set
+    combineLatest([this.route.queryParams, this.route.parent.params])
+      .pipe(
+        switchMap(async ([qParams, params]) => {
+          const cipherId = getCipherIdFromParams(qParams);
+          if (!cipherId) {
+            return;
           }
-        }
+          if (
+            // Handle users with implicit collection access since they use the admin endpoint
+            this.organization.canUseAdminCollections ||
+            (await this.cipherService.get(cipherId)) != null
+          ) {
+            this.editCipherId(cipherId);
+          } else {
+            this.platformUtilsService.showToast(
+              "error",
+              this.i18nService.t("errorOccurred"),
+              this.i18nService.t("unknownCipher")
+            );
+            this.router.navigate([], {
+              queryParams: { cipherId: null, itemId: null },
+              queryParamsHandling: "merge",
+            });
+          }
+        }),
+        takeUntil(this.destroy$)
+      )
+      .subscribe();
 
-        /* eslint-disable-next-line rxjs-angular/prefer-takeuntil, rxjs/no-async-subscribe, rxjs/no-nested-subscribe */
-        this.route.queryParams.subscribe(async (params) => {
-          const cipherId = getCipherIdFromParams(params);
-          if (cipherId) {
-            if (
-              // Handle users with implicit collection access since they use the admin endpoint
-              this.organization.canEditAnyCollection ||
-              (await this.cipherService.get(cipherId)) != null
-            ) {
-              this.editCipherId(cipherId);
-            } else {
-              this.platformUtilsService.showToast(
-                "error",
-                this.i18nService.t("errorOccurred"),
-                this.i18nService.t("unknownCipher")
-              );
-              this.router.navigate([], {
-                queryParams: { cipherId: null, itemId: null },
-                queryParamsHandling: "merge",
-              });
-            }
+    if (!this.organization.canUseAdminCollections) {
+      this.broadcasterService.subscribe(BroadcasterSubscriptionId, (message: any) => {
+        this.ngZone.run(async () => {
+          switch (message.command) {
+            case "syncCompleted":
+              if (message.successfully) {
+                await Promise.all([
+                  this.vaultFilterService.reloadCollections(),
+                  this.vaultItemsComponent.refresh(),
+                ]);
+                this.changeDetectorRef.detectChanges();
+              }
+              break;
           }
         });
       });
-    });
-  }
-
-  get deleted(): boolean {
-    return this.activeFilter.status === "trash";
+      await this.syncService.fullSync(false);
+    }
   }
 
   ngOnDestroy() {
     this.broadcasterService.unsubscribe(BroadcasterSubscriptionId);
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
-  async applyVaultFilter(vaultFilter: VaultFilter) {
-    this.vaultItemsComponent.showAddNew = vaultFilter.status !== "trash";
-    this.activeFilter = vaultFilter;
-
-    // Hack to avoid calling cipherService.getAllFromApiForOrganization every time the vault filter changes.
-    // Call VaultItemsComponent.applyFilter directly instead of going through VaultItemsComponent.reload, which
-    // reloads all the ciphers unnecessarily. Will be fixed properly by EC-14.
-    this.vaultItemsComponent.loaded = false;
-    this.vaultItemsComponent.deleted = vaultFilter.status === "trash" || false;
-    await this.vaultItemsComponent.applyFilter(this.activeFilter.buildFilter());
-    this.vaultItemsComponent.loaded = true;
-    // End hack
-
-    this.vaultFilterComponent.searchPlaceholder =
-      this.vaultService.calculateSearchBarLocalizationString(this.activeFilter);
+  async applyVaultFilter(filter: VaultFilter) {
+    this.activeFilter = filter;
+    this.vaultItemsComponent.showAddNew = !this.activeFilter.isDeleted;
+    await this.vaultItemsComponent.reload(
+      this.activeFilter.buildFilter(),
+      this.activeFilter.isDeleted
+    );
     this.go();
   }
 
   filterSearchText(searchText: string) {
     this.vaultItemsComponent.searchText = searchText;
     this.vaultItemsComponent.search(200);
+  }
+
+  private showFreeOrgUpgradeDialog(): void {
+    const orgUpgradeSimpleDialogOpts: SimpleDialogOptions = {
+      title: this.i18nService.t("upgradeOrganization"),
+      content: this.i18nService.t(
+        this.organization.canManageBilling
+          ? "freeOrgMaxCollectionReachedManageBilling"
+          : "freeOrgMaxCollectionReachedNoManageBilling",
+        this.organization.maxCollections
+      ),
+      type: SimpleDialogType.PRIMARY,
+    };
+
+    if (this.organization.canManageBilling) {
+      orgUpgradeSimpleDialogOpts.acceptButtonText = this.i18nService.t("upgrade");
+    } else {
+      orgUpgradeSimpleDialogOpts.acceptButtonText = this.i18nService.t("ok");
+      orgUpgradeSimpleDialogOpts.cancelButtonText = null; // hide secondary btn
+    }
+
+    const simpleDialog = this.dialogService.openSimpleDialog(orgUpgradeSimpleDialogOpts);
+
+    firstValueFrom(simpleDialog.closed).then((result: SimpleDialogCloseType | undefined) => {
+      if (!result) {
+        return;
+      }
+
+      if (result == SimpleDialogCloseType.ACCEPT && this.organization.canManageBilling) {
+        this.router.navigate(["/organizations", this.organization.id, "billing", "subscription"], {
+          queryParams: { upgrade: true },
+        });
+      }
+    });
+  }
+
+  async addCollection() {
+    if (this.organization.planProductType === ProductType.Free) {
+      const collections = await this.collectionAdminService.getAll(this.organization.id);
+      if (collections.length === this.organization.maxCollections) {
+        this.showFreeOrgUpgradeDialog();
+        return;
+      }
+    }
+
+    const dialog = openCollectionDialog(this.dialogService, {
+      data: {
+        organizationId: this.organization?.id,
+        parentCollectionId: this.activeFilter.collectionId,
+      },
+    });
+    const result = await lastValueFrom(dialog.closed);
+    if (result === CollectionDialogResult.Saved || result === CollectionDialogResult.Deleted) {
+      this.vaultItemsComponent.actionPromise = this.vaultItemsComponent.refresh();
+      await this.vaultItemsComponent.actionPromise;
+      this.vaultItemsComponent.actionPromise = null;
+    }
   }
 
   async editCipherAttachments(cipher: CipherView) {
@@ -219,16 +264,13 @@ export class VaultComponent implements OnInit, OnDestroy {
   }
 
   async editCipherCollections(cipher: CipherView) {
+    const currCollections = await firstValueFrom(this.vaultFilterService.filteredCollections$);
     const [modal] = await this.modalService.openViewRef(
       CollectionsComponent,
       this.collectionsModalRef,
       (comp) => {
-        if (this.organization.canEditAnyCollection) {
-          comp.collectionIds = cipher.collectionIds;
-          comp.collections = this.vaultFilterComponent.collections.fullList.filter(
-            (c) => !c.readOnly && c.id != null
-          );
-        }
+        comp.collectionIds = cipher.collectionIds;
+        comp.collections = currCollections.filter((c) => !c.readOnly && c.id != null);
         comp.organization = this.organization;
         comp.cipherId = cipher.id;
         // eslint-disable-next-line rxjs-angular/prefer-takeuntil, rxjs/no-async-subscribe
@@ -243,15 +285,17 @@ export class VaultComponent implements OnInit, OnDestroy {
   async addCipher() {
     const component = await this.editCipher(null);
     component.organizationId = this.organization.id;
-    component.type = this.type;
-    if (this.organization.canEditAnyCollection) {
-      component.collections = this.vaultFilterComponent.collections.fullList.filter(
-        (c) => !c.readOnly && c.id != null
-      );
+    component.type = this.activeFilter.cipherType;
+    component.collections = (
+      await firstValueFrom(this.vaultFilterService.filteredCollections$)
+    ).filter((c) => !c.readOnly && c.id != null);
+    if (this.activeFilter.collectionId) {
+      component.collectionIds = [this.activeFilter.collectionId];
     }
-    if (this.collectionId != null) {
-      component.collectionIds = [this.collectionId];
-    }
+  }
+
+  async navigateToCipher(cipher: CipherView) {
+    this.go({ itemId: cipher?.id });
   }
 
   async editCipher(cipher: CipherView) {
@@ -302,13 +346,9 @@ export class VaultComponent implements OnInit, OnDestroy {
     const component = await this.editCipher(cipher);
     component.cloneMode = true;
     component.organizationId = this.organization.id;
-    if (this.organization.canEditAnyCollection) {
-      component.collections = this.vaultFilterComponent.collections.fullList.filter(
-        (c) => !c.readOnly && c.id != null
-      );
-    }
-    // Regardless of Admin state, the collection Ids need to passed manually as they are not assigned value
-    // in the add-edit componenet
+    component.collections = (
+      await firstValueFrom(this.vaultFilterService.filteredCollections$)
+    ).filter((c) => !c.readOnly && c.id != null);
     component.collectionIds = cipher.collectionIds;
   }
 
@@ -322,12 +362,32 @@ export class VaultComponent implements OnInit, OnDestroy {
     });
   }
 
+  get breadcrumbs(): TreeNode<CollectionFilter>[] {
+    if (!this.activeFilter.selectedCollectionNode) {
+      return [];
+    }
+
+    const collections = [this.activeFilter.selectedCollectionNode];
+    while (collections[collections.length - 1].parent != undefined) {
+      collections.push(collections[collections.length - 1].parent);
+    }
+
+    return collections.map((c) => c).reverse();
+  }
+
+  protected applyCollectionFilter(collection: TreeNode<CollectionFilter>) {
+    const filter = this.activeFilter;
+    filter.resetFilter();
+    filter.selectedCollectionNode = collection;
+    this.applyVaultFilter(filter);
+  }
+
   private go(queryParams: any = null) {
     if (queryParams == null) {
       queryParams = {
         type: this.activeFilter.cipherType,
-        collectionId: this.activeFilter.selectedCollectionId,
-        deleted: this.deleted ? true : null,
+        collectionId: this.activeFilter.collectionId,
+        deleted: this.activeFilter.isDeleted || null,
       };
     }
 

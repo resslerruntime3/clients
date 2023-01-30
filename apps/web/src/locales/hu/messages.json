@@ -133,6 +133,9 @@
   "ms": {
     "message": "Kisasszony"
   },
+  "mx": {
+    "message": "Mx"
+  },
   "dr": {
     "message": "Dr."
   },
@@ -269,20 +272,44 @@
     "message": "Szerkesztés"
   },
   "searchCollection": {
-    "message": "Keresés a gyűjteményben"
+    "message": "Gyűjtemény keresése"
   },
   "searchFolder": {
     "message": "Mappa keresése"
   },
   "searchFavorites": {
-    "message": "Keresés a kedvencek közt"
+    "message": "Kedvencek keresése"
   },
-  "searchType": {
-    "message": "Típus keresése",
-    "description": "Search item type"
+  "searchLogin": {
+    "message": "Bejelentkezések keresése",
+    "description": "Search Login type"
+  },
+  "searchCard": {
+    "message": "Kártyák keresése",
+    "description": "Search Card type"
+  },
+  "searchIdentity": {
+    "message": "Azonosítások keresése",
+    "description": "Search Identity type"
+  },
+  "searchSecureNote": {
+    "message": "Biztonságos jegyzetek keresése",
+    "description": "Search Secure Note type"
   },
   "searchVault": {
     "message": "Keresés a széfben"
+  },
+  "searchMyVault": {
+    "message": "Keresés a saját széfben"
+  },
+  "searchOrganization": {
+    "message": "Szervezet keresése"
+  },
+  "searchMembers": {
+    "message": "Tagok keresése"
+  },
+  "searchGroups": {
+    "message": "Csoportok keresése"
   },
   "allItems": {
     "message": "Összes elem"
@@ -324,7 +351,7 @@
     "message": "Gyűjtemények"
   },
   "firstName": {
-    "message": "Keresztnév"
+    "message": "Személynév"
   },
   "middleName": {
     "message": "Középső név"
@@ -365,6 +392,9 @@
   "select": {
     "message": "Kijelölés"
   },
+  "newItem": {
+    "message": "Új elem"
+  },
   "addItem": {
     "message": "Elem hozzáadása"
   },
@@ -373,6 +403,13 @@
   },
   "viewItem": {
     "message": "Elem megtekintése"
+  },
+  "new": {
+    "message": "Új",
+    "description": "for adding new items"
+  },
+  "item": {
+    "message": "Elem"
   },
   "ex": {
     "message": "Példa:",
@@ -439,11 +476,14 @@
   "vaultItems": {
     "message": "Széfelemek"
   },
+  "filter": {
+    "message": "Szűrő"
+  },
   "moveSelectedToOrg": {
     "message": "A kiválasztott áthelyezése szervezetbe"
   },
   "deleteSelected": {
-    "message": "Kijelöltek törlése"
+    "message": "Kiválasztott törlése"
   },
   "moveSelected": {
     "message": "Kijelöltek áthelyezése"
@@ -452,13 +492,13 @@
     "message": "Összes kijelölése"
   },
   "unselectAll": {
-    "message": "Kijelölés megszüntetése"
+    "message": "Összes kijelölés megszüntetése"
   },
   "launch": {
     "message": "Indítás"
   },
   "newAttachment": {
-    "message": "Melléklet hozzáadása"
+    "message": "Új melléklet hozzáadása"
   },
   "deletedAttachment": {
     "message": "A melléklet törlésre került."
@@ -482,10 +522,10 @@
     "message": "Ez a funkció nem használható a titkosítási kulcs frissítéséig."
   },
   "addedItem": {
-    "message": "Elem hozzáadva"
+    "message": "Az elem hozzáadásra került."
   },
   "editedItem": {
-    "message": "Elem szerkesztve"
+    "message": "Az elem szerkesztésre került."
   },
   "movedItemToOrg": {
     "message": "$ITEMNAME$ átkerült $ORGNAME$ szervezethez",
@@ -544,6 +584,12 @@
   },
   "deletedFolder": {
     "message": "A mappa törlésre került."
+  },
+  "editInfo": {
+    "message": "Adatok szerkesztése"
+  },
+  "access": {
+    "message": "Hozzáférés"
   },
   "loggedOut": {
     "message": "Megtörtént a kijelentkezés."
@@ -702,6 +748,9 @@
   "noItemsInList": {
     "message": "Nincsenek megjeleníthető elemek."
   },
+  "noPermissionToViewAllCollectionItems": {
+    "message": "Nincs jogosultság a gyűjtemény összes elemének megtekintésére."
+  },
   "noCollectionsInList": {
     "message": "Nincsenek megjeleníthető gyűjtemények."
   },
@@ -710,6 +759,9 @@
   },
   "noUsersInList": {
     "message": "Nincsenek megjeleníthető felhasználók."
+  },
+  "noMembersInList": {
+    "message": "Nincsenek megjeleníthető tagok."
   },
   "noEventsInList": {
     "message": "Nincsenek megjeleníthető események."
@@ -855,6 +907,18 @@
       }
     }
   },
+  "deleteSelectedCollectionsDesc": {
+    "message": "$COUNT$ gyűjtemény véglegesen törlésre kerül.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "150"
+      }
+    }
+  },
+  "deleteSelectedConfirmation": {
+    "message": "Biztos folytatni szeretnénk?"
+  },
   "moveSelectedItemsDesc": {
     "message": "Célmappa kiválasztás $COUNT$ kijelölt elem áthelyezéséhez.",
     "placeholders": {
@@ -882,10 +946,10 @@
     }
   },
   "verificationCodeTotp": {
-    "message": "Ellenőrző kód (egyszeri időalapú)"
+    "message": "Verification Code (TOTP)"
   },
   "copyVerificationCode": {
-    "message": "Ellenőrző kód másolása"
+    "message": "Copy Verification Code"
   },
   "warning": {
     "message": "Figyelmeztetés"
@@ -1003,7 +1067,7 @@
     "description": "Make the first letter of a word uppercase."
   },
   "includeNumber": {
-    "message": "Tartalmazzon számot"
+    "message": "Szám is"
   },
   "passwordHistory": {
     "message": "Jelszóelőzmények"
@@ -1043,7 +1107,7 @@
     "message": "A folytatásban a felhasználó kiléptetésre kerül a jelenlegi munkamenetből, szükséges az ismételt bejelentkezés. Más eszközökön aktív munkamenetek akár egy órán keresztül is aktívak maradhatnak."
   },
   "emailChanged": {
-    "message": "Email cím megváltoztatva"
+    "message": "Az email cím megváltozott."
   },
   "logBackIn": {
     "message": "Ismételten be kell jelentkezni."
@@ -1055,7 +1119,7 @@
     "message": "Mesterjelszó módosítása"
   },
   "masterPasswordChanged": {
-    "message": "Mesterjelszó megváltoztatva"
+    "message": "A mesterjelszó megváltozott."
   },
   "currentMasterPass": {
     "message": "Jelenlegi mesterjelszó"
@@ -1064,7 +1128,7 @@
     "message": "Új mesterjelszó"
   },
   "confirmNewMasterPass": {
-    "message": "Új jelszó megerősítése"
+    "message": "Új mesterjelszó megerősítése"
   },
   "encKeySettings": {
     "message": "Kulcs beállítások titkosítása"
@@ -1558,7 +1622,7 @@
   },
   "orgsReportsDesc": {
     "message": "Az alábbi jelentésekre kattintva azonosíthatjuk és megszüntethetjük a szervezet fiókjaiban lévő biztonsági hiányosságokat.",
-    "description": "Vault health reports can be used to evaluate the security of your Bitwarden individual or organization Vault."
+    "description": "Vault health reports can be used to evaluate the security of your Bitwarden individual or organization vault."
   },
   "unsecuredWebsitesReport": {
     "message": "Nem-biztonságos webhelyek jelentés"
@@ -1582,13 +1646,13 @@
     "message": "A széfben nincs nem-biztonságos URI-val rendelkező elem."
   },
   "inactive2faReport": {
-    "message": "2FA jelentés kikapcsolása"
+    "message": "Kétlépéses bejelentkezés kikapcsolása"
   },
   "inactive2faReportDesc": {
-    "message": "A kétlépcsős hitelesítés (2FA) egy fontos biztonsági beállítás, amely biztosítja a fiókokat. Ha egy webhely felkínálja ezt, célszerű mindig engedélyezni a kétlépcsős hitelesítést."
+    "message": "A kétlépcsős bejelentkezés egy védelmi réteget ad a fiókoknak.  Állítsunk be kétlépéses vejelentkezést a Bitwarden hitelesítővel ezekhez a fiókokhoz vagy használjunk alternatív módot."
   },
   "inactive2faFound": {
-    "message": "2FA nélküli bejelentkezések találhatók."
+    "message": "Kétlépések bejelentkezés nélküli bejelentkezések találhatók."
   },
   "inactive2faFoundDesc": {
     "message": "$COUNT$ olyan webhelyet találtunk a széfben, amely nincs kétlépcsős hitelesítéssel konfigurálva (a 2fa.directory adatbázisa alapján). Ezen fiókok további védelme érdekében, javasolt a kétlépcsős hitelesítés használata.",
@@ -1762,7 +1826,7 @@
     "description": "Financial term. In the case of Bitwarden, a positive balance means that you owe money, while a negative balance means that you have a credit (Bitwarden owes you money)."
   },
   "accountBalance": {
-    "message": "Számla egyenleg",
+    "message": "Fiók egyenleg",
     "description": "Financial term. In the case of Bitwarden, a positive balance means that you owe money, while a negative balance means that you have a credit (Bitwarden owes you money)."
   },
   "addCredit": {
@@ -1821,6 +1885,22 @@
         "example": "$10"
       }
     }
+  },
+  "premiumPriceWithFamilyPlan": {
+    "message": "Prémium csomag mindössze $PRICE$/év áron, vagy szerezzünk be prémium fiókot $FAMILYPLANUSERCOUNT$ felhasználónak és korlátlan családi megosztást:",
+    "placeholders": {
+      "price": {
+        "content": "$1",
+        "example": "$10"
+      },
+      "familyplanusercount": {
+        "content": "$2",
+        "example": "6"
+      }
+    }
+  },
+  "bitwardenFamiliesPlan": {
+    "message": "Bitwarden családi csomag."
   },
   "addons": {
     "message": "Kiegészítők"
@@ -2356,6 +2436,15 @@
   "deleteGroupConfirmation": {
     "message": "Biztosan törlésre kerüljön ez a csoport?"
   },
+  "deleteMultipleGroupsConfirmation": {
+    "message": "Biztosan törölni szeretnénk a következő $QUANTITY$ csoportot?",
+    "placeholders": {
+      "quantity": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
   "removeUserConfirmation": {
     "message": "Biztosan eltávolításra kerüljön ez a felhasználó?"
   },
@@ -2373,6 +2462,9 @@
   },
   "externalIdDesc": {
     "message": "A külső azonosító hivatkozásként használható, vagy ahhoz, hogy ezt az erőforrást egy külső rendszerhez, például felhasználói könyvtárhoz kapcsoljuk."
+  },
+  "nestCollectionUnder": {
+    "message": "Gyűjtemény beágyazása:"
   },
   "accessControl": {
     "message": "Hozzáférés vezérlés"
@@ -2395,14 +2487,23 @@
   "editCollection": {
     "message": "Gyűjtemény szerkesztése"
   },
+  "collectionInfo": {
+    "message": "Gyűjtemény adatok"
+  },
   "deleteCollectionConfirmation": {
     "message": "Biztosan törlésre kerüljön ez a gyűjtemény?"
   },
-  "editUser": {
-    "message": "Felhasználó szerkesztése"
+  "editMember": {
+    "message": "Tag szerkesztése"
   },
-  "inviteUser": {
-    "message": "Felhasználó meghívása"
+  "fieldOnTabRequiresAttention": {
+    "message": "A '$TAB$' fülön lévő mező figyelmet követel.",
+    "placeholders": {
+      "tab": {
+        "content": "$1",
+        "example": "Collection info"
+      }
+    }
   },
   "inviteUserDesc": {
     "message": "Új felhasználó meghívása a szervezetéhez a Bitwarden fiók e-mail címének megadásával. Ha még nem rendelkezik Bitwarden-fiókkal, felkérjük új fiók létrehozására.\n"
@@ -2438,7 +2539,7 @@
     "message": "Megerősítve"
   },
   "clientOwnerEmail": {
-    "message": "Ügyféltulajdonos e-mail cím"
+    "message": "Ügyféltulajdonos email cím"
   },
   "owner": {
     "message": "Tulajdonos"
@@ -2668,6 +2769,9 @@
       }
     }
   },
+  "deletedCollections": {
+    "message": "Törölt gyűjtemények"
+  },
   "deletedCollectionId": {
     "message": "$ID$ azonosítójú gyűjtemény törlésre került.",
     "placeholders": {
@@ -2710,6 +2814,15 @@
       "id": {
         "content": "$1",
         "example": "Developers"
+      }
+    }
+  },
+  "deletedManyGroups": {
+    "message": "$QUANTITY$ csoport törlésre került.",
+    "placeholders": {
+      "quantity": {
+        "content": "$1",
+        "example": "3"
       }
     }
   },
@@ -3629,10 +3742,10 @@
     "message": "Elem visszaállítása"
   },
   "restoredItem": {
-    "message": "Visszaállított elem"
+    "message": "Az elem visszaállításra került."
   },
   "restoredItems": {
-    "message": "Visszaállított elemek"
+    "message": "Az elemek visszaállításra kerültek."
   },
   "restoreItemConfirmation": {
     "message": "Biztosan visszaállításra kerüljön ez az elem?"
@@ -3767,7 +3880,7 @@
     "message": "Szöveg"
   },
   "createSend": {
-    "message": "Új küldés létrehozása",
+    "message": "Új Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "editSend": {
@@ -3775,15 +3888,15 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "createdSend": {
-    "message": "A küldés létrejött.",
+    "message": "A Send mentésre került.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "editedSend": {
-    "message": "A küldés szerkesztésre került.",
+    "message": "A Send szerkesztésre került.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deletedSend": {
-    "message": "A küldés törlésre került.",
+    "message": "A Send törlésre került.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deleteSend": {
@@ -3841,7 +3954,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "copySendLink": {
-    "message": "Hivatkozás küldés másolása",
+    "message": "Send hivatkozás másolása",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "removePassword": {
@@ -3857,7 +3970,7 @@
     "message": "Saját email cím elrejtése a címzettek elől."
   },
   "disableThisSend": {
-    "message": "A Küldés letiltásával mindenki hozzáférése megvonható.",
+    "message": "A Send letiltásával mindenki hozzáférése megvonható.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "allSends": {
@@ -3882,11 +3995,11 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendProtectedPasswordDontKnow": {
-    "message": "Nem ismerjük a jelszót? Kérdezzünk rá a küldőnél a küldés elérésére szükséges jelszóért.",
+    "message": "Nem ismerjük a jelszót? Kérdezzünk rá a küldőnél a Send elérésére szükséges jelszóért.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendHiddenByDefault": {
-    "message": "Ez a küldés alapértelmezésben rejtett. Az alábbi gombbal átváltható a láthatósága.",
+    "message": "Ez a Send alapértelmezésben rejtett. Az alábbi gombbal átváltható a láthatósága.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "downloadFile": {
@@ -4056,7 +4169,7 @@
     "message": "A szervezet tulajdonosai és adminisztrátorai mentesek az irányelv végrehajtása alól."
   },
   "personalOwnershipSubmitError": {
-    "message": "Egy vállalati házirend miatt korlátozásra került az elemek személyes tárolóba történő mentése. Módosítsa a Tulajdon opciót egy szervezetre és válasszon az elérhető gyűjtemények közül."
+    "message": "Egy vállalati házirend miatt korlátozásra került az elemek személyes tárolóba történő mentése. Módosítsuk a Tulajdon opciót egy szervezetre és válasszunk az elérhető gyűjtemények közül."
   },
   "disableSend": {
     "message": "Send letiltása"
@@ -4069,11 +4182,11 @@
     "message": "A szervezet házirendjét kezeő szervezeti felhasználók, mentesülnek az irányelvek végrehajtása alól."
   },
   "sendDisabled": {
-    "message": "A küldés kikapcsolásra került",
+    "message": "A Send eltávolításra került.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendDisabledWarning": {
-    "message": "A vállalati házirend miatt csak egy meglévő Küldés törölhető.",
+    "message": "A vállalati házirend miatt csak egy meglévő Send törölhető.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptions": {
@@ -4429,7 +4542,7 @@
     "message": "Új felhasználók automatikus regisztrálása"
   },
   "resetPasswordAutoEnrollInviteWarning": {
-    "message": "Ennek a szervezetnek van egy vállalati házirendje, amely automatikusan regisztrál a jelszó alaphelyzetbe állítására. A regisztráció lehetővé teszi a szervezet adminisztrátorainak a mesterjelszó megváltoztatását."
+    "message": "Ennek a szervezetnek van egy vállalati házirendje, amely automatikusan regisztrál a jelszó alaphelyzetbe állítására. A regisztráció lehetővé teszi a szervezet adminisztrtorainak a mesterjelszó megváltoztatását."
   },
   "resetPasswordOrgKeysError": {
     "message": "A szervezeti kulcs válasza null"
@@ -4771,7 +4884,7 @@
     "message": "Kért hitelesítési kontextusosztály referenciaértékek"
   },
   "expectedReturnAcrValue": {
-    "message": "Elvárt „acr” követelésérték a válaszban (acr érvényesítés)"
+    "message": "Elvárt \"acr” követelésérték a válaszban"
   },
   "spEntityId": {
     "message": "SP Szervezet AZ"
@@ -4933,7 +5046,7 @@
     "message": "A szponzorálás eltávolítása után felelősséget vállalunk az előfizetésért és a kapcsolódó számlákért. Biztosan folytatjuk?"
   },
   "sponsorshipCreated": {
-    "message": "A szponzoráció létrejött"
+    "message": "A szponzoráció létrejött."
   },
   "emailSent": {
     "message": "Az email elküldésre került."
@@ -5026,10 +5139,10 @@
     "message": "A „Bejelentkezés SSO szolgáltatással és a kulcskapcsoló visszafejtésével” engedélyezve van. Ez a szabály csak a tulajdonosokra és a rendszergazdákra vonatkozik."
   },
   "enabledSso": {
-    "message": "Bekapcsolt SSO"
+    "message": "Az SSO bekapcsolásra került."
   },
   "disabledSso": {
-    "message": "Kikapcsolt SEO"
+    "message": "Az SSO bekapcsolásra került."
   },
   "enabledKeyConnector": {
     "message": "Bekapcsolt kulcskapcsoló"
@@ -5442,6 +5555,27 @@
       }
     }
   },
+  "inputForbiddenCharacters": {
+    "message": "A következő karakterek nem engedélyezettek: $CHARACTERS$",
+    "placeholders": {
+      "characters": {
+        "content": "$1",
+        "example": "@, #, $, %"
+      }
+    }
+  },
+  "multipleInputEmails": {
+    "message": "1 vagy több email cím érvénytelen."
+  },
+  "tooManyEmails": {
+    "message": "Egyszerre legfeljebb $COUNT$ email küldhető be.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "20"
+      }
+    }
+  },
   "fieldsNeedAttention": {
     "message": "$COUNT$ mező fentebb figyelmet érdemel.",
     "placeholders": {
@@ -5562,13 +5696,13 @@
     "message": "Titkos kódok törlése"
   },
   "secretProjectAssociationDescription": {
-    "message": "Select projects that the secret will be associated with. Only organization users with access to these projects will be able to see the secret."
+    "message": "Válasszzuk ki azokat a projekteket, amelyekhez a titkos kód társítva lesz. Csak az ezekhez a projektekhez hozzáféréssel rendelkező szervezeti felhasználók láthatják a titkos kódot."
   },
   "typeOrSelectProjects": {
-    "message": "Type or select Projects"
+    "message": "Projektek begépelése vagy kiválasztása"
   },
   "typeOrSelectProject": {
-    "message": "Type or select Project"
+    "message": "Projekt begépelése vagy kiválasztása"
   },
   "project": {
     "message": "Projekt"
@@ -5593,9 +5727,6 @@
   },
   "serviceAccounts": {
     "message": "Szolgáltatás fiókok"
-  },
-  "new": {
-    "message": "Új"
   },
   "secrets": {
     "message": "Titkos kódok"
@@ -5704,7 +5835,7 @@
     "placeholders": {
       "confirm": {
         "content": "$1",
-        "example": "Delete 3 Projects"
+        "example": "Delete 3 projects"
       }
     }
   },
@@ -5807,8 +5938,44 @@
   "update": {
     "message": "Frissítés"
   },
+  "plusNMore": {
+    "message": "+ $QUANTITY$ további",
+    "placeholders": {
+      "quantity": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "groupInfo": {
+    "message": "Csoport információ"
+  },
+  "editGroupMembersDesc": {
+    "message": "A csoporthoz társított gyűjtmények elérésének kiosztása a tagoknak."
+  },
+  "editGroupCollectionsDesc": {
+    "message": "Hozzáférés kiosztása gyűjteményekhez csoporthoz adásukkal."
+  },
+  "accessAllCollectionsDesc": {
+    "message": "Hozzáférés kiosztása az összes jelenlegi és jövőbeli gyűjteményhez."
+  },
+  "accessAllCollectionsHelp": {
+    "message": "Bejelöllve lecseréli az összes gyűjtemény jogosultságot."
+  },
+  "selectMembers": {
+    "message": "Tagok kválasztása"
+  },
+  "selectCollections": {
+    "message": "Gyűjtemények kiválasztása"
+  },
   "role": {
     "message": "Szerepkör"
+  },
+  "removeMember": {
+    "message": "Tag eltávolítása"
+  },
+  "collection": {
+    "message": "Gyűjtemény"
   },
   "canView": {
     "message": "Megtekintheti"
@@ -5822,6 +5989,15 @@
   "canEditExceptPass": {
     "message": "Szerkesztheti, kivéve a jelszavakat"
   },
+  "noCollectionsAdded": {
+    "message": "Nem lett gyűjtemény hozzáadva."
+  },
+  "noMembersAdded": {
+    "message": "Nem lett tag hozzáadva."
+  },
+  "noGroupsAdded": {
+    "message": "Nem lett csoport hozzáadva."
+  },
   "group": {
     "message": "Csoport"
   },
@@ -5830,6 +6006,39 @@
   },
   "memberAccessAll": {
     "message": "Ez a felhasználó minden elemhez hozzáférhet és módosíthatja az összes elemet."
+  },
+  "membersColumnHeader": {
+    "message": "Tag/Csoport"
+  },
+  "groupAndMemberColumnHeader": {
+    "message": "Tag"
+  },
+  "selectGroupsAndMembers": {
+    "message": "Csoportok és tagok kiválasztása"
+  },
+  "selectGroups": {
+    "message": "Csoportok kiválasztása"
+  },
+  "userPermissionOverrideHelper": {
+    "message": "A tagok számára beállított jogosultságok felváltják az adott tag csoportja által beállított jogosultságokat."
+  },
+  "noMembersOrGroupsAdded": {
+    "message": "Nem lett tag vagy csoport hozzáadva."
+  },
+  "deleted": {
+    "message": "Törölve"
+  },
+  "memberStatusFilter": {
+    "message": "Tagi állapot szűrő"
+  },
+  "inviteMember": {
+    "message": "Tag meghívása"
+  },
+  "needsConfirmation": {
+    "message": "Jóváhagyás szükséges"
+  },
+  "memberRole": {
+    "message": "Tagi szerep"
   },
   "moreFromBitwarden": {
     "message": "További infó a Bitwardenről"
@@ -5872,5 +6081,14 @@
         "example": "2"
       }
     }
+  },
+  "lowKdfIterations": {
+    "message": "Alacsony KDF iterációk"
+  },
+  "lowKdfIterationsDesc": {
+    "message": "Növeljük meg a KDF titkosítási beállításait a fiók biztonságának javítása érdekében."
+  },
+  "changeKdfSettings": {
+    "message": "KDF beállítások megváltoztatása"
   }
 }

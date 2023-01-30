@@ -828,7 +828,7 @@
     "message": "أدخل رمز التحقق من 6 أرقام من تطبيق المصادقة الخاص بك."
   },
   "enterVerificationCodeEmail": {
-    "message": "Enter the 6 digit verification code that was emailed to $EMAIL$.",
+    "message": "أدخل رمز التحقق المكون من 6 أرقام الذي تم إرساله إلى $EMAIL$.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -837,7 +837,7 @@
     }
   },
   "verificationCodeEmailSent": {
-    "message": "Verification email sent to $EMAIL$.",
+    "message": "تم إرسال رسالة التحقق إلى $EMAIL$.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -846,91 +846,91 @@
     }
   },
   "rememberMe": {
-    "message": "Remember me"
+    "message": "تذكرني"
   },
   "sendVerificationCodeEmailAgain": {
-    "message": "Send verification code email again"
+    "message": "إرسال رمز التحقق إلى البريد الإلكتروني مرة أخرى"
   },
   "useAnotherTwoStepMethod": {
-    "message": "Use another two-step login method"
+    "message": "استخدام طريقة أخرى لتسجيل الدخول بخطوتين"
   },
   "insertYubiKey": {
-    "message": "Insert your YubiKey into your computer's USB port, then touch its button."
+    "message": "أدخل YubiKey الخاص بك في منفذ USB في كمبيوترك، ثم المس الزر."
   },
   "insertU2f": {
-    "message": "Insert your security key into your computer's USB port. If it has a button, touch it."
+    "message": "أدخل مفتاح الأمان الخاص بك في منفذ USB كمبيوترك، إذا كان يحتوي على زر، إلمسه."
   },
   "webAuthnNewTab": {
-    "message": "To start the WebAuthn 2FA verification. Click the button below to open a new tab and follow the instructions provided in the new tab."
+    "message": "لبدء التحقق من WebAuthn 2FA. انقر على الزر أدناه لفتح علامة تبويب جديدة واتبع التعليمات المقدمة في علامة التبويب الجديدة."
   },
   "webAuthnNewTabOpen": {
-    "message": "Open new tab"
+    "message": "فتح علامة تبويب جديدة"
   },
   "webAuthnAuthenticate": {
     "message": "مصادقة WebAuthn"
   },
   "loginUnavailable": {
-    "message": "Login unavailable"
+    "message": "تسجيل الدخول غير متاح"
   },
   "noTwoStepProviders": {
-    "message": "This account has two-step login set up, however, none of the configured two-step providers are supported by this web browser."
+    "message": "تم إعداد تسجيل الدخول من خطوتين لهذا الحساب، ومع ذلك، لا يدعم هذا المتصفح أيًا من موفري تسجيل الدخول من خطوتين."
   },
   "noTwoStepProviders2": {
-    "message": "Please use a supported web browser (such as Chrome) and/or add additional providers that are better supported across web browsers (such as an authenticator app)."
+    "message": "الرجاء استخدام متصفح ويب مدعوم (مثل Chrome) و/أو إضافة موفري إضافيين مدعومين بشكل أفضل عبر متصفحات الويب (مثل تطبيق المصادقة)."
   },
   "twoStepOptions": {
-    "message": "Two-step login options"
+    "message": "خيارات تسجيل الدخول بخطوتين"
   },
   "recoveryCodeDesc": {
-    "message": "Lost access to all of your two-factor providers? Use your recovery code to turn off all two-factor providers from your account."
+    "message": "هل تفقد الوصول إلى جميع مزودي التحقق بعاملين؟ استخدم رمز الاسترداد الخاص بك لتعطيل جميع مزودي التحقق بعاملين من حسابك."
   },
   "recoveryCodeTitle": {
-    "message": "Recovery code"
+    "message": "رمز الاسترداد"
   },
   "authenticatorAppTitle": {
-    "message": "Authenticator app"
+    "message": "تطبيق المصادقة"
   },
   "authenticatorAppDesc": {
-    "message": "Use an authenticator app (such as Authy or Google Authenticator) to generate time-based verification codes.",
+    "message": "استخدام تطبيق مصادقة (مثل Authy أو Google Authenticator) لإنشاء رموز تحقق مستندة إلى الوقت.",
     "description": "'Authy' and 'Google Authenticator' are product names and should not be translated."
   },
   "yubiKeyTitle": {
-    "message": "YubiKey OTP Security Key"
+    "message": "مفتاح أمان YubiKey OTP"
   },
   "yubiKeyDesc": {
-    "message": "Use a YubiKey to access your account. Works with YubiKey 4, 4 Nano, 4C, and NEO devices."
+    "message": "استخدم YubiKey للوصول إلى حسابك. يعمل مع YubiKey 4 ،4 Nano ،4C، وأجهزة NEO."
   },
   "duoDesc": {
-    "message": "Verify with Duo Security using the Duo Mobile app, SMS, phone call, or U2F security key.",
+    "message": "التحقق باستخدام نظام الحماية الثنائي باستخدام تطبيق Duo Mobile أو الرسائل القصيرة أو المكالمة الهاتفية أو مفتاح الأمان U2F.",
     "description": "'Duo Security' and 'Duo Mobile' are product names and should not be translated."
   },
   "duoOrganizationDesc": {
-    "message": "Verify with Duo Security for your organization using the Duo Mobile app, SMS, phone call, or U2F security key.",
+    "message": "تحقق من خلال نظام الحماية الثنائي لمؤسستك باستخدام تطبيق Duo Mobile أو الرسائل القصيرة أو المكالمة الهاتفية أو مفتاح الأمان U2F.",
     "description": "'Duo Security' and 'Duo Mobile' are product names and should not be translated."
   },
   "webAuthnTitle": {
     "message": "FIDO2 WebAuthn"
   },
   "webAuthnDesc": {
-    "message": "Use any WebAuthn compatible security key to access your account."
+    "message": "استخدم أي مفتاح أمان متوافق مع WebAuthn للوصول إلى حسابك."
   },
   "emailTitle": {
     "message": "البريد الإلكتروني"
   },
   "emailDesc": {
-    "message": "Verification codes will be emailed to you."
+    "message": "سيتم إرسال رمز التحقق إليك بالبريد الإلكتروني."
   },
   "selfHostedEnvironment": {
-    "message": "Self-hosted environment"
+    "message": "البيئة المستضافة ذاتيا"
   },
   "selfHostedEnvironmentFooter": {
-    "message": "Specify the base URL of your on-premises hosted Bitwarden installation."
+    "message": "حدد عنوان URL الأساسي لتثبيت Bitwarden المستضاف محليًا."
   },
   "customEnvironment": {
-    "message": "Custom environment"
+    "message": "بيئة مخصصة"
   },
   "customEnvironmentFooter": {
-    "message": "For advanced users. You can specify the base URL of each service independently."
+    "message": "للمستخدمين المتقدمين. يمكنك تحديد عنوان URL الأساسي لكل خدمة بشكل مستقل."
   },
   "baseUrl": {
     "message": "رابط الخادم"
@@ -951,10 +951,10 @@
     "message": "رابط خادم الأيقونات"
   },
   "environmentSaved": {
-    "message": "Environment URLs saved"
+    "message": "روابط البيئة المحفوظة"
   },
   "enableAutoFillOnPageLoad": {
-    "message": "Auto-fill on page load"
+    "message": "ملء تلقائي عند تحميل الصفحة"
   },
   "enableAutoFillOnPageLoadDesc": {
     "message": "If a login form is detected, auto-fill when the web page loads."
@@ -1122,6 +1122,9 @@
   },
   "dr": {
     "message": "الدكتور"
+  },
+  "mx": {
+    "message": "Mx"
   },
   "firstName": {
     "message": "الاسم الأول"
@@ -2043,5 +2046,35 @@
   },
   "rememberEmail": {
     "message": "Remember email"
+  },
+  "exposedMasterPassword": {
+    "message": "Exposed Master Password"
+  },
+  "exposedMasterPasswordDesc": {
+    "message": "Password found in a data breach. Use a unique password to protect your account. Are you sure you want to use an exposed password?"
+  },
+  "weakAndExposedMasterPassword": {
+    "message": "Weak and Exposed Master Password"
+  },
+  "weakAndBreachedMasterPasswordDesc": {
+    "message": "Weak password identified and found in a data breach. Use a strong and unique password to protect your account. Are you sure you want to use this password?"
+  },
+  "checkForBreaches": {
+    "message": "Check known data breaches for this password"
+  },
+  "important": {
+    "message": "Important:"
+  },
+  "masterPasswordHint": {
+    "message": "Your master password cannot be recovered if you forget it!"
+  },
+  "characterMinimum": {
+    "message": "$LENGTH$ character minimum",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
   }
 }

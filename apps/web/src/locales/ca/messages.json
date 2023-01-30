@@ -133,6 +133,9 @@
   "ms": {
     "message": "Srta."
   },
+  "mx": {
+    "message": "Mx"
+  },
   "dr": {
     "message": "Dr."
   },
@@ -277,12 +280,36 @@
   "searchFavorites": {
     "message": "Cerca en preferits"
   },
-  "searchType": {
-    "message": "Cerca en tipus",
-    "description": "Search item type"
+  "searchLogin": {
+    "message": "Cerca inicis de sessió",
+    "description": "Search Login type"
+  },
+  "searchCard": {
+    "message": "Cerca targetes",
+    "description": "Search Card type"
+  },
+  "searchIdentity": {
+    "message": "Cerca identitats",
+    "description": "Search Identity type"
+  },
+  "searchSecureNote": {
+    "message": "Cerca notes segures",
+    "description": "Search Secure Note type"
   },
   "searchVault": {
     "message": "Cerca en la caixa forta"
+  },
+  "searchMyVault": {
+    "message": "Cerca en la caixa forta"
+  },
+  "searchOrganization": {
+    "message": "Cerca organització"
+  },
+  "searchMembers": {
+    "message": "Cerca membres"
+  },
+  "searchGroups": {
+    "message": "Cerca grups"
   },
   "allItems": {
     "message": "Tots els elements"
@@ -365,6 +392,9 @@
   "select": {
     "message": "Selecciona"
   },
+  "newItem": {
+    "message": "Element nou"
+  },
   "addItem": {
     "message": "Afegeix element"
   },
@@ -373,6 +403,13 @@
   },
   "viewItem": {
     "message": "Visualitza l'element"
+  },
+  "new": {
+    "message": "Nou",
+    "description": "for adding new items"
+  },
+  "item": {
+    "message": "Element"
   },
   "ex": {
     "message": "ex.",
@@ -438,6 +475,9 @@
   },
   "vaultItems": {
     "message": "Elements de la caixa forta"
+  },
+  "filter": {
+    "message": "Filtre"
   },
   "moveSelectedToOrg": {
     "message": "Desplaça la selecció a l'organització"
@@ -545,6 +585,12 @@
   "deletedFolder": {
     "message": "Carpeta suprimida"
   },
+  "editInfo": {
+    "message": "Edita la informació"
+  },
+  "access": {
+    "message": "Accés"
+  },
   "loggedOut": {
     "message": "Sessió tancada"
   },
@@ -570,13 +616,13 @@
     "message": "Inicieu sessió o creeu un compte nou per accedir a la caixa forta."
   },
   "loginWithDevice": {
-    "message": "Inicieu sessió amb el dispositiu"
+    "message": "Inici de sessió amb dispositiu"
   },
   "loginWithDeviceEnabledInfo": {
     "message": "L'inici de sessió amb el dispositiu ha d'estar activat a la configuració de l'aplicació mòbil Bitwarden. Necessiteu una altra opció?"
   },
   "loginWithMasterPassword": {
-    "message": "Inicia sessió amb la contrasenya mestra"
+    "message": "Inici de sessió amb contrasenya mestra"
   },
   "createAccount": {
     "message": "Crea un compte"
@@ -702,6 +748,9 @@
   "noItemsInList": {
     "message": "No hi ha cap element a llistar."
   },
+  "noPermissionToViewAllCollectionItems": {
+    "message": "No teniu permís per veure tots els elements en aquesta col·lecció."
+  },
   "noCollectionsInList": {
     "message": "No hi ha cap col·lecció a llistar."
   },
@@ -710,6 +759,9 @@
   },
   "noUsersInList": {
     "message": "No hi ha cap usuari a llistar."
+  },
+  "noMembersInList": {
+    "message": "No hi ha cap membre a llistar."
   },
   "noEventsInList": {
     "message": "No hi ha cap esdeveniment a llistar."
@@ -847,13 +899,25 @@
     "message": "Editeu les col·leccions amb les què es comparteix aquest element. Només els usuaris de l'organització que tinguen accés a aquestes col·leccions podran veure'l."
   },
   "deleteSelectedItemsDesc": {
-    "message": "Heu seleccionat $COUNT$ elements per suprimir. Esteu segur que voleu suprimir tots aquests elements?",
+    "message": "S'enviaran $COUNT$ elements a la paperera.",
     "placeholders": {
       "count": {
         "content": "$1",
         "example": "150"
       }
     }
+  },
+  "deleteSelectedCollectionsDesc": {
+    "message": "Se suprimiran $COUNT$ coleccions permanentment.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "150"
+      }
+    }
+  },
+  "deleteSelectedConfirmation": {
+    "message": "Esteu segur que voleu continuar?"
   },
   "moveSelectedItemsDesc": {
     "message": "Trieu una carpeta a la que vulgueu desplaçar els $COUNT$ elements seleccionats.",
@@ -1221,7 +1285,7 @@
     "message": "Preferències"
   },
   "preferencesDesc": {
-    "message": "Personalitzeu la vostra experiència de caixa forta web."
+    "message": "Personalitzeu l'experiència de la caixa forta web."
   },
   "preferencesUpdated": {
     "message": "Preferències guardades"
@@ -1558,7 +1622,7 @@
   },
   "orgsReportsDesc": {
     "message": "Identifiqueu i tanqueu els forats de seguretat dels comptes en línia fent clic en els informes següents.",
-    "description": "Vault health reports can be used to evaluate the security of your Bitwarden individual or organization Vault."
+    "description": "Vault health reports can be used to evaluate the security of your Bitwarden individual or organization vault."
   },
   "unsecuredWebsitesReport": {
     "message": "Llocs web no segurs"
@@ -1821,6 +1885,22 @@
         "example": "$10"
       }
     }
+  },
+  "premiumPriceWithFamilyPlan": {
+    "message": "Hazte Premium por sólo $PRICE$ /año, u obtén cuentas Premium para usuarios $FAMILYPLANUSERCOUNT$ y uso compartido familiar ilimitado con un ",
+    "placeholders": {
+      "price": {
+        "content": "$1",
+        "example": "$10"
+      },
+      "familyplanusercount": {
+        "content": "$2",
+        "example": "6"
+      }
+    }
+  },
+  "bitwardenFamiliesPlan": {
+    "message": "Plan Familias Bitwarden."
   },
   "addons": {
     "message": "Complements"
@@ -2356,6 +2436,15 @@
   "deleteGroupConfirmation": {
     "message": "Esteu segur que voleu suprimir aquest grup?"
   },
+  "deleteMultipleGroupsConfirmation": {
+    "message": "Esteu segur que voleu suprimir els següents $QUANTITY$ grups?",
+    "placeholders": {
+      "quantity": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
   "removeUserConfirmation": {
     "message": "Esteu segur que voleu suprimir aquest usuari?"
   },
@@ -2373,6 +2462,9 @@
   },
   "externalIdDesc": {
     "message": "L'identificador extern es pot utilitzar com a referència o enllaçar aquest recurs a un sistema extern, com ara un directori d'usuari."
+  },
+  "nestCollectionUnder": {
+    "message": "Anida col·lecció sota"
   },
   "accessControl": {
     "message": "Control d'accés"
@@ -2395,14 +2487,23 @@
   "editCollection": {
     "message": "Edita col·lecció"
   },
+  "collectionInfo": {
+    "message": "Informació de col·lecció"
+  },
   "deleteCollectionConfirmation": {
     "message": "Esteu segur que voleu suprimir aquesta col·lecció?"
   },
-  "editUser": {
-    "message": "Edita usuari"
+  "editMember": {
+    "message": "Edita el membre"
   },
-  "inviteUser": {
-    "message": "Convida usuari"
+  "fieldOnTabRequiresAttention": {
+    "message": "Un camp de la pestanya '$TAB$' requereix la vostra atenció.",
+    "placeholders": {
+      "tab": {
+        "content": "$1",
+        "example": "Collection info"
+      }
+    }
   },
   "inviteUserDesc": {
     "message": "Convida un nou usuari a la vostra organització introduint l'adreça electrònica del compte de Bitwarden a continuació. Si encara no tenen un compte de Bitwarden, se us demanarà que creeu un compte nou."
@@ -2668,6 +2769,9 @@
       }
     }
   },
+  "deletedCollections": {
+    "message": "Col·leccions suprimides"
+  },
   "deletedCollectionId": {
     "message": "S'ha suprimit la col·lecció $ID$.",
     "placeholders": {
@@ -2710,6 +2814,15 @@
       "id": {
         "content": "$1",
         "example": "Developers"
+      }
+    }
+  },
+  "deletedManyGroups": {
+    "message": "S'han suprimit $QUANTITY$ grups.",
+    "placeholders": {
+      "quantity": {
+        "content": "$1",
+        "example": "3"
       }
     }
   },
@@ -2888,7 +3001,7 @@
     "message": "Accés de grup"
   },
   "groupAccessUserDesc": {
-    "message": "Editeu els grups als quals pertany aquest usuari."
+    "message": "Doneu accés als membres a les col·leccions afegint-los a 1 o més grups."
   },
   "invitedUsers": {
     "message": "Usuaris convidats."
@@ -2924,7 +3037,7 @@
     }
   },
   "confirmUsers": {
-    "message": "Confirma usuaris"
+    "message": "Confirma membres"
   },
   "usersNeedConfirmed": {
     "message": "Teniu usuaris que han acceptat la seua invitació, però encara cal confirmar-la. Els usuaris no tindran accés a l'organització fins que estiguen confirmats."
@@ -3564,7 +3677,7 @@
     "message": "Preferència d'usuari"
   },
   "vaultTimeoutAction": {
-    "message": "Acció del temps d'espera de la caixa forta"
+    "message": "Acció quan acabe el temps d'espera de la caixa forta"
   },
   "vaultTimeoutActionLockDesc": {
     "message": "Una caixa forta bloquejada requereix que torne a introduir la contrasenya principal per accedir-ne de nou."
@@ -5442,6 +5555,27 @@
       }
     }
   },
+  "inputForbiddenCharacters": {
+    "message": "Els següents caràcters no estan permesos:\n$CHARACTERS$",
+    "placeholders": {
+      "characters": {
+        "content": "$1",
+        "example": "@, #, $, %"
+      }
+    }
+  },
+  "multipleInputEmails": {
+    "message": "Un o més correus electrònics no són vàlids"
+  },
+  "tooManyEmails": {
+    "message": "Només podeu enviar fins a $COUNT$ correus electrònics alhora",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "20"
+      }
+    }
+  },
   "fieldsNeedAttention": {
     "message": "$COUNT$ camps de dalt necessiten la vostra atenció.",
     "placeholders": {
@@ -5562,13 +5696,13 @@
     "message": "Suprimeix els secrets"
   },
   "secretProjectAssociationDescription": {
-    "message": "Select projects that the secret will be associated with. Only organization users with access to these projects will be able to see the secret."
+    "message": "Selecciona los proyectos a los que se asociará el secreto. Sólo los usuarios de la organización con acceso a estos proyectos podrán verlo."
   },
   "typeOrSelectProjects": {
-    "message": "Type or select Projects"
+    "message": "Teclea o selecciona proyectos"
   },
   "typeOrSelectProject": {
-    "message": "Type or select Project"
+    "message": "Teclea o selecciona proyecto"
   },
   "project": {
     "message": "Projecte"
@@ -5593,9 +5727,6 @@
   },
   "serviceAccounts": {
     "message": "Comptes del servei"
-  },
-  "new": {
-    "message": "Nou"
   },
   "secrets": {
     "message": "Secrets"
@@ -5704,7 +5835,7 @@
     "placeholders": {
       "confirm": {
         "content": "$1",
-        "example": "Delete 3 Projects"
+        "example": "Delete 3 projects"
       }
     }
   },
@@ -5807,8 +5938,44 @@
   "update": {
     "message": "Actualitza"
   },
+  "plusNMore": {
+    "message": "+ $QUANTITY$ més",
+    "placeholders": {
+      "quantity": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "groupInfo": {
+    "message": "Informació del grup"
+  },
+  "editGroupMembersDesc": {
+    "message": "Concediu als membres accés a les col·leccions assignades al grup."
+  },
+  "editGroupCollectionsDesc": {
+    "message": "Doneu accés a les col·leccions afegint-les a aquest grup."
+  },
+  "accessAllCollectionsDesc": {
+    "message": "Doneu accés a totes les col·leccions actuals i futures."
+  },
+  "accessAllCollectionsHelp": {
+    "message": "Si està marcat, substituirà tots els altres permisos de la col·lecció."
+  },
+  "selectMembers": {
+    "message": "Seleccioneu membres"
+  },
+  "selectCollections": {
+    "message": "Seleccioneu col·leccions"
+  },
   "role": {
     "message": "Rol"
+  },
+  "removeMember": {
+    "message": "Suprimeix membre"
+  },
+  "collection": {
+    "message": "Col·lecció"
   },
   "canView": {
     "message": "Pot veure"
@@ -5822,6 +5989,15 @@
   "canEditExceptPass": {
     "message": "Pot editar, excepte les contrasenyes"
   },
+  "noCollectionsAdded": {
+    "message": "No s'han afegit col·leccions"
+  },
+  "noMembersAdded": {
+    "message": "No s'han afegit membres"
+  },
+  "noGroupsAdded": {
+    "message": "No s'han afegit grups"
+  },
   "group": {
     "message": "Grup"
   },
@@ -5830,6 +6006,39 @@
   },
   "memberAccessAll": {
     "message": "Aquest usuari pot accedir i modificar tots els elements."
+  },
+  "membersColumnHeader": {
+    "message": "Membre/grup"
+  },
+  "groupAndMemberColumnHeader": {
+    "message": "Membre"
+  },
+  "selectGroupsAndMembers": {
+    "message": "Seleccioneu grups i membres"
+  },
+  "selectGroups": {
+    "message": "Selecciona grups"
+  },
+  "userPermissionOverrideHelper": {
+    "message": "Els permisos establerts per a un membre substituiran els permisos establerts pel grup d'aquest membre"
+  },
+  "noMembersOrGroupsAdded": {
+    "message": "No s'han afegit membres ni grups"
+  },
+  "deleted": {
+    "message": "Suprimit"
+  },
+  "memberStatusFilter": {
+    "message": "Filtre d'estat del membre"
+  },
+  "inviteMember": {
+    "message": "Convida membre"
+  },
+  "needsConfirmation": {
+    "message": "Necessita confirmació"
+  },
+  "memberRole": {
+    "message": "Rol de membre"
   },
   "moreFromBitwarden": {
     "message": "Més de Bitwarden"
@@ -5872,5 +6081,14 @@
         "example": "2"
       }
     }
+  },
+  "lowKdfIterations": {
+    "message": "Iteracions de KDF baixes"
+  },
+  "lowKdfIterationsDesc": {
+    "message": "Augmenteu la configuració de xifratge KDF per millorar la seguretat del compte."
+  },
+  "changeKdfSettings": {
+    "message": "Canvia la configuració de KDF"
   }
 }

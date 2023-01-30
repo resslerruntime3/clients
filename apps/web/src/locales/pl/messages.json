@@ -133,6 +133,9 @@
   "ms": {
     "message": "Pani"
   },
+  "mx": {
+    "message": "Pan(i)"
+  },
   "dr": {
     "message": "Doktor"
   },
@@ -277,12 +280,36 @@
   "searchFavorites": {
     "message": "Szukaj w ulubionych"
   },
-  "searchType": {
-    "message": "Szukaj elementu",
-    "description": "Search item type"
+  "searchLogin": {
+    "message": "Szukaj w danych logowania",
+    "description": "Search Login type"
+  },
+  "searchCard": {
+    "message": "Szukaj w kartach",
+    "description": "Search Card type"
+  },
+  "searchIdentity": {
+    "message": "Szukaj w tożsamościach",
+    "description": "Search Identity type"
+  },
+  "searchSecureNote": {
+    "message": "Szukaj w bezpiecznych notatkach",
+    "description": "Search Secure Note type"
   },
   "searchVault": {
     "message": "Szukaj w sejfie"
+  },
+  "searchMyVault": {
+    "message": "Szukaj w moim sejfie"
+  },
+  "searchOrganization": {
+    "message": "Szukaj w organizacji"
+  },
+  "searchMembers": {
+    "message": "Szukaj w użytkownikach"
+  },
+  "searchGroups": {
+    "message": "Szukaj w grupach"
   },
   "allItems": {
     "message": "Wszystkie elementy"
@@ -365,6 +392,9 @@
   "select": {
     "message": "Wybierz"
   },
+  "newItem": {
+    "message": "Nowy element"
+  },
   "addItem": {
     "message": "Dodaj element"
   },
@@ -373,6 +403,13 @@
   },
   "viewItem": {
     "message": "Zobacz element"
+  },
+  "new": {
+    "message": "Nowy",
+    "description": "for adding new items"
+  },
+  "item": {
+    "message": "Element"
   },
   "ex": {
     "message": "np.",
@@ -438,6 +475,9 @@
   },
   "vaultItems": {
     "message": "Elementy sejfu"
+  },
+  "filter": {
+    "message": "Filtr"
   },
   "moveSelectedToOrg": {
     "message": "Przenieś zaznaczone do organizacji"
@@ -544,6 +584,12 @@
   },
   "deletedFolder": {
     "message": "Folder został usunięty"
+  },
+  "editInfo": {
+    "message": "Edytuj informacje"
+  },
+  "access": {
+    "message": "Dostęp"
   },
   "loggedOut": {
     "message": "Wylogowano"
@@ -702,6 +748,9 @@
   "noItemsInList": {
     "message": "Brak elementów."
   },
+  "noPermissionToViewAllCollectionItems": {
+    "message": "Nie masz uprawnień do przeglądania wszystkich elementów w tej kolekcji."
+  },
   "noCollectionsInList": {
     "message": "Brak kolekcji do wyświetlenia."
   },
@@ -709,6 +758,9 @@
     "message": "Brak grup do wyświetlenia."
   },
   "noUsersInList": {
+    "message": "Brak użytkowników do wyświetlenia."
+  },
+  "noMembersInList": {
     "message": "Brak użytkowników do wyświetlenia."
   },
   "noEventsInList": {
@@ -847,13 +899,25 @@
     "message": "Edytuj kolekcje zawierające ten element. Tylko użytkownicy organizacji posiadający dostęp do tych kolekcji będą mogli zobaczyć ten element."
   },
   "deleteSelectedItemsDesc": {
-    "message": "Wybrałeś elementy do usunięcia. Czy na pewno chcesz je wszystkie usunąć?",
+    "message": "$COUNT$ elementy(-ów) zostaną wysłane do kosza.",
     "placeholders": {
       "count": {
         "content": "$1",
         "example": "150"
       }
     }
+  },
+  "deleteSelectedCollectionsDesc": {
+    "message": "$COUNT$ kolekcje zostaną trwale usunięte.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "150"
+      }
+    }
+  },
+  "deleteSelectedConfirmation": {
+    "message": "Czy na pewno chcesz kontynuować?"
   },
   "moveSelectedItemsDesc": {
     "message": "Wybierz folder do którego chcesz przenieść zaznaczone elementy.",
@@ -936,7 +1000,7 @@
     "message": "Utwórz hasło wygenerowane przez użytkownika, aby chronić eksport. Użyj tego, aby utworzyć eksport, który może być używany na innych kontach."
   },
   "exportTypeHeading": {
-    "message": "Typ eksportu"
+    "message": "Rodzaj eksportu"
   },
   "accountRestricted": {
     "message": "Konto ograniczone"
@@ -1558,7 +1622,7 @@
   },
   "orgsReportsDesc": {
     "message": "Zidentyfikuj i napraw luki bezpieczeństwa na swoich kontach organizacji, klikając raporty poniżej.",
-    "description": "Vault health reports can be used to evaluate the security of your Bitwarden individual or organization Vault."
+    "description": "Vault health reports can be used to evaluate the security of your Bitwarden individual or organization vault."
   },
   "unsecuredWebsitesReport": {
     "message": "Niezabezpieczone strony"
@@ -1821,6 +1885,22 @@
         "example": "$10"
       }
     }
+  },
+  "premiumPriceWithFamilyPlan": {
+    "message": "Przejdź na konto Premium za jedyne $PRICE$ rocznie lub kup konta Premium dla $FAMILYPLANUSERCOUNT$ użytkowników i nieograniczone udostępnianie rodzinne dzięki ",
+    "placeholders": {
+      "price": {
+        "content": "$1",
+        "example": "$10"
+      },
+      "familyplanusercount": {
+        "content": "$2",
+        "example": "6"
+      }
+    }
+  },
+  "bitwardenFamiliesPlan": {
+    "message": "planowi rodzinnemu Bitwarden."
   },
   "addons": {
     "message": "Dodatki"
@@ -2356,6 +2436,15 @@
   "deleteGroupConfirmation": {
     "message": "Czy na pewno chcesz usunąć tę grupę?"
   },
+  "deleteMultipleGroupsConfirmation": {
+    "message": "Czy na pewno chcesz usunąć następujące $QUANTITY$ grup(y)?",
+    "placeholders": {
+      "quantity": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
   "removeUserConfirmation": {
     "message": "Czy na pewno chcesz usunąć tego użytkownika?"
   },
@@ -2373,6 +2462,9 @@
   },
   "externalIdDesc": {
     "message": "Zewnętrzny identyfikator może zostać użyty jako odniesienie lub połączenie tego zasobu z zewnętrznym systemem, takim jak katalog użytkowników."
+  },
+  "nestCollectionUnder": {
+    "message": "Zagnieźdź kolekcję pod"
   },
   "accessControl": {
     "message": "Kontrola dostępu"
@@ -2395,14 +2487,23 @@
   "editCollection": {
     "message": "Edytuj kolekcję"
   },
+  "collectionInfo": {
+    "message": "Informacje o kolekcji"
+  },
   "deleteCollectionConfirmation": {
     "message": "Czy na pewno chcesz usunąć tę kolekcję?"
   },
-  "editUser": {
+  "editMember": {
     "message": "Edytuj użytkownika"
   },
-  "inviteUser": {
-    "message": "Zaproś użytkownika"
+  "fieldOnTabRequiresAttention": {
+    "message": "Pole na karcie '$TAB$' wymaga uwagi.",
+    "placeholders": {
+      "tab": {
+        "content": "$1",
+        "example": "Collection info"
+      }
+    }
   },
   "inviteUserDesc": {
     "message": "Zaproś nowego użytkownika do Twojej organizacji poprzez wpisanie poniżej jego adresu e-mail. Jeśli nie posiada on jeszcze konta Bitwarden, zostanie poproszony o jego utworzenie."
@@ -2668,6 +2769,9 @@
       }
     }
   },
+  "deletedCollections": {
+    "message": "Usunięte kolekcje"
+  },
   "deletedCollectionId": {
     "message": "Kolekcja $ID$ została usunięta.",
     "placeholders": {
@@ -2710,6 +2814,15 @@
       "id": {
         "content": "$1",
         "example": "Developers"
+      }
+    }
+  },
+  "deletedManyGroups": {
+    "message": "Usunięto $QUANTITY$ grup(y).",
+    "placeholders": {
+      "quantity": {
+        "content": "$1",
+        "example": "3"
       }
     }
   },
@@ -3185,7 +3298,7 @@
     "message": "Zmiany w subskrypcji spowodują proporcjonalne zmiany w rozliczeniach. Jeśli nowo zaproszeni użytkownicy przekroczą liczbę stanowisk w subskrypcji, otrzymasz proporcjonalną opłatę za dodatkowych użytkowników."
   },
   "subscriptionUserSeatsLimitedAutoscale": {
-    "message": "Zmiany w subskrypcji spowodują proporcjonalne zmiany w rozliczeniach. Jeśli nowo zaproszeni użytkownicy przekroczą liczbę stanowisk w subskrypcji, otrzymasz proporcjonalną opłatę za dodatkowych użytkowników, aż do osiągnięcia limitu maksymalnej liczby stanowisk.",
+    "message": "Korekty subskrypcji spowodują proporcjonalne zmiany w sumach rozliczeniowych. Jeśli nowo zaproszeni użytkownicy przekroczą liczbę miejsc objętych subskrypcją, natychmiast otrzymasz proporcjonalną opłatę za dodatkowych użytkowników, aż do osiągnięcia limitu miejsc $MAX$.",
     "placeholders": {
       "max": {
         "content": "$1",
@@ -3641,7 +3754,7 @@
     "message": "Przywróć elementy"
   },
   "restoreSelectedItemsDesc": {
-    "message": "Wybrałeś elementy do przywrócenia. Czy na pewno chcesz je wszystkie przywrócić?",
+    "message": "Wybrano $COUNT$ elementy(-ów) do przywrócenia. Czy na pewno chcesz przywrócić te elementy?",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -5328,10 +5441,10 @@
     "description": "This text is displayed if an organization's billing is managed by a Provider. It tells the user to contact the Provider for assistance."
   },
   "forwardedEmail": {
-    "message": "Alias przekazywanego adresu"
+    "message": "Alias przekierowania"
   },
   "forwardedEmailDesc": {
-    "message": "Wygeneruj alias adresu e-mail z zewnętrznej usługi przekazywania."
+    "message": "Wygeneruj alias adresu e-mail z zewnętrznej usługi przekierowania."
   },
   "hostname": {
     "message": "Nazwa hosta",
@@ -5442,6 +5555,27 @@
       }
     }
   },
+  "inputForbiddenCharacters": {
+    "message": "Następujące znaki są niedozwolone: $CHARACTERS$",
+    "placeholders": {
+      "characters": {
+        "content": "$1",
+        "example": "@, #, $, %"
+      }
+    }
+  },
+  "multipleInputEmails": {
+    "message": "Co najmniej 1 e-mail jest nieprawidłowy"
+  },
+  "tooManyEmails": {
+    "message": "Jednorazowo możesz wysłać maksymalnie $COUNT$ e-maili",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "20"
+      }
+    }
+  },
   "fieldsNeedAttention": {
     "message": "Pola powyżej wymagające Twojej uwagi: $COUNT$.",
     "placeholders": {
@@ -5482,7 +5616,7 @@
     "message": "Dostosuj awatara"
   },
   "avatarUpdated": {
-    "message": "Zaktualizowano awatar"
+    "message": "Awatar został zaktualizowany"
   },
   "brightBlue": {
     "message": "Jasnoniebieski"
@@ -5594,9 +5728,6 @@
   "serviceAccounts": {
     "message": "Konta usług"
   },
-  "new": {
-    "message": "Nowy"
-  },
   "secrets": {
     "message": "Sekrety"
   },
@@ -5704,7 +5835,7 @@
     "placeholders": {
       "confirm": {
         "content": "$1",
-        "example": "Delete 3 Projects"
+        "example": "Delete 3 projects"
       }
     }
   },
@@ -5718,7 +5849,7 @@
     }
   },
   "deleteProjectsConfirmMessage": {
-    "message": "Usuń $COUNT$ projektów",
+    "message": "Usuń projekty",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -5807,8 +5938,44 @@
   "update": {
     "message": "Zaktualizuj"
   },
+  "plusNMore": {
+    "message": "+ $QUANTITY$ więcej",
+    "placeholders": {
+      "quantity": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "groupInfo": {
+    "message": "Informacje o grupie"
+  },
+  "editGroupMembersDesc": {
+    "message": "Przyznaj użytkownikom dostęp do kolekcji przypisanych do grupy."
+  },
+  "editGroupCollectionsDesc": {
+    "message": "Przyznaj dostęp do kolekcji, dodając je do tej grupy."
+  },
+  "accessAllCollectionsDesc": {
+    "message": "Udziel dostępu do wszystkich bieżących i przyszłych kolekcji."
+  },
+  "accessAllCollectionsHelp": {
+    "message": "Jeśli zaznaczone, zastąpi to wszystkie inne uprawnienia kolekcji."
+  },
+  "selectMembers": {
+    "message": "Wybierz użytkowników"
+  },
+  "selectCollections": {
+    "message": "Wybierz kolekcje"
+  },
   "role": {
     "message": "Rola"
+  },
+  "removeMember": {
+    "message": "Usuń użytkownika"
+  },
+  "collection": {
+    "message": "Kolekcja"
   },
   "canView": {
     "message": "Może wyświetlać"
@@ -5822,6 +5989,15 @@
   "canEditExceptPass": {
     "message": "Może edytować z wyjątkiem haseł"
   },
+  "noCollectionsAdded": {
+    "message": "Nie dodano kolekcji"
+  },
+  "noMembersAdded": {
+    "message": "Nie dodano użytkowników"
+  },
+  "noGroupsAdded": {
+    "message": "Nie dodano grup"
+  },
   "group": {
     "message": "Grupa"
   },
@@ -5831,6 +6007,39 @@
   "memberAccessAll": {
     "message": "Ten użytkownik może wyświetlać i modyfikować wszystkie elementy."
   },
+  "membersColumnHeader": {
+    "message": "Użytkownik/Grupa"
+  },
+  "groupAndMemberColumnHeader": {
+    "message": "Użytkownik"
+  },
+  "selectGroupsAndMembers": {
+    "message": "Wybierz grupy i użytkowników"
+  },
+  "selectGroups": {
+    "message": "Wybierz grupy"
+  },
+  "userPermissionOverrideHelper": {
+    "message": "Uprawnienia ustawione dla użytkownika zastąpią uprawnienia ustawione przez grupę tego użytkownika"
+  },
+  "noMembersOrGroupsAdded": {
+    "message": "Nie dodano użytkowników lub grup"
+  },
+  "deleted": {
+    "message": "Usunięto"
+  },
+  "memberStatusFilter": {
+    "message": "Filtr statusu użytkownika"
+  },
+  "inviteMember": {
+    "message": "Zaproś użytkownika"
+  },
+  "needsConfirmation": {
+    "message": "Wymaga potwierdzenia"
+  },
+  "memberRole": {
+    "message": "Rola użytkownika"
+  },
   "moreFromBitwarden": {
     "message": "Więcej od Bitwarden"
   },
@@ -5838,7 +6047,7 @@
     "message": "Przełącz produkty"
   },
   "freeOrgInvLimitReachedManageBilling": {
-    "message": "Darmowe organizacje mogą mieć maksymalnie $SEATCOUNT$ członków. Przejdź na płatny plan, aby zaprosić więcej członków.",
+    "message": "Darmowe organizacje mogą mieć maksymalnie $SEATCOUNT$ użytkowników. Przejdź na płatny plan, aby zaprosić więcej użytkowników.",
     "placeholders": {
       "seatcount": {
         "content": "$1",
@@ -5847,7 +6056,7 @@
     }
   },
   "freeOrgInvLimitReachedNoManageBilling": {
-    "message": "Darmowe organizacje mogą mieć maksymalnie $SEATCOUNT$ członków. Skontaktuj się z właścicielem organizacji, aby przejść na płatny plan.",
+    "message": "Darmowe organizacje mogą mieć maksymalnie $SEATCOUNT$ użytkowników. Skontaktuj się z właścicielem organizacji, aby przejść na płatny plan.",
     "placeholders": {
       "seatcount": {
         "content": "$1",
@@ -5872,5 +6081,14 @@
         "example": "2"
       }
     }
+  },
+  "lowKdfIterations": {
+    "message": "Niska liczba iteracji KDF"
+  },
+  "lowKdfIterationsDesc": {
+    "message": "Zwiększ ustawienia szyfrowania KDF, aby poprawić bezpieczeństwo swojego konta."
+  },
+  "changeKdfSettings": {
+    "message": "Zmień ustawienia KDF"
   }
 }

@@ -133,6 +133,9 @@
   "ms": {
     "message": "Frk."
   },
+  "mx": {
+    "message": "Neutral"
+  },
   "dr": {
     "message": "Dr."
   },
@@ -277,12 +280,36 @@
   "searchFavorites": {
     "message": "Søg i favoritter"
   },
-  "searchType": {
-    "message": "Søg type",
-    "description": "Search item type"
+  "searchLogin": {
+    "message": "Søg i logins",
+    "description": "Search Login type"
+  },
+  "searchCard": {
+    "message": "Søg i kort",
+    "description": "Search Card type"
+  },
+  "searchIdentity": {
+    "message": "Søg i identiteter",
+    "description": "Search Identity type"
+  },
+  "searchSecureNote": {
+    "message": "Søg i sikre notater",
+    "description": "Search Secure Note type"
   },
   "searchVault": {
     "message": "Søg i boks"
+  },
+  "searchMyVault": {
+    "message": "Søg i min boks"
+  },
+  "searchOrganization": {
+    "message": "Søg i organisation"
+  },
+  "searchMembers": {
+    "message": "Søg i medlemmer"
+  },
+  "searchGroups": {
+    "message": "Søg grupper"
   },
   "allItems": {
     "message": "Alle emner"
@@ -365,6 +392,9 @@
   "select": {
     "message": "Vælg"
   },
+  "newItem": {
+    "message": "Nyt emne"
+  },
   "addItem": {
     "message": "Tilføj emne"
   },
@@ -373,6 +403,13 @@
   },
   "viewItem": {
     "message": "Vis emne"
+  },
+  "new": {
+    "message": "New",
+    "description": "for adding new items"
+  },
+  "item": {
+    "message": "Emne"
   },
   "ex": {
     "message": "eks.",
@@ -438,6 +475,9 @@
   },
   "vaultItems": {
     "message": "Boksemner"
+  },
+  "filter": {
+    "message": "Filter"
   },
   "moveSelectedToOrg": {
     "message": "Flyt valgte til organisation"
@@ -544,6 +584,12 @@
   },
   "deletedFolder": {
     "message": "Mappe slettet"
+  },
+  "editInfo": {
+    "message": "Redigér info"
+  },
+  "access": {
+    "message": "Adgang"
   },
   "loggedOut": {
     "message": "Logget ud"
@@ -702,6 +748,9 @@
   "noItemsInList": {
     "message": "Der er ingen emner at vise."
   },
+  "noPermissionToViewAllCollectionItems": {
+    "message": "Ingen tilladelse til at se alle emner i denne samling."
+  },
   "noCollectionsInList": {
     "message": "Der er ingen samlinger at vise."
   },
@@ -710,6 +759,9 @@
   },
   "noUsersInList": {
     "message": "Der er ingen brugere at vise."
+  },
+  "noMembersInList": {
+    "message": "Ingen medlemmer at vise."
   },
   "noEventsInList": {
     "message": "Der er ingen begivenheder at vise."
@@ -854,6 +906,18 @@
         "example": "150"
       }
     }
+  },
+  "deleteSelectedCollectionsDesc": {
+    "message": "$COUNT$ samling(er) slettes permanent.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "150"
+      }
+    }
+  },
+  "deleteSelectedConfirmation": {
+    "message": "Sikker på, at du vil fortsætte?"
   },
   "moveSelectedItemsDesc": {
     "message": "Vælg en mappe, hvortil de(t) $COUNT$ valgte emne(r) ønskes flyttet.",
@@ -1558,7 +1622,7 @@
   },
   "orgsReportsDesc": {
     "message": "Identificér og luk sikkerhedshuller i organisationskonti ved at klikke på rapporterne nedenfor.",
-    "description": "Vault health reports can be used to evaluate the security of your Bitwarden individual or organization Vault."
+    "description": "Vault health reports can be used to evaluate the security of your Bitwarden individual or organization vault."
   },
   "unsecuredWebsitesReport": {
     "message": "Usikre websteder"
@@ -1821,6 +1885,22 @@
         "example": "$10"
       }
     }
+  },
+  "premiumPriceWithFamilyPlan": {
+    "message": "Køb Premium for kun $PRICE$ /år, eller køb Premium-konti til $FAMILYPLANUSERCOUNT$ brugere og ubegrænset familiedeling med et ",
+    "placeholders": {
+      "price": {
+        "content": "$1",
+        "example": "$10"
+      },
+      "familyplanusercount": {
+        "content": "$2",
+        "example": "6"
+      }
+    }
+  },
+  "bitwardenFamiliesPlan": {
+    "message": "Bitwarden Families-abonnement."
   },
   "addons": {
     "message": "Tilføjelser"
@@ -2356,6 +2436,15 @@
   "deleteGroupConfirmation": {
     "message": "Er du sikker på, at du vil slette denne gruppe?"
   },
+  "deleteMultipleGroupsConfirmation": {
+    "message": "Sikker på, at flg. $QUANTITY$ gruppe(r) skal slettes?",
+    "placeholders": {
+      "quantity": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
   "removeUserConfirmation": {
     "message": "Er du sikker på, at du vil fjerne denne bruger?"
   },
@@ -2373,6 +2462,9 @@
   },
   "externalIdDesc": {
     "message": "Det eksterne id kan bruges som reference eller til at forbinde denne ressource til et eksternt system som f.eks. et brugerkartotek."
+  },
+  "nestCollectionUnder": {
+    "message": "Placér samling under"
   },
   "accessControl": {
     "message": "Adgangskontrol"
@@ -2395,20 +2487,29 @@
   "editCollection": {
     "message": "Redigér samling"
   },
+  "collectionInfo": {
+    "message": "Info om samling"
+  },
   "deleteCollectionConfirmation": {
     "message": "Er du sikker på, at du vil slette denne samling?"
   },
-  "editUser": {
-    "message": "Redigér bruger"
+  "editMember": {
+    "message": "Redigér medlem"
   },
-  "inviteUser": {
-    "message": "Invitér bruger"
+  "fieldOnTabRequiresAttention": {
+    "message": "Et felt på fanen '$TAB$' kræver din opmærksomhed.",
+    "placeholders": {
+      "tab": {
+        "content": "$1",
+        "example": "Collection info"
+      }
+    }
   },
   "inviteUserDesc": {
     "message": "Inviter en ny bruger til din organisation ved at indtaste e-mailadressen på deres Bitwarden-konto nedenfor. Hvis de ikke allerede har en Bitwarden-konto, bliver de bedt om at oprette en ny konto."
   },
   "inviteMultipleEmailDesc": {
-    "message": "Du kan invitere op til $COUNT$ brugere ad gangen ved at kommaseparere en liste med e-mailadresser.",
+    "message": "Du kan invitere op til $COUNT$ brugere ad gangen ved at kommaseparere en liste med emailadresser.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2668,6 +2769,9 @@
       }
     }
   },
+  "deletedCollections": {
+    "message": "Slet samlinger"
+  },
   "deletedCollectionId": {
     "message": "Slettede samling $ID$.",
     "placeholders": {
@@ -2710,6 +2814,15 @@
       "id": {
         "content": "$1",
         "example": "Developers"
+      }
+    }
+  },
+  "deletedManyGroups": {
+    "message": "$QUANTITY$ gruppe(r) slettet.",
+    "placeholders": {
+      "quantity": {
+        "content": "$1",
+        "example": "3"
       }
     }
   },
@@ -5442,6 +5555,27 @@
       }
     }
   },
+  "inputForbiddenCharacters": {
+    "message": "Flg. tegn er ikke tilladt: $CHARACTERS$",
+    "placeholders": {
+      "characters": {
+        "content": "$1",
+        "example": "@, #, $, %"
+      }
+    }
+  },
+  "multipleInputEmails": {
+    "message": "1 eller flere e-mails er ugyldige"
+  },
+  "tooManyEmails": {
+    "message": "Der kan kun indsendes op til $COUNT$ e-mails ad gangen",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "20"
+      }
+    }
+  },
   "fieldsNeedAttention": {
     "message": "$COUNT$ felt(er) ovenfor kræver din opmærksomhed.",
     "placeholders": {
@@ -5562,13 +5696,13 @@
     "message": "Slet hemmeligheder"
   },
   "secretProjectAssociationDescription": {
-    "message": "Select projects that the secret will be associated with. Only organization users with access to these projects will be able to see the secret."
+    "message": "Vælg projekter, som hemmeligheden vil blive tilknyttet. Den vil kun kunne ses af organisationsbrugere med adgang til disse projekter."
   },
   "typeOrSelectProjects": {
-    "message": "Type or select Projects"
+    "message": "Angiv eller vælg Projekter"
   },
   "typeOrSelectProject": {
-    "message": "Type or select Project"
+    "message": "Angiv eller vælg Projekt"
   },
   "project": {
     "message": "Projekt"
@@ -5593,9 +5727,6 @@
   },
   "serviceAccounts": {
     "message": "Tjenestekonti"
-  },
-  "new": {
-    "message": "New"
   },
   "secrets": {
     "message": "Hemmelighed"
@@ -5625,7 +5756,7 @@
     "message": "Intet at vise endnu"
   },
   "serviceAccountsNoItemsMessage": {
-    "message": "Create a new Service Account to get started automating secret access."
+    "message": "Create a new service account to get started automating secret access."
   },
   "searchSecrets": {
     "message": "Søg i hemmeligheder"
@@ -5704,7 +5835,7 @@
     "placeholders": {
       "confirm": {
         "content": "$1",
-        "example": "Delete 3 Projects"
+        "example": "Delete 3 projects"
       }
     }
   },
@@ -5807,8 +5938,44 @@
   "update": {
     "message": "Opdatér"
   },
+  "plusNMore": {
+    "message": "+ $QUANTITY$ flere",
+    "placeholders": {
+      "quantity": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "groupInfo": {
+    "message": "Gruppeinfo"
+  },
+  "editGroupMembersDesc": {
+    "message": "Tildel medlemmer adgang til gruppens tildelte samlinger."
+  },
+  "editGroupCollectionsDesc": {
+    "message": "Tildel adgang til samlinger ved at føje dem til denne gruppe."
+  },
+  "accessAllCollectionsDesc": {
+    "message": "Tildel adgang til alle nuværende og fremtidige samlinger."
+  },
+  "accessAllCollectionsHelp": {
+    "message": "Hvis afkrydset, erstatter dette alle andre samlingstilladelser."
+  },
+  "selectMembers": {
+    "message": "Vælg medlemmer"
+  },
+  "selectCollections": {
+    "message": "Vælg samlinger"
+  },
   "role": {
     "message": "Rolle"
+  },
+  "removeMember": {
+    "message": "Fjern medlem"
+  },
+  "collection": {
+    "message": "Samling"
   },
   "canView": {
     "message": "Kan se"
@@ -5822,6 +5989,15 @@
   "canEditExceptPass": {
     "message": "Kan redigere, undtagen adgangskoder"
   },
+  "noCollectionsAdded": {
+    "message": "Ingen samlinger tilføjet"
+  },
+  "noMembersAdded": {
+    "message": "Ingen medlemmer tilføjet"
+  },
+  "noGroupsAdded": {
+    "message": "Ingen grupper tilføjet"
+  },
   "group": {
     "message": "Gruppe"
   },
@@ -5830,6 +6006,39 @@
   },
   "memberAccessAll": {
     "message": "Dette medlem kan tilgå og ændre alle emner."
+  },
+  "membersColumnHeader": {
+    "message": "Medlem/Gruppe"
+  },
+  "groupAndMemberColumnHeader": {
+    "message": "Medlem"
+  },
+  "selectGroupsAndMembers": {
+    "message": "Vælg grupper og medlemmer"
+  },
+  "selectGroups": {
+    "message": "Vælg grupper"
+  },
+  "userPermissionOverrideHelper": {
+    "message": "Tilladelser angivet for et medlem vil erstatte tilladelser angivet af medlemmets gruppe"
+  },
+  "noMembersOrGroupsAdded": {
+    "message": "Ingen medlemmer eller grupper tilføjet"
+  },
+  "deleted": {
+    "message": "Slettet"
+  },
+  "memberStatusFilter": {
+    "message": "Medlemsstatusfilter"
+  },
+  "inviteMember": {
+    "message": "Invitér medlem"
+  },
+  "needsConfirmation": {
+    "message": "Behøver bekræftelse"
+  },
+  "memberRole": {
+    "message": "Medlemsrolle"
   },
   "moreFromBitwarden": {
     "message": "Mere fra Bitwarden"
@@ -5872,5 +6081,14 @@
         "example": "2"
       }
     }
+  },
+  "lowKdfIterations": {
+    "message": "Low KDF Iterations"
+  },
+  "lowKdfIterationsDesc": {
+    "message": "Increase your KDF encryption settings to improve the security of your account."
+  },
+  "changeKdfSettings": {
+    "message": "Change KDF settings"
   }
 }

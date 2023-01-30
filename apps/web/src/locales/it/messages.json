@@ -133,6 +133,9 @@
   "ms": {
     "message": "Sig.na"
   },
+  "mx": {
+    "message": "Mx"
+  },
   "dr": {
     "message": "Dott."
   },
@@ -277,12 +280,36 @@
   "searchFavorites": {
     "message": "Cerca tra i preferiti"
   },
-  "searchType": {
-    "message": "Cerca tipo",
-    "description": "Search item type"
+  "searchLogin": {
+    "message": "Cerca login",
+    "description": "Search Login type"
+  },
+  "searchCard": {
+    "message": "Cerca carte",
+    "description": "Search Card type"
+  },
+  "searchIdentity": {
+    "message": "Cerca identità",
+    "description": "Search Identity type"
+  },
+  "searchSecureNote": {
+    "message": "Cerca note sicure",
+    "description": "Search Secure Note type"
   },
   "searchVault": {
     "message": "Cerca nella cassaforte"
+  },
+  "searchMyVault": {
+    "message": "Cerca nella cassaforte"
+  },
+  "searchOrganization": {
+    "message": "Cerca organizzazione"
+  },
+  "searchMembers": {
+    "message": "Cerca membri"
+  },
+  "searchGroups": {
+    "message": "Search groups"
   },
   "allItems": {
     "message": "Tutti gli elementi"
@@ -365,6 +392,9 @@
   "select": {
     "message": "Seleziona"
   },
+  "newItem": {
+    "message": "Nuovo elemento"
+  },
   "addItem": {
     "message": "Aggiungi elemento"
   },
@@ -373,6 +403,13 @@
   },
   "viewItem": {
     "message": "Visualizza elemento"
+  },
+  "new": {
+    "message": "Nuovo",
+    "description": "for adding new items"
+  },
+  "item": {
+    "message": "Elemento"
   },
   "ex": {
     "message": "es.",
@@ -438,6 +475,9 @@
   },
   "vaultItems": {
     "message": "Elementi della cassaforte"
+  },
+  "filter": {
+    "message": "Filtro"
   },
   "moveSelectedToOrg": {
     "message": "Sposta selezionati in organizzazione"
@@ -544,6 +584,12 @@
   },
   "deletedFolder": {
     "message": "Cartella eliminata"
+  },
+  "editInfo": {
+    "message": "Modifica informazioni"
+  },
+  "access": {
+    "message": "Accesso"
   },
   "loggedOut": {
     "message": "Disconnesso"
@@ -702,6 +748,9 @@
   "noItemsInList": {
     "message": "Non ci sono elementi da mostrare."
   },
+  "noPermissionToViewAllCollectionItems": {
+    "message": "Non hai i permessi per visualizzare tutti gli elementi in questa raccolta."
+  },
   "noCollectionsInList": {
     "message": "Nessuna raccolta da visualizzare."
   },
@@ -710,6 +759,9 @@
   },
   "noUsersInList": {
     "message": "Non ci sono utenti da elencare."
+  },
+  "noMembersInList": {
+    "message": "Non ci sono membri da mostrare."
   },
   "noEventsInList": {
     "message": "Non ci sono eventi da elencare."
@@ -855,6 +907,18 @@
       }
     }
   },
+  "deleteSelectedCollectionsDesc": {
+    "message": "$COUNT$ raccolte selezionate saranno eliminate definitivamente.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "150"
+      }
+    }
+  },
+  "deleteSelectedConfirmation": {
+    "message": "Sei sicuro di voler continuare?"
+  },
   "moveSelectedItemsDesc": {
     "message": "La selezione comprende $COUNT$ elemento/i da spostare. Scegli una cartella di destinazione.",
     "placeholders": {
@@ -930,16 +994,16 @@
     "message": "Conferma password del file"
   },
   "accountRestrictedOptionDescription": {
-    "message": "Use your account encryption key, derived from your account's username and Master Password, to encrypt the export and restrict import to only the current Bitwarden account."
+    "message": "Utilizza la chiave di crittografia dell'account, derivata dal nome utente e dalla password principale dell'account, per criptare l'esportazione e limitare l'importazione solo all'account Bitwarden corrente."
   },
   "passwordProtectedOptionDescription": {
     "message": "Imposta una password per crittare l'esportazione e importala in qualsiasi account Bitwarden, utilizzando la password impostata."
   },
   "exportTypeHeading": {
-    "message": "Export type"
+    "message": "Tipo di esportazione"
   },
   "accountRestricted": {
-    "message": "Account restricted"
+    "message": "Account limitato"
   },
   "passwordProtected": {
     "message": "Protetto da password"
@@ -1558,7 +1622,7 @@
   },
   "orgsReportsDesc": {
     "message": "Identifica e chiudi le falle di sicurezza negli account della tua organizzazione facendo click sui report in basso.",
-    "description": "Vault health reports can be used to evaluate the security of your Bitwarden individual or organization Vault."
+    "description": "Vault health reports can be used to evaluate the security of your Bitwarden individual or organization vault."
   },
   "unsecuredWebsitesReport": {
     "message": "Resoconto sui siti web non protetti"
@@ -1609,7 +1673,7 @@
     "message": "Resoconto sulle password esposte"
   },
   "exposedPasswordsReportDesc": {
-    "message": "Le password esposte sono password che sono state scoperte in violazioni di dati note che sono state rilasciate pubblicamente o vendute sul dark web dagli hacker."
+    "message": "Le password esposte in una violazione dei dati sono un facile bersaglio per gli aggressori. Cambiate queste password per evitare potenziali intrusioni."
   },
   "exposedPasswordsFound": {
     "message": "Trovate password esposte"
@@ -1821,6 +1885,22 @@
         "example": "$10"
       }
     }
+  },
+  "premiumPriceWithFamilyPlan": {
+    "message": "Passa a premium per soli $PRICE$ /anno, o aggiungi account premium per $FAMILYPLANUSERCOUNT$ utenti e condivisione in famiglia senza limiti con un ",
+    "placeholders": {
+      "price": {
+        "content": "$1",
+        "example": "$10"
+      },
+      "familyplanusercount": {
+        "content": "$2",
+        "example": "6"
+      }
+    }
+  },
+  "bitwardenFamiliesPlan": {
+    "message": "Piano famiglia di Bitwarden."
   },
   "addons": {
     "message": "Estensioni"
@@ -2356,6 +2436,15 @@
   "deleteGroupConfirmation": {
     "message": "Sei sicuro di voler eliminare questo gruppo?"
   },
+  "deleteMultipleGroupsConfirmation": {
+    "message": "Sei sicuro di voler eliminare questi $QUANTITY$ gruppi?",
+    "placeholders": {
+      "quantity": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
   "removeUserConfirmation": {
     "message": "Confermi di voler rimuovere questo utente?"
   },
@@ -2373,6 +2462,9 @@
   },
   "externalIdDesc": {
     "message": "L'id esterno può essere usato come un riferimento o per collegare questa risorsa ad un sistema esterno come ad esempio una directory utente."
+  },
+  "nestCollectionUnder": {
+    "message": "Raccolta annidata"
   },
   "accessControl": {
     "message": "Controllo di accesso"
@@ -2395,14 +2487,23 @@
   "editCollection": {
     "message": "Modifica raccolta"
   },
+  "collectionInfo": {
+    "message": "Informazioni sulla raccolta"
+  },
   "deleteCollectionConfirmation": {
     "message": "Sei sicuro di voler eliminare questa raccolta?"
   },
-  "editUser": {
-    "message": "Modifica utente"
+  "editMember": {
+    "message": "Modifica membro"
   },
-  "inviteUser": {
-    "message": "Invita utente"
+  "fieldOnTabRequiresAttention": {
+    "message": "A field on the '$TAB$' tab requires your attention.",
+    "placeholders": {
+      "tab": {
+        "content": "$1",
+        "example": "Collection info"
+      }
+    }
   },
   "inviteUserDesc": {
     "message": "Invita un nuovo utente alla tua organizzazione inserendo il suo indirizzo email dell'account Bitwarden di seguito. Se non hanno già un account Bitwarden, verrà richiesto di creare un nuovo account."
@@ -2668,6 +2769,9 @@
       }
     }
   },
+  "deletedCollections": {
+    "message": "Raccolte eliminate"
+  },
   "deletedCollectionId": {
     "message": "Raccolta $ID$ eliminata.",
     "placeholders": {
@@ -2710,6 +2814,15 @@
       "id": {
         "content": "$1",
         "example": "Developers"
+      }
+    }
+  },
+  "deletedManyGroups": {
+    "message": "Elimina $QUANTITY$ gruppo/i.",
+    "placeholders": {
+      "quantity": {
+        "content": "$1",
+        "example": "3"
       }
     }
   },
@@ -5442,6 +5555,27 @@
       }
     }
   },
+  "inputForbiddenCharacters": {
+    "message": "I seguenti caratteri non sono permessi: $CHARACTERS$",
+    "placeholders": {
+      "characters": {
+        "content": "$1",
+        "example": "@, #, $, %"
+      }
+    }
+  },
+  "multipleInputEmails": {
+    "message": "1 or more emails are invalid"
+  },
+  "tooManyEmails": {
+    "message": "You can only submit up to $COUNT$ emails at a time",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "20"
+      }
+    }
+  },
   "fieldsNeedAttention": {
     "message": "Il/i campo/i $COUNT$ sopra richiedono la tua attenzione.",
     "placeholders": {
@@ -5476,43 +5610,43 @@
     "message": "Non sei tu?"
   },
   "pickAnAvatarColor": {
-    "message": "Pick an avatar color"
+    "message": "Scegli un colore dell'avatar"
   },
   "customizeAvatar": {
-    "message": "Customize avatar"
+    "message": "Personalizza avatar"
   },
   "avatarUpdated": {
-    "message": "Avatar updated"
+    "message": "Avatar aggiornato"
   },
   "brightBlue": {
-    "message": "Bright Blue"
+    "message": "Azzurro"
   },
   "green": {
-    "message": "Green"
+    "message": "Verde"
   },
   "orange": {
-    "message": "Orange"
+    "message": "Arancione"
   },
   "lavender": {
-    "message": "Lavender"
+    "message": "Lavenda"
   },
   "yellow": {
-    "message": "Yellow"
+    "message": "Giallo"
   },
   "indigo": {
-    "message": "Indigo"
+    "message": "Indaco"
   },
   "teal": {
-    "message": "Teal"
+    "message": "Verde acqua"
   },
   "salmon": {
-    "message": "Salmon"
+    "message": "Salmone"
   },
   "pink": {
-    "message": "Pink"
+    "message": "Rosa"
   },
   "customColor": {
-    "message": "Custom Color"
+    "message": "Colore Personalizzato"
   },
   "multiSelectPlaceholder": {
     "message": "-- Scrivi per filtrare --"
@@ -5527,7 +5661,7 @@
     "message": "Cancella tutto"
   },
   "toggleCharacterCount": {
-    "message": "Attiva/Disattiva conteggio caratteri",
+    "message": "Attiva/disattiva conteggio caratteri",
     "description": "'Character count' describes a feature that displays a number next to each character of the password."
   },
   "passwordCharacterCount": {
@@ -5544,46 +5678,46 @@
     "message": "Ultima modifica"
   },
   "editSecret": {
-    "message": "Modifica Segreto"
+    "message": "Modifica segreto"
   },
   "addSecret": {
-    "message": "Aggiungi Segreto"
+    "message": "Aggiungi segreto"
   },
   "copySecretName": {
-    "message": "Copia Nome Segreto"
+    "message": "Copia nome segreto"
   },
   "copySecretValue": {
-    "message": "Copia Valore Segreto"
+    "message": "Copia valore segreto"
   },
   "deleteSecret": {
-    "message": "Elimina Segreto"
+    "message": "Elimina segreto"
   },
   "deleteSecrets": {
-    "message": "Elimina Segreti"
+    "message": "Elimina segreti"
   },
   "secretProjectAssociationDescription": {
-    "message": "Select projects that the secret will be associated with. Only organization users with access to these projects will be able to see the secret."
+    "message": "Seleziona i progetti a cui sarà associato il segreto. Solo gli utenti dell'organizzazione con accesso a questi progetti saranno in grado di vedere il segreto."
   },
   "typeOrSelectProjects": {
-    "message": "Type or select Projects"
+    "message": "Digita o seleziona progetti"
   },
   "typeOrSelectProject": {
-    "message": "Type or select Project"
+    "message": "Digita o seleziona progetto"
   },
   "project": {
     "message": "Progetto"
   },
   "editProject": {
-    "message": "Modifica Progetto"
+    "message": "Modifica progetto"
   },
   "viewProject": {
-    "message": "Visualizza Progetto"
+    "message": "Visualizza progetto"
   },
   "deleteProject": {
-    "message": "Elimina Progetto"
+    "message": "Elimina progetto"
   },
   "deleteProjects": {
-    "message": "Elimina Progetti"
+    "message": "Elimina progetti"
   },
   "secret": {
     "message": "Segreto"
@@ -5594,14 +5728,11 @@
   "serviceAccounts": {
     "message": "Account di servizio"
   },
-  "new": {
-    "message": "Nuovo"
-  },
   "secrets": {
     "message": "Segreti"
   },
   "nameValuePair": {
-    "message": "Coppia Nome/Valore"
+    "message": "Coppia nome/valore"
   },
   "secretEdited": {
     "message": "Segreto modificato"
@@ -5610,10 +5741,10 @@
     "message": "Segreto creato"
   },
   "newSecret": {
-    "message": "Nuovo Segreto"
+    "message": "Nuovo segreto"
   },
   "newServiceAccount": {
-    "message": "Nuovo Account di Servizio"
+    "message": "Nuovo account di servizio"
   },
   "secretsNoItemsTitle": {
     "message": "Nessun segreto da mostrare"
@@ -5622,28 +5753,28 @@
     "message": "Per iniziare, aggiungi un nuovo segreto o importa segreti."
   },
   "serviceAccountsNoItemsTitle": {
-    "message": "Niente da mostrare"
+    "message": "Ancora niente da mostrare"
   },
   "serviceAccountsNoItemsMessage": {
-    "message": "Crea un nuovo account di servizio per iniziare a automatizzare l'accesso segreto."
+    "message": "Crea un nuovo account di servizio per iniziare ad automatizzare l'accesso segreto."
   },
   "searchSecrets": {
-    "message": "Cerca Segreti"
+    "message": "Cerca segreti"
   },
   "deleteServiceAccounts": {
-    "message": "Elimina Account Di Servizio"
+    "message": "Elimina account di servizio"
   },
   "deleteServiceAccount": {
-    "message": "Elimina Account Di Servizio"
+    "message": "Elimina account di servizio"
   },
   "viewServiceAccount": {
-    "message": "Visualizza Account Di Servizio"
+    "message": "Visualizza account di servizio"
   },
   "searchServiceAccounts": {
-    "message": "Cerca Account di Servizio"
+    "message": "Cerca account di servizio"
   },
   "addProject": {
-    "message": "Aggiungi Progetto"
+    "message": "Aggiungi progetto"
   },
   "projectEdited": {
     "message": "Progetto modificato"
@@ -5655,10 +5786,10 @@
     "message": "Progetto creato"
   },
   "projectName": {
-    "message": "Nome del Progetto"
+    "message": "Nome del progetto"
   },
   "newProject": {
-    "message": "Nuovo Progetto"
+    "message": "Nuovo progetto"
   },
   "softDeleteSecretWarning": {
     "message": "L'eliminazione dei segreti può influenzare le integrazioni esistenti."
@@ -5667,13 +5798,13 @@
     "message": "Segreti inviati al cestino"
   },
   "serviceAccountCreated": {
-    "message": "Account Di Servizio Creato"
+    "message": "Account di servizio creato"
   },
   "smAccess": {
     "message": "Accesso"
   },
   "projectCommaSecret": {
-    "message": "Progetto, Segreto"
+    "message": "Progetto, segreto"
   },
   "serviceAccountName": {
     "message": "Nome account di servizio"
@@ -5704,7 +5835,7 @@
     "placeholders": {
       "confirm": {
         "content": "$1",
-        "example": "Delete 3 Projects"
+        "example": "Delete 3 projects"
       }
     }
   },
@@ -5733,7 +5864,7 @@
     "message": "Nessun progetto da mostrare"
   },
   "projectsNoItemsMessage": {
-    "message": "Aggiungi un nuovo progetto per iniziare ad organizzare i segreti."
+    "message": "Aggiungi un nuovo progetto per iniziare a organizzare i segreti."
   },
   "smConfirmationRequired": {
     "message": "Conferma richiesta"
@@ -5781,16 +5912,16 @@
     "message": "Token di accesso"
   },
   "accessTokenExpirationRequired": {
-    "message": "La data di scadenza è necessaria"
+    "message": "La data di scadenza è obbligatoria"
   },
   "accessTokenCreatedAndCopied": {
     "message": "Token di accesso creato e copiato negli appunti"
   },
   "accessTokenPermissionsBetaNotification": {
-    "message": "La gestione delle autorizzazioni non è disponibile per beta."
+    "message": "La gestione delle autorizzazioni non è disponibile nella versione beta."
   },
   "revokeAccessToken": {
-    "message": "Revoca Token Di Accesso"
+    "message": "Revoca token di accesso"
   },
   "submenu": {
     "message": "Sottomenu"
@@ -5807,8 +5938,44 @@
   "update": {
     "message": "Aggiorna"
   },
+  "plusNMore": {
+    "message": "+$QUANTITY$ in più",
+    "placeholders": {
+      "quantity": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "groupInfo": {
+    "message": "Informazioni sul gruppo"
+  },
+  "editGroupMembersDesc": {
+    "message": "Concedi ai membri l'accesso alle raccolte associate al gruppo."
+  },
+  "editGroupCollectionsDesc": {
+    "message": "Concedi l'accesso alle raccolte aggiungendole a questo gruppo."
+  },
+  "accessAllCollectionsDesc": {
+    "message": "Concedi l'accesso a tutte le raccolte attuali e future."
+  },
+  "accessAllCollectionsHelp": {
+    "message": "Se selezionato, questo sostituirà tutte le altre autorizzazioni per le raccolte."
+  },
+  "selectMembers": {
+    "message": "Seleziona membri"
+  },
+  "selectCollections": {
+    "message": "Seleziona raccolte"
+  },
   "role": {
     "message": "Ruolo"
+  },
+  "removeMember": {
+    "message": "Rimuovi membro"
+  },
+  "collection": {
+    "message": "Raccolta"
   },
   "canView": {
     "message": "Può visualizzare"
@@ -5822,6 +5989,15 @@
   "canEditExceptPass": {
     "message": "Può modificare, eccetto le password"
   },
+  "noCollectionsAdded": {
+    "message": "Nessuna raccolta aggiunta"
+  },
+  "noMembersAdded": {
+    "message": "Nessun membro aggiunto"
+  },
+  "noGroupsAdded": {
+    "message": "Nessun gruppo aggiunto"
+  },
   "group": {
     "message": "Gruppo"
   },
@@ -5831,14 +6007,47 @@
   "memberAccessAll": {
     "message": "Questo utente può accedere e modificare tutti gli elementi."
   },
+  "membersColumnHeader": {
+    "message": "Membro/gruppo"
+  },
+  "groupAndMemberColumnHeader": {
+    "message": "Membro"
+  },
+  "selectGroupsAndMembers": {
+    "message": "Seleziona gruppi e membri"
+  },
+  "selectGroups": {
+    "message": "Seleziona gruppi"
+  },
+  "userPermissionOverrideHelper": {
+    "message": "I permessi impostati per un membro sostituiranno i permessi impostati dal gruppo di quel membro"
+  },
+  "noMembersOrGroupsAdded": {
+    "message": "Nessun membro o gruppo aggiunto"
+  },
+  "deleted": {
+    "message": "Eliminato"
+  },
+  "memberStatusFilter": {
+    "message": "Filtro stato del membro"
+  },
+  "inviteMember": {
+    "message": "Invita membro"
+  },
+  "needsConfirmation": {
+    "message": "Conferma necessaria"
+  },
+  "memberRole": {
+    "message": "Ruolo del membro"
+  },
   "moreFromBitwarden": {
     "message": "Altro da Bitwarden"
   },
   "switchProducts": {
-    "message": "Cambia Prodotti"
+    "message": "Cambia prodotti"
   },
   "freeOrgInvLimitReachedManageBilling": {
-    "message": "Le organizzazioni gratuite possono avere fino a $SEATCOUNT$ membri. Aggiorna a un piano a pagamento per invitare più membri.",
+    "message": "Le organizzazioni gratuite possono avere fino a $SEATCOUNT$ membri. Aggiorna a un piano a pagamento per aggiungere più membri.",
     "placeholders": {
       "seatcount": {
         "content": "$1",
@@ -5847,7 +6056,7 @@
     }
   },
   "freeOrgInvLimitReachedNoManageBilling": {
-    "message": "Le organizzazioni gratuite possono avere fino a $SEATCOUNT$ membri. Contatta il proprietario dell'organizzazione per aggiornare.",
+    "message": "Le organizzazioni gratuite possono avere fino a $SEATCOUNT$ membri. Contatta il proprietario dell'organizzazione per l'upgrade.",
     "placeholders": {
       "seatcount": {
         "content": "$1",
@@ -5865,12 +6074,21 @@
     }
   },
   "freeOrgMaxCollectionReachedNoManageBilling": {
-    "message": "Le organizzazioni gratuite possono avere fino a $COLLECTIONCOUNT$ collezioni. Contatta il proprietario della tua organizzazione per aggiornare.",
+    "message": "Le organizzazioni gratuite possono avere fino a $COLLECTIONCOUNT$ collezioni. Contatta il proprietario della tua organizzazione per l'upgrade.",
     "placeholders": {
       "COLLECTIONCOUNT": {
         "content": "$1",
         "example": "2"
       }
     }
+  },
+  "lowKdfIterations": {
+    "message": "Low KDF Iterations"
+  },
+  "lowKdfIterationsDesc": {
+    "message": "Increase your KDF encryption settings to improve the security of your account."
+  },
+  "changeKdfSettings": {
+    "message": "Change KDF settings"
   }
 }
