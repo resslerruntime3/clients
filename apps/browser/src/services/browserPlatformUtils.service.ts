@@ -209,62 +209,21 @@ export default class BrowserPlatformUtilsService implements PlatformUtilsService
 
   copyToClipboard(text: string, options?: any): void {
     let win = this.win;
-    let doc = this.win.document;
     if (options && (options.window || options.win)) {
       win = options.window || options.win;
-      doc = win.document;
-    } else if (options && options.doc) {
-      doc = options.doc;
     }
     const clearing = options ? !!options.clearing : false;
     const clearMs: number = options && options.clearMs ? options.clearMs : null;
 
-    if (this.isSafari()) {
-      SafariApp.sendMessageToApp("copyToClipboard", text).then(() => {
-        if (!clearing && this.clipboardWriteCallback != null) {
-          this.clipboardWriteCallback(text, clearMs);
-        }
-      });
-    } else if (
-      this.isFirefox() &&
-      (win as any).navigator.clipboard &&
-      (win as any).navigator.clipboard.writeText
-    ) {
-      (win as any).navigator.clipboard.writeText(text).then(() => {
-        if (!clearing && this.clipboardWriteCallback != null) {
-          this.clipboardWriteCallback(text, clearMs);
-        }
-      });
-    } else if ((win as any).clipboardData && (win as any).clipboardData.setData) {
-      // IE specific code path to prevent textarea being shown while dialog is visible.
-      (win as any).clipboardData.setData("Text", text);
+    if (this.isChrome() && text === "") {
+      text = "\u0000";
+    }
+
+    (win as any).navigator.clipboard.writeText(text).then(() => {
       if (!clearing && this.clipboardWriteCallback != null) {
         this.clipboardWriteCallback(text, clearMs);
       }
-    } else if (doc.queryCommandSupported && doc.queryCommandSupported("copy")) {
-      if (this.isChrome() && text === "") {
-        text = "\u0000";
-      }
-
-      const textarea = doc.createElement("textarea");
-      textarea.textContent = text == null || text === "" ? " " : text;
-      // Prevent scrolling to bottom of page in MS Edge.
-      textarea.style.position = "fixed";
-      doc.body.appendChild(textarea);
-      textarea.select();
-
-      try {
-        // Security exception may be thrown by some browsers.
-        if (doc.execCommand("copy") && !clearing && this.clipboardWriteCallback != null) {
-          this.clipboardWriteCallback(text, clearMs);
-        }
-      } catch (e) {
-        // eslint-disable-next-line
-        console.warn("Copy to clipboard failed.", e);
-      } finally {
-        doc.body.removeChild(textarea);
-      }
-    }
+    });
   }
 
   async readFromClipboard(options?: any): Promise<string> {
