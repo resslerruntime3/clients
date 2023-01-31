@@ -131,12 +131,7 @@ export class VaultComponent implements OnInit, OnDestroy {
             await this.editCipher(cipherView);
           }
         }),
-        takeUntil(this.destroy$)
-      )
-      .subscribe();
-
-    this.route.queryParams
-      .pipe(
+        switchMap(() => this.route.queryParams),
         switchMap(async (params) => {
           const cipherId = getCipherIdFromParams(params);
           if (cipherId) {
@@ -181,7 +176,8 @@ export class VaultComponent implements OnInit, OnDestroy {
       this.showBrowserOutdated ||
       this.showPremiumCallout ||
       this.showUpdateKey ||
-      this.showVerifyEmail
+      this.showVerifyEmail ||
+      this.showLowKdf
     );
   }
 
