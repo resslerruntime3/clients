@@ -130,12 +130,12 @@ button {
   font-family: $font-family-sans-serif;
 }
 
-.select-folder[isVaultLocked="true"] {
+#select-folder[data-is-vault-locked="true"] {
   display: none;
 }
 
 @media screen and (max-width: 768px) {
-  .select-folder {
+  #select-folder {
     display: none;
   }
 }
