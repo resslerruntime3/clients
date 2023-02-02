@@ -1,15 +1,36 @@
 import AddLoginRuntimeMessage from "../../background/models/addLoginRuntimeMessage";
 import ChangePasswordRuntimeMessage from "../../background/models/changePasswordRuntimeMessage";
 
+/**
+ * @fileoverview This file contains the code for the Bitwarden Notification Bar
+ * The notification bar is used to notify logged in users that they can
+ * save a login or change a password.
+ */
+
+/*
+ * Run content script when the DOM is fully loaded
+ *
+ * The DOMContentLoaded event fires when the HTML document has been completely parsed,
+ * and all deferred scripts (<script defer src="…"> and <script type="module">) have
+ * downloaded and executed. It doesn't wait for other things like images, subframes,
+ * and async scripts to finish loading.
+ * https://developer.mozilla.org/en-US/docs/Web/API/Window/DOMContentLoaded_event
+ */
+
 document.addEventListener("DOMContentLoaded", (event) => {
+  // Do not show the notification bar on the Bitwarden vault
+  // because they can add logins and change passwords there
   if (window.location.hostname.endsWith("vault.bitwarden.com")) {
     return;
   }
 
+  // Initialize required variables and set default values
   const pageDetails: any[] = [];
   const formData: any[] = [];
   let barType: string = null;
   let pageHref: string = null;
+
+  // Provides the ability to watch for changes being made to the DOM tree.
   let observer: MutationObserver = null;
   const observeIgnoredElements = new Set([
     "a",
@@ -48,6 +69,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   let disabledAddLoginNotification = false;
   let disabledChangedPasswordNotification = false;
 
+  // Look up the active user id from storage
   const activeUserIdKey = "activeUserId";
   let activeUserId: string;
   chrome.storage.local.get(activeUserIdKey, (obj: any) => {
@@ -57,30 +79,56 @@ document.addEventListener("DOMContentLoaded", (event) => {
     activeUserId = obj[activeUserIdKey];
   });
 
+  // Look up the user's settings from storage
   chrome.storage.local.get(activeUserId, (obj: any) => {
     if (obj?.[activeUserId] == null) {
       return;
     }
 
-    const domains = obj[activeUserId].settings.neverDomains;
-    // eslint-disable-next-line
-    if (domains != null && domains.hasOwnProperty(window.location.hostname)) {
+    const userSettings = obj[activeUserId].settings;
+
+    // NeverDomains is a dictionary of domains that the user has chosen to never
+    // show the notification bar on (for login detail collection or password change).
+    // It is managed in the Settings > Excluded Domains page in the browser extension.
+    // Example: '{"bitwarden.com":null}'
+    const excludedDomainsDict = userSettings.neverDomains;
+
+    if (
+      excludedDomainsDict != null &&
+      // eslint-disable-next-line
+      excludedDomainsDict.hasOwnProperty(window.location.hostname)
+    ) {
       return;
     }
 
-    disabledAddLoginNotification = obj[activeUserId].settings.disableAddLoginNotification;
-    disabledChangedPasswordNotification =
-      obj[activeUserId].settings.disableChangedPasswordNotification;
+    // Set preferences for whether to show the notification bar based on the user's settings
+    // These are set in the Settings > Options page in the browser extension.
+    disabledAddLoginNotification = userSettings.disableAddLoginNotification;
+    disabledChangedPasswordNotification = userSettings.disableChangedPasswordNotification;
 
     if (!disabledAddLoginNotification || !disabledChangedPasswordNotification) {
-      collectIfNeededWithTimeout();
+      // If the user has not disabled both notifications, then collect the page details after a timeout
+      // TODO: figure out why a timeout would be needed here if the page is already loaded
+      collectPageDetailsIfNeededWithTimeout();
     }
   });
 
+  //#region Message Processing
+
+  // Listen for messages from the background script
+  // Note: onMessage events are fired when a message is sent from either an extension process
+  // (by runtime.sendMessage) or a content script (by tabs.sendMessage).
+  // https://developer.chrome.com/docs/extensions/reference/runtime/#event-onMessage
   chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     processMessages(msg, sendResponse);
   });
 
+  /**
+   * @description Processes messages received from the background script via the `chrome.runtime.onMessage` event.
+   * @param {Object} msg - The received message.
+   * @param {Function} sendResponse - The function used to send a response back to the background script.
+   * @returns {boolean} - Returns `true` if a response was sent, `false` otherwise.
+   */
   function processMessages(msg: any, sendResponse: (response?: any) => void) {
     if (msg.command === "openNotificationBar") {
       if (inIframe) {
@@ -110,6 +158,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       return true;
     }
   }
+  //#endregion Message Processing
 
   function isInIframe() {
     try {
@@ -174,7 +223,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
             window.clearTimeout(domObservationCollectTimeout);
           }
 
-          domObservationCollectTimeout = window.setTimeout(collect, 1000);
+          domObservationCollectTimeout = window.setTimeout(collectPageDetails, 1000);
         }
       });
 
@@ -182,22 +231,34 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
   }
 
-  function collectIfNeededWithTimeout() {
+  //#region Page Detail Collection Methods
+  /**
+   * Schedules a call to the `collectPageDetailsIfNeeded` method with a timeout of 1 second.
+   * If there is an existing timeout, it is cleared.
+   */
+  function collectPageDetailsIfNeededWithTimeout() {
     if (collectIfNeededTimeout != null) {
       window.clearTimeout(collectIfNeededTimeout);
     }
-    collectIfNeededTimeout = window.setTimeout(collectIfNeeded, 1000);
+    collectIfNeededTimeout = window.setTimeout(collectPageDetailsIfNeeded, 1000);
   }
 
-  function collectIfNeeded() {
+  /**
+   * Collects information about the page if needed (if the page has changed)
+   * and schedules a call to itself again in 1 second.
+   */
+  function collectPageDetailsIfNeeded() {
+    // Any time the page changes, we need to collect the page details again
     if (pageHref !== window.location.href) {
+      // update href
       pageHref = window.location.href;
       if (observer) {
+        // reset existing DOM mutation observer so it can listen for changes to the new page body
         observer.disconnect();
         observer = null;
       }
 
-      collect();
+      collectPageDetails();
 
       if (observeDomTimeout != null) {
         window.clearTimeout(observeDomTimeout);
@@ -205,18 +266,26 @@ document.addEventListener("DOMContentLoaded", (event) => {
       observeDomTimeout = window.setTimeout(observeDom, 1000);
     }
 
+    // Page has not changed
+    // Check again in 1 second (but clear any existing timeout first)
     if (collectIfNeededTimeout != null) {
       window.clearTimeout(collectIfNeededTimeout);
     }
-    collectIfNeededTimeout = window.setTimeout(collectIfNeeded, 1000);
+    collectIfNeededTimeout = window.setTimeout(collectPageDetailsIfNeeded, 1000);
   }
 
-  function collect() {
+  // TODO: Consider name refactor: requestPageDetailsCollection
+  /** *
+   * Tell the background script to collect the page details.
+   * */
+  function collectPageDetails() {
     sendPlatformMessage({
       command: "bgCollectPageDetails",
       sender: "notificationBar",
     });
   }
+
+  //#endregion Page Detail Collection Methods
 
   function watchForms(forms: any[]) {
     if (forms == null || forms.length === 0) {
