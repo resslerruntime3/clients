@@ -4,7 +4,8 @@ import ChangePasswordRuntimeMessage from "../../background/models/changePassword
 /**
  * @fileoverview This file contains the code for the Bitwarden Notification Bar
  * The notification bar is used to notify logged in users that they can
- * save a login or change a password.
+ * save a new login, change a existing password on a password change screen,
+ * or update an existing login after detecting a different password on login.
  */
 
 /*
@@ -16,6 +17,12 @@ import ChangePasswordRuntimeMessage from "../../background/models/changePassword
  * and async scripts to finish loading.
  * https://developer.mozilla.org/en-US/docs/Web/API/Window/DOMContentLoaded_event
  */
+
+// TODO: Recommendations:
+// (1) Move small helper functions into a separate file and import them to reduce the size of this file.
+
+// TODO: How long does it take to execute full getPageDetails process to be ready to open the notification bar?
+// i.e., Investigate if nested setTimeouts are causing issues in terms of missing form inputs
 
 document.addEventListener("DOMContentLoaded", (event) => {
   // Do not show the notification bar on the Bitwarden vault
@@ -108,7 +115,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     if (!disabledAddLoginNotification || !disabledChangedPasswordNotification) {
       // If the user has not disabled both notifications, then collect the page details after a timeout
-      // TODO: figure out why a timeout would be needed here if the page is already loaded
+      // The timeout is used to allow more time for the page to load before collecting the page details
+      // as there are some cases where SPAs do not load the entire page on initial load, so we need to wait
       collectPageDetailsIfNeededWithTimeout();
     }
   });
@@ -124,7 +132,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   });
 
   /**
-   * @description Processes messages received from the background script via the `chrome.runtime.onMessage` event.
+   * Processes messages received from the background script via the `chrome.runtime.onMessage` event.
    * @param {Object} msg - The received message.
    * @param {Function} sendResponse - The function used to send a response back to the background script.
    * @returns {boolean} - Returns `true` if a response was sent, `false` otherwise.
@@ -152,53 +160,72 @@ document.addEventListener("DOMContentLoaded", (event) => {
       sendResponse();
       return true;
     } else if (msg.command === "notificationBarPageDetails") {
+      // TODO: why do we not also check for inIframe here? Ask Kyle
+      // See method collectPageDetails() for full itinerary that ends up here
       pageDetails.push(msg.data.details);
       watchForms(msg.data.forms);
       sendResponse();
       return true;
     }
+    // TODO: could sendResponse() and return true be called here to reduce repetition?
+    // only return true and send response when we have a matching command
   }
   //#endregion Message Processing
 
-  function isInIframe() {
-    try {
-      return window.self !== window.top;
-    } catch {
-      return true;
-    }
-  }
-
+  /**
+   * Observe the DOM for changes and collect page details if the DOM changes.
+   */
   function observeDom() {
     const bodies = document.querySelectorAll("body");
     if (bodies && bodies.length > 0) {
-      observer = new MutationObserver((mutations) => {
+      observer = new MutationObserver((mutations: MutationRecord[]) => {
+        // If mutations are not found, or the page href has changed, return
         if (mutations == null || mutations.length === 0 || pageHref !== window.location.href) {
           return;
         }
 
-        let doCollect = false;
+        let doCollectPageDetails = false;
+
         for (let i = 0; i < mutations.length; i++) {
-          const mutation = mutations[i];
+          const mutation: MutationRecord = mutations[i];
+
+          // If there are no added nodes, continue to next mutation
           if (mutation.addedNodes == null || mutation.addedNodes.length === 0) {
             continue;
           }
 
           for (let j = 0; j < mutation.addedNodes.length; j++) {
+            // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement
             const addedNode: any = mutation.addedNodes[j];
+
+            // If the added node is null, continue to next added node
             if (addedNode == null) {
               continue;
             }
 
+            // Get the lowercase tag name of the added node (if it exists)
             const tagName = addedNode.tagName != null ? addedNode.tagName.toLowerCase() : null;
+
+            // If tag name exists & is a form &
+            // (either the dataset is null or it does not have the custom data attribute: "data-bitwarden-watching"),
+            // then collect page details and break
+            // Note: The dataset read-only property of the HTMLElement interface provides
+            // read/write access to custom data attributes (data-*) on elements
+            // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset
             if (
               tagName != null &&
               tagName === "form" &&
               (addedNode.dataset == null || !addedNode.dataset.bitwardenWatching)
             ) {
-              doCollect = true;
+              doCollectPageDetails = true;
               break;
             }
 
+            // If tag name exists & is in the observeIgnoredElements set
+            // or if the added node does not have the querySelectorAll method, continue to next added node
+            // Note: querySelectorAll(...) exists on the Element & Document interfaces
+            // It doesn't exist for nodes that are not elements, such as text nodes
+            // Text Node examples: https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeName#example
             if (
               (tagName != null && observeIgnoredElements.has(tagName)) ||
               addedNode.querySelectorAll == null
@@ -206,27 +233,32 @@ document.addEventListener("DOMContentLoaded", (event) => {
               continue;
             }
 
+            // If the added node has any descendent form elements that are not yet being watched, collect page details and break
             const forms = addedNode.querySelectorAll("form:not([data-bitwarden-watching])");
             if (forms != null && forms.length > 0) {
-              doCollect = true;
+              doCollectPageDetails = true;
               break;
             }
           }
 
-          if (doCollect) {
+          if (doCollectPageDetails) {
             break;
           }
         }
 
-        if (doCollect) {
+        // If page details need to be collected, clear any existing timeout and schedule a new one
+        if (doCollectPageDetails) {
           if (domObservationCollectTimeout != null) {
             window.clearTimeout(domObservationCollectTimeout);
           }
 
+          // The timeout is used to avoid collecting page details too often while also
+          // giving the DOM time to settle down after a change (ex: multi-part forms being rendered)
           domObservationCollectTimeout = window.setTimeout(collectPageDetails, 1000);
         }
       });
 
+      // Watch all mutations to the body element and all of its children & descendants
       observer.observe(bodies[0], { childList: true, subtree: true });
     }
   }
@@ -248,7 +280,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
    * and schedules a call to itself again in 1 second.
    */
   function collectPageDetailsIfNeeded() {
-    // Any time the page changes, we need to collect the page details again
+    // On first load or any time the page changes, we need to collect the page details
     if (pageHref !== window.location.href) {
       // update href
       pageHref = window.location.href;
@@ -263,6 +295,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
       if (observeDomTimeout != null) {
         window.clearTimeout(observeDomTimeout);
       }
+      // Start observing the DOM
+      // TODO: why 1 second delay here?
       observeDomTimeout = window.setTimeout(observeDom, 1000);
     }
 
@@ -274,9 +308,23 @@ document.addEventListener("DOMContentLoaded", (event) => {
     collectIfNeededTimeout = window.setTimeout(collectPageDetailsIfNeeded, 1000);
   }
 
-  // TODO: Consider name refactor: requestPageDetailsCollection
   /** *
    * Tell the background script to collect the page details.
+   *
+   * (1) Sends a message with command `bgCollectPageDetails` to `runtime.background.ts : processMessage(...)`
+   *
+   * (2) `runtime.background.ts : processMessage(...)` calls
+   * `main.background.ts : collectPageDetailsForContentScript`
+   *
+   * (3) `main.background.ts : collectPageDetailsForContentScript`
+   * sends a message with command `collectPageDetails` to the `autofill.js` content script
+   *
+   * (4) `autofill.js` content script runs a `collect(document)` method.
+   * The result is sent via message with command `collectPageDetailsResponse` to `notification.background.ts : processMessage(...)`
+   *
+   * (5) `notification.background.ts : processMessage(...)` gathers forms with password fields and passes them and the page details
+   * via message with command `notificationBarPageDetails` back to the `processMessages` method in this content script.
+   *
    * */
   function collectPageDetails() {
     sendPlatformMessage({
@@ -566,6 +614,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }, 500);
   }
 
+  //#region Notification Bar Functions (open, close, height adjustment, etc.)
   function closeExistingAndOpenBar(type: string, typeData: any) {
     const barQueryParams = {
       type,
@@ -661,8 +710,20 @@ document.addEventListener("DOMContentLoaded", (event) => {
       el.style.height = heightStyle;
     }
   }
+  //#endregion Notification Bar Functions (open, close, height adjustment, etc.)
 
+  //#region Helper Functions
   function sendPlatformMessage(msg: any) {
     chrome.runtime.sendMessage(msg);
   }
+
+  // TODO: don't we already have a function for this elsewhere?
+  function isInIframe() {
+    try {
+      return window.self !== window.top;
+    } catch {
+      return true;
+    }
+  }
+  //#endregion Helper Functions
 });
