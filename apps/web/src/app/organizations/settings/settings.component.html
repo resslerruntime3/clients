@@ -8,7 +8,7 @@
             routerLink="account"
             class="list-group-item"
             routerLinkActive="active"
-            *ngIf="organization?.isOwner"
+            *ngIf="(organization$ | async)?.isOwner"
           >
             {{ "organizationInfo" | i18n }}
           </a>
@@ -16,7 +16,7 @@
             routerLink="policies"
             class="list-group-item"
             routerLinkActive="active"
-            *ngIf="organization?.canManagePolicies"
+            *ngIf="(organization$ | async)?.canManagePolicies"
           >
             {{ "policies" | i18n }}
           </a>
@@ -24,7 +24,7 @@
             routerLink="two-factor"
             class="list-group-item"
             routerLinkActive="active"
-            *ngIf="organization?.use2fa && organization?.isOwner"
+            *ngIf="(organization$ | async)?.use2fa && (organization$ | async)?.isOwner"
           >
             {{ "twoStepLogin" | i18n }}
           </a>
@@ -32,7 +32,7 @@
             routerLink="tools/import"
             class="list-group-item"
             routerLinkActive="active"
-            *ngIf="organization?.canAccessImportExport"
+            *ngIf="(organization$ | async)?.canAccessImportExport"
           >
             {{ "importData" | i18n }}
           </a>
@@ -40,7 +40,7 @@
             routerLink="tools/export"
             class="list-group-item"
             routerLinkActive="active"
-            *ngIf="organization?.canAccessImportExport"
+            *ngIf="(organization$ | async)?.canAccessImportExport"
           >
             {{ "exportVault" | i18n }}
           </a>
@@ -48,7 +48,7 @@
             routerLink="sso"
             class="list-group-item"
             routerLinkActive="active"
-            *ngIf="organization?.canManageSso"
+            *ngIf="(organization$ | async)?.canManageSso"
           >
             {{ "singleSignOn" | i18n }}
           </a>
@@ -56,7 +56,7 @@
             routerLink="scim"
             class="list-group-item"
             routerLinkActive="active"
-            *ngIf="organization?.canManageScim"
+            *ngIf="(organization$ | async)?.canManageScim"
           >
             {{ "scim" | i18n }}
           </a>
