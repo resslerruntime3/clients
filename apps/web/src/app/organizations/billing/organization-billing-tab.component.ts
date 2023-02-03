@@ -10,7 +10,7 @@ import { PlatformUtilsService } from "@bitwarden/common/abstractions/platformUti
   templateUrl: "organization-billing-tab.component.html",
 })
 export class OrganizationBillingTabComponent implements OnInit {
-  showPaymentAndHistory: Observable<boolean>;
+  showPaymentAndHistory$: Observable<boolean>;
 
   constructor(
     private route: ActivatedRoute,
@@ -19,7 +19,7 @@ export class OrganizationBillingTabComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.showPaymentAndHistory = combineLatest(
+    this.showPaymentAndHistory$ = combineLatest(
       [this.route.params, this.organizationService.organizations$],
       (params, orgs) => {
         const organization = orgs.find((o) => o.id === params.organizationId);
