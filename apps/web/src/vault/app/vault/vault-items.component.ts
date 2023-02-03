@@ -456,7 +456,7 @@ export class VaultItemsComponent extends BaseVaultItemsComponent implements OnDe
   navigateCollection(node: TreeNode<CollectionFilter>) {
     const filter = this.activeFilter;
     filter.selectedCollectionNode = node;
-    this.activeFilterChanged.emit(filter);
+    // this.activeFilterChanged.emit(filter);
   }
 
   checkAll(select: boolean) {
