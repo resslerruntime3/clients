@@ -1,16 +1,6 @@
 import { OrganizationConnectionType } from "../enums/organizationConnectionType";
 import { SetKeyConnectorKeyRequest } from "../models/request/account/set-key-connector-key.request";
-import { AttachmentRequest } from "../models/request/attachment.request";
 import { BitPayInvoiceRequest } from "../models/request/bit-pay-invoice.request";
-import { CipherBulkDeleteRequest } from "../models/request/cipher-bulk-delete.request";
-import { CipherBulkMoveRequest } from "../models/request/cipher-bulk-move.request";
-import { CipherBulkRestoreRequest } from "../models/request/cipher-bulk-restore.request";
-import { CipherBulkShareRequest } from "../models/request/cipher-bulk-share.request";
-import { CipherCollectionsRequest } from "../models/request/cipher-collections.request";
-import { CipherCreateRequest } from "../models/request/cipher-create.request";
-import { CipherPartialRequest } from "../models/request/cipher-partial.request";
-import { CipherShareRequest } from "../models/request/cipher-share.request";
-import { CipherRequest } from "../models/request/cipher.request";
 import { CollectionBulkDeleteRequest } from "../models/request/collection-bulk-delete.request";
 import { CollectionRequest } from "../models/request/collection.request";
 import { DeleteRecoverRequest } from "../models/request/delete-recover.request";
@@ -27,8 +17,6 @@ import { IapCheckRequest } from "../models/request/iap-check.request";
 import { PasswordTokenRequest } from "../models/request/identity-token/password-token.request";
 import { SsoTokenRequest } from "../models/request/identity-token/sso-token.request";
 import { UserApiTokenRequest } from "../models/request/identity-token/user-api-token.request";
-import { ImportCiphersRequest } from "../models/request/import-ciphers.request";
-import { ImportOrganizationCiphersRequest } from "../models/request/import-organization-ciphers.request";
 import { KdfRequest } from "../models/request/kdf.request";
 import { KeyConnectorUserKeyRequest } from "../models/request/key-connector-user-key.request";
 import { KeysRequest } from "../models/request/keys.request";
@@ -76,14 +64,11 @@ import { UpdateTwoFactorYubioOtpRequest } from "../models/request/update-two-fac
 import { VerifyDeleteRecoverRequest } from "../models/request/verify-delete-recover.request";
 import { VerifyEmailRequest } from "../models/request/verify-email.request";
 import { ApiKeyResponse } from "../models/response/api-key.response";
-import { AttachmentUploadDataResponse } from "../models/response/attachment-upload-data.response";
-import { AttachmentResponse } from "../models/response/attachment.response";
 import { AuthRequestResponse } from "../models/response/auth-request.response";
 import { RegisterResponse } from "../models/response/authentication/register.response";
 import { BillingHistoryResponse } from "../models/response/billing-history.response";
 import { BillingPaymentResponse } from "../models/response/billing-payment.response";
 import { BreachAccountResponse } from "../models/response/breach-account.response";
-import { CipherResponse } from "../models/response/cipher.response";
 import {
   CollectionAccessDetailsResponse,
   CollectionResponse,
@@ -131,7 +116,6 @@ import { SendFileUploadDataResponse } from "../models/response/send-file-upload-
 import { SendResponse } from "../models/response/send.response";
 import { SsoPreValidateResponse } from "../models/response/sso-pre-validate.response";
 import { SubscriptionResponse } from "../models/response/subscription.response";
-import { SyncResponse } from "../models/response/sync.response";
 import { TaxInfoResponse } from "../models/response/tax-info.response";
 import { TaxRateResponse } from "../models/response/tax-rate.response";
 import { TwoFactorAuthenticatorResponse } from "../models/response/two-factor-authenticator.response";
@@ -146,6 +130,20 @@ import {
 import { TwoFactorYubiKeyResponse } from "../models/response/two-factor-yubi-key.response";
 import { UserKeyResponse } from "../models/response/user-key.response";
 import { SendAccessView } from "../models/view/send-access.view";
+import { AttachmentRequest } from "../vault/models/request/attachment.request";
+import { CipherBulkDeleteRequest } from "../vault/models/request/cipher-bulk-delete.request";
+import { CipherBulkMoveRequest } from "../vault/models/request/cipher-bulk-move.request";
+import { CipherBulkRestoreRequest } from "../vault/models/request/cipher-bulk-restore.request";
+import { CipherBulkShareRequest } from "../vault/models/request/cipher-bulk-share.request";
+import { CipherCollectionsRequest } from "../vault/models/request/cipher-collections.request";
+import { CipherCreateRequest } from "../vault/models/request/cipher-create.request";
+import { CipherPartialRequest } from "../vault/models/request/cipher-partial.request";
+import { CipherShareRequest } from "../vault/models/request/cipher-share.request";
+import { CipherRequest } from "../vault/models/request/cipher.request";
+import { AttachmentUploadDataResponse } from "../vault/models/response/attachment-upload-data.response";
+import { AttachmentResponse } from "../vault/models/response/attachment.response";
+import { CipherResponse } from "../vault/models/response/cipher.response";
+import { SyncResponse } from "../vault/models/response/sync.response";
 
 /**
  * @deprecated The `ApiService` class is deprecated and calls should be extracted into individual
@@ -260,11 +258,6 @@ export abstract class ApiService {
   putCipherCollections: (id: string, request: CipherCollectionsRequest) => Promise<any>;
   putCipherCollectionsAdmin: (id: string, request: CipherCollectionsRequest) => Promise<any>;
   postPurgeCiphers: (request: SecretVerificationRequest, organizationId?: string) => Promise<any>;
-  postImportCiphers: (request: ImportCiphersRequest) => Promise<any>;
-  postImportOrganizationCiphers: (
-    organizationId: string,
-    request: ImportOrganizationCiphersRequest
-  ) => Promise<any>;
   putDeleteCipher: (id: string) => Promise<any>;
   putDeleteCipherAdmin: (id: string) => Promise<any>;
   putDeleteManyCiphers: (request: CipherBulkDeleteRequest) => Promise<any>;

@@ -133,6 +133,9 @@
   "ms": {
     "message": "Пані"
   },
+  "mx": {
+    "message": "Mx"
+  },
   "dr": {
     "message": "Доктар"
   },
@@ -305,6 +308,9 @@
   "searchMembers": {
     "message": "Search members"
   },
+  "searchGroups": {
+    "message": "Search groups"
+  },
   "allItems": {
     "message": "Усе элементы"
   },
@@ -399,7 +405,8 @@
     "message": "Прагледзець элемент"
   },
   "new": {
-    "message": "Новы"
+    "message": "Новы",
+    "description": "for adding new items"
   },
   "item": {
     "message": "Item"
@@ -1149,6 +1156,19 @@
         "example": "50,000"
       }
     }
+  },
+  "kdfMemory": {
+    "message": "KDF memory (MB)",
+    "description": "Memory refers to computer memory (RAM). MB is short for megabytes."
+  },
+  "argon2Warning": {
+    "message": "Setting your KDF iterations, memory, and parallelism too high could result in poor performance when logging into (and unlocking) Bitwarden on slower or older devices. We recommend changing these individually in small increments and then test all of your devices."
+  },
+  "kdfParallelism": {
+    "message": "KDF parallelism"
+  },
+  "argon2Desc": {
+    "message": "Higher KDF iterations, memory, and parallelism can help protect your master password from being brute forced by an attacker."
   },
   "changeKdf": {
     "message": "Змяніць KDF"
@@ -2037,6 +2057,9 @@
   "manageSubscription": {
     "message": "Кіраванне падпіскай"
   },
+  "launchCloudSubscription": {
+    "message": "Launch Cloud Subscription"
+  },
   "storage": {
     "message": "Сховішча"
   },
@@ -2488,6 +2511,15 @@
   },
   "editMember": {
     "message": "Edit member"
+  },
+  "fieldOnTabRequiresAttention": {
+    "message": "A field on the '$TAB$' tab requires your attention.",
+    "placeholders": {
+      "tab": {
+        "content": "$1",
+        "example": "Collection info"
+      }
+    }
   },
   "inviteUserDesc": {
     "message": "Запрасіць новага карыстальніка ў вашу арганізацыю, увёўшы яго электронную пошту ўліковага запісу Bitwarden. Калі ён не мае ўліковага запісу, то ён атрымае запыт на яго стварэнне."
@@ -5209,9 +5241,6 @@
   "billingSyncApiKeyRotated": {
     "message": "Токен зменены."
   },
-  "billingSync": {
-    "message": "Плацежная сінхранізацыя"
-  },
   "billingSyncDesc": {
     "message": "Плацежная сінхранізацыя дае магчымасць удзельнікам атрымаць бясплатны тарыфны план Bitwarden Families і пашыраныя магчымасці выстаўлення рахункаў звязваючы ваш уласны сервер Bitwarden з воблачным серверам нашай кампаніі."
   },
@@ -5262,6 +5291,15 @@
   },
   "required": {
     "message": "патрабуецца"
+  },
+  "characterMaximum": {
+    "message": "$MAX$ character maximum",
+    "placeholders": {
+      "max": {
+        "content": "$1",
+        "example": "100"
+      }
+    }
   },
   "idpSingleSignOnServiceUrlRequired": {
     "message": "Патрабуецца, калі ідэнтыфікатар аб'екта не з'яўляецца URL-адрасам."
@@ -5548,6 +5586,18 @@
       }
     }
   },
+  "multipleInputEmails": {
+    "message": "1 or more emails are invalid"
+  },
+  "tooManyEmails": {
+    "message": "You can only submit up to $COUNT$ emails at a time",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "20"
+      }
+    }
+  },
   "fieldsNeedAttention": {
     "message": "$COUNT$ полі(-ёў) вышэй патрабуе вашай увагі.",
     "placeholders": {
@@ -5807,7 +5857,7 @@
     "placeholders": {
       "confirm": {
         "content": "$1",
-        "example": "Delete 3 Projects"
+        "example": "Delete 3 projects"
       }
     }
   },
@@ -6053,5 +6103,56 @@
         "example": "2"
       }
     }
+  },
+  "licenseAndBillingManagement": {
+    "message": "License and billing management"
+  },
+  "automaticSync": {
+    "message": "Automatic sync"
+  },
+  "manualUpload": {
+    "message": "Manual upload"
+  },
+  "manualUploadDesc": {
+    "message": "If you do not want to opt into billing sync, manually upload your license here."
+  },
+  "syncLicense": {
+    "message": "Sync license"
+  },
+  "licenseSyncSuccess": {
+    "message": "Successfully synced license"
+  },
+  "licenseUploadSuccess": {
+    "message": "Successfully uploaded license"
+  },
+  "lastLicenseSync": {
+    "message": "Last license sync"
+  },
+  "billingSyncHelp": {
+    "message": "Billing Sync help"
+  },
+  "uploadLicense": {
+    "message": "Upload license"
+  },
+  "lowKdfIterations": {
+    "message": "Low KDF Iterations"
+  },
+  "lowKdfIterationsDesc": {
+    "message": "Increase your KDF encryption settings to improve the security of your account."
+  },
+  "changeKdfSettings": {
+    "message": "Change KDF settings"
+  },
+  "changeKdfLoggedOutWarning": {
+    "message": "Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour. We recommend exporting your vault before changing your encryption settings to prevent data loss."
+  },
+  "secretsManagerBeta": {
+    "message": "Secrets Manager Beta"
+  },
+  "secretsManagerBetaDesc": {
+    "message": "Enable user access to the Secrets Manager at no charge during the Beta program."
+  },
+  "userAccessSecretsManager": {
+    "message": "This user can access the Secrets Manager Beta"
   }
 }

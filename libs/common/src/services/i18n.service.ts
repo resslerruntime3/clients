@@ -3,10 +3,11 @@ import { Observable, ReplaySubject } from "rxjs";
 import { I18nService as I18nServiceAbstraction } from "../abstractions/i18n.service";
 
 export class I18nService implements I18nServiceAbstraction {
-  private _locale = new ReplaySubject<string>(1);
+  protected _locale = new ReplaySubject<string>(1);
   locale$: Observable<string> = this._locale.asObservable();
   // First locale is the default (English)
   supportedTranslationLocales: string[] = ["en"];
+  defaultLocale = "en";
   translationLocale: string;
   collator: Intl.Collator;
   localeNames = new Map<string, string>([
@@ -106,14 +107,14 @@ export class I18nService implements I18nServiceAbstraction {
       this.translationLocale = this.translationLocale.slice(0, 2);
 
       if (this.supportedTranslationLocales.indexOf(this.translationLocale) === -1) {
-        this.translationLocale = this.supportedTranslationLocales[0];
+        this.translationLocale = this.defaultLocale;
       }
     }
 
     if (this.localesDirectory != null) {
       await this.loadMessages(this.translationLocale, this.localeMessages);
-      if (this.translationLocale !== this.supportedTranslationLocales[0]) {
-        await this.loadMessages(this.supportedTranslationLocales[0], this.defaultMessages);
+      if (this.translationLocale !== this.defaultLocale) {
+        await this.loadMessages(this.defaultLocale, this.defaultMessages);
       }
     }
   }

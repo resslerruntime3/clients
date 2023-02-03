@@ -8,31 +8,25 @@ import {
   ViewContainerRef,
 } from "@angular/core";
 import { ActivatedRoute, Params, Router } from "@angular/router";
-import { combineLatest, firstValueFrom, lastValueFrom, Subject } from "rxjs";
+import { combineLatest, firstValueFrom, Subject } from "rxjs";
 import { first, switchMap, takeUntil } from "rxjs/operators";
 
 import { ModalService } from "@bitwarden/angular/services/modal.service";
 import { BroadcasterService } from "@bitwarden/common/abstractions/broadcaster.service";
-import { CipherService } from "@bitwarden/common/abstractions/cipher.service";
 import { I18nService } from "@bitwarden/common/abstractions/i18n.service";
 import { MessagingService } from "@bitwarden/common/abstractions/messaging.service";
 import { OrganizationService } from "@bitwarden/common/abstractions/organization/organization.service.abstraction";
-import { PasswordRepromptService } from "@bitwarden/common/abstractions/passwordReprompt.service";
 import { PlatformUtilsService } from "@bitwarden/common/abstractions/platformUtils.service";
-import { SyncService } from "@bitwarden/common/abstractions/sync/sync.service.abstraction";
 import { Organization } from "@bitwarden/common/models/domain/organization";
-import { TreeNode } from "@bitwarden/common/models/domain/tree-node";
-import { CipherView } from "@bitwarden/common/models/view/cipher.view";
+import { CipherService } from "@bitwarden/common/vault/abstractions/cipher.service";
+import { PasswordRepromptService } from "@bitwarden/common/vault/abstractions/password-reprompt.service";
+import { SyncService } from "@bitwarden/common/vault/abstractions/sync/sync.service.abstraction";
+import { CipherView } from "@bitwarden/common/vault/models/view/cipher.view";
 import { DialogService } from "@bitwarden/components";
 
-import { VaultFilterService } from "../../vault/vault-filter/services/abstractions/vault-filter.service";
-import { VaultFilter } from "../../vault/vault-filter/shared/models/vault-filter.model";
-import { CollectionFilter } from "../../vault/vault-filter/shared/models/vault-filter.type";
+import { VaultFilterService } from "../../../vault/app/vault/vault-filter/services/abstractions/vault-filter.service";
+import { VaultFilter } from "../../../vault/app/vault/vault-filter/shared/models/vault-filter.model";
 import { EntityEventsComponent } from "../manage/entity-events.component";
-import {
-  CollectionDialogResult,
-  openCollectionDialog,
-} from "../shared/components/collection-dialog";
 
 import { AddEditComponent } from "./add-edit.component";
 import { AttachmentsComponent } from "./attachments.component";
@@ -100,7 +94,7 @@ export class VaultComponent implements OnInit, OnDestroy {
     // verifies that the organization has been set
     combineLatest([this.route.queryParams, this.route.parent.params])
       .pipe(
-        switchMap(async ([qParams, params]) => {
+        switchMap(async ([qParams]) => {
           const cipherId = getCipherIdFromParams(qParams);
           if (!cipherId) {
             return;
@@ -163,24 +157,15 @@ export class VaultComponent implements OnInit, OnDestroy {
     this.go();
   }
 
+  async refreshItems() {
+    this.vaultItemsComponent.actionPromise = this.vaultItemsComponent.refresh();
+    await this.vaultItemsComponent.actionPromise;
+    this.vaultItemsComponent.actionPromise = null;
+  }
+
   filterSearchText(searchText: string) {
     this.vaultItemsComponent.searchText = searchText;
     this.vaultItemsComponent.search(200);
-  }
-
-  async addCollection() {
-    const dialog = openCollectionDialog(this.dialogService, {
-      data: {
-        organizationId: this.organization?.id,
-        parentCollectionId: this.activeFilter.collectionId,
-      },
-    });
-    const result = await lastValueFrom(dialog.closed);
-    if (result === CollectionDialogResult.Saved || result === CollectionDialogResult.Deleted) {
-      this.vaultItemsComponent.actionPromise = this.vaultItemsComponent.refresh();
-      await this.vaultItemsComponent.actionPromise;
-      this.vaultItemsComponent.actionPromise = null;
-    }
   }
 
   async editCipherAttachments(cipher: CipherView) {
@@ -242,6 +227,10 @@ export class VaultComponent implements OnInit, OnDestroy {
     if (this.activeFilter.collectionId) {
       component.collectionIds = [this.activeFilter.collectionId];
     }
+  }
+
+  async navigateToCipher(cipher: CipherView) {
+    this.go({ itemId: cipher?.id });
   }
 
   async editCipher(cipher: CipherView) {
@@ -306,26 +295,6 @@ export class VaultComponent implements OnInit, OnDestroy {
       comp.showUser = true;
       comp.entity = "cipher";
     });
-  }
-
-  get breadcrumbs(): TreeNode<CollectionFilter>[] {
-    if (!this.activeFilter.selectedCollectionNode) {
-      return [];
-    }
-
-    const collections = [this.activeFilter.selectedCollectionNode];
-    while (collections[collections.length - 1].parent != undefined) {
-      collections.push(collections[collections.length - 1].parent);
-    }
-
-    return collections.map((c) => c).reverse();
-  }
-
-  protected applyCollectionFilter(collection: TreeNode<CollectionFilter>) {
-    const filter = this.activeFilter;
-    filter.resetFilter();
-    filter.selectedCollectionNode = collection;
-    this.applyVaultFilter(filter);
   }
 
   private go(queryParams: any = null) {

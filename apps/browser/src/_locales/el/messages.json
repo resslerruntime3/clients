@@ -960,7 +960,10 @@
     "message": "Εάν εντοπιστεί μια φόρμα σύνδεσης, πραγματοποιείται αυτόματα μια αυτόματη συμπλήρωση όταν φορτώνεται η ιστοσελίδα."
   },
   "experimentalFeature": {
-    "message": "Αυτή είναι μια πειραματική λειτουργία. Χρησιμοποιήστε το με δική σας ευθύνη."
+    "message": "Compromised or untrusted websites can exploit auto-fill on page load."
+  },
+  "learnMoreAboutAutofill": {
+    "message": "Learn more about auto-fill"
   },
   "defaultAutoFillOnPageLoad": {
     "message": "Προεπιλεγμένη ρύθμιση αυτόματης συμπλήρωσης για στοιχεία σύνδεσης"
@@ -1122,6 +1125,9 @@
   },
   "dr": {
     "message": "Dr"
+  },
+  "mx": {
+    "message": "Mx"
   },
   "firstName": {
     "message": "Όνομα"
@@ -2009,7 +2015,7 @@
     "message": "Αυτο-φιλοξενείται"
   },
   "thirdParty": {
-    "message": "Third-party"
+    "message": "Τρίτο μέρος"
   },
   "thirdPartyServerMessage": {
     "message": "Συνδέθηκε με υλοποίηση διακομιστή τρίτων, $SERVERNAME$. Παρακαλώ επαληθεύστε τα σφάλματα χρησιμοποιώντας τον επίσημο διακομιστή, ή αναφέρετε τα στον διακομιστή τρίτων.",
@@ -2043,5 +2049,35 @@
   },
   "rememberEmail": {
     "message": "Απομνημόνευση email"
+  },
+  "exposedMasterPassword": {
+    "message": "Exposed Master Password"
+  },
+  "exposedMasterPasswordDesc": {
+    "message": "Password found in a data breach. Use a unique password to protect your account. Are you sure you want to use an exposed password?"
+  },
+  "weakAndExposedMasterPassword": {
+    "message": "Weak and Exposed Master Password"
+  },
+  "weakAndBreachedMasterPasswordDesc": {
+    "message": "Weak password identified and found in a data breach. Use a strong and unique password to protect your account. Are you sure you want to use this password?"
+  },
+  "checkForBreaches": {
+    "message": "Check known data breaches for this password"
+  },
+  "important": {
+    "message": "Important:"
+  },
+  "masterPasswordHint": {
+    "message": "Your master password cannot be recovered if you forget it!"
+  },
+  "characterMinimum": {
+    "message": "$LENGTH$ character minimum",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
   }
 }

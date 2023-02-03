@@ -1,5 +1,13 @@
 import { NgModule } from "@angular/core";
 
+import { PasswordRepromptComponent } from "../../../src/vault/app/components/password-reprompt.component";
+import { PremiumBadgeComponent } from "../../vault/app/components/premium-badge.component";
+import { AddEditCustomFieldsComponent } from "../../vault/app/vault/add-edit-custom-fields.component";
+import { AddEditComponent } from "../../vault/app/vault/add-edit.component";
+import { AttachmentsComponent } from "../../vault/app/vault/attachments.component";
+import { CollectionsComponent } from "../../vault/app/vault/collections.component";
+import { FolderAddEditComponent } from "../../vault/app/vault/folder-add-edit.component";
+import { ShareComponent } from "../../vault/app/vault/share.component";
 import { AcceptEmergencyComponent } from "../accounts/accept-emergency.component";
 import { AcceptOrganizationComponent } from "../accounts/accept-organization.component";
 import { HintComponent } from "../accounts/hint.component";
@@ -18,8 +26,6 @@ import { VerifyEmailTokenComponent } from "../accounts/verify-email-token.compon
 import { VerifyRecoverDeleteComponent } from "../accounts/verify-recover-delete.component";
 import { DynamicAvatarComponent } from "../components/dynamic-avatar.component";
 import { OrganizationSwitcherComponent } from "../components/organization-switcher.component";
-import { PasswordRepromptComponent } from "../components/password-reprompt.component";
-import { PremiumBadgeComponent } from "../components/premium-badge.component";
 import { SelectableAvatarComponent } from "../components/selectable-avatar.component";
 import { UserVerificationPromptComponent } from "../components/user-verification-prompt.component";
 import { UserVerificationComponent } from "../components/user-verification.component";
@@ -74,6 +80,7 @@ import { EmergencyAccessTakeoverComponent } from "../settings/emergency-access-t
 import { EmergencyAccessViewComponent } from "../settings/emergency-access-view.component";
 import { EmergencyAccessComponent } from "../settings/emergency-access.component";
 import { EmergencyAddEditComponent } from "../settings/emergency-add-edit.component";
+import { LowKdfComponent } from "../settings/low-kdf.component";
 import { OrganizationPlansComponent } from "../settings/organization-plans.component";
 import { PaymentMethodComponent } from "../settings/payment-method.component";
 import { PaymentComponent } from "../settings/payment.component";
@@ -104,12 +111,6 @@ import { VerifyEmailComponent } from "../settings/verify-email.component";
 import { GeneratorComponent } from "../tools/generator.component";
 import { PasswordGeneratorHistoryComponent } from "../tools/password-generator-history.component";
 import { ToolsComponent } from "../tools/tools.component";
-import { AddEditCustomFieldsComponent } from "../vault/add-edit-custom-fields.component";
-import { AddEditComponent } from "../vault/add-edit.component";
-import { AttachmentsComponent } from "../vault/attachments.component";
-import { CollectionsComponent } from "../vault/collections.component";
-import { FolderAddEditComponent } from "../vault/folder-add-edit.component";
-import { ShareComponent } from "../vault/share.component";
 
 import { SharedModule } from "./shared.module";
 
@@ -227,6 +228,7 @@ import { SharedModule } from "./shared.module";
     VerifyEmailComponent,
     VerifyEmailTokenComponent,
     VerifyRecoverDeleteComponent,
+    LowKdfComponent,
   ],
   exports: [
     PremiumBadgeComponent,
@@ -335,6 +337,7 @@ import { SharedModule } from "./shared.module";
     VerifyEmailComponent,
     VerifyEmailTokenComponent,
     VerifyRecoverDeleteComponent,
+    LowKdfComponent,
   ],
 })
 export class LooseComponentsModule {}

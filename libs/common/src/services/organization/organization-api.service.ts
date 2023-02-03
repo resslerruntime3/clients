@@ -1,6 +1,5 @@
 import { ApiService } from "../../abstractions/api.service";
 import { OrganizationApiServiceAbstraction } from "../../abstractions/organization/organization-api.service.abstraction";
-import { SyncService } from "../../abstractions/sync/sync.service.abstraction";
 import { OrganizationApiKeyType } from "../../enums/organizationApiKeyType";
 import { ImportDirectoryRequest } from "../../models/request/import-directory.request";
 import { OrganizationApiKeyRequest } from "../../models/request/organization-api-key.request";
@@ -27,6 +26,7 @@ import { OrganizationResponse } from "../../models/response/organization.respons
 import { OrganizationSsoResponse } from "../../models/response/organization/organization-sso.response";
 import { PaymentResponse } from "../../models/response/payment.response";
 import { TaxInfoResponse } from "../../models/response/tax-info.response";
+import { SyncService } from "../../vault/abstractions/sync/sync.service.abstraction";
 
 export class OrganizationApiService implements OrganizationApiServiceAbstraction {
   constructor(private apiService: ApiService, private syncService: SyncService) {}
@@ -87,7 +87,13 @@ export class OrganizationApiService implements OrganizationApiServiceAbstraction
   }
 
   async createLicense(data: FormData): Promise<OrganizationResponse> {
-    const r = await this.apiService.send("POST", "/organizations/license", data, true, true);
+    const r = await this.apiService.send(
+      "POST",
+      "/organizations/licenses/self-hosted",
+      data,
+      true,
+      true
+    );
     return new OrganizationResponse(r);
   }
 
@@ -177,7 +183,13 @@ export class OrganizationApiService implements OrganizationApiServiceAbstraction
   }
 
   async updateLicense(id: string, data: FormData): Promise<void> {
-    await this.apiService.send("POST", "/organizations/" + id + "/license", data, true, false);
+    await this.apiService.send(
+      "POST",
+      "/organizations/licenses/self-hosted/" + id,
+      data,
+      true,
+      false
+    );
   }
 
   async importDirectory(organizationId: string, request: ImportDirectoryRequest): Promise<void> {
@@ -269,5 +281,15 @@ export class OrganizationApiService implements OrganizationApiServiceAbstraction
     );
     // Not broadcasting anything because data on this response doesn't correspond to `Organization`
     return new OrganizationSsoResponse(r);
+  }
+
+  async selfHostedSyncLicense(id: string) {
+    await this.apiService.send(
+      "POST",
+      "/organizations/licenses/self-hosted/" + id + "/sync/",
+      null,
+      true,
+      false
+    );
   }
 }

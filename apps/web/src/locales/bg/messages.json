@@ -133,6 +133,9 @@
   "ms": {
     "message": "Г-жа"
   },
+  "mx": {
+    "message": "Mx"
+  },
   "dr": {
     "message": "Д-р"
   },
@@ -305,6 +308,9 @@
   "searchMembers": {
     "message": "Търсене в членовете"
   },
+  "searchGroups": {
+    "message": "Търсене в групите"
+  },
   "allItems": {
     "message": "Всички елементи"
   },
@@ -399,7 +405,8 @@
     "message": "Преглед на елемента"
   },
   "new": {
-    "message": "Ново"
+    "message": "Ново",
+    "description": "for adding new items"
   },
   "item": {
     "message": "Елемент"
@@ -1149,6 +1156,19 @@
         "example": "50,000"
       }
     }
+  },
+  "kdfMemory": {
+    "message": "Памет за KDF (МБ)",
+    "description": "Memory refers to computer memory (RAM). MB is short for megabytes."
+  },
+  "argon2Warning": {
+    "message": "Ако зададете твърде високи стойности за броя на повторения, паметта или степента на успоредно изпълнение на KDF, това може да влоши производителността при вписване (и отключване) в Битуорден при използване на по-бавно или старо устройство. Препоръчва се промяната на тези стойности да става на малки стъпки, при което да тествате всички свои устройства."
+  },
+  "kdfParallelism": {
+    "message": "Степен на успоредно изпълнение на KDF"
+  },
+  "argon2Desc": {
+    "message": "По-високите стойности за броя на повторения, паметта или степента на успоредно изпълнение на KDF може да защитят главната Ви парола от атаки тип „груба сила“."
   },
   "changeKdf": {
     "message": "Смяна на KDF"
@@ -2037,6 +2057,9 @@
   "manageSubscription": {
     "message": "Управление на абонамента"
   },
+  "launchCloudSubscription": {
+    "message": "Launch Cloud Subscription"
+  },
   "storage": {
     "message": "Съхранение на данни"
   },
@@ -2488,6 +2511,15 @@
   },
   "editMember": {
     "message": "Редактиране на члена"
+  },
+  "fieldOnTabRequiresAttention": {
+    "message": "Поле в раздела „$TAB$“ има нужда от внимание.",
+    "placeholders": {
+      "tab": {
+        "content": "$1",
+        "example": "Collection info"
+      }
+    }
   },
   "inviteUserDesc": {
     "message": "Може да поканите потребител да стане член на организацията като попълните адреса му за електронна поща, с който е регистриран в Битуорден, по-долу. В случай, че потребителят не е регистриран, той автоматично ще получи покана и да се регистрира."
@@ -5209,11 +5241,8 @@
   "billingSyncApiKeyRotated": {
     "message": "Идентификаторът е пресъздаден."
   },
-  "billingSync": {
-    "message": "Синхронизиране на плащанията"
-  },
   "billingSyncDesc": {
-    "message": "Billing sync provides Free Families plans for members and advanced billing capabilities by linking your self-hosted Bitwarden to the Bitwarden cloud server."
+    "message": "Billing sync unlocks Families sponsorships and automatic license syncing on your server. After making updates in the Bitwarden cloud server, select Sync License to apply changes."
   },
   "billingSyncKeyDesc": {
     "message": "За да попълните този формуляр, се нуждаете от идентификатор за синхронизиране на плащанията, който може да намерите или създадете в настройките за абонамента на организацията си в облака."
@@ -5262,6 +5291,15 @@
   },
   "required": {
     "message": "задължително"
+  },
+  "characterMaximum": {
+    "message": "Максимален брой знаци: $MAX$",
+    "placeholders": {
+      "max": {
+        "content": "$1",
+        "example": "100"
+      }
+    }
   },
   "idpSingleSignOnServiceUrlRequired": {
     "message": "Required if Entity ID is not a URL."
@@ -5548,6 +5586,18 @@
       }
     }
   },
+  "multipleInputEmails": {
+    "message": "1 или повече е-пощи са неправилни"
+  },
+  "tooManyEmails": {
+    "message": "Може да добавяте по не повече от $COUNT$ е-пощи наведнъж",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "20"
+      }
+    }
+  },
   "fieldsNeedAttention": {
     "message": "$COUNT$ поле(та) по-горе се нуждае/ят от вниманието Ви.",
     "placeholders": {
@@ -5695,10 +5745,10 @@
     "message": "Тайна"
   },
   "serviceAccount": {
-    "message": "Service Account"
+    "message": "Service account"
   },
   "serviceAccounts": {
-    "message": "Service Accounts"
+    "message": "Service accounts"
   },
   "secrets": {
     "message": "Тайни"
@@ -5716,7 +5766,7 @@
     "message": "Нова тайна"
   },
   "newServiceAccount": {
-    "message": "New Service Account"
+    "message": "New service account"
   },
   "secretsNoItemsTitle": {
     "message": "Няма тайни за показване"
@@ -5728,22 +5778,22 @@
     "message": "Все още няма нищо за показване"
   },
   "serviceAccountsNoItemsMessage": {
-    "message": "Create a new Service Account to get started automating secret access."
+    "message": "Create a new service account to get started automating secret access."
   },
   "searchSecrets": {
     "message": "Търсене в тайните"
   },
   "deleteServiceAccounts": {
-    "message": "Delete Service Accounts"
+    "message": "Delete service accounts"
   },
   "deleteServiceAccount": {
-    "message": "Delete Service Account"
+    "message": "Delete service account"
   },
   "viewServiceAccount": {
-    "message": "View Service Account"
+    "message": "View service account"
   },
   "searchServiceAccounts": {
-    "message": "Search Service Accounts"
+    "message": "Search service accounts"
   },
   "addProject": {
     "message": "Добавяне на проект"
@@ -5770,7 +5820,7 @@
     "message": "Тайните са преместени в кошчето"
   },
   "serviceAccountCreated": {
-    "message": "Service Account Created"
+    "message": "Service account created"
   },
   "smAccess": {
     "message": "Достъп"
@@ -5807,7 +5857,7 @@
     "placeholders": {
       "confirm": {
         "content": "$1",
-        "example": "Delete 3 Projects"
+        "example": "Delete 3 projects"
       }
     }
   },
@@ -5848,7 +5898,7 @@
     "message": "Secret sent to trash"
   },
   "searchProjects": {
-    "message": "Search Projects"
+    "message": "Search projects"
   },
   "accessTokens": {
     "message": "Идентификатори за достъп"
@@ -6053,5 +6103,56 @@
         "example": "2"
       }
     }
+  },
+  "licenseAndBillingManagement": {
+    "message": "Управление на лицензи и таксуване"
+  },
+  "automaticSync": {
+    "message": "Автоматично синхронизиране"
+  },
+  "manualUpload": {
+    "message": "Ръчно качване"
+  },
+  "manualUploadDesc": {
+    "message": "Ако не искате да се възползвате от автоматичното синхронизиране на информацията за таксуване, качете ръчно лиценза си тук."
+  },
+  "syncLicense": {
+    "message": "Синхронизиране на лиценза"
+  },
+  "licenseSyncSuccess": {
+    "message": "Успешна синхронизация на лиценза"
+  },
+  "licenseUploadSuccess": {
+    "message": "Успешно качване на лиценза"
+  },
+  "lastLicenseSync": {
+    "message": "Последно синхронизиране на лиценза"
+  },
+  "billingSyncHelp": {
+    "message": "Помощ относно синхронизирането на лицензи"
+  },
+  "uploadLicense": {
+    "message": "Качване на лиценз"
+  },
+  "lowKdfIterations": {
+    "message": "Малко повторения за KDF"
+  },
+  "lowKdfIterationsDesc": {
+    "message": "Увеличете настройките си за шифроване чрез KDF, за да защитите по-добре регистрацията си."
+  },
+  "changeKdfSettings": {
+    "message": "Промяна на настройките за KDF"
+  },
+  "changeKdfLoggedOutWarning": {
+    "message": "Ако продължите, ще излезете от текущата си сесия и ще трябва да се впишете отново. Активните сесии на други устройства може да продължат да бъдат активни още един час. Препоръчително е да изнесете трезора си преди да променяте настройките за шифроване, за да избегнете загуба на данни."
+  },
+  "secretsManagerBeta": {
+    "message": "Управление на тайни (Бета)"
+  },
+  "secretsManagerBetaDesc": {
+    "message": "Дайте достъп на потребителите до Управлението на тайни безплатно докато все още е в бета-версия."
+  },
+  "userAccessSecretsManager": {
+    "message": "Този потребител има достъп до Управлението на тайни (Бета)"
   }
 }

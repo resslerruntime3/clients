@@ -960,7 +960,10 @@
     "message": "اگر یک فرم ورودی شناسایی شد، وقتی صفحه وب بارگذاری شد، به صورت خودکار پر شود."
   },
   "experimentalFeature": {
-    "message": "در حال حاضر این یک ویژگی آزمایشی است. با مسئولیت خود استفاده کنید."
+    "message": "Compromised or untrusted websites can exploit auto-fill on page load."
+  },
+  "learnMoreAboutAutofill": {
+    "message": "Learn more about auto-fill"
   },
   "defaultAutoFillOnPageLoad": {
     "message": "تنظیم تکمیل خودکار پیش‌فرض برای موارد ورود به سیستم"
@@ -1122,6 +1125,9 @@
   },
   "dr": {
     "message": "دکتر"
+  },
+  "mx": {
+    "message": "عنوان"
   },
   "firstName": {
     "message": "نام"
@@ -2043,5 +2049,35 @@
   },
   "rememberEmail": {
     "message": "ایمیل را به خاطر بسپار"
+  },
+  "exposedMasterPassword": {
+    "message": "کلمه عبور اصلی افشا شده"
+  },
+  "exposedMasterPasswordDesc": {
+    "message": "کلمه عبور در نقض داده پیدا شد. از یک کلمه عبور منحصر به فرد برای محافظت از حساب خود استفاده کنید. آیا مطمئنید که می‌خواهید از یک کلمه عبور افشا شده استفاده کنید؟"
+  },
+  "weakAndExposedMasterPassword": {
+    "message": "کلمه عبور اصلی ضعیف و افشا شده"
+  },
+  "weakAndBreachedMasterPasswordDesc": {
+    "message": "کلمه عبور ضعیف شناسایی و در یک نقض داده پیدا شد. از یک کلمه عبور قوی و منحصر به فرد برای محافظت از حساب خود استفاده کنید. آیا مطمئنید که می‌خواهید از این کلمه عبور استفاده کنید؟"
+  },
+  "checkForBreaches": {
+    "message": "نقض اطلاعات شناخته شده برای این کلمه عبور را بررسی کنید"
+  },
+  "important": {
+    "message": "مهم:"
+  },
+  "masterPasswordHint": {
+    "message": "کلمه عبور اصلی شما در صورت فراموشی قابل بازیابی نیست!"
+  },
+  "characterMinimum": {
+    "message": "حداقل کاراکتر $LENGTH$",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
   }
 }

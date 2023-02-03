@@ -133,6 +133,9 @@
   "ms": {
     "message": "Fr."
   },
+  "mx": {
+    "message": "Divers"
+  },
   "dr": {
     "message": "Dr."
   },
@@ -278,32 +281,35 @@
     "message": "Favoriten durchsuchen"
   },
   "searchLogin": {
-    "message": "Search logins",
+    "message": "Zugangsdaten durchsuchen",
     "description": "Search Login type"
   },
   "searchCard": {
-    "message": "Search cards",
+    "message": "Karten durchsuchen",
     "description": "Search Card type"
   },
   "searchIdentity": {
-    "message": "Search identities",
+    "message": "Identitäten durchsuchen",
     "description": "Search Identity type"
   },
   "searchSecureNote": {
-    "message": "Search secure notes",
+    "message": "Sichere Notizen durchsuchen",
     "description": "Search Secure Note type"
   },
   "searchVault": {
     "message": "Tresor durchsuchen"
   },
   "searchMyVault": {
-    "message": "Search my vault"
+    "message": "Meinen Tresor durchsuchen"
   },
   "searchOrganization": {
-    "message": "Search organization"
+    "message": "Organisation suchen"
   },
   "searchMembers": {
-    "message": "Search members"
+    "message": "Mitglieder suchen"
+  },
+  "searchGroups": {
+    "message": "Gruppen suchen"
   },
   "allItems": {
     "message": "Alle Einträge"
@@ -387,7 +393,7 @@
     "message": "Auswählen"
   },
   "newItem": {
-    "message": "New item"
+    "message": "Neuer Eintrag"
   },
   "addItem": {
     "message": "Eintrag hinzufügen"
@@ -399,10 +405,11 @@
     "message": "Eintrag anzeigen"
   },
   "new": {
-    "message": "Neu"
+    "message": "Neu",
+    "description": "for adding new items"
   },
   "item": {
-    "message": "Item"
+    "message": "Eintrag"
   },
   "ex": {
     "message": "Bsp.",
@@ -579,10 +586,10 @@
     "message": "Ordner gelöscht"
   },
   "editInfo": {
-    "message": "Edit info"
+    "message": "Info bearbeiten"
   },
   "access": {
-    "message": "Access"
+    "message": "Zugriff"
   },
   "loggedOut": {
     "message": "Ausgeloggt"
@@ -742,7 +749,7 @@
     "message": "Keine Einträge vorhanden."
   },
   "noPermissionToViewAllCollectionItems": {
-    "message": "You do not have permission to view all items in this collection."
+    "message": "Du hast nicht die Berechtigung, alle Einträge in dieser Sammlung anzuzeigen."
   },
   "noCollectionsInList": {
     "message": "Keine Sammlungen vorhanden."
@@ -754,7 +761,7 @@
     "message": "Keine Benutzer vorhanden."
   },
   "noMembersInList": {
-    "message": "There are no members to list."
+    "message": "Keine Mitglieder zum Anzeigen vorhanden."
   },
   "noEventsInList": {
     "message": "Keine Ereignisse vorhanden."
@@ -901,7 +908,7 @@
     }
   },
   "deleteSelectedCollectionsDesc": {
-    "message": "$COUNT$ collection(s) will be permanently deleted.",
+    "message": "$COUNT$ Sammlung(en) werden dauerhaft gelöscht.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -910,7 +917,7 @@
     }
   },
   "deleteSelectedConfirmation": {
-    "message": "Are you sure you want to continue?"
+    "message": "Bist du sicher, dass du fortfahren möchtest?"
   },
   "moveSelectedItemsDesc": {
     "message": "Wählen Sie einen Ordner aus, in den Sie $COUNT$ ausgewählte(s) Objekt(e) verschieben möchten.",
@@ -1142,13 +1149,26 @@
     }
   },
   "kdfIterationsWarning": {
-    "message": "Wenn du die Anzahl der KDF-Iterationen zu hoch setzt, kann es sein, dass das Einloggen in Bitwarden (und Entsperren) auf langsameren Geräten länger dauert. Wir empfehlen, dass du den Wert um $INCREMENT$ Schrittweise anhebest und es auf allen Geräten testest.",
+    "message": "Wenn du die Anzahl der KDF-Iterationen zu hoch setzt, kann es sein, dass das Einloggen in (und Entsperren von) Bitwarden auf langsameren Geräten länger dauert. Wir empfehlen, dass du den Wert wiederholt um $INCREMENT$ anhebst und auf all deinen Geräten testest.",
     "placeholders": {
       "increment": {
         "content": "$1",
         "example": "50,000"
       }
     }
+  },
+  "kdfMemory": {
+    "message": "KDF-Speicher (MB)",
+    "description": "Memory refers to computer memory (RAM). MB is short for megabytes."
+  },
+  "argon2Warning": {
+    "message": "Werden KDF-Iterationen, -Speicher und -Parallelität zu hoch eingestellt, kann das zu einer schlechten Leistung führen, wenn du dich bei Bitwarden auf langsameren oder älteren Geräten einloggst (und diese entsperrst). Wir empfehlen dir, diese individuell in kleinen Schritten zu ändern und dann alle deine Geräte zu testen."
+  },
+  "kdfParallelism": {
+    "message": "KDF-Parallelität"
+  },
+  "argon2Desc": {
+    "message": "Höhere KDF-Iterationen, -Speicher und -Parallelität helfen dabei, dein Master-Passwort besser vor Brute-Force-Angriffen zu schützen."
   },
   "changeKdf": {
     "message": "KDF ändern"
@@ -2037,6 +2057,9 @@
   "manageSubscription": {
     "message": "Abo verwalten"
   },
+  "launchCloudSubscription": {
+    "message": "Cloud-Abonnement starten"
+  },
   "storage": {
     "message": "Speicher"
   },
@@ -2430,7 +2453,7 @@
     "message": "Sind Sie sich sicher, dass Sie diese Gruppe löschen wollen?"
   },
   "deleteMultipleGroupsConfirmation": {
-    "message": "Are you sure you want to delete the following $QUANTITY$ group(s)?",
+    "message": "Bist du sicher, dass du die folgende(n) $QUANTITY$ Gruppe(n) löschen möchtest?",
     "placeholders": {
       "quantity": {
         "content": "$1",
@@ -2457,7 +2480,7 @@
     "message": "Die externe ID kann als Referenz oder zur Verbindung zu einem externen System, wie einem Benutzerverzeichnis, verwendet werden."
   },
   "nestCollectionUnder": {
-    "message": "Nest collection under"
+    "message": "Sammlung verschachteln unter"
   },
   "accessControl": {
     "message": "Zugangskontrolle"
@@ -2481,13 +2504,22 @@
     "message": "Sammlung bearbeiten"
   },
   "collectionInfo": {
-    "message": "Collection info"
+    "message": "Sammlungsinfo"
   },
   "deleteCollectionConfirmation": {
     "message": "Möchten Sie diese Sammlung wirklich löschen?"
   },
   "editMember": {
-    "message": "Edit member"
+    "message": "Mitglied bearbeiten"
+  },
+  "fieldOnTabRequiresAttention": {
+    "message": "Ein Feld auf der Registerkarte '$TAB$' erfordert deine Aufmerksamkeit.",
+    "placeholders": {
+      "tab": {
+        "content": "$1",
+        "example": "Collection info"
+      }
+    }
   },
   "inviteUserDesc": {
     "message": "Lade einen neuen Benutzer zu deinem Anbieter ein, indem du die E-Mail-Adresse seines Bitwarden-Kontos unten einträgst. Falls dieser noch kein Bitwarden-Konto besitzt, wird er/sie zur Erstellung eines neuen Kontos aufgefordert."
@@ -2754,7 +2786,7 @@
     }
   },
   "deletedCollections": {
-    "message": "Deleted collections"
+    "message": "Gelöschte Sammlungen"
   },
   "deletedCollectionId": {
     "message": "Sammlung $ID$ gelöscht.",
@@ -2802,7 +2834,7 @@
     }
   },
   "deletedManyGroups": {
-    "message": "Deleted $QUANTITY$ group(s).",
+    "message": "$QUANTITY$ Gruppe(n) gelöscht.",
     "placeholders": {
       "quantity": {
         "content": "$1",
@@ -5209,9 +5241,6 @@
   "billingSyncApiKeyRotated": {
     "message": "Token erneuert."
   },
-  "billingSync": {
-    "message": "Rechnungssynchronisation"
-  },
   "billingSyncDesc": {
     "message": "Die Rechnungssynchronisation bietet ein kostenloses Familien-Abo für Mitglieder und erweiterte Abrechnungsmöglichkeiten, indem du dein selbst gehostetes Bitwarden mit dem Bitwarden Cloud-Server verbindest."
   },
@@ -5262,6 +5291,15 @@
   },
   "required": {
     "message": "erforderlich"
+  },
+  "characterMaximum": {
+    "message": "Maximal $MAX$ Zeichen",
+    "placeholders": {
+      "max": {
+        "content": "$1",
+        "example": "100"
+      }
+    }
   },
   "idpSingleSignOnServiceUrlRequired": {
     "message": "Erforderlich, wenn die Entitäts-ID keine URL ist."
@@ -5540,11 +5578,23 @@
     }
   },
   "inputForbiddenCharacters": {
-    "message": "The following characters are not allowed: $CHARACTERS$",
+    "message": "Die folgenden Zeichen sind nicht erlaubt: $CHARACTERS$",
     "placeholders": {
       "characters": {
         "content": "$1",
         "example": "@, #, $, %"
+      }
+    }
+  },
+  "multipleInputEmails": {
+    "message": "Mindestens 1 E-Mail-Adresse ist ungültig"
+  },
+  "tooManyEmails": {
+    "message": "Du kannst nur bis zu $COUNT$ E-Mails gleichzeitig senden",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "20"
       }
     }
   },
@@ -5807,7 +5857,7 @@
     "placeholders": {
       "confirm": {
         "content": "$1",
-        "example": "Delete 3 Projects"
+        "example": "Delete 3 projects"
       }
     }
   },
@@ -5911,7 +5961,7 @@
     "message": "Aktualisierung"
   },
   "plusNMore": {
-    "message": "+ $QUANTITY$ more",
+    "message": "+ $QUANTITY$ mehr",
     "placeholders": {
       "quantity": {
         "content": "$1",
@@ -5920,34 +5970,34 @@
     }
   },
   "groupInfo": {
-    "message": "Group info"
+    "message": "Gruppeninfo"
   },
   "editGroupMembersDesc": {
-    "message": "Grant members access to the group's assigned collections."
+    "message": "Erlaube Mitgliedern Zugriff auf die zugewiesenen Sammlungen der Gruppe."
   },
   "editGroupCollectionsDesc": {
-    "message": "Grant access to collections by adding them to this group."
+    "message": "Gewähre Zugriff auf Sammlungen, indem du diese zu dieser Gruppe hinzufügst."
   },
   "accessAllCollectionsDesc": {
-    "message": "Grant access to all current and future collections."
+    "message": "Gewähre Zugriff auf alle aktuellen und zukünftigen Sammlungen."
   },
   "accessAllCollectionsHelp": {
-    "message": "If checked, this will replace all other collection permissions."
+    "message": "Wenn aktiviert, ersetzt dies alle anderen Sammlungsberechtigungen."
   },
   "selectMembers": {
-    "message": "Select members"
+    "message": "Mitglieder auswählen"
   },
   "selectCollections": {
-    "message": "Select collections"
+    "message": "Sammlungen auswählen"
   },
   "role": {
     "message": "Rolle"
   },
   "removeMember": {
-    "message": "Remove member"
+    "message": "Mitglied entfernen"
   },
   "collection": {
-    "message": "Collection"
+    "message": "Sammlung"
   },
   "canView": {
     "message": "Darf anzeigen"
@@ -5962,13 +6012,13 @@
     "message": "Darf bearbeiten, Passwörter ausgenommen"
   },
   "noCollectionsAdded": {
-    "message": "No collections added"
+    "message": "Keine Sammlungen hinzugefügt"
   },
   "noMembersAdded": {
-    "message": "No members added"
+    "message": "Keine Mitglieder hinzugefügt"
   },
   "noGroupsAdded": {
-    "message": "No groups added"
+    "message": "Keine Gruppen hinzugefügt"
   },
   "group": {
     "message": "Gruppe"
@@ -5980,37 +6030,37 @@
     "message": "Dieses Mitglied darf auf alle Elemente zugreifen und diese ändern."
   },
   "membersColumnHeader": {
-    "message": "Member/Group"
+    "message": "Mitglied/Gruppe"
   },
   "groupAndMemberColumnHeader": {
-    "message": "Member"
+    "message": "Mitglied"
   },
   "selectGroupsAndMembers": {
-    "message": "Select groups and members"
+    "message": "Gruppen und Mitglieder auswählen"
   },
   "selectGroups": {
-    "message": "Select groups"
+    "message": "Gruppen auswählen"
   },
   "userPermissionOverrideHelper": {
-    "message": "Permissions set for a member will replace permissions set by that member's group"
+    "message": "Gesetzte Berechtigungen für ein Mitglied ersetzten dessen gesetzte Mitgliedergruppe-Berechtigungen"
   },
   "noMembersOrGroupsAdded": {
-    "message": "No members or groups added"
+    "message": "Keine Mitglieder oder Gruppen hinzugefügt"
   },
   "deleted": {
-    "message": "Deleted"
+    "message": "Gelöscht"
   },
   "memberStatusFilter": {
-    "message": "Member status filter"
+    "message": "Mitglied-Statusfilter"
   },
   "inviteMember": {
-    "message": "Invite member"
+    "message": "Mitglied einladen"
   },
   "needsConfirmation": {
-    "message": "Needs confirmation"
+    "message": "Benötigt eine Bestätigung"
   },
   "memberRole": {
-    "message": "Member role"
+    "message": "Mitgliedsrolle"
   },
   "moreFromBitwarden": {
     "message": "Mehr von Bitwarden"
@@ -6053,5 +6103,56 @@
         "example": "2"
       }
     }
+  },
+  "licenseAndBillingManagement": {
+    "message": "Lizenz- und Rechnungsverwaltung"
+  },
+  "automaticSync": {
+    "message": "Automatische Synchronisierung"
+  },
+  "manualUpload": {
+    "message": "Manuelles Hochladen"
+  },
+  "manualUploadDesc": {
+    "message": "Wenn du dich nicht für die Abrechnungssynchronisierung entscheiden möchtest, lade deine Lizenz hier manuell hoch."
+  },
+  "syncLicense": {
+    "message": "Lizenz synchronisieren"
+  },
+  "licenseSyncSuccess": {
+    "message": "Lizenz erfolgreich synchronisiert"
+  },
+  "licenseUploadSuccess": {
+    "message": "Lizenz erfolgreich hochgeladen"
+  },
+  "lastLicenseSync": {
+    "message": "Letzte Lizenz-Synchronisierung"
+  },
+  "billingSyncHelp": {
+    "message": "Hilfe zur Abrechnungssynchronisierung"
+  },
+  "uploadLicense": {
+    "message": "Lizenz hochladen"
+  },
+  "lowKdfIterations": {
+    "message": "Geringe KDF-Iterationen"
+  },
+  "lowKdfIterationsDesc": {
+    "message": "Erhöhe deine KDF-Verschlüsselungseinstellungen, um die Sicherheit deines Kontos zu verbessern."
+  },
+  "changeKdfSettings": {
+    "message": "KDF-Einstellungen ändern"
+  },
+  "changeKdfLoggedOutWarning": {
+    "message": "Wenn du fortfährst, wirst du aus deiner aktuellen Sitzung abgemeldet und musst dich neu anmelden. Aktive Sitzungen auf anderen Geräten können bis zu einer Stunde weiter aktiv bleiben. Wir empfehlen, deinen Tresor zu exportieren, bevor du die Verschlüsselungseinstellungen änderst, um Datenverlust zu vermeiden."
+  },
+  "secretsManagerBeta": {
+    "message": "Secrets Manager Beta"
+  },
+  "secretsManagerBetaDesc": {
+    "message": "Aktiviere kostenlosen Benutzerzugriff auf den Secrets Manager während des Beta-Programms."
+  },
+  "userAccessSecretsManager": {
+    "message": "Dieser Benutzer kann auf die Secrets Manager Beta zugreifen"
   }
 }

@@ -14,14 +14,14 @@ import { PlatformUtilsService } from "@bitwarden/common/abstractions/platformUti
 import { PolicyApiServiceAbstraction } from "@bitwarden/common/abstractions/policy/policy-api.service.abstraction";
 import { PolicyService } from "@bitwarden/common/abstractions/policy/policy.service.abstraction";
 import { StateService } from "@bitwarden/common/abstractions/state.service";
-import { SyncService } from "@bitwarden/common/abstractions/sync/sync.service.abstraction";
 import { HashPurpose } from "@bitwarden/common/enums/hashPurpose";
-import { DEFAULT_KDF_ITERATIONS, DEFAULT_KDF_TYPE } from "@bitwarden/common/enums/kdfType";
+import { DEFAULT_KDF_TYPE, DEFAULT_KDF_CONFIG } from "@bitwarden/common/enums/kdfType";
 import { Utils } from "@bitwarden/common/misc/utils";
 import { EncString } from "@bitwarden/common/models/domain/enc-string";
 import { SymmetricCryptoKey } from "@bitwarden/common/models/domain/symmetric-crypto-key";
 import { KeysRequest } from "@bitwarden/common/models/request/keys.request";
 import { SetPasswordRequest } from "@bitwarden/common/models/request/set-password.request";
+import { SyncService } from "@bitwarden/common/vault/abstractions/sync/sync.service.abstraction";
 
 import { ChangePasswordComponent as BaseChangePasswordComponent } from "./change-password.component";
 
@@ -93,7 +93,7 @@ export class SetPasswordComponent extends BaseChangePasswordComponent {
 
   async setupSubmitActions() {
     this.kdf = DEFAULT_KDF_TYPE;
-    this.kdfIterations = DEFAULT_KDF_ITERATIONS;
+    this.kdfConfig = DEFAULT_KDF_CONFIG;
     return true;
   }
 
@@ -107,10 +107,12 @@ export class SetPasswordComponent extends BaseChangePasswordComponent {
       masterPasswordHash,
       encKey[1].encryptedString,
       this.hint,
-      this.kdf,
-      this.kdfIterations,
       this.identifier,
-      new KeysRequest(keys[0], keys[1].encryptedString)
+      new KeysRequest(keys[0], keys[1].encryptedString),
+      this.kdf,
+      this.kdfConfig.iterations,
+      this.kdfConfig.memory,
+      this.kdfConfig.parallelism
     );
     try {
       if (this.resetPasswordAutoEnroll) {
@@ -173,7 +175,7 @@ export class SetPasswordComponent extends BaseChangePasswordComponent {
     keys: [string, EncString]
   ) {
     await this.stateService.setKdfType(this.kdf);
-    await this.stateService.setKdfIterations(this.kdfIterations);
+    await this.stateService.setKdfConfig(this.kdfConfig);
     await this.cryptoService.setKey(key);
     await this.cryptoService.setEncKey(encKey[1].encryptedString);
     await this.cryptoService.setEncPrivateKey(keys[1].encryptedString);

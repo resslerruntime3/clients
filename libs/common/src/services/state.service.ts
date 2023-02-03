@@ -15,12 +15,9 @@ import { ThemeType } from "../enums/themeType";
 import { UriMatchType } from "../enums/uriMatchType";
 import { StateFactory } from "../factories/stateFactory";
 import { Utils } from "../misc/utils";
-import { CipherData } from "../models/data/cipher.data";
 import { CollectionData } from "../models/data/collection.data";
 import { EncryptedOrganizationKeyData } from "../models/data/encrypted-organization-key.data";
 import { EventData } from "../models/data/event.data";
-import { FolderData } from "../models/data/folder.data";
-import { LocalData } from "../models/data/local.data";
 import { OrganizationData } from "../models/data/organization.data";
 import { PolicyData } from "../models/data/policy.data";
 import { ProviderData } from "../models/data/provider.data";
@@ -36,14 +33,18 @@ import { EncString } from "../models/domain/enc-string";
 import { EnvironmentUrls } from "../models/domain/environment-urls";
 import { GeneratedPasswordHistory } from "../models/domain/generated-password-history";
 import { GlobalState } from "../models/domain/global-state";
+import { KdfConfig } from "../models/domain/kdf-config";
 import { Policy } from "../models/domain/policy";
 import { State } from "../models/domain/state";
 import { StorageOptions } from "../models/domain/storage-options";
 import { SymmetricCryptoKey } from "../models/domain/symmetric-crypto-key";
 import { WindowState } from "../models/domain/window-state";
-import { CipherView } from "../models/view/cipher.view";
 import { CollectionView } from "../models/view/collection.view";
 import { SendView } from "../models/view/send.view";
+import { CipherData } from "../vault/models/data/cipher.data";
+import { FolderData } from "../vault/models/data/folder.data";
+import { LocalData } from "../vault/models/data/local.data";
+import { CipherView } from "../vault/models/view/cipher.view";
 
 const keys = {
   state: "state",
@@ -1657,17 +1658,26 @@ export class StateService<
     return (await this.getAccessToken(options)) != null && (await this.getUserId(options)) != null;
   }
 
-  async getKdfIterations(options?: StorageOptions): Promise<number> {
-    return (
+  async getKdfConfig(options?: StorageOptions): Promise<KdfConfig> {
+    const iterations = (
       await this.getAccount(this.reconcileOptions(options, await this.defaultOnDiskOptions()))
     )?.profile?.kdfIterations;
+    const memory = (
+      await this.getAccount(this.reconcileOptions(options, await this.defaultOnDiskOptions()))
+    )?.profile?.kdfMemory;
+    const parallelism = (
+      await this.getAccount(this.reconcileOptions(options, await this.defaultOnDiskOptions()))
+    )?.profile?.kdfParallelism;
+    return new KdfConfig(iterations, memory, parallelism);
   }
 
-  async setKdfIterations(value: number, options?: StorageOptions): Promise<void> {
+  async setKdfConfig(config: KdfConfig, options?: StorageOptions): Promise<void> {
     const account = await this.getAccount(
       this.reconcileOptions(options, await this.defaultOnDiskOptions())
     );
-    account.profile.kdfIterations = value;
+    account.profile.kdfIterations = config.iterations;
+    account.profile.kdfMemory = config.memory;
+    account.profile.kdfParallelism = config.parallelism;
     await this.saveAccount(
       account,
       this.reconcileOptions(options, await this.defaultOnDiskOptions())

@@ -133,6 +133,9 @@
   "ms": {
     "message": "Fröken"
   },
+  "mx": {
+    "message": "Mx"
+  },
   "dr": {
     "message": "Dr"
   },
@@ -278,32 +281,35 @@
     "message": "Sök i favoriter"
   },
   "searchLogin": {
-    "message": "Search logins",
+    "message": "Sök i inloggningar",
     "description": "Search Login type"
   },
   "searchCard": {
-    "message": "Search cards",
+    "message": "Sök i kort",
     "description": "Search Card type"
   },
   "searchIdentity": {
-    "message": "Search identities",
+    "message": "Sök i identiteter",
     "description": "Search Identity type"
   },
   "searchSecureNote": {
-    "message": "Search secure notes",
+    "message": "Sök i säkra anteckningar",
     "description": "Search Secure Note type"
   },
   "searchVault": {
     "message": "Sök i valvet"
   },
   "searchMyVault": {
-    "message": "Search my vault"
+    "message": "Sök i mitt valv"
   },
   "searchOrganization": {
-    "message": "Search organization"
+    "message": "Sök i organisation"
   },
   "searchMembers": {
-    "message": "Search members"
+    "message": "Sök i medlemmar"
+  },
+  "searchGroups": {
+    "message": "Sök i grupper"
   },
   "allItems": {
     "message": "Alla objekt"
@@ -387,7 +393,7 @@
     "message": "Välj"
   },
   "newItem": {
-    "message": "New item"
+    "message": "Nytt objekt"
   },
   "addItem": {
     "message": "Lägg till objekt"
@@ -399,7 +405,8 @@
     "message": "Visa objekt"
   },
   "new": {
-    "message": "New"
+    "message": "Nytt",
+    "description": "for adding new items"
   },
   "item": {
     "message": "Objekt"
@@ -567,7 +574,7 @@
     "message": "Är du säker på att du vill skriva över det nuvarande lösenordet?"
   },
   "editedFolder": {
-    "message": "Folder saved"
+    "message": "Mapp sparad"
   },
   "addedFolder": {
     "message": "Lade till mapp"
@@ -576,13 +583,13 @@
     "message": "Är du säker på att du vill radera denna mapp?"
   },
   "deletedFolder": {
-    "message": "Folder deleted"
+    "message": "Mapp raderad"
   },
   "editInfo": {
-    "message": "Edit info"
+    "message": "Redigera info"
   },
   "access": {
-    "message": "Access"
+    "message": "Åtkomst"
   },
   "loggedOut": {
     "message": "Utloggad"
@@ -742,7 +749,7 @@
     "message": "Det finns inga objekt att visa."
   },
   "noPermissionToViewAllCollectionItems": {
-    "message": "You do not have permission to view all items in this collection."
+    "message": "Du har inte behörighet att se alla objekt i denna samling."
   },
   "noCollectionsInList": {
     "message": "Det finns inga samlingar att visa."
@@ -754,7 +761,7 @@
     "message": "Det finns inga användare att visa."
   },
   "noMembersInList": {
-    "message": "There are no members to list."
+    "message": "Det finns inga element att visa."
   },
   "noEventsInList": {
     "message": "Det finns inga händelser att visa."
@@ -901,7 +908,7 @@
     }
   },
   "deleteSelectedCollectionsDesc": {
-    "message": "$COUNT$ collection(s) will be permanently deleted.",
+    "message": "$COUNT$ samlingar kommer att tas bort permanent.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1149,6 +1156,19 @@
         "example": "50,000"
       }
     }
+  },
+  "kdfMemory": {
+    "message": "KDF memory (MB)",
+    "description": "Memory refers to computer memory (RAM). MB is short for megabytes."
+  },
+  "argon2Warning": {
+    "message": "Setting your KDF iterations, memory, and parallelism too high could result in poor performance when logging into (and unlocking) Bitwarden on slower or older devices. We recommend changing these individually in small increments and then test all of your devices."
+  },
+  "kdfParallelism": {
+    "message": "KDF-parallellism"
+  },
+  "argon2Desc": {
+    "message": "Higher KDF iterations, memory, and parallelism can help protect your master password from being brute forced by an attacker."
   },
   "changeKdf": {
     "message": "Ändra KDF"
@@ -1666,7 +1686,7 @@
     "message": "Rapport om avslöjade lösenord"
   },
   "exposedPasswordsReportDesc": {
-    "message": "Passwords exposed in a data breach are easy targets for attackers. Change these passwords to prevent potential break-ins."
+    "message": "Lösenord som exponeras i ett dataintrång är enkla mål för angripare. Ändra dessa lösenord för att förhindra potentiella intrång."
   },
   "exposedPasswordsFound": {
     "message": "Avslöjade lösenord hittades"
@@ -1990,7 +2010,7 @@
     "message": "Avsluta prenumeration"
   },
   "subscriptionCanceled": {
-    "message": "Abonnemanget har avslutats."
+    "message": "Prenumerationen har avslutats."
   },
   "pendingCancellation": {
     "message": "Väntar på att avslutas"
@@ -2037,6 +2057,9 @@
   "manageSubscription": {
     "message": "Hantera prenumeration"
   },
+  "launchCloudSubscription": {
+    "message": "Launch Cloud Subscription"
+  },
   "storage": {
     "message": "Lagring"
   },
@@ -2047,7 +2070,7 @@
     "message": "Ta bort lagring"
   },
   "subscriptionStorage": {
-    "message": "Ditt abonnemang har totalt $MAX_STORAGE$ GB krypterad lagring. Du använder för närvarande $USED_STORAGE$.",
+    "message": "Din prenumeration har totalt $MAX_STORAGE$ GB krypterad fillagring. Du använder för närvarande $USED_STORAGE$.",
     "placeholders": {
       "max_storage": {
         "content": "$1",
@@ -2194,7 +2217,7 @@
     "message": "Antal användarplatser"
   },
   "userSeatsAdditionalDesc": {
-    "message": "Ditt abonnemang kommer med $BASE_SEATS$ användarplatser. Du kan lägga till ytterligare användare för $SEAT_PRICE$ per användare/månad.",
+    "message": "Din plan kommer med $BASE_SEATS$ användarplatser. Du kan lägga till ytterligare användare för $SEAT_PRICE$ per användare/månad.",
     "placeholders": {
       "base_seats": {
         "content": "$1",
@@ -2488,6 +2511,15 @@
   },
   "editMember": {
     "message": "Redigera medlem"
+  },
+  "fieldOnTabRequiresAttention": {
+    "message": "A field on the '$TAB$' tab requires your attention.",
+    "placeholders": {
+      "tab": {
+        "content": "$1",
+        "example": "Collection info"
+      }
+    }
   },
   "inviteUserDesc": {
     "message": "Bjud in en ny användare till din organisation genom att ange e-postadressen som tillhör deras Bitwarden-konto nedan. Om de inte redan har ett Bitwarden-konto kommer de uppmanas att skapa ett."
@@ -3156,7 +3188,7 @@
     "message": "För kunder i USA krävs postnummer för att uppfylla momskrav. För kunder i andra länder har du möjlighet att ange momsregistreringsnummer (VAT/GST) och/eller adress som ska synas på dina fakturor."
   },
   "billingPlan": {
-    "message": "Abonnemang",
+    "message": "Plan",
     "description": "A billing plan/package. For example: Families, Teams, Enterprise, etc."
   },
   "changeBillingPlan": {
@@ -3255,7 +3287,7 @@
     "message": "Adjustments to your subscription will result in prorated changes to your billing totals. If newly invited users exceed your subscription seats, you will immediately receive a prorated charge for the additional users."
   },
   "subscriptionUserSeats": {
-    "message": "Ditt abonnemang tillåter totalt $COUNT$ användare.",
+    "message": "Din prenumeration tillåter totalt $COUNT$ medlemmar.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -4205,7 +4237,7 @@
     }
   },
   "planPrice": {
-    "message": "Abonnemangets pris"
+    "message": "Prisplan"
   },
   "estimatedTax": {
     "message": "Uppskattad moms"
@@ -5209,11 +5241,8 @@
   "billingSyncApiKeyRotated": {
     "message": "Token rotated"
   },
-  "billingSync": {
-    "message": "Billing sync"
-  },
   "billingSyncDesc": {
-    "message": "Billing sync provides Free Families plans for members and advanced billing capabilities by linking your self-hosted Bitwarden to the Bitwarden cloud server."
+    "message": "Billing sync unlocks Families sponsorships and automatic license syncing on your server. After making updates in the Bitwarden cloud server, select Sync License to apply changes."
   },
   "billingSyncKeyDesc": {
     "message": "A billing sync token from your cloud organization's subscription settings is required to complete this form."
@@ -5262,6 +5291,15 @@
   },
   "required": {
     "message": "obligatoriskt"
+  },
+  "characterMaximum": {
+    "message": "Max $MAX$ tecken",
+    "placeholders": {
+      "max": {
+        "content": "$1",
+        "example": "100"
+      }
+    }
   },
   "idpSingleSignOnServiceUrlRequired": {
     "message": "Required if Entity ID is not a URL."
@@ -5548,6 +5586,18 @@
       }
     }
   },
+  "multipleInputEmails": {
+    "message": "1 or more emails are invalid"
+  },
+  "tooManyEmails": {
+    "message": "You can only submit up to $COUNT$ emails at a time",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "20"
+      }
+    }
+  },
   "fieldsNeedAttention": {
     "message": "$COUNT$ field(s) above need your attention.",
     "placeholders": {
@@ -5650,22 +5700,22 @@
     "message": "Senast redigerad"
   },
   "editSecret": {
-    "message": "Edit Secret"
+    "message": "Edit secret"
   },
   "addSecret": {
-    "message": "Add Secret"
+    "message": "Add secret"
   },
   "copySecretName": {
-    "message": "Copy Secret Name"
+    "message": "Copy secret name"
   },
   "copySecretValue": {
-    "message": "Copy Secret Value"
+    "message": "Copy secret value"
   },
   "deleteSecret": {
-    "message": "Delete Secret"
+    "message": "Delete secret"
   },
   "deleteSecrets": {
-    "message": "Delete Secrets"
+    "message": "Delete secrets"
   },
   "secretProjectAssociationDescription": {
     "message": "Select projects that the secret will be associated with. Only organization users with access to these projects will be able to see the secret."
@@ -5695,16 +5745,16 @@
     "message": "Secret"
   },
   "serviceAccount": {
-    "message": "Service Account"
+    "message": "Service account"
   },
   "serviceAccounts": {
-    "message": "Service Accounts"
+    "message": "Service accounts"
   },
   "secrets": {
     "message": "Secrets"
   },
   "nameValuePair": {
-    "message": "Name/Value Pair"
+    "message": "Name/Value pair"
   },
   "secretEdited": {
     "message": "Secret edited"
@@ -5713,10 +5763,10 @@
     "message": "Secret created"
   },
   "newSecret": {
-    "message": "New Secret"
+    "message": "New secret"
   },
   "newServiceAccount": {
-    "message": "New Service Account"
+    "message": "New service account"
   },
   "secretsNoItemsTitle": {
     "message": "No secrets to show"
@@ -5728,22 +5778,22 @@
     "message": "Nothing to show yet"
   },
   "serviceAccountsNoItemsMessage": {
-    "message": "Create a new Service Account to get started automating secret access."
+    "message": "Create a new service account to get started automating secret access."
   },
   "searchSecrets": {
-    "message": "Search Secrets"
+    "message": "Search secrets"
   },
   "deleteServiceAccounts": {
-    "message": "Delete Service Accounts"
+    "message": "Delete service accounts"
   },
   "deleteServiceAccount": {
-    "message": "Delete Service Account"
+    "message": "Delete service account"
   },
   "viewServiceAccount": {
-    "message": "View Service Account"
+    "message": "View service account"
   },
   "searchServiceAccounts": {
-    "message": "Search Service Accounts"
+    "message": "Search service accounts"
   },
   "addProject": {
     "message": "Lägg till projekt"
@@ -5770,7 +5820,7 @@
     "message": "Secrets sent to trash"
   },
   "serviceAccountCreated": {
-    "message": "Service Account Created"
+    "message": "Service account created"
   },
   "smAccess": {
     "message": "Access"
@@ -5782,10 +5832,10 @@
     "message": "Service account name"
   },
   "newSaSelectAccess": {
-    "message": "Type or Select Projects or Secrets"
+    "message": "Type or select projects or secrets"
   },
   "newSaTypeToFilter": {
-    "message": "Type to Filter"
+    "message": "Type to filter"
   },
   "deleteProjectsToast": {
     "message": "Projects deleted"
@@ -5807,7 +5857,7 @@
     "placeholders": {
       "confirm": {
         "content": "$1",
-        "example": "Delete 3 Projects"
+        "example": "Delete 3 projects"
       }
     }
   },
@@ -5848,7 +5898,7 @@
     "message": "Secret sent to trash"
   },
   "searchProjects": {
-    "message": "Search Projects"
+    "message": "Search projects"
   },
   "accessTokens": {
     "message": "Access tokens"
@@ -5893,7 +5943,7 @@
     "message": "Permissions management is unavailable for beta."
   },
   "revokeAccessToken": {
-    "message": "Revoke Access Token"
+    "message": "Revoke access token"
   },
   "submenu": {
     "message": "Submenu"
@@ -6016,7 +6066,7 @@
     "message": "Mer från Bitwarden"
   },
   "switchProducts": {
-    "message": "Switch Products"
+    "message": "Switch products"
   },
   "freeOrgInvLimitReachedManageBilling": {
     "message": "Gratis organisationer kan ha upp till $SEATCOUNT$ medlemmar. Uppgradera till en betald plan för att bjuda in fler medlemmar.",
@@ -6053,5 +6103,56 @@
         "example": "2"
       }
     }
+  },
+  "licenseAndBillingManagement": {
+    "message": "License and billing management"
+  },
+  "automaticSync": {
+    "message": "Automatisk synkronisering"
+  },
+  "manualUpload": {
+    "message": "Manuell uppladdning"
+  },
+  "manualUploadDesc": {
+    "message": "If you do not want to opt into billing sync, manually upload your license here."
+  },
+  "syncLicense": {
+    "message": "Sync license"
+  },
+  "licenseSyncSuccess": {
+    "message": "Successfully synced license"
+  },
+  "licenseUploadSuccess": {
+    "message": "Successfully uploaded license"
+  },
+  "lastLicenseSync": {
+    "message": "Last license sync"
+  },
+  "billingSyncHelp": {
+    "message": "Billing Sync help"
+  },
+  "uploadLicense": {
+    "message": "Upload license"
+  },
+  "lowKdfIterations": {
+    "message": "Low KDF Iterations"
+  },
+  "lowKdfIterationsDesc": {
+    "message": "Increase your KDF encryption settings to improve the security of your account."
+  },
+  "changeKdfSettings": {
+    "message": "Change KDF settings"
+  },
+  "changeKdfLoggedOutWarning": {
+    "message": "Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour. We recommend exporting your vault before changing your encryption settings to prevent data loss."
+  },
+  "secretsManagerBeta": {
+    "message": "Secrets Manager Beta"
+  },
+  "secretsManagerBetaDesc": {
+    "message": "Enable user access to the Secrets Manager at no charge during the Beta program."
+  },
+  "userAccessSecretsManager": {
+    "message": "This user can access the Secrets Manager Beta"
   }
 }

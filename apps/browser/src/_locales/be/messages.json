@@ -960,7 +960,10 @@
     "message": "Калі выяўлена форма ўваходу, то будзе выканана яе аўтазапаўненне падчас загрузкі вэб-старонкі."
   },
   "experimentalFeature": {
-    "message": "У дадзены час гэта функцыя з'яўляецца эксперыментальнай. Рызыку падчас яе выкарыстанні вы прымаеце на сябе."
+    "message": "Compromised or untrusted websites can exploit auto-fill on page load."
+  },
+  "learnMoreAboutAutofill": {
+    "message": "Learn more about auto-fill"
   },
   "defaultAutoFillOnPageLoad": {
     "message": "Прадвызначаная налада аўтазапаўнення для элементаў уваходу"
@@ -1122,6 +1125,9 @@
   },
   "dr": {
     "message": "Доктар"
+  },
+  "mx": {
+    "message": "Mx"
   },
   "firstName": {
     "message": "Імя"
@@ -2043,5 +2049,35 @@
   },
   "rememberEmail": {
     "message": "Запомніць электронную пошту"
+  },
+  "exposedMasterPassword": {
+    "message": "Скампраметаваны асноўны пароль"
+  },
+  "exposedMasterPasswordDesc": {
+    "message": "Пароль знойдзены ва ўцечках даных. Выкарыстоўвайце ўнікальныя паролі для абароны свайго ўліковага запісу. Вы сапраўды хочаце выкарыстоўваць скампраметаваны пароль?"
+  },
+  "weakAndExposedMasterPassword": {
+    "message": "Ненадзейны і скампраметаваны асноўны пароль"
+  },
+  "weakAndBreachedMasterPasswordDesc": {
+    "message": "Вызначаны ненадзейны пароль, які знойдзены ва ўцечках даных. Выкарыстоўвайце надзейныя і ўнікальныя паролі для абароны свайго ўліковага запісу. Вы сапраўды хочаце выкарыстоўваць гэты пароль?"
+  },
+  "checkForBreaches": {
+    "message": "Праверыць у вядомых уцечках даных для гэтага пароля"
+  },
+  "important": {
+    "message": "Важна:"
+  },
+  "masterPasswordHint": {
+    "message": "Ваш асноўны пароль немагчыма будзе аднавіць, калі вы яго забудзеце!"
+  },
+  "characterMinimum": {
+    "message": "Мінімальная колькасць сімвалаў: $LENGTH$",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
   }
 }

@@ -133,6 +133,9 @@
   "ms": {
     "message": "Frk."
   },
+  "mx": {
+    "message": "Neutral"
+  },
   "dr": {
     "message": "Dr."
   },
@@ -305,6 +308,9 @@
   "searchMembers": {
     "message": "Søg i medlemmer"
   },
+  "searchGroups": {
+    "message": "Søg grupper"
+  },
   "allItems": {
     "message": "Alle emner"
   },
@@ -399,7 +405,8 @@
     "message": "Vis emne"
   },
   "new": {
-    "message": "New"
+    "message": "New",
+    "description": "for adding new items"
   },
   "item": {
     "message": "Emne"
@@ -470,7 +477,7 @@
     "message": "Boksemner"
   },
   "filter": {
-    "message": "Filter"
+    "message": "Filtre"
   },
   "moveSelectedToOrg": {
     "message": "Flyt valgte til organisation"
@@ -582,7 +589,7 @@
     "message": "Redigér info"
   },
   "access": {
-    "message": "Tilgå"
+    "message": "Adgang"
   },
   "loggedOut": {
     "message": "Logget ud"
@@ -1149,6 +1156,19 @@
         "example": "50,000"
       }
     }
+  },
+  "kdfMemory": {
+    "message": "KDF-hukommelse (MB)",
+    "description": "Memory refers to computer memory (RAM). MB is short for megabytes."
+  },
+  "argon2Warning": {
+    "message": "Indstilles KDF-iterationer, hukommelse og parallelitet for højt, kan det resultere i dårlig ydeevne, når der logges ind på (og oplåser) Bitwarden på enheder med langsomme CPU'er. Vi anbefaler at ændre disse enkeltvis i små intervaller og derefter teste alle relevante enheder."
+  },
+  "kdfParallelism": {
+    "message": "KDF-parallelitet"
+  },
+  "argon2Desc": {
+    "message": "Øget KDF-iterationer, hukommelse og parallelitet kan hjælpe med at beskytte hovedadgangskoden mod brute force-angreb."
   },
   "changeKdf": {
     "message": "Ændr KDF"
@@ -2037,6 +2057,9 @@
   "manageSubscription": {
     "message": "Håndtér abonnement"
   },
+  "launchCloudSubscription": {
+    "message": "Start Cloud Abonnement"
+  },
   "storage": {
     "message": "Lager"
   },
@@ -2489,11 +2512,20 @@
   "editMember": {
     "message": "Redigér medlem"
   },
+  "fieldOnTabRequiresAttention": {
+    "message": "Et felt på fanen '$TAB$' kræver din opmærksomhed.",
+    "placeholders": {
+      "tab": {
+        "content": "$1",
+        "example": "Collection info"
+      }
+    }
+  },
   "inviteUserDesc": {
     "message": "Inviter en ny bruger til din organisation ved at indtaste e-mailadressen på deres Bitwarden-konto nedenfor. Hvis de ikke allerede har en Bitwarden-konto, bliver de bedt om at oprette en ny konto."
   },
   "inviteMultipleEmailDesc": {
-    "message": "Du kan invitere op til $COUNT$ brugere ad gangen ved at kommaseparere en liste med e-mailadresser.",
+    "message": "Du kan invitere op til $COUNT$ brugere ad gangen ved at kommaseparere en liste med emailadresser.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -5209,9 +5241,6 @@
   "billingSyncApiKeyRotated": {
     "message": "Token roteret."
   },
-  "billingSync": {
-    "message": "Faktureringssynk"
-  },
   "billingSyncDesc": {
     "message": "Faktureringssynk giver gratis Familier-abonnementstyper til medlemmer samt avancerede faktureringsmuligheder ved at linke din selv-hostede Bitwarden til Bitwarden-cloudserveren."
   },
@@ -5262,6 +5291,15 @@
   },
   "required": {
     "message": "obligatorisk"
+  },
+  "characterMaximum": {
+    "message": "Maksimalt $MAX$ tegn",
+    "placeholders": {
+      "max": {
+        "content": "$1",
+        "example": "100"
+      }
+    }
   },
   "idpSingleSignOnServiceUrlRequired": {
     "message": "Obligatorisk, såfremt Enheds-ID ikke er en URL."
@@ -5548,6 +5586,18 @@
       }
     }
   },
+  "multipleInputEmails": {
+    "message": "1 eller flere e-mails er ugyldige"
+  },
+  "tooManyEmails": {
+    "message": "Der kan kun indsendes op til $COUNT$ e-mails ad gangen",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "20"
+      }
+    }
+  },
   "fieldsNeedAttention": {
     "message": "$COUNT$ felt(er) ovenfor kræver din opmærksomhed.",
     "placeholders": {
@@ -5728,7 +5778,7 @@
     "message": "Intet at vise endnu"
   },
   "serviceAccountsNoItemsMessage": {
-    "message": "Create a new Service Account to get started automating secret access."
+    "message": "Create a new service account to get started automating secret access."
   },
   "searchSecrets": {
     "message": "Søg i hemmeligheder"
@@ -5807,7 +5857,7 @@
     "placeholders": {
       "confirm": {
         "content": "$1",
-        "example": "Delete 3 Projects"
+        "example": "Delete 3 projects"
       }
     }
   },
@@ -6053,5 +6103,56 @@
         "example": "2"
       }
     }
+  },
+  "licenseAndBillingManagement": {
+    "message": "Håndtering af licens og fakturering"
+  },
+  "automaticSync": {
+    "message": "Auto-synk"
+  },
+  "manualUpload": {
+    "message": "Manuel upload"
+  },
+  "manualUploadDesc": {
+    "message": "Ønskes ikke tilmelding til faktureringssynk, så upload manuelt din licens her."
+  },
+  "syncLicense": {
+    "message": "Synk licens"
+  },
+  "licenseSyncSuccess": {
+    "message": "Licens hermed synket"
+  },
+  "licenseUploadSuccess": {
+    "message": "Licens hermed uploadet"
+  },
+  "lastLicenseSync": {
+    "message": "Seneste licenssynk"
+  },
+  "billingSyncHelp": {
+    "message": "Hjælp til faktureringssynk"
+  },
+  "uploadLicense": {
+    "message": "Upload licens"
+  },
+  "lowKdfIterations": {
+    "message": "Få KDF-iterationer"
+  },
+  "lowKdfIterationsDesc": {
+    "message": "Forøg KDF-krypteringsindstillinger for at forbedre kontosikkerheden."
+  },
+  "changeKdfSettings": {
+    "message": "Skift KDF-indstillinger"
+  },
+  "changeKdfLoggedOutWarning": {
+    "message": "Fortsættes, logges der ud af den aktuelle session, og der skal logges ind igen. Aktive sessioner på andre enheder kan forblive aktive i op til én time. For at forhindre datatab, anbefaler vi, at du eksporterer din boks, inden krypteringsindstillingerne ændres."
+  },
+  "secretsManagerBeta": {
+    "message": "Secrets Manager Beta"
+  },
+  "secretsManagerBetaDesc": {
+    "message": "Aktivér gratis brugeradgang til Secrets Manager under Beta-programmet."
+  },
+  "userAccessSecretsManager": {
+    "message": "Denne bruger kan tilgå Secrets Manager Beta"
   }
 }

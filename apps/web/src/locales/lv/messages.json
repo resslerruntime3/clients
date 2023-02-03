@@ -133,6 +133,9 @@
   "ms": {
     "message": "Jk-dze"
   },
+  "mx": {
+    "message": "Mx"
+  },
   "dr": {
     "message": "Dr."
   },
@@ -305,6 +308,9 @@
   "searchMembers": {
     "message": "Meklēt dalībniekus"
   },
+  "searchGroups": {
+    "message": "Meklēt kopas"
+  },
   "allItems": {
     "message": "Visi vienumi"
   },
@@ -399,7 +405,8 @@
     "message": "Skatīt vienumu"
   },
   "new": {
-    "message": "Jauns"
+    "message": "Jauns",
+    "description": "for adding new items"
   },
   "item": {
     "message": "Vienums"
@@ -639,7 +646,7 @@
     "message": "E-pasta adrese būs jāizmanto, lai pierakstītos."
   },
   "yourName": {
-    "message": "Vārds"
+    "message": "Tavs vārds"
   },
   "yourNameDesc": {
     "message": "Kā mums Tevi uzrunāt?"
@@ -711,7 +718,7 @@
     "message": "E-pasta adrese"
   },
   "yourVaultIsLocked": {
-    "message": "Glabātava ir slēgta. Nepieciešams norādīt galveno paroli, lai turpinātu."
+    "message": "Tava glabātuve ir bloķēta. Lai turpinātu, pārbaudi savu galveno paroli."
   },
   "unlock": {
     "message": "Atslēgt"
@@ -1142,13 +1149,26 @@
     }
   },
   "kdfIterationsWarning": {
-    "message": "Iestatot pārāk lielu KDF atkārtojumu skaitu var novest pie vājas veiktspējas, kad notiek pierakstīšanās Bitwarden (un atslēgšana) ierīcēs ar lēnākiem procesoriem. Ir ieteicams secīgi palielināt vērtību par $INCREMENT$ un tad pārbaudīt ietekmi visās ierīcēs.",
+    "message": "Pārāk liela KDF atkārtojumu skaita iestatīšana var novest pie vājas veiktspējas, kad notiek pierakstīšanās Bitwarden (un atslēgšana) lēnākās un vecākās ierīcēs. Ir ieteicams secīgi palielināt vērtību par $INCREMENT$ un tad pārbaudīt ietekmi visās ierīcēs.",
     "placeholders": {
       "increment": {
         "content": "$1",
         "example": "50,000"
       }
     }
+  },
+  "kdfMemory": {
+    "message": "KDF atmiņa (MB)",
+    "description": "Memory refers to computer memory (RAM). MB is short for megabytes."
+  },
+  "argon2Warning": {
+    "message": "Pārāk liela KDF atkārtojumu skaita, atmiņas un paralelitātes iestatīšana var novest pie vājas veiktspējas, kad notiek pierakstīšanās Bitwarden (un atslēgšana) lēnākās un vecākās ierīcēs. Ir ieteicams secīgi palielināt vērtību par $INCREMENT$ un tad pārbaudīt ietekmi visās ierīcēs."
+  },
+  "kdfParallelism": {
+    "message": "KDF paralelitāte"
+  },
+  "argon2Desc": {
+    "message": "Lielāks KDF atkārtojumu skaits, atmiņa un paralelitāte var palīdzēt aizsargāt galveno paroli pārlases uzbrukuma gadījumā."
   },
   "changeKdf": {
     "message": "Mainīt KDF"
@@ -1597,7 +1617,7 @@
     "message": "Tīmekļa glabātava un pārlūku paplašinājums galddatorā/klēpjdatorā ar WebAuthn iespējotu pārlūku (Chrome, Opera, Vivaldi vai Firefox ar iespējotu FIDO U2F)."
   },
   "twoFactorRecoveryYourCode": {
-    "message": "Bitwarden divpakāpju pierakstīšanās atkopšanas kods"
+    "message": "Tavs Bitwarden divpakāpju pieteikšanās atkopšanas kods"
   },
   "twoFactorRecoveryNoCode": {
     "message": "Vēl nav iespējots neviens divpakāpju pierakstīšanās nodrošinātāju. Kad tas būs izdarīts, šeit varēs apskatīt atkopšanas kodu."
@@ -2037,6 +2057,9 @@
   "manageSubscription": {
     "message": "Pārvaldīt abonementus"
   },
+  "launchCloudSubscription": {
+    "message": "Uzsākt mākoņa abonēšanu"
+  },
   "storage": {
     "message": "Krātuve"
   },
@@ -2179,7 +2202,7 @@
     "message": "Uzņēmuma nosaukums"
   },
   "chooseYourPlan": {
-    "message": "Izvēlēties plānu"
+    "message": "Izvēlies savu plānu"
   },
   "users": {
     "message": "Lietotāji"
@@ -2488,6 +2511,15 @@
   },
   "editMember": {
     "message": "Rediģēt dalībnieku"
+  },
+  "fieldOnTabRequiresAttention": {
+    "message": "Jāpievērš uzmanība laukam cilnē $TAB$.",
+    "placeholders": {
+      "tab": {
+        "content": "$1",
+        "example": "Collection info"
+      }
+    }
   },
   "inviteUserDesc": {
     "message": "Uziacināt apvienībā jaunu lietotāju, zemāk esošajā laukā ievadot viņa Bitwarden konta e-pasta adresi. Ja viņam vēl nav Bitwarden konta, tiks vaicāts izveidot jaunu."
@@ -5209,9 +5241,6 @@
   "billingSyncApiKeyRotated": {
     "message": "Pilnvara nomainīta."
   },
-  "billingSync": {
-    "message": "Norēķinu sinhronizācija"
-  },
   "billingSyncDesc": {
     "message": "Norēķinu sinhronizācija nodrošina bezmaksas ģimeņu plānus locekļiem un papildu norēķinu iespējas, sasaistot pašizvietoto Bitwarden ar Bitwarden mākoņa serveri."
   },
@@ -5262,6 +5291,15 @@
   },
   "required": {
     "message": "nepieciešams"
+  },
+  "characterMaximum": {
+    "message": "Ne vairāk kā $MAX$ rakstzīmju",
+    "placeholders": {
+      "max": {
+        "content": "$1",
+        "example": "100"
+      }
+    }
   },
   "idpSingleSignOnServiceUrlRequired": {
     "message": "Nepieciešams, ja vienības Id nav URL."
@@ -5548,6 +5586,18 @@
       }
     }
   },
+  "multipleInputEmails": {
+    "message": "1 vai vairākas e-pasta adreses nav derīgas"
+  },
+  "tooManyEmails": {
+    "message": "Vienlaikus var iesniegt ne vairāk kā $COUNT$ e-pasta adreses",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "20"
+      }
+    }
+  },
   "fieldsNeedAttention": {
     "message": "$COUNT$ augstāk esošajiem laukam(iem) ir jāpievērš uzmanība.",
     "placeholders": {
@@ -5807,7 +5857,7 @@
     "placeholders": {
       "confirm": {
         "content": "$1",
-        "example": "Delete 3 Projects"
+        "example": "Delete 3 projects"
       }
     }
   },
@@ -6053,5 +6103,56 @@
         "example": "2"
       }
     }
+  },
+  "licenseAndBillingManagement": {
+    "message": "Licenču un norēķinu pārvaldība"
+  },
+  "automaticSync": {
+    "message": "Automātiska sinhronizācija"
+  },
+  "manualUpload": {
+    "message": "Pašrocīga augšupielāde"
+  },
+  "manualUploadDesc": {
+    "message": "Ja nav vēlmes izmantot norēķinu sinhronizāciju, šeit pašrocīgi jāaugšupielādē licence."
+  },
+  "syncLicense": {
+    "message": "Sinhronizēt licenci"
+  },
+  "licenseSyncSuccess": {
+    "message": "Licence veiksmīgi sinhronizēta"
+  },
+  "licenseUploadSuccess": {
+    "message": "Licence sekmīgi augšupielādēta"
+  },
+  "lastLicenseSync": {
+    "message": "Pēdējā licences sinhronizācija"
+  },
+  "billingSyncHelp": {
+    "message": "Norēķinu sinhronizācijas palīdzība"
+  },
+  "uploadLicense": {
+    "message": "Augšupielādēt licenci"
+  },
+  "lowKdfIterations": {
+    "message": "Zems KDF atkārtojumu skaits"
+  },
+  "lowKdfIterationsDesc": {
+    "message": "Jāpaaugstina KDF šifrēšanas iestatījumi, lai uzlabotu konta drošību."
+  },
+  "changeKdfSettings": {
+    "message": "Mainīt KDF iestatījumus"
+  },
+  "changeKdfLoggedOutWarning": {
+    "message": "Turpinot notiks izrakstīšanās no pašreizējās sesijas, tādējādi būs nepieciešams pieteikties vēlreiz. Citu ierīču aktīvās sesijas var turpināt darboties līdz vienai stundai. Pirms šifrēšanas iestatījumu maiņas ir ieteicams izgūt glabātavas saturu, lai novērstu datu zudumu."
+  },
+  "secretsManagerBeta": {
+    "message": "Noslēpumu pārvaldnieks Beta"
+  },
+  "secretsManagerBetaDesc": {
+    "message": "Iespējot lietotāju piekļuvi Noslēpumu pārvaldniekam bez maksas Beta programmas laikā."
+  },
+  "userAccessSecretsManager": {
+    "message": "Šis lietotājs var piekļūt Noslēpumu pārvaldniekam Beta"
   }
 }

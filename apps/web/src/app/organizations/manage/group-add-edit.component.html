@@ -16,11 +16,12 @@
         <span class="sr-only">{{ "loading" | i18n }}</span>
       </div>
 
-      <bit-tab-group *ngIf="!loading" [selectedIndex]="tabIndex">
+      <bit-tab-group *ngIf="!loading" [(selectedIndex)]="tabIndex">
         <bit-tab label="{{ 'groupInfo' | i18n }}">
           <bit-form-field>
             <bit-label>{{ "name" | i18n }}</bit-label>
             <input bitInput type="text" formControlName="name" />
+            <bit-hint>{{ "characterMaximum" | i18n: 100 }}</bit-hint>
           </bit-form-field>
           <bit-form-field>
             <bit-label>{{ "externalId" | i18n }}</bit-label>

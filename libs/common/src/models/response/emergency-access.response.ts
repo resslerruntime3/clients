@@ -1,9 +1,9 @@
 import { EmergencyAccessStatusType } from "../../enums/emergencyAccessStatusType";
 import { EmergencyAccessType } from "../../enums/emergencyAccessType";
 import { KdfType } from "../../enums/kdfType";
+import { CipherResponse } from "../../vault/models/response/cipher.response";
 
 import { BaseResponse } from "./base.response";
-import { CipherResponse } from "./cipher.response";
 
 export class EmergencyAccessGranteeDetailsResponse extends BaseResponse {
   id: string;
@@ -59,6 +59,8 @@ export class EmergencyAccessTakeoverResponse extends BaseResponse {
   keyEncrypted: string;
   kdf: KdfType;
   kdfIterations: number;
+  kdfMemory?: number;
+  kdfParallelism?: number;
 
   constructor(response: any) {
     super(response);
@@ -66,6 +68,8 @@ export class EmergencyAccessTakeoverResponse extends BaseResponse {
     this.keyEncrypted = this.getResponseProperty("KeyEncrypted");
     this.kdf = this.getResponseProperty("Kdf");
     this.kdfIterations = this.getResponseProperty("KdfIterations");
+    this.kdfMemory = this.getResponseProperty("KdfMemory");
+    this.kdfParallelism = this.getResponseProperty("KdfParallelism");
   }
 }
 

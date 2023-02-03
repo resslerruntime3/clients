@@ -960,7 +960,10 @@
     "message": "Ако се открије образац за пријаву, извршите аутоматско попуњавање када се веб страница учита."
   },
   "experimentalFeature": {
-    "message": "Ово је тренутно експериментална способност. Користите на властиту одговорност."
+    "message": "Compromised or untrusted websites can exploit auto-fill on page load."
+  },
+  "learnMoreAboutAutofill": {
+    "message": "Learn more about auto-fill"
   },
   "defaultAutoFillOnPageLoad": {
     "message": "Подразумевано подешавање аутопуњења за пријаве"
@@ -1122,6 +1125,9 @@
   },
   "dr": {
     "message": "Др"
+  },
+  "mx": {
+    "message": "Mx"
   },
   "firstName": {
     "message": "Име"
@@ -2043,5 +2049,35 @@
   },
   "rememberEmail": {
     "message": "Запамти имејл"
+  },
+  "exposedMasterPassword": {
+    "message": "Exposed Master Password"
+  },
+  "exposedMasterPasswordDesc": {
+    "message": "Password found in a data breach. Use a unique password to protect your account. Are you sure you want to use an exposed password?"
+  },
+  "weakAndExposedMasterPassword": {
+    "message": "Weak and Exposed Master Password"
+  },
+  "weakAndBreachedMasterPasswordDesc": {
+    "message": "Weak password identified and found in a data breach. Use a strong and unique password to protect your account. Are you sure you want to use this password?"
+  },
+  "checkForBreaches": {
+    "message": "Check known data breaches for this password"
+  },
+  "important": {
+    "message": "Important:"
+  },
+  "masterPasswordHint": {
+    "message": "Your master password cannot be recovered if you forget it!"
+  },
+  "characterMinimum": {
+    "message": "$LENGTH$ character minimum",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
   }
 }

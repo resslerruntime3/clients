@@ -3,8 +3,6 @@ import { Component, Inject, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 import { combineLatest, of, shareReplay, Subject, switchMap, takeUntil } from "rxjs";
 
-import { ApiService } from "@bitwarden/common/abstractions/api.service";
-import { CollectionService } from "@bitwarden/common/abstractions/collection.service";
 import { I18nService } from "@bitwarden/common/abstractions/i18n.service";
 import { OrganizationUserService } from "@bitwarden/common/abstractions/organization-user/organization-user.service";
 import { OrganizationService } from "@bitwarden/common/abstractions/organization/organization.service.abstraction";
@@ -32,6 +30,8 @@ import {
   convertToSelectionView,
   PermissionMode,
 } from "../../../shared/components/access-selector";
+
+import { commaSeparatedEmails } from "./validators/comma-separated-emails.validator";
 
 export enum MemberDialogTab {
   Role = 0,
@@ -69,15 +69,17 @@ export class MemberDialogComponent implements OnInit, OnDestroy {
   organizationUserType = OrganizationUserType;
   canUseCustomPermissions: boolean;
   PermissionMode = PermissionMode;
+  canUseSecretsManager: boolean;
 
   protected organization: Organization;
   protected collectionAccessItems: AccessItemView[] = [];
   protected groupAccessItems: AccessItemView[] = [];
   protected tabIndex: MemberDialogTab;
   protected formGroup = this.formBuilder.group({
-    emails: ["", [Validators.required]],
+    emails: ["", [Validators.required, commaSeparatedEmails]],
     type: OrganizationUserType.User,
     accessAllCollections: false,
+    accessSecretsManager: false,
     access: [[] as AccessItemValue[]],
     groups: [[] as AccessItemValue[]],
   });
@@ -117,9 +119,7 @@ export class MemberDialogComponent implements OnInit, OnDestroy {
   constructor(
     @Inject(DIALOG_DATA) protected params: MemberDialogParams,
     private dialogRef: DialogRef<MemberDialogResult>,
-    private apiService: ApiService,
     private i18nService: I18nService,
-    private collectionService: CollectionService,
     private platformUtilsService: PlatformUtilsService,
     private organizationService: OrganizationService,
     private formBuilder: FormBuilder,
@@ -160,6 +160,7 @@ export class MemberDialogComponent implements OnInit, OnDestroy {
       .subscribe(({ organization, collections, userDetails, groups }) => {
         this.organization = organization;
         this.canUseCustomPermissions = organization.useCustomPermissions;
+        this.canUseSecretsManager = organization.useSecretsManager;
 
         this.collectionAccessItems = [].concat(
           collections.map((c) => mapCollectionToAccessItemView(c))
@@ -228,6 +229,7 @@ export class MemberDialogComponent implements OnInit, OnDestroy {
             type: userDetails.type,
             accessAllCollections: userDetails.accessAll,
             access: accessSelections,
+            accessSecretsManager: userDetails.accessSecretsManager,
             groups: groupAccessSelections,
           });
         }
@@ -291,7 +293,16 @@ export class MemberDialogComponent implements OnInit, OnDestroy {
   }
 
   submit = async () => {
+    this.formGroup.markAllAsTouched();
+
     if (this.formGroup.invalid) {
+      if (this.tabIndex !== MemberDialogTab.Role) {
+        this.platformUtilsService.showToast(
+          "error",
+          null,
+          this.i18nService.t("fieldOnTabRequiresAttention", this.i18nService.t("role"))
+        );
+      }
       return;
     }
 
@@ -317,12 +328,19 @@ export class MemberDialogComponent implements OnInit, OnDestroy {
       .filter((v) => v.type === AccessItemType.Collection)
       .map(convertToSelectionView);
     userView.groups = this.formGroup.value.groups.map((m) => m.id);
+    userView.accessSecretsManager = this.formGroup.value.accessSecretsManager;
 
     if (this.editMode) {
       await this.userService.save(userView);
     } else {
       userView.id = this.params.organizationUserId;
       const emails = [...new Set(this.formGroup.value.emails.trim().split(/\s*,\s*/))];
+      if (emails.length > 20) {
+        this.formGroup.controls.emails.setErrors({
+          tooManyEmails: { message: this.i18nService.t("tooManyEmails", 20) },
+        });
+        return;
+      }
       await this.userService.invite(emails, userView);
     }
 

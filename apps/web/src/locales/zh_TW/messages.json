@@ -133,6 +133,9 @@
   "ms": {
     "message": "Ms"
   },
+  "mx": {
+    "message": "Mx"
+  },
   "dr": {
     "message": "Dr"
   },
@@ -278,11 +281,11 @@
     "message": "搜尋我的最愛"
   },
   "searchLogin": {
-    "message": "Search logins",
+    "message": "搜尋登入資料",
     "description": "Search Login type"
   },
   "searchCard": {
-    "message": "Search cards",
+    "message": "搜尋卡片",
     "description": "Search Card type"
   },
   "searchIdentity": {
@@ -300,10 +303,13 @@
     "message": "Search my vault"
   },
   "searchOrganization": {
-    "message": "Search organization"
+    "message": "搜尋組織"
   },
   "searchMembers": {
-    "message": "Search members"
+    "message": "搜尋成員"
+  },
+  "searchGroups": {
+    "message": "搜尋群組"
   },
   "allItems": {
     "message": "所有項目"
@@ -387,7 +393,7 @@
     "message": "選擇"
   },
   "newItem": {
-    "message": "New item"
+    "message": "新項目"
   },
   "addItem": {
     "message": "新增項目"
@@ -399,10 +405,11 @@
     "message": "檢視項目"
   },
   "new": {
-    "message": "新增"
+    "message": "新增",
+    "description": "for adding new items"
   },
   "item": {
-    "message": "Item"
+    "message": "項目"
   },
   "ex": {
     "message": "例如",
@@ -470,7 +477,7 @@
     "message": "密碼庫項目"
   },
   "filter": {
-    "message": "Filter"
+    "message": "篩選"
   },
   "moveSelectedToOrg": {
     "message": "移動所選至組織"
@@ -579,10 +586,10 @@
     "message": "資料夾已刪除"
   },
   "editInfo": {
-    "message": "Edit info"
+    "message": "編輯資訊"
   },
   "access": {
-    "message": "Access"
+    "message": "存取"
   },
   "loggedOut": {
     "message": "已登出"
@@ -1149,6 +1156,19 @@
         "example": "50,000"
       }
     }
+  },
+  "kdfMemory": {
+    "message": "KDF memory (MB)",
+    "description": "Memory refers to computer memory (RAM). MB is short for megabytes."
+  },
+  "argon2Warning": {
+    "message": "Setting your KDF iterations, memory, and parallelism too high could result in poor performance when logging into (and unlocking) Bitwarden on slower or older devices. We recommend changing these individually in small increments and then test all of your devices."
+  },
+  "kdfParallelism": {
+    "message": "KDF parallelism"
+  },
+  "argon2Desc": {
+    "message": "Higher KDF iterations, memory, and parallelism can help protect your master password from being brute forced by an attacker."
   },
   "changeKdf": {
     "message": "變更 KDF"
@@ -2037,6 +2057,9 @@
   "manageSubscription": {
     "message": "管理訂閱"
   },
+  "launchCloudSubscription": {
+    "message": "Launch Cloud Subscription"
+  },
   "storage": {
     "message": "儲存空間"
   },
@@ -2481,13 +2504,22 @@
     "message": "編輯集合"
   },
   "collectionInfo": {
-    "message": "Collection info"
+    "message": "集合資訊"
   },
   "deleteCollectionConfirmation": {
     "message": "確定要刪除此集合嗎？"
   },
   "editMember": {
-    "message": "Edit member"
+    "message": "編輯成員"
+  },
+  "fieldOnTabRequiresAttention": {
+    "message": "A field on the '$TAB$' tab requires your attention.",
+    "placeholders": {
+      "tab": {
+        "content": "$1",
+        "example": "Collection info"
+      }
+    }
   },
   "inviteUserDesc": {
     "message": "在下方輸入 Bitwarden 帳戶的電子郵件位址，以邀請新使用者加入您的組織。若他們沒有 Bitwarden 帳戶，系統將提示他們建立新帳戶。"
@@ -3880,7 +3912,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deletedSend": {
-    "message": "已刪除 Send",
+    "message": "Send 已刪除",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deleteSend": {
@@ -3945,7 +3977,7 @@
     "message": "移除密碼"
   },
   "removedPassword": {
-    "message": "已移除密碼"
+    "message": "密碼已移除"
   },
   "removePasswordConfirmation": {
     "message": "您確定要移除此密碼嗎？"
@@ -4217,7 +4249,7 @@
     "message": "進階設定允許更精細地控制使用者權限。"
   },
   "customDescNonEnterpriseStart": {
-    "message": "自訂角色是 ",
+    "message": "自訂角色為 ",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Custom roles is an enterprise feature. Contact our support team to upgrade your subscription'"
   },
   "customDescNonEnterpriseLink": {
@@ -5209,9 +5241,6 @@
   "billingSyncApiKeyRotated": {
     "message": "權杖已輪換"
   },
-  "billingSync": {
-    "message": "帳單同步"
-  },
   "billingSyncDesc": {
     "message": "「帳單同步」藉由將您的自我裝載 Bitwarden 服務與 Bitwarden 雲端伺服器連結，向成員提供「免費家庭」方案及進階帳單功能。"
   },
@@ -5262,6 +5291,15 @@
   },
   "required": {
     "message": "必填"
+  },
+  "characterMaximum": {
+    "message": "$MAX$ character maximum",
+    "placeholders": {
+      "max": {
+        "content": "$1",
+        "example": "100"
+      }
+    }
   },
   "idpSingleSignOnServiceUrlRequired": {
     "message": "若 Entity ID 非 URL，則必須填入。"
@@ -5548,6 +5586,18 @@
       }
     }
   },
+  "multipleInputEmails": {
+    "message": "1 or more emails are invalid"
+  },
+  "tooManyEmails": {
+    "message": "You can only submit up to $COUNT$ emails at a time",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "20"
+      }
+    }
+  },
   "fieldsNeedAttention": {
     "message": "您需注意上方的 $COUNT$ 個欄位。",
     "placeholders": {
@@ -5728,7 +5778,7 @@
     "message": "還沒有要顯示的內容"
   },
   "serviceAccountsNoItemsMessage": {
-    "message": "Create a new Service Account to get started automating secret access."
+    "message": "Create a new service account to get started automating secret access."
   },
   "searchSecrets": {
     "message": "搜尋機密"
@@ -5807,7 +5857,7 @@
     "placeholders": {
       "confirm": {
         "content": "$1",
-        "example": "Delete 3 Projects"
+        "example": "Delete 3 projects"
       }
     }
   },
@@ -5920,7 +5970,7 @@
     }
   },
   "groupInfo": {
-    "message": "Group info"
+    "message": "群組資訊"
   },
   "editGroupMembersDesc": {
     "message": "Grant members access to the group's assigned collections."
@@ -5935,19 +5985,19 @@
     "message": "If checked, this will replace all other collection permissions."
   },
   "selectMembers": {
-    "message": "Select members"
+    "message": "選擇成員"
   },
   "selectCollections": {
-    "message": "Select collections"
+    "message": "選擇集合"
   },
   "role": {
     "message": "角色"
   },
   "removeMember": {
-    "message": "Remove member"
+    "message": "移除成員"
   },
   "collection": {
-    "message": "Collection"
+    "message": "集合"
   },
   "canView": {
     "message": "可以檢視"
@@ -5983,13 +6033,13 @@
     "message": "Member/Group"
   },
   "groupAndMemberColumnHeader": {
-    "message": "Member"
+    "message": "成員"
   },
   "selectGroupsAndMembers": {
     "message": "Select groups and members"
   },
   "selectGroups": {
-    "message": "Select groups"
+    "message": "選擇群組"
   },
   "userPermissionOverrideHelper": {
     "message": "Permissions set for a member will replace permissions set by that member's group"
@@ -5998,13 +6048,13 @@
     "message": "No members or groups added"
   },
   "deleted": {
-    "message": "Deleted"
+    "message": "已刪除"
   },
   "memberStatusFilter": {
     "message": "Member status filter"
   },
   "inviteMember": {
-    "message": "Invite member"
+    "message": "邀請成員"
   },
   "needsConfirmation": {
     "message": "Needs confirmation"
@@ -6053,5 +6103,56 @@
         "example": "2"
       }
     }
+  },
+  "licenseAndBillingManagement": {
+    "message": "License and billing management"
+  },
+  "automaticSync": {
+    "message": "自動同步"
+  },
+  "manualUpload": {
+    "message": "手動上傳"
+  },
+  "manualUploadDesc": {
+    "message": "If you do not want to opt into billing sync, manually upload your license here."
+  },
+  "syncLicense": {
+    "message": "Sync license"
+  },
+  "licenseSyncSuccess": {
+    "message": "Successfully synced license"
+  },
+  "licenseUploadSuccess": {
+    "message": "Successfully uploaded license"
+  },
+  "lastLicenseSync": {
+    "message": "Last license sync"
+  },
+  "billingSyncHelp": {
+    "message": "Billing Sync help"
+  },
+  "uploadLicense": {
+    "message": "Upload license"
+  },
+  "lowKdfIterations": {
+    "message": "Low KDF Iterations"
+  },
+  "lowKdfIterationsDesc": {
+    "message": "Increase your KDF encryption settings to improve the security of your account."
+  },
+  "changeKdfSettings": {
+    "message": "Change KDF settings"
+  },
+  "changeKdfLoggedOutWarning": {
+    "message": "Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour. We recommend exporting your vault before changing your encryption settings to prevent data loss."
+  },
+  "secretsManagerBeta": {
+    "message": "Secrets Manager Beta"
+  },
+  "secretsManagerBetaDesc": {
+    "message": "Enable user access to the Secrets Manager at no charge during the Beta program."
+  },
+  "userAccessSecretsManager": {
+    "message": "This user can access the Secrets Manager Beta"
   }
 }
