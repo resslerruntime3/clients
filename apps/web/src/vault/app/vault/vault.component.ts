@@ -174,11 +174,6 @@ export class VaultComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe((activeFilter) => {
         this.activeFilter = activeFilter;
-        // eslint-disable-next-line no-console
-        this.vaultItemsComponent.reload(
-          this.activeFilter.buildFilter(),
-          this.activeFilter.isDeleted
-        );
       });
   }
 
