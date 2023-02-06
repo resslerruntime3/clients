@@ -5,10 +5,20 @@ import { AuthGuard } from "@bitwarden/angular/guards/auth.guard";
 import { LockGuard } from "@bitwarden/angular/guards/lock.guard";
 import { UnauthGuard } from "@bitwarden/angular/guards/unauth.guard";
 
+import { AddEditComponent } from "../vault/popup/components/vault/add-edit.component";
+import { AttachmentsComponent } from "../vault/popup/components/vault/attachments.component";
+import { CurrentTabComponent } from "../vault/popup/components/vault/current-tab.component";
+import { PasswordHistoryComponent } from "../vault/popup/components/vault/password-history.component";
+import { ShareComponent } from "../vault/popup/components/vault/share.component";
+import { VaultFilterComponent } from "../vault/popup/components/vault/vault-filter.component";
+import { VaultItemsComponent } from "../vault/popup/components/vault/vault-items.component";
+import { ViewComponent } from "../vault/popup/components/vault/view.component";
+
 import { EnvironmentComponent } from "./accounts/environment.component";
 import { HintComponent } from "./accounts/hint.component";
 import { HomeComponent } from "./accounts/home.component";
 import { LockComponent } from "./accounts/lock.component";
+import { LoginWithDeviceComponent } from "./accounts/login-with-device.component";
 import { LoginComponent } from "./accounts/login.component";
 import { RegisterComponent } from "./accounts/register.component";
 import { RemovePasswordComponent } from "./accounts/remove-password.component";
@@ -23,6 +33,7 @@ import { SendAddEditComponent } from "./send/send-add-edit.component";
 import { SendGroupingsComponent } from "./send/send-groupings.component";
 import { SendTypeComponent } from "./send/send-type.component";
 import { DebounceNavigationService } from "./services/debounceNavigationService";
+import { AutofillComponent } from "./settings/autofill.component";
 import { ExcludedDomainsComponent } from "./settings/excluded-domains.component";
 import { ExportComponent } from "./settings/export.component";
 import { FolderAddEditComponent } from "./settings/folder-add-edit.component";
@@ -32,15 +43,7 @@ import { PremiumComponent } from "./settings/premium.component";
 import { SettingsComponent } from "./settings/settings.component";
 import { SyncComponent } from "./settings/sync.component";
 import { TabsComponent } from "./tabs.component";
-import { AddEditComponent } from "./vault/add-edit.component";
-import { AttachmentsComponent } from "./vault/attachments.component";
 import { CollectionsComponent } from "./vault/collections.component";
-import { CurrentTabComponent } from "./vault/current-tab.component";
-import { PasswordHistoryComponent } from "./vault/password-history.component";
-import { ShareComponent } from "./vault/share.component";
-import { VaultFilterComponent } from "./vault/vault-filter.component";
-import { VaultItemsComponent } from "./vault/vault-items.component";
-import { ViewComponent } from "./vault/view.component";
 
 const routes: Routes = [
   {
@@ -64,6 +67,12 @@ const routes: Routes = [
     component: LoginComponent,
     canActivate: [UnauthGuard],
     data: { state: "login" },
+  },
+  {
+    path: "login-with-device",
+    component: LoginWithDeviceComponent,
+    canActivate: [UnauthGuard],
+    data: { state: "login-with-device" },
   },
   {
     path: "lock",
@@ -185,6 +194,12 @@ const routes: Routes = [
     component: ExportComponent,
     canActivate: [AuthGuard],
     data: { state: "export" },
+  },
+  {
+    path: "autofill",
+    component: AutofillComponent,
+    canActivate: [AuthGuard],
+    data: { state: "autofill" },
   },
   {
     path: "folders",

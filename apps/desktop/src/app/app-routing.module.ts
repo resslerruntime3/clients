@@ -4,10 +4,13 @@ import { RouterModule, Routes } from "@angular/router";
 import { AuthGuard } from "@bitwarden/angular/guards/auth.guard";
 import { LockGuard } from "@bitwarden/angular/guards/lock.guard";
 
+import { VaultComponent } from "../vault/app/vault/vault.component";
+
 import { AccessibilityCookieComponent } from "./accounts/accessibility-cookie.component";
 import { HintComponent } from "./accounts/hint.component";
 import { LockComponent } from "./accounts/lock.component";
-import { LoginComponent } from "./accounts/login.component";
+import { LoginWithDeviceComponent } from "./accounts/login/login-with-device.component";
+import { LoginComponent } from "./accounts/login/login.component";
 import { RegisterComponent } from "./accounts/register.component";
 import { RemovePasswordComponent } from "./accounts/remove-password.component";
 import { SetPasswordComponent } from "./accounts/set-password.component";
@@ -16,7 +19,6 @@ import { TwoFactorComponent } from "./accounts/two-factor.component";
 import { UpdateTempPasswordComponent } from "./accounts/update-temp-password.component";
 import { LoginGuard } from "./guards/login.guard";
 import { SendComponent } from "./send/send.component";
-import { VaultComponent } from "./vault/vault.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "/vault", pathMatch: "full" },
@@ -29,6 +31,10 @@ const routes: Routes = [
     path: "login",
     component: LoginComponent,
     canActivate: [LoginGuard],
+  },
+  {
+    path: "login-with-device",
+    component: LoginWithDeviceComponent,
   },
   { path: "2fa", component: TwoFactorComponent },
   { path: "register", component: RegisterComponent },

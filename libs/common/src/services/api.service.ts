@@ -7,16 +7,7 @@ import { DeviceType } from "../enums/deviceType";
 import { OrganizationConnectionType } from "../enums/organizationConnectionType";
 import { Utils } from "../misc/utils";
 import { SetKeyConnectorKeyRequest } from "../models/request/account/set-key-connector-key.request";
-import { AttachmentRequest } from "../models/request/attachment.request";
 import { BitPayInvoiceRequest } from "../models/request/bit-pay-invoice.request";
-import { CipherBulkDeleteRequest } from "../models/request/cipher-bulk-delete.request";
-import { CipherBulkMoveRequest } from "../models/request/cipher-bulk-move.request";
-import { CipherBulkShareRequest } from "../models/request/cipher-bulk-share.request";
-import { CipherCollectionsRequest } from "../models/request/cipher-collections.request";
-import { CipherCreateRequest } from "../models/request/cipher-create.request";
-import { CipherPartialRequest } from "../models/request/cipher-partial.request";
-import { CipherShareRequest } from "../models/request/cipher-share.request";
-import { CipherRequest } from "../models/request/cipher.request";
 import { CollectionBulkDeleteRequest } from "../models/request/collection-bulk-delete.request";
 import { CollectionRequest } from "../models/request/collection.request";
 import { DeleteRecoverRequest } from "../models/request/delete-recover.request";
@@ -44,6 +35,7 @@ import { OrganizationSponsorshipCreateRequest } from "../models/request/organiza
 import { OrganizationSponsorshipRedeemRequest } from "../models/request/organization/organization-sponsorship-redeem.request";
 import { PasswordHintRequest } from "../models/request/password-hint.request";
 import { PasswordRequest } from "../models/request/password.request";
+import { PasswordlessAuthRequest } from "../models/request/passwordless-auth.request";
 import { PasswordlessCreateAuthRequest } from "../models/request/passwordless-create-auth.request";
 import { PaymentRequest } from "../models/request/payment.request";
 import { PreloginRequest } from "../models/request/prelogin.request";
@@ -82,14 +74,11 @@ import { UpdateTwoFactorYubioOtpRequest } from "../models/request/update-two-fac
 import { VerifyDeleteRecoverRequest } from "../models/request/verify-delete-recover.request";
 import { VerifyEmailRequest } from "../models/request/verify-email.request";
 import { ApiKeyResponse } from "../models/response/api-key.response";
-import { AttachmentUploadDataResponse } from "../models/response/attachment-upload-data.response";
-import { AttachmentResponse } from "../models/response/attachment.response";
 import { AuthRequestResponse } from "../models/response/auth-request.response";
 import { RegisterResponse } from "../models/response/authentication/register.response";
 import { BillingHistoryResponse } from "../models/response/billing-history.response";
 import { BillingPaymentResponse } from "../models/response/billing-payment.response";
 import { BreachAccountResponse } from "../models/response/breach-account.response";
-import { CipherResponse } from "../models/response/cipher.response";
 import {
   CollectionAccessDetailsResponse,
   CollectionResponse,
@@ -138,7 +127,6 @@ import { SendFileUploadDataResponse } from "../models/response/send-file-upload-
 import { SendResponse } from "../models/response/send.response";
 import { SsoPreValidateResponse } from "../models/response/sso-pre-validate.response";
 import { SubscriptionResponse } from "../models/response/subscription.response";
-import { SyncResponse } from "../models/response/sync.response";
 import { TaxInfoResponse } from "../models/response/tax-info.response";
 import { TaxRateResponse } from "../models/response/tax-rate.response";
 import { TwoFactorAuthenticatorResponse } from "../models/response/two-factor-authenticator.response";
@@ -153,6 +141,19 @@ import {
 import { TwoFactorYubiKeyResponse } from "../models/response/two-factor-yubi-key.response";
 import { UserKeyResponse } from "../models/response/user-key.response";
 import { SendAccessView } from "../models/view/send-access.view";
+import { AttachmentRequest } from "../vault/models/request/attachment.request";
+import { CipherBulkDeleteRequest } from "../vault/models/request/cipher-bulk-delete.request";
+import { CipherBulkMoveRequest } from "../vault/models/request/cipher-bulk-move.request";
+import { CipherBulkShareRequest } from "../vault/models/request/cipher-bulk-share.request";
+import { CipherCollectionsRequest } from "../vault/models/request/cipher-collections.request";
+import { CipherCreateRequest } from "../vault/models/request/cipher-create.request";
+import { CipherPartialRequest } from "../vault/models/request/cipher-partial.request";
+import { CipherShareRequest } from "../vault/models/request/cipher-share.request";
+import { CipherRequest } from "../vault/models/request/cipher.request";
+import { AttachmentUploadDataResponse } from "../vault/models/response/attachment-upload-data.response";
+import { AttachmentResponse } from "../vault/models/response/attachment.response";
+import { CipherResponse } from "../vault/models/response/cipher.response";
+import { SyncResponse } from "../vault/models/response/sync.response";
 
 /**
  * @deprecated The `ApiService` class is deprecated and calls should be extracted into individual
@@ -264,6 +265,33 @@ export class ApiService implements ApiServiceAbstraction {
     const path = `/auth-requests/${id}/response?code=${accessCode}`;
     const r = await this.send("GET", path, null, false, true);
     return new AuthRequestResponse(r);
+  }
+
+  async getAuthRequest(id: string): Promise<AuthRequestResponse> {
+    const path = `/auth-requests/${id}`;
+    const r = await this.send("GET", path, null, true, true);
+    return new AuthRequestResponse(r);
+  }
+
+  async putAuthRequest(id: string, request: PasswordlessAuthRequest): Promise<AuthRequestResponse> {
+    const path = `/auth-requests/${id}`;
+    const r = await this.send("PUT", path, request, true, true);
+    return new AuthRequestResponse(r);
+  }
+
+  async getAuthRequests(): Promise<ListResponse<AuthRequestResponse>> {
+    const path = `/auth-requests/`;
+    const r = await this.send("GET", path, null, true, true);
+    return new ListResponse(r, AuthRequestResponse);
+  }
+
+  async getLastAuthRequest(): Promise<AuthRequestResponse> {
+    const requests = await this.getAuthRequests();
+    const activeRequests = requests.data.filter((m) => !m.isAnswered && !m.isExpired);
+    const lastRequest = activeRequests.sort((a: AuthRequestResponse, b: AuthRequestResponse) =>
+      a.creationDate.localeCompare(b.creationDate)
+    )[activeRequests.length - 1];
+    return lastRequest;
   }
 
   // Account APIs
@@ -1962,11 +1990,8 @@ export class ApiService implements ApiServiceAbstraction {
   ): Promise<any> {
     apiUrl = Utils.isNullOrWhitespace(apiUrl) ? this.environmentService.getApiUrl() : apiUrl;
 
-    const requestUrl = apiUrl + path;
     // Prevent directory traversal from malicious paths
-    if (new URL(requestUrl).href !== requestUrl) {
-      return Promise.reject("Invalid request url path.");
-    }
+    const requestUrl = apiUrl + Utils.normalizePath(path);
 
     const headers = new Headers({
       "Device-Type": this.deviceType,
