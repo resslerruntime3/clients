@@ -1,5 +1,9 @@
 import AddLoginRuntimeMessage from "../../background/models/addLoginRuntimeMessage";
 import ChangePasswordRuntimeMessage from "../../background/models/changePasswordRuntimeMessage";
+import AutofillField from "../models/autofill-field";
+import AutofillPageDetails from "../models/autofill-page-details";
+import { WatchedForm } from "../models/watched-form";
+import { FormData } from "../services/abstractions/autofill.service";
 
 /**
  * @fileoverview This file contains the code for the Bitwarden Notification Bar
@@ -20,9 +24,17 @@ import ChangePasswordRuntimeMessage from "../../background/models/changePassword
 
 // TODO: Recommendations:
 // (1) Move small helper functions into a separate file and import them to reduce the size of this file.
+// (2) Reducing / removing timeouts delays could improve form detection for users who are fast at filling out forms.
+
+// TODO: test with and without ad blocker
 
 // TODO: How long does it take to execute full getPageDetails process to be ready to open the notification bar?
 // i.e., Investigate if nested setTimeouts are causing issues in terms of missing form inputs
+
+// Findings:
+// - Bank of America redirects to a new page after entering invalid credentials and the notification bar doesn't show up
+// - However, the bar normally persists across multiple pages.
+// https://training.knowbe4.com/ui/login doesn't work for adding a login
 
 document.addEventListener("DOMContentLoaded", (event) => {
   // Do not show the notification bar on the Bitwarden vault
@@ -32,8 +44,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
   }
 
   // Initialize required variables and set default values
-  const pageDetails: any[] = [];
-  const formData: any[] = [];
+  // TODO: this isn't used anywhere in the file except for being pushed onto?
+  const pageDetails: AutofillPageDetails[] = [];
+  const watchedForms: WatchedForm[] = [];
   let barType: string = null;
   let pageHref: string = null;
 
@@ -57,6 +70,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   let observeDomTimeout: number = null;
   const inIframe = isInIframe();
   const cancelButtonNames = new Set(["cancel", "close", "back"]);
+  // TODO: how comprehensive is this set?
   const logInButtonNames = new Set([
     "log in",
     "sign in",
@@ -73,6 +87,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
     "change",
   ]);
   const changePasswordButtonContainsNames = new Set(["pass", "change", "contras", "senha"]);
+
+  // These are preferences for whether to show the notification bar based on the user's settings
+  // and they are set in the Settings > Options page in the browser extension.
   let disabledAddLoginNotification = false;
   let disabledChangedPasswordNotification = false;
 
@@ -108,8 +125,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       return;
     }
 
-    // Set preferences for whether to show the notification bar based on the user's settings
-    // These are set in the Settings > Options page in the browser extension.
+    // Set local disabled preferences
     disabledAddLoginNotification = userSettings.disableAddLoginNotification;
     disabledChangedPasswordNotification = userSettings.disableChangedPasswordNotification;
 
@@ -139,6 +155,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
    */
   function processMessages(msg: any, sendResponse: (response?: any) => void) {
     if (msg.command === "openNotificationBar") {
+      // `notification.background.ts : doNotificationQueueCheck(...)` sends
+      // a message to the content script to open the notification bar
+      // on Login Add or Password Change
       if (inIframe) {
         return;
       }
@@ -146,6 +165,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
       sendResponse();
       return true;
     } else if (msg.command === "closeNotificationBar") {
+      // The following methods send a message to the content script to close the notification bar:
+      // `bar.js : closeButton click` > `notification.background.ts : processMessage(...)`
+      // `notification.background.ts : saveNever(...)`
+      // `notification.background.ts : saveOrUpdateCredentials(...)`
       if (inIframe) {
         return;
       }
@@ -153,6 +176,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
       sendResponse();
       return true;
     } else if (msg.command === "adjustNotificationBar") {
+      // `bar.js : window resize` > `notification.background.ts : processMessage(...)`
+      // sends a message to the content script to adjust the notification bar
       if (inIframe) {
         return;
       }
@@ -252,7 +277,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
             window.clearTimeout(domObservationCollectTimeout);
           }
 
-          // The timeout is used to avoid collecting page details too often while also
+          // The timeout is used to avoid collecting page details too often on page mutation while also
           // giving the DOM time to settle down after a change (ex: multi-part forms being rendered)
           domObservationCollectTimeout = window.setTimeout(collectPageDetails, 1000);
         }
@@ -296,7 +321,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
         window.clearTimeout(observeDomTimeout);
       }
       // Start observing the DOM
-      // TODO: why 1 second delay here?
+      // TODO: This method is called every 1 second, so why wait another second to start observing the DOM?
+      // On page change, there is a min of 3 seconds before
       observeDomTimeout = window.setTimeout(observeDom, 1000);
     }
 
@@ -335,40 +361,65 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   //#endregion Page Detail Collection Methods
 
-  function watchForms(forms: any[]) {
+  // #region Form Detection and Submission Handling
+
+  /**
+   * Iterates through the given array of forms and adds an event listener to each form.
+   * The purpose of the event listener is to detect changes in form data and store the changes.
+   *
+   * Note: The forms were gathered in the `notification.background.ts : processMessage(...)`
+   * method with command `collectPageDetailsResponse` by the `autofillService.getFormsWithPasswordFields(...)` method
+   * and passed to the `processMessages` method in this content script.
+   *
+   * @param {FormData[]} forms - The array of forms to be watched.
+   */
+  function watchForms(forms: FormData[]) {
+    // If there are no forms, return
     if (forms == null || forms.length === 0) {
       return;
     }
 
-    forms.forEach((f: any) => {
+    forms.forEach((f: FormData) => {
+      // Get the form element by id
       const formId: string = f.form != null ? f.form.htmlID : null;
       let formEl: HTMLFormElement = null;
       if (formId != null && formId !== "") {
         formEl = document.getElementById(formId) as HTMLFormElement;
       }
 
+      // If the form could not be retrieved by its HTML ID, retrieve it by its index pulled from the opid
       if (formEl == null) {
+        // opid stands for OnePassword ID - uniquely ID's an element on a page
+        // and is generated in `autofill.js`
+        // Each form has an opid and each element has an opid and its parent form opid
         const index = parseInt(f.form.opid.split("__")[2], null);
         formEl = document.getElementsByTagName("form")[index];
       }
 
+      // If the form element exists and is not yet being watched, start watching it and set it as watched
       if (formEl != null && formEl.dataset.bitwardenWatching !== "1") {
-        const formDataObj: any = {
+        const watchedForm: WatchedForm = {
           data: f,
           formEl: formEl,
           usernameEl: null,
           passwordEl: null,
           passwordEls: null,
         };
-        locateFields(formDataObj);
-        formData.push(formDataObj);
-        listen(formEl);
+        // Locate the username and password fields
+        locateFields(watchedForm);
+        // Add the form data to the array of watched forms
+        watchedForms.push(watchedForm);
+        // Add an event listener to the form
+        listenToForm(formEl);
+        // Set the form as watched
         formEl.dataset.bitwardenWatching = "1";
       }
     });
   }
 
-  function listen(form: HTMLFormElement) {
+  function listenToForm(form: HTMLFormElement) {
+    // Remove any existing event listeners and re-add them
+    // for form submission and submit button click
     form.removeEventListener("submit", formSubmitted, false);
     form.addEventListener("submit", formSubmitted, false);
     const submitButton = getSubmitButton(form, logInButtonNames);
@@ -378,36 +429,50 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
   }
 
-  function locateFields(formDataObj: any) {
+  /**
+   * Locate the fields within a form element given form data.
+   * @param {Object} watchedForm - The object containing form data and the form element to search within.
+   */
+  function locateFields(watchedForm: WatchedForm) {
+    // Get all input elements
     const inputs = Array.from(document.getElementsByTagName("input"));
-    formDataObj.usernameEl = locateField(formDataObj.formEl, formDataObj.data.username, inputs);
-    if (formDataObj.usernameEl != null && formDataObj.data.password != null) {
-      formDataObj.passwordEl = locatePassword(
-        formDataObj.formEl,
-        formDataObj.data.password,
+
+    // Locate the username field
+    watchedForm.usernameEl = locateField(watchedForm.formEl, watchedForm.data.username, inputs);
+
+    // if we found a username field, try to locate a single password field
+    if (watchedForm.usernameEl != null && watchedForm.data.password != null) {
+      // This is most likely a login or create account form b/c we have a username and password
+      watchedForm.passwordEl = locatePassword(
+        watchedForm.formEl,
+        watchedForm.data.password,
         inputs,
-        true
+        true // Only do fallback if we have expect to find a single password field
       );
-    } else if (formDataObj.data.passwords != null) {
-      formDataObj.passwordEls = [];
-      formDataObj.data.passwords.forEach((pData: any) => {
-        const el = locatePassword(formDataObj.formEl, pData, inputs, false);
-        if (el != null) {
-          formDataObj.passwordEls.push(el);
+    } else if (watchedForm.data.passwords != null) {
+      // if we didn't find a username field, try to locate multiple password fields
+      // This is most likely a change password form b/c we have multiple password fields
+      watchedForm.passwordEls = [];
+      watchedForm.data.passwords.forEach((passwordData: AutofillField) => {
+        // Note: do not do fallback here b/c we expect to find multiple password fields
+        // and form.querySelector always returns the first element it finds
+        const passwordEl = locatePassword(watchedForm.formEl, passwordData, inputs, false);
+        if (passwordEl != null) {
+          watchedForm.passwordEls.push(passwordEl);
         }
       });
-      if (formDataObj.passwordEls.length === 0) {
-        formDataObj.passwordEls = null;
+      if (watchedForm.passwordEls.length === 0) {
+        watchedForm.passwordEls = null;
       }
     }
   }
 
   function locatePassword(
     form: HTMLFormElement,
-    passwordData: any,
+    passwordData: AutofillField,
     inputs: HTMLInputElement[],
     doLastFallback: boolean
-  ) {
+  ): HTMLInputElement {
     let el = locateField(form, passwordData, inputs);
     if (el != null && el.type !== "password") {
       el = null;
@@ -418,10 +483,23 @@ document.addEventListener("DOMContentLoaded", (event) => {
     return el;
   }
 
-  function locateField(form: HTMLFormElement, fieldData: any, inputs: HTMLInputElement[]) {
+  /**
+   * Locate a field within a form element given field data.
+   * @param {Object} form - The form element to search within.
+   * @param {Object} fieldData - The field data to search for.
+   * @param {Object[]} inputs - The array of input elements to search within.
+   * @returns {Object} The located field element.
+   */
+  function locateField(
+    form: HTMLFormElement,
+    fieldData: AutofillField,
+    inputs: HTMLInputElement[]
+  ): HTMLInputElement | null {
+    // If we have no field data, we cannot locate the field
     if (fieldData == null) {
       return;
     }
+    // Try to locate the field by its HTML ID, by its HTML name, or finally by its element number
     let el: HTMLInputElement = null;
     if (fieldData.htmlID != null && fieldData.htmlID !== "") {
       try {
@@ -439,12 +517,18 @@ document.addEventListener("DOMContentLoaded", (event) => {
     return el;
   }
 
+  /*
+   * Event handler for form submission (submit button click or form submit)
+   */
   function formSubmitted(e: Event) {
     let form: HTMLFormElement = null;
+    // If the event is a click event, we need to find the closest form element
     if (e.type === "click") {
       form = (e.target as HTMLElement).closest("form");
+      // If we didn't find a form element, check if the click was within a modal
       if (form == null) {
         const parentModal = (e.target as HTMLElement).closest("div.modal");
+        // If we found a modal, check if it has a single form element
         if (parentModal != null) {
           const modalForms = parentModal.querySelectorAll("form");
           if (modalForms.length === 1) {
@@ -453,25 +537,36 @@ document.addEventListener("DOMContentLoaded", (event) => {
         }
       }
     } else {
+      // If the event is a submit event, we can get the form element from the event target
       form = e.target as HTMLFormElement;
     }
 
+    // if we didn't find a form element or we've already processed this form, return
     if (form == null || form.dataset.bitwardenProcessed === "1") {
       return;
     }
 
-    for (let i = 0; i < formData.length; i++) {
-      if (formData[i].formEl !== form) {
+    // Find the form in the watched forms array
+    for (let i = 0; i < watchedForms.length; i++) {
+      if (watchedForms[i].formEl !== form) {
         continue;
       }
+
       const disabledBoth = disabledChangedPasswordNotification && disabledAddLoginNotification;
-      if (!disabledBoth && formData[i].usernameEl != null && formData[i].passwordEl != null) {
+      // if user has not disabled both notifications and we have a username and password field,
+      if (
+        !disabledBoth &&
+        watchedForms[i].usernameEl != null &&
+        watchedForms[i].passwordEl != null
+      ) {
+        // Create a login object from the form data
         const login: AddLoginRuntimeMessage = {
-          username: formData[i].usernameEl.value,
-          password: formData[i].passwordEl.value,
+          username: watchedForms[i].usernameEl.value,
+          password: watchedForms[i].passwordEl.value,
           url: document.URL,
         };
 
+        // if we have values for username and password, send a message to the background script to add the login
         if (
           login.username != null &&
           login.username !== "" &&
@@ -486,41 +581,61 @@ document.addEventListener("DOMContentLoaded", (event) => {
           break;
         }
       }
-      if (!disabledChangedPasswordNotification && formData[i].passwordEls != null) {
-        const passwords: string[] = formData[i].passwordEls
+
+      // if user has not disabled the password changed notification and we have multiple password fields,
+      // then check if the user has changed their password
+      if (!disabledChangedPasswordNotification && watchedForms[i].passwordEls != null) {
+        // Get the values of the password fields
+        const passwords: string[] = watchedForms[i].passwordEls
           .filter((el: HTMLInputElement) => el.value != null && el.value !== "")
           .map((el: HTMLInputElement) => el.value);
 
         let curPass: string = null;
         let newPass: string = null;
         let newPassOnly = false;
-        if (formData[i].passwordEls.length === 3 && passwords.length === 3) {
+
+        if (watchedForms[i].passwordEls.length === 3 && passwords.length === 3) {
+          // we have 3 password fields and all 3 have values
+          // Assume second field is new password.
           newPass = passwords[1];
           if (passwords[0] !== newPass && newPass === passwords[2]) {
+            // first field is the current password, the second field is the new password, and the third field is the new password confirmation
             curPass = passwords[0];
           } else if (newPass !== passwords[2] && passwords[0] === newPass) {
+            // first field is the new password, second field is the new password confirmation, and third field is the current password
             curPass = passwords[2];
           }
-        } else if (formData[i].passwordEls.length === 2 && passwords.length === 2) {
+        } else if (watchedForms[i].passwordEls.length === 2 && passwords.length === 2) {
+          // we have 2 password fields and both have values
           if (passwords[0] === passwords[1]) {
+            // both fields have the same value, assume this is a new password
             newPassOnly = true;
             newPass = passwords[0];
             curPass = null;
           } else {
+            // both fields have different values
+            // Check if the submit button contains any of the change password button names as a safeguard
             const buttonText = getButtonText(getSubmitButton(form, changePasswordButtonNames));
             const matches = Array.from(changePasswordButtonContainsNames).filter(
               (n) => buttonText.indexOf(n) > -1
             );
+
             if (matches.length > 0) {
+              // If there is a change password button, then
+              // assume first field is current password and second field is new password
               curPass = passwords[0];
               newPass = passwords[1];
             }
           }
         }
 
+        // if we have a new password and a current password or we only have a new password
         if ((newPass != null && curPass != null) || (newPassOnly && newPass != null)) {
+          // Flag the form as processed so we don't process it again
           processedForm(form);
 
+          // Send a message to the `notification.background.ts` background script to notify the user that their password has changed
+          // which eventually calls the `processMessage(...)` method in this script with command `openNotificationBar`
           const changePasswordRuntimeMessage: ChangePasswordRuntimeMessage = {
             newPassword: newPass,
             currentPassword: curPass,
@@ -536,7 +651,14 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
   }
 
-  function getSubmitButton(wrappingEl: HTMLElement, buttonNames: Set<string>) {
+  // TODO: finish documenting this function
+  /**
+   * Gets a submit button element from a form or enclosing element
+   * @param wrappingEl - the form or enclosing element
+   * @param buttonNames - login button names to match against
+   * @returns - the submit button element
+   */
+  function getSubmitButton(wrappingEl: HTMLElement, buttonNames: Set<string>): HTMLElement {
     if (wrappingEl == null) {
       return null;
     }
@@ -597,6 +719,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
     return submitButton;
   }
 
+  /**
+   * Returns the text of a given button element.
+   * @param button - The button element to get the text from.
+   * @returns - The text of the button.
+   */
   function getButtonText(button: HTMLElement) {
     let buttonText: string = null;
     if (button.tagName.toLowerCase() === "input") {
@@ -607,12 +734,18 @@ document.addEventListener("DOMContentLoaded", (event) => {
     return buttonText;
   }
 
+  /**
+   * Mark form as processed so we don't try to process it again.
+   * @param {Object} form - The form element to mark as processed.
+   */
   function processedForm(form: HTMLFormElement) {
     form.dataset.bitwardenProcessed = "1";
     window.setTimeout(() => {
       form.dataset.bitwardenProcessed = "0";
     }, 500);
   }
+
+  //#endregion Form Detection and Submission Handling
 
   //#region Notification Bar Functions (open, close, height adjustment, etc.)
   function closeExistingAndOpenBar(type: string, typeData: any) {
@@ -717,7 +850,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
     chrome.runtime.sendMessage(msg);
   }
 
-  // TODO: don't we already have a function for this elsewhere?
   function isInIframe() {
     try {
       return window.self !== window.top;
