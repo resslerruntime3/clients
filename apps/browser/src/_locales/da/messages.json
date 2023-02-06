@@ -960,7 +960,10 @@
     "message": "Hvis der registreres en loginformular, så auto-udfyld, når websiden indlæses."
   },
   "experimentalFeature": {
-    "message": "Dette er i øjeblikket en eksperimentel funktion. Brug på egen risiko."
+    "message": "Compromised or untrusted websites can exploit auto-fill on page load."
+  },
+  "learnMoreAboutAutofill": {
+    "message": "Learn more about auto-fill"
   },
   "defaultAutoFillOnPageLoad": {
     "message": "Standardindstilling for autofyld for loginelementer"
@@ -1124,7 +1127,7 @@
     "message": "Dr"
   },
   "mx": {
-    "message": "Mx"
+    "message": "Neutral"
   },
   "firstName": {
     "message": "Fornavn"
@@ -2046,6 +2049,30 @@
   },
   "rememberEmail": {
     "message": "Husk e-mail"
+  },
+  "loginWithDevice": {
+    "message": "Log ind med enhed"
+  },
+  "loginWithDeviceEnabledInfo": {
+    "message": "Log ind med enhed skal være opsat i indstillingerne i Bitwarden mobil-appen. Behov for en anden mulighed?"
+  },
+  "fingerprintPhraseHeader": {
+    "message": "Fingeraftrykssætning"
+  },
+  "fingerprintMatchInfo": {
+    "message": "Sørg for, at din boks er oplåst, samt at Fingeraftrykssætningen på den anden enhed matcher."
+  },
+  "resendNotification": {
+    "message": "Gensend notifikation"
+  },
+  "viewAllLoginOptions": {
+    "message": "Vis alle indlogningsmuligheder"
+  },
+  "notificationSentDevice": {
+    "message": "En notifikation er sendt til din enhed."
+  },
+  "logInInitiated": {
+    "message": "Indlogning påbegyndt"
   },
   "exposedMasterPassword": {
     "message": "Kompromitteret hovedadgangskode"

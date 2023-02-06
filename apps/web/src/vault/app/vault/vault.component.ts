@@ -19,7 +19,7 @@ import { MessagingService } from "@bitwarden/common/abstractions/messaging.servi
 import { OrganizationService } from "@bitwarden/common/abstractions/organization/organization.service.abstraction";
 import { PlatformUtilsService } from "@bitwarden/common/abstractions/platformUtils.service";
 import { StateService } from "@bitwarden/common/abstractions/state.service";
-import { TokenService } from "@bitwarden/common/abstractions/token.service";
+import { TokenService } from "@bitwarden/common/auth/abstractions/token.service";
 import { KdfType, DEFAULT_PBKDF2_ITERATIONS } from "@bitwarden/common/enums/kdfType";
 import { ServiceUtils } from "@bitwarden/common/misc/serviceUtils";
 import { TreeNode } from "@bitwarden/common/models/domain/tree-node";
@@ -38,11 +38,7 @@ import { ShareComponent } from "./share.component";
 import { VaultFilterComponent } from "./vault-filter/components/vault-filter.component";
 import { VaultFilterService } from "./vault-filter/services/abstractions/vault-filter.service";
 import { VaultFilter } from "./vault-filter/shared/models/vault-filter.model";
-import {
-  CollectionFilter,
-  FolderFilter,
-  OrganizationFilter,
-} from "./vault-filter/shared/models/vault-filter.type";
+import { FolderFilter, OrganizationFilter } from "./vault-filter/shared/models/vault-filter.type";
 import { VaultItemsComponent } from "./vault-items.component";
 
 const BroadcasterSubscriptionId = "VaultComponent";
@@ -99,7 +95,8 @@ export class VaultComponent implements OnInit, OnDestroy {
   async ngOnInit() {
     this.showVerifyEmail = !(await this.tokenService.getEmailVerified());
     this.showBrowserOutdated = window.navigator.userAgent.indexOf("MSIE") !== -1;
-    this.showLowKdf = await this.isLowKdfIteration();
+    //disable warning for february release -> add await this.isLowKdfIteration(); when ready
+    this.showLowKdf = false;
     this.trashCleanupWarning = this.i18nService.t(
       this.platformUtilsService.isSelfHost()
         ? "trashCleanupWarningSelfHosted"
@@ -392,26 +389,6 @@ export class VaultComponent implements OnInit, OnDestroy {
     const kdfType = await this.stateService.getKdfType();
     const kdfOptions = await this.stateService.getKdfConfig();
     return kdfType === KdfType.PBKDF2_SHA256 && kdfOptions.iterations < DEFAULT_PBKDF2_ITERATIONS;
-  }
-
-  get breadcrumbs(): TreeNode<CollectionFilter>[] {
-    if (!this.activeFilter.selectedCollectionNode) {
-      return [];
-    }
-
-    const collections = [this.activeFilter.selectedCollectionNode];
-    while (collections[collections.length - 1].parent != undefined) {
-      collections.push(collections[collections.length - 1].parent);
-    }
-
-    return collections.map((c) => c).reverse();
-  }
-
-  protected applyCollectionFilter(collection: TreeNode<CollectionFilter>) {
-    const filter = this.activeFilter;
-    filter.resetFilter();
-    filter.selectedCollectionNode = collection;
-    this.applyVaultFilter(filter);
   }
 
   private go(queryParams: any = null) {

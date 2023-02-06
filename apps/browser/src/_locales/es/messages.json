@@ -960,7 +960,10 @@
     "message": "Si se detecta un formulario, realizar automáticamente un autorellenado cuando la web cargue."
   },
   "experimentalFeature": {
-    "message": "Esta es una característica experimental. Úsala bajo tu propio riesgo."
+    "message": "Compromised or untrusted websites can exploit auto-fill on page load."
+  },
+  "learnMoreAboutAutofill": {
+    "message": "Más información sobre el relleno automático"
   },
   "defaultAutoFillOnPageLoad": {
     "message": "Configuración de autorrelleno por defecto para elementos de inicio de sesión"
@@ -1124,7 +1127,7 @@
     "message": "Dr"
   },
   "mx": {
-    "message": "\"Mx\" = \"Sr./Sra"
+    "message": "Mx"
   },
   "firstName": {
     "message": "Nombre"
@@ -2046,6 +2049,30 @@
   },
   "rememberEmail": {
     "message": "Recordar email"
+  },
+  "loginWithDevice": {
+    "message": "Acceder con un dispositivo"
+  },
+  "loginWithDeviceEnabledInfo": {
+    "message": "El acceso con dispositivo debe prepararse en la configuración de la aplicación Bitwarden. ¿Necesita otra opción?"
+  },
+  "fingerprintPhraseHeader": {
+    "message": "Frase de huella"
+  },
+  "fingerprintMatchInfo": {
+    "message": "Por favor, asegúrese de que su caja fuerte está desbloqueada y la frase de huella dactilar coincide en el otro dispositivo."
+  },
+  "resendNotification": {
+    "message": "Reenviar notificación"
+  },
+  "viewAllLoginOptions": {
+    "message": "Ver todas las opciones de acceso"
+  },
+  "notificationSentDevice": {
+    "message": "Se ha enviado una notificación a tu dispositivo."
+  },
+  "logInInitiated": {
+    "message": "Inicio de sesión en proceso"
   },
   "exposedMasterPassword": {
     "message": "Contraseña maestra comprometida"
