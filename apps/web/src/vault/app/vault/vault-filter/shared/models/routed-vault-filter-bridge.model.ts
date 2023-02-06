@@ -1,6 +1,7 @@
 import { TreeNode } from "@bitwarden/common/models/domain/tree-node";
 import { CipherType } from "@bitwarden/common/vault/enums/cipher-type";
 
+import { RoutedVaultFilterModel } from "../../../../core/vault-filter/routed-vault-filter.model";
 import { RoutedVaultFilterBridgeService } from "../../services/routed-vault-filter-bridge.service";
 
 import { VaultFilter, VaultFilterFunction } from "./vault-filter.model";
@@ -14,6 +15,7 @@ import {
 
 export class RoutedVaultFilterBridge implements VaultFilter {
   constructor(
+    private routedFilter: RoutedVaultFilterModel,
     private legacyFilter: VaultFilter,
     private bridgeService: RoutedVaultFilterBridgeService
   ) {}
@@ -33,25 +35,33 @@ export class RoutedVaultFilterBridge implements VaultFilter {
     return this.legacyFilter.selectedOrganizationNode;
   }
   set selectedOrganizationNode(value: TreeNode<OrganizationFilter>) {
-    this.bridgeService.navigate({ organizationId: value.node.id });
+    this.bridgeService.navigate({ ...this.routedFilter, organizationId: value.node.id });
   }
   get selectedCipherTypeNode(): TreeNode<CipherTypeFilter> {
     return this.legacyFilter.selectedCipherTypeNode;
   }
   set selectedCipherTypeNode(value: TreeNode<CipherTypeFilter>) {
-    // this.bridgeService.navigate({ });
+    this.bridgeService.navigate({ ...this.routedFilter, type: value.node.id });
   }
   get selectedFolderNode(): TreeNode<FolderFilter> {
     return this.legacyFilter.selectedFolderNode;
   }
   set selectedFolderNode(value: TreeNode<FolderFilter>) {
-    this.bridgeService.navigate({ folderId: value.node.id });
+    this.bridgeService.navigate({
+      ...this.routedFilter,
+      folderId: value.node.id,
+      collectionId: null,
+    });
   }
   get selectedCollectionNode(): TreeNode<CollectionFilter> {
     return this.legacyFilter.selectedCollectionNode;
   }
   set selectedCollectionNode(value: TreeNode<CollectionFilter>) {
-    this.bridgeService.navigate({ collectionId: value.node.id });
+    this.bridgeService.navigate({
+      ...this.routedFilter,
+      folderId: null,
+      collectionId: value.node.id,
+    });
   }
   get isFavorites(): boolean {
     return this.legacyFilter.isFavorites;

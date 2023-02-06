@@ -1,6 +1,6 @@
 import { Injectable, OnDestroy } from "@angular/core";
 import { ActivatedRoute, NavigationExtras } from "@angular/router";
-import { combineLatest, map, Observable, Subject, takeUntil, tap } from "rxjs";
+import { combineLatest, map, Observable, Subject, takeUntil } from "rxjs";
 
 import { RoutedVaultFilterModel } from "./routed-vault-filter.model";
 
@@ -18,10 +18,9 @@ export class RoutedVaultFilterService implements OnDestroy {
           folderId: queryParams.get("folderId") ?? undefined,
           organizationId:
             queryParams.get("organizationId") ?? params.get("organizationId") ?? undefined,
+          type: queryParams.get("type") ?? undefined,
         };
       }),
-      // eslint-disable-next-line no-console
-      tap((filter) => console.log("RoutedVaultFilterService.filter", filter)),
       takeUntil(this.onDestroy)
     );
   }
@@ -34,6 +33,7 @@ export class RoutedVaultFilterService implements OnDestroy {
           collectionId: filter.collectionId ?? null,
           folderId: filter.folderId ?? null,
           organizationId: filter.organizationId ?? null,
+          type: filter.type ?? null,
         },
         queryParamsHandling: "merge",
       },

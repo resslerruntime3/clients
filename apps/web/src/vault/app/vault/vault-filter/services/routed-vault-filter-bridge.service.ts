@@ -25,8 +25,9 @@ export class RoutedVaultFilterBridgeService {
       legacyVaultFilterService.collectionTree$,
       legacyVaultFilterService.folderTree$,
       legacyVaultFilterService.organizationTree$,
+      legacyVaultFilterService.cipherTypeTree$,
     ]).pipe(
-      map(([filter, collectionTree, folderTree, organizationTree]) => {
+      map(([filter, collectionTree, folderTree, organizationTree, cipherTypeTree]) => {
         const legacyFilter = new VaultFilter();
 
         if (filter.collectionId !== undefined) {
@@ -44,7 +45,11 @@ export class RoutedVaultFilterBridgeService {
           );
         }
 
-        const bridgeModel = new RoutedVaultFilterBridge(legacyFilter, this);
+        if (filter.type !== undefined) {
+          legacyFilter.selectedCipherTypeNode = this.findNode(cipherTypeTree, filter.type);
+        }
+
+        const bridgeModel = new RoutedVaultFilterBridge(filter, legacyFilter, this);
 
         return bridgeModel;
       })
@@ -58,14 +63,18 @@ export class RoutedVaultFilterBridgeService {
 
   private findNode<T extends ITreeNodeObject>(
     node: TreeNode<T>,
-    id: string
+    idOrPredicate: string | ((node: T) => boolean)
   ): TreeNode<T> | undefined {
-    if (node.node.id === id) {
+    if (typeof idOrPredicate === "string" && node.node.id === idOrPredicate) {
+      return node;
+    }
+
+    if (typeof idOrPredicate === "function" && idOrPredicate(node.node)) {
       return node;
     }
 
     for (const child of node.children) {
-      const result = this.findNode(child, id);
+      const result = this.findNode(child, idOrPredicate);
       if (result !== undefined) {
         return result;
       }
