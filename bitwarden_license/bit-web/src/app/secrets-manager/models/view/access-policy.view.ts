@@ -12,10 +12,22 @@ export class UserProjectAccessPolicyView extends BaseAccessPolicyView {
   grantedProjectId: string;
 }
 
+export class UserServiceAccountAccessPolicyView extends BaseAccessPolicyView {
+  organizationUserId: string;
+  organizationUserName: string;
+  grantedServiceAccountId: string;
+}
+
 export class GroupProjectAccessPolicyView extends BaseAccessPolicyView {
   groupId: string;
   groupName: string;
   grantedProjectId: string;
+}
+
+export class GroupServiceAccountAccessPolicyView extends BaseAccessPolicyView {
+  groupId: string;
+  groupName: string;
+  grantedServiceAccountId: string;
 }
 
 export class ServiceAccountProjectAccessPolicyView extends BaseAccessPolicyView {
