@@ -88,10 +88,10 @@ export class RoutedVaultFilterBridge implements VaultFilter {
     return this.legacyFilter.collectionId;
   }
   resetFilter(): void {
-    return this.legacyFilter.resetFilter();
+    this.bridgeService.navigate({});
   }
   resetOrganization(): void {
-    return this.legacyFilter.resetOrganization();
+    this.bridgeService.navigate({ ...this.routedFilter, organizationId: null });
   }
   buildFilter(): VaultFilterFunction {
     return this.legacyFilter.buildFilter();

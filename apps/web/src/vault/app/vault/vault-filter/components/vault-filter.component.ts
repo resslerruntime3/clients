@@ -143,8 +143,9 @@ export class VaultFilterComponent implements OnInit, OnDestroy {
       return;
     }
     const filter = this.activeFilter;
-    filter.resetOrganization();
-    if (orgNode?.node.id !== "AllVaults") {
+    if (orgNode?.node.id === "AllVaults") {
+      filter.resetOrganization();
+    } else {
       filter.selectedOrganizationNode = orgNode;
     }
     this.vaultFilterService.setOrganizationFilter(orgNode.node);
