@@ -651,32 +651,40 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
   }
 
-  // TODO: finish documenting this function
   /**
    * Gets a submit button element from a form or enclosing element
    * @param wrappingEl - the form or enclosing element
    * @param buttonNames - login button names to match against
-   * @returns - the submit button element
+   * @returns the submit button element
    */
   function getSubmitButton(wrappingEl: HTMLElement, buttonNames: Set<string>): HTMLElement {
+    // If wrapping element doesn't exist we can't get a submit button
     if (wrappingEl == null) {
       return null;
     }
 
     const wrappingElIsForm = wrappingEl.tagName.toLowerCase() === "form";
 
+    // query for submit button
     let submitButton = wrappingEl.querySelector(
       'input[type="submit"], input[type="image"], ' + 'button[type="submit"]'
     ) as HTMLElement;
+
+    // if we didn't find a submit button and we are in a form:
     if (submitButton == null && wrappingElIsForm) {
+      // query for a button that doesn't have the type attribute
       submitButton = wrappingEl.querySelector("button:not([type])");
       if (submitButton != null) {
+        // Retrieve "submit" button text because it might be a cancel button instead of a submit button.
+        // If it is a cancel button, then we don't want to use it.
         const buttonText = getButtonText(submitButton);
         if (buttonText != null && cancelButtonNames.has(buttonText.trim().toLowerCase())) {
           submitButton = null;
         }
       }
     }
+
+    // If we still don't have a submit button, then try to find a button that looks like a submit button
     if (submitButton == null) {
       const possibleSubmitButtons = Array.from(
         wrappingEl.querySelectorAll(
@@ -684,12 +692,18 @@ document.addEventListener("DOMContentLoaded", (event) => {
         )
       ) as HTMLElement[];
       let typelessButton: HTMLElement = null;
+      // Loop through all possible submit buttons and find the first one that matches a submit button name
       possibleSubmitButtons.forEach((button) => {
         if (submitButton != null || button == null || button.tagName == null) {
+          // Break out of loop if we already found a submit button or if the button is null or doesn't have a tag name
+          // TODO: why do we eject out of the loop if one of the buttons is null or is missing a tagName.. shouldn't we just skip that button?
           return;
         }
+        // Retrieve button text
         const buttonText = getButtonText(button);
         if (buttonText != null) {
+          // if we have a button that doesn't have a type attribute & isn't a cancel btn,
+          // then save it in case we don't find a submit button
           if (
             typelessButton != null &&
             button.tagName.toLowerCase() === "button" &&
@@ -698,16 +712,21 @@ document.addEventListener("DOMContentLoaded", (event) => {
           ) {
             typelessButton = button;
           } else if (buttonNames.has(buttonText.trim().toLowerCase())) {
+            // If the button text matches a submit button name, then use it
             submitButton = button;
           }
         }
       });
+      // Fallback to typeless button if it exists and we didn't find a submit button
       if (submitButton == null && typelessButton != null) {
         submitButton = typelessButton;
       }
     }
+
+    // If we still don't have a submit button, then try to find a submit button in a modal
     if (submitButton == null && wrappingElIsForm) {
       // Maybe it's in a modal?
+      // Find closest modal and check if it has only one form
       const parentModal = wrappingEl.closest("div.modal") as HTMLElement;
       if (parentModal != null) {
         const modalForms = parentModal.querySelectorAll("form");
