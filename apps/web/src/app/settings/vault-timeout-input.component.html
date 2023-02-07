@@ -11,7 +11,7 @@
       formControlName="vaultTimeout"
       class="form-control"
     >
-      <option *ngFor="let o of vaultTimeouts" [ngValue]="o.value">{{ o.name }}</option>
+      <option *ngFor="let o of vaultTimeoutOptions" [ngValue]="o.value">{{ o.name }}</option>
     </select>
     <small class="form-text text-muted">{{ "vaultTimeoutDesc" | i18n }}</small>
   </div>

@@ -38,7 +38,7 @@ export class VaultTimeoutInputComponent
     }),
   });
 
-  @Input() vaultTimeouts: { name: string; value: number }[];
+  @Input() vaultTimeoutOptions: { name: string; value: number }[];
   vaultTimeoutPolicy: Policy;
   vaultTimeoutPolicyHours: number;
   vaultTimeoutPolicyMinutes: number;
@@ -95,7 +95,7 @@ export class VaultTimeoutInputComponent
   }
 
   ngOnChanges() {
-    this.vaultTimeouts.push({
+    this.vaultTimeoutOptions.push({
       name: this.i18nService.t("custom"),
       value: VaultTimeoutInputComponent.CUSTOM_VALUE,
     });
@@ -114,7 +114,7 @@ export class VaultTimeoutInputComponent
       return;
     }
 
-    if (this.vaultTimeouts.every((p) => p.value !== value)) {
+    if (this.vaultTimeoutOptions.every((p) => p.value !== value)) {
       this.form.setValue({
         vaultTimeout: VaultTimeoutInputComponent.CUSTOM_VALUE,
         custom: {
@@ -166,7 +166,7 @@ export class VaultTimeoutInputComponent
     this.vaultTimeoutPolicyHours = Math.floor(this.vaultTimeoutPolicy.data.minutes / 60);
     this.vaultTimeoutPolicyMinutes = this.vaultTimeoutPolicy.data.minutes % 60;
 
-    this.vaultTimeouts = this.vaultTimeouts.filter(
+    this.vaultTimeoutOptions = this.vaultTimeoutOptions.filter(
       (t) =>
         t.value <= this.vaultTimeoutPolicy.data.minutes &&
         (t.value > 0 || t.value === VaultTimeoutInputComponent.CUSTOM_VALUE) &&
