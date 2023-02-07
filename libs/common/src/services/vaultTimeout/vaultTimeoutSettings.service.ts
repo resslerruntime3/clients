@@ -74,6 +74,26 @@ export class VaultTimeoutSettingsService implements VaultTimeoutSettingsServiceA
     return vaultTimeout;
   }
 
+  async getVaultTimeoutAction(userId?: string): Promise<string> {
+    const vaultTimeoutAction = await this.stateService.getVaultTimeoutAction({ userId: userId });
+
+    if (
+      await this.policyService.policyAppliesToUser(PolicyType.MaximumVaultTimeout, null, userId)
+    ) {
+      const policy = await this.policyService.getAll(PolicyType.MaximumVaultTimeout, userId);
+      const action = policy[0].data.action;
+
+      // We really shouldn't need to set the value here, but multiple services relies on this value being correct.
+      if (action && vaultTimeoutAction !== action) {
+        await this.stateService.setVaultTimeoutAction(action, { userId: userId });
+      }
+
+      return action;
+    }
+
+    return vaultTimeoutAction;
+  }
+
   async clear(userId?: string): Promise<void> {
     await this.stateService.setEverBeenUnlocked(false, { userId: userId });
     await this.stateService.setDecryptedPinProtected(null, { userId: userId });
