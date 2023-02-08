@@ -98,9 +98,6 @@ export class Main {
     this.windowMain = new WindowMain(
       this.stateService,
       this.logService,
-      true,
-      undefined,
-      undefined,
       (arg) => this.processDeepLink(arg),
       (win) => this.trayMain.setupWindowListeners(win)
     );
