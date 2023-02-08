@@ -103,13 +103,19 @@ export class Main {
     );
     this.messagingMain = new MessagingMain(this, this.stateService);
     this.updaterMain = new UpdaterMain(this.i18nService, this.windowMain);
-    this.menuMain = new MenuMain(this);
     this.trayMain = new TrayMain(this.windowMain, this.i18nService, this.stateService);
 
     this.messagingService = new ElectronMainMessagingService(this.windowMain, (message) => {
       this.messagingMain.onMessage(message);
     });
     this.powerMonitorMain = new PowerMonitorMain(this.messagingService);
+    this.menuMain = new MenuMain(
+      this.i18nService,
+      this.messagingService,
+      this.stateService,
+      this.windowMain,
+      this.updaterMain
+    );
 
     if (process.platform === "win32") {
       // eslint-disable-next-line
