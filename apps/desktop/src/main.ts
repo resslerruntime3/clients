@@ -102,7 +102,7 @@ export class Main {
       (win) => this.trayMain.setupWindowListeners(win)
     );
     this.messagingMain = new MessagingMain(this, this.stateService);
-    this.updaterMain = new UpdaterMain(this.i18nService, this.windowMain, "bitwarden");
+    this.updaterMain = new UpdaterMain(this.i18nService, this.windowMain);
     this.menuMain = new MenuMain(this);
     this.trayMain = new TrayMain(this.windowMain, this.i18nService, this.stateService);
 
