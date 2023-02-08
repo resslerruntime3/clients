@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
-import { UntypedFormControl } from "@angular/forms";
+import { FormBuilder, FormControl } from "@angular/forms";
 import { Router } from "@angular/router";
+import { combineLatest, Observable, Subject, takeUntil, tap } from "rxjs";
 import Swal from "sweetalert2";
 
 import { ModalService } from "@bitwarden/angular/services/modal.service";
@@ -9,11 +10,13 @@ import { EnvironmentService } from "@bitwarden/common/abstractions/environment.s
 import { I18nService } from "@bitwarden/common/abstractions/i18n.service";
 import { MessagingService } from "@bitwarden/common/abstractions/messaging.service";
 import { PlatformUtilsService } from "@bitwarden/common/abstractions/platformUtils.service";
+import { PolicyService } from "@bitwarden/common/abstractions/policy/policy.service.abstraction";
 import { StateService } from "@bitwarden/common/abstractions/state.service";
 import { VaultTimeoutService } from "@bitwarden/common/abstractions/vaultTimeout/vaultTimeout.service";
 import { VaultTimeoutSettingsService } from "@bitwarden/common/abstractions/vaultTimeout/vaultTimeoutSettings.service";
 import { KeyConnectorService } from "@bitwarden/common/auth/abstractions/key-connector.service";
 import { DeviceType } from "@bitwarden/common/enums/deviceType";
+import { PolicyType } from "@bitwarden/common/enums/policyType";
 
 import { BrowserApi } from "../../browser/browserApi";
 import { BiometricErrors, BiometricErrorTypes } from "../../models/biometricErrors";
@@ -44,9 +47,13 @@ const RateUrls = {
 export class SettingsComponent implements OnInit {
   @ViewChild("vaultTimeoutActionSelect", { read: ElementRef, static: true })
   vaultTimeoutActionSelectRef: ElementRef;
-  vaultTimeouts: any[];
+  vaultTimeoutOptions: any[];
   vaultTimeoutActions: any[];
-  vaultTimeoutAction: string;
+  vaultTimeoutPolicyCallout: Observable<{
+    timeout: { hours: number; minutes: number };
+    action: "lock" | "logOut";
+  }>;
+  // vaultTimeoutAction: string;
   pin: boolean = null;
   supportsBiometric: boolean;
   biometric = false;
@@ -54,9 +61,22 @@ export class SettingsComponent implements OnInit {
   previousVaultTimeout: number = null;
   showChangeMasterPass = true;
 
-  vaultTimeout: UntypedFormControl = new UntypedFormControl(null);
+  // vaultTimeout: UntypedFormControl = new UntypedFormControl(null);
+
+  form = this.formBuilder.group({
+    vaultTimeout: new FormControl<number>(null),
+    vaultTimeoutAction: new FormControl<string>("lock"),
+    // enableFavicons: new FormControl<boolean>(true),
+    // enableFullWidth: new FormControl<boolean>(false),
+    // theme: new FormControl<ThemeType>(ThemeType.Light),
+    // locale: new FormControl<string>(null),
+  });
+
+  private destroy$ = new Subject<void>();
 
   constructor(
+    private policyService: PolicyService,
+    private formBuilder: FormBuilder,
     private platformUtilsService: PlatformUtilsService,
     private i18nService: I18nService,
     private vaultTimeoutService: VaultTimeoutService,
@@ -72,10 +92,37 @@ export class SettingsComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
+    this.vaultTimeoutPolicyCallout = combineLatest(
+      [
+        this.policyService.policyAppliesToActiveUser$(PolicyType.MaximumVaultTimeout),
+        this.policyService.policies$,
+      ],
+      (policyAppliesToActiveUser, policies) => {
+        if (policyAppliesToActiveUser) {
+          const policy = policies.find(
+            (policy) => policy.type === PolicyType.MaximumVaultTimeout && policy.enabled
+          );
+          let timeout;
+          if (policy.data?.minutes) {
+            timeout = {
+              hours: Math.floor(policy.data?.minutes / 60),
+              minutes: policy.data?.minutes % 60,
+            };
+          }
+          if (policy.data?.action) {
+            this.form.controls.vaultTimeoutAction.disable({ emitEvent: false });
+          } else {
+            this.form.controls.vaultTimeoutAction.enable({ emitEvent: false });
+          }
+          return { timeout: timeout, action: policy.data?.action };
+        }
+      }
+    );
+
     const showOnLocked =
       !this.platformUtilsService.isFirefox() && !this.platformUtilsService.isSafari();
 
-    this.vaultTimeouts = [
+    this.vaultTimeoutOptions = [
       { name: this.i18nService.t("immediately"), value: 0 },
       { name: this.i18nService.t("oneMinute"), value: 1 },
       { name: this.i18nService.t("fiveMinutes"), value: 5 },
@@ -88,11 +135,11 @@ export class SettingsComponent implements OnInit {
     ];
 
     if (showOnLocked) {
-      this.vaultTimeouts.push({ name: this.i18nService.t("onLocked"), value: -2 });
+      this.vaultTimeoutOptions.push({ name: this.i18nService.t("onLocked"), value: -2 });
     }
 
-    this.vaultTimeouts.push({ name: this.i18nService.t("onRestart"), value: -1 });
-    this.vaultTimeouts.push({ name: this.i18nService.t("never"), value: null });
+    this.vaultTimeoutOptions.push({ name: this.i18nService.t("onRestart"), value: -1 });
+    this.vaultTimeoutOptions.push({ name: this.i18nService.t("never"), value: null });
 
     this.vaultTimeoutActions = [
       { name: this.i18nService.t("lock"), value: "lock" },
@@ -100,20 +147,31 @@ export class SettingsComponent implements OnInit {
     ];
 
     let timeout = await this.vaultTimeoutSettingsService.getVaultTimeout();
-    if (timeout != null) {
-      if (timeout === -2 && !showOnLocked) {
-        timeout = -1;
-      }
-      this.vaultTimeout.setValue(timeout);
+    if (timeout === -2 && !showOnLocked) {
+      timeout = -1;
     }
-    this.previousVaultTimeout = this.vaultTimeout.value;
+    const initialValues = {
+      vaultTimeout: timeout,
+      vaultTimeoutAction: await this.vaultTimeoutSettingsService.getVaultTimeoutAction(),
+    };
+    this.form.setValue(initialValues, { emitEvent: false });
+    this.previousVaultTimeout = timeout;
+    // const action = await this.vaultTimeoutSettingsService.getVaultTimeoutAction();
+    // this.vaultTimeoutAction = action == null ? "lock" : action;
+
     // eslint-disable-next-line rxjs-angular/prefer-takeuntil, rxjs/no-async-subscribe
-    this.vaultTimeout.valueChanges.subscribe(async (value) => {
+    this.form.controls.vaultTimeout.valueChanges.subscribe(async (value) => {
       await this.saveVaultTimeout(value);
     });
 
-    const action = await this.stateService.getVaultTimeoutAction();
-    this.vaultTimeoutAction = action == null ? "lock" : action;
+    this.form.controls.vaultTimeout.valueChanges
+      .pipe(
+        tap(async (value) => {
+          await this.saveVaultTimeout(value);
+        }),
+        takeUntil(this.destroy$)
+      )
+      .subscribe();
 
     const pinSet = await this.vaultTimeoutSettingsService.isPinLockSet();
     this.pin = pinSet[0] || pinSet[1];
@@ -134,14 +192,14 @@ export class SettingsComponent implements OnInit {
         "warning"
       );
       if (!confirmed) {
-        this.vaultTimeout.setValue(this.previousVaultTimeout);
+        this.form.controls.vaultTimeout.setValue(this.previousVaultTimeout);
         return;
       }
     }
 
     // The minTimeoutError does not apply to browser because it supports Immediately
     // So only check for the policyError
-    if (this.vaultTimeout.hasError("policyError")) {
+    if (this.form.controls.vaultTimeout.hasError("policyError")) {
       this.platformUtilsService.showToast(
         "error",
         null,
@@ -150,11 +208,11 @@ export class SettingsComponent implements OnInit {
       return;
     }
 
-    this.previousVaultTimeout = this.vaultTimeout.value;
+    this.previousVaultTimeout = this.form.value.vaultTimeout;
 
     await this.vaultTimeoutSettingsService.setVaultTimeoutOptions(
-      this.vaultTimeout.value,
-      this.vaultTimeoutAction
+      this.form.value.vaultTimeout,
+      this.form.value.vaultTimeoutAction
     );
     if (this.previousVaultTimeout == null) {
       this.messagingService.send("bgReseedStorage");
@@ -172,16 +230,16 @@ export class SettingsComponent implements OnInit {
       );
       if (!confirmed) {
         this.vaultTimeoutActions.forEach((option: any, i) => {
-          if (option.value === this.vaultTimeoutAction) {
+          if (option.value === this.form.value.vaultTimeoutAction) {
             this.vaultTimeoutActionSelectRef.nativeElement.value =
-              i + ": " + this.vaultTimeoutAction;
+              i + ": " + this.form.value.vaultTimeoutAction;
           }
         });
         return;
       }
     }
 
-    if (this.vaultTimeout.hasError("policyError")) {
+    if (this.form.controls.vaultTimeout.hasError("policyError")) {
       this.platformUtilsService.showToast(
         "error",
         null,
@@ -190,10 +248,10 @@ export class SettingsComponent implements OnInit {
       return;
     }
 
-    this.vaultTimeoutAction = newValue;
+    this.form.controls.vaultTimeoutAction.setValue(newValue);
     await this.vaultTimeoutSettingsService.setVaultTimeoutOptions(
-      this.vaultTimeout.value,
-      this.vaultTimeoutAction
+      this.form.value.vaultTimeout,
+      this.form.value.vaultTimeoutAction
     );
   }
 
@@ -412,5 +470,10 @@ export class SettingsComponent implements OnInit {
   rate() {
     const deviceType = this.platformUtilsService.getDevice();
     BrowserApi.createNewTab((RateUrls as any)[deviceType]);
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

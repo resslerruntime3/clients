@@ -7,7 +7,7 @@
   </h1>
   <div class="right"></div>
 </header>
-<main tabindex="-1">
+<main tabindex="-1" [formGroup]="form">
   <div class="box list">
     <h2 class="box-header">{{ "manage" | i18n }}</h2>
     <div class="box-content single-line">
@@ -48,9 +48,17 @@
   <div class="box list">
     <h2 class="box-header">{{ "security" | i18n }}</h2>
     <div class="box-content single-line">
+      <app-callout type="info" *ngIf="vaultTimeoutPolicyCallout | async as policy">
+        <span *ngIf="policy.timeout">
+          {{ "vaultTimeoutPolicyInEffect" | i18n: policy.timeout.hours:policy.timeout.minutes }}
+        </span>
+        <span *ngIf="policy.action">
+          {{ "vaultTimeoutActionPolicyInEffect" | i18n: (policy.action | i18n) }}
+        </span>
+      </app-callout>
       <app-vault-timeout-input
-        [vaultTimeouts]="vaultTimeouts"
-        [formControl]="vaultTimeout"
+        [vaultTimeoutOptions]="vaultTimeoutOptions"
+        [formControl]="form.controls.vaultTimeout"
         ngDefaultControl
       >
       </app-vault-timeout-input>
@@ -60,7 +68,7 @@
           #vaultTimeoutActionSelect
           id="vaultTimeoutAction"
           name="VaultTimeoutActions"
-          [ngModel]="vaultTimeoutAction"
+          formControlName="vaultTimeoutAction"
           (ngModelChange)="saveVaultTimeoutAction($event)"
         >
           <option *ngFor="let o of vaultTimeoutActions" [ngValue]="o.value">{{ o.name }}</option>
