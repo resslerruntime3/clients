@@ -156,6 +156,7 @@ export class AppComponent implements OnInit, OnDestroy {
         switch (message.command) {
           case "loggedIn":
           case "unlocked":
+            this.recordActivity();
             this.notificationsService.updateConnection();
             this.updateAppMenu();
             this.systemService.cancelProcessReload();
