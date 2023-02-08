@@ -7,7 +7,7 @@ import { GlobalState } from "@bitwarden/common/models/domain/global-state";
 import { MemoryStorageService } from "@bitwarden/common/services/memoryStorage.service";
 import { StateService } from "@bitwarden/common/services/state.service";
 
-import { BiometricMain } from "./main/biometric/biometric.main";
+import { BiometricsService, BiometricsServiceAbstraction } from "./main/biometric/index";
 import { DesktopCredentialStorageListener } from "./main/desktop-credential-storage-listener";
 import { MenuMain } from "./main/menu/menu.main";
 import { MessagingMain } from "./main/messaging.main";
@@ -37,7 +37,7 @@ export class Main {
   menuMain: MenuMain;
   powerMonitorMain: PowerMonitorMain;
   trayMain: TrayMain;
-  biometricMain: BiometricMain;
+  biometricsService: BiometricsServiceAbstraction;
   nativeMessagingMain: NativeMessagingMain;
 
   constructor() {
@@ -117,24 +117,16 @@ export class Main {
       this.updaterMain
     );
 
-    if (process.platform === "win32") {
-      // eslint-disable-next-line
-      const BiometricWindowsMain = require("./main/biometric/biometric.windows.main").default;
-      this.biometricMain = new BiometricWindowsMain(
-        this.i18nService,
-        this.windowMain,
-        this.stateService,
-        this.logService
-      );
-    } else if (process.platform === "darwin") {
-      // eslint-disable-next-line
-      const BiometricDarwinMain = require("./main/biometric/biometric.darwin.main").default;
-      this.biometricMain = new BiometricDarwinMain(this.i18nService, this.stateService);
-    }
+    this.biometricsService = new BiometricsService(
+      this.i18nService,
+      this.windowMain,
+      this.stateService,
+      this.logService
+    );
 
     this.desktopCredentialStorageListener = new DesktopCredentialStorageListener(
       "Bitwarden",
-      this.biometricMain
+      this.biometricsService
     );
 
     this.nativeMessagingMain = new NativeMessagingMain(
@@ -166,8 +158,8 @@ export class Main {
         }
         this.powerMonitorMain.init();
         await this.updaterMain.init();
-        if (this.biometricMain != null) {
-          await this.biometricMain.init();
+        if (this.biometricsService != null) {
+          await this.biometricsService.init();
         }
 
         if (
