@@ -4822,6 +4822,15 @@
       }
     }
   },
+  "vaultTimeoutActionPolicyInEffect": {
+    "message": "Your vault timeout action is set to $ACTION$",
+    "placeholders": {
+      "action": {
+        "content": "$1",
+        "example": "Lock"
+      }
+    }
+  },
   "customVaultTimeout": {
     "message": "Custom vault timeout"
   },

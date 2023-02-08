@@ -83,12 +83,14 @@ export class VaultTimeoutSettingsService implements VaultTimeoutSettingsServiceA
       const policy = await this.policyService.getAll(PolicyType.MaximumVaultTimeout, userId);
       const action = policy[0].data.action;
 
-      // We really shouldn't need to set the value here, but multiple services relies on this value being correct.
-      if (action && vaultTimeoutAction !== action) {
-        await this.stateService.setVaultTimeoutAction(action, { userId: userId });
-      }
+      if (action) {
+        // We really shouldn't need to set the value here, but multiple services relies on this value being correct.
+        if (action && vaultTimeoutAction !== action) {
+          await this.stateService.setVaultTimeoutAction(action, { userId: userId });
+        }
 
-      return action;
+        return action;
+      }
     }
 
     return vaultTimeoutAction;
