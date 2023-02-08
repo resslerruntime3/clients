@@ -107,12 +107,12 @@ export class Main {
     this.messagingMain = new MessagingMain(this, this.stateService);
     this.updaterMain = new UpdaterMain(this.i18nService, this.windowMain, "bitwarden");
     this.menuMain = new MenuMain(this);
-    this.powerMonitorMain = new PowerMonitorMain(this);
     this.trayMain = new TrayMain(this.windowMain, this.i18nService, this.stateService);
 
     this.messagingService = new ElectronMainMessagingService(this.windowMain, (message) => {
       this.messagingMain.onMessage(message);
     });
+    this.powerMonitorMain = new PowerMonitorMain(this.messagingService);
 
     if (process.platform === "win32") {
       // eslint-disable-next-line
