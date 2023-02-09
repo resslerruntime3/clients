@@ -1215,7 +1215,7 @@ export class ApiService implements ApiServiceAbstraction {
     const path = `/devices/knowndevice?email=${Utils.encodeRFC3986URIComponent(
       email
     )}&identifier=${deviceIdentifier}`;
-    const r = await this.send("GET", path, null, false, true);
+    const r = await this.send("POST", path, null, false, true);
     return r as boolean;
   }
 
