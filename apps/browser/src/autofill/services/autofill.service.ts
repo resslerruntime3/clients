@@ -48,13 +48,7 @@ export default class AutofillService implements AutofillServiceInterface {
   getFormsWithPasswordFields(pageDetails: AutofillPageDetails): FormData[] {
     const formData: FormData[] = [];
 
-    const passwordFields = AutofillService.loadPasswordFields(
-      pageDetails,
-      true,
-      true,
-      false,
-      false
-    );
+    const passwordFields = AutofillService.loadPasswordFields(pageDetails, true, true, false, true);
     if (passwordFields.length === 0) {
       return formData;
     }
