@@ -309,7 +309,7 @@
     "message": "Cerca membri"
   },
   "searchGroups": {
-    "message": "Search groups"
+    "message": "Cerca gruppi"
   },
   "allItems": {
     "message": "Tutti gli elementi"
@@ -1156,6 +1156,19 @@
         "example": "50,000"
       }
     }
+  },
+  "kdfMemory": {
+    "message": "Memoria KDF (MB)",
+    "description": "Memory refers to computer memory (RAM). MB is short for megabytes."
+  },
+  "argon2Warning": {
+    "message": "Impostare le tue iterazioni KDF, la memoria e il parallelismo su livelli troppo alti potrebbe comportare scarse performance durante l'accesso (e lo sblocco) di Bitwarden su dispositivi vecchi o già lenti. Si raccomanda di modificare gradualmente queste impostazioni e fare gli opportuni test sui tutti i tuoi dispositivi."
+  },
+  "kdfParallelism": {
+    "message": "Parallelismo KDF"
+  },
+  "argon2Desc": {
+    "message": "Un valore più alto di iterazioni KDF, memoria e parallelismo può aiutarti a proteggere la tua password principale da attacchi \"brute force\"."
   },
   "changeKdf": {
     "message": "Cambia KDF"
@@ -2044,6 +2057,9 @@
   "manageSubscription": {
     "message": "Gestisci abbonamento"
   },
+  "launchCloudSubscription": {
+    "message": "Avvia abbonamento cloud"
+  },
   "storage": {
     "message": "Spazio di archiviazione"
   },
@@ -2497,7 +2513,7 @@
     "message": "Modifica membro"
   },
   "fieldOnTabRequiresAttention": {
-    "message": "A field on the '$TAB$' tab requires your attention.",
+    "message": "Un campo nel tab '$TAB$' richiede la tua attenzione.",
     "placeholders": {
       "tab": {
         "content": "$1",
@@ -5225,9 +5241,6 @@
   "billingSyncApiKeyRotated": {
     "message": "Token ruotato."
   },
-  "billingSync": {
-    "message": "Sincronizzazione fatturazione"
-  },
   "billingSyncDesc": {
     "message": "La sincronizzazione fatturazione fornisce piani Famiglie Gratis per i membri e funzionalità di fatturazione avanzate collegando il tuo Bitwarden self-hosted al server cloud Bitwarden."
   },
@@ -5278,6 +5291,15 @@
   },
   "required": {
     "message": "obbligatorio"
+  },
+  "characterMaximum": {
+    "message": "Massimo $MAX$ caratteri",
+    "placeholders": {
+      "max": {
+        "content": "$1",
+        "example": "100"
+      }
+    }
   },
   "idpSingleSignOnServiceUrlRequired": {
     "message": "Richiesto se l'Entity ID non è un URL."
@@ -5565,10 +5587,10 @@
     }
   },
   "multipleInputEmails": {
-    "message": "1 or more emails are invalid"
+    "message": "Una o più email non valide"
   },
   "tooManyEmails": {
-    "message": "You can only submit up to $COUNT$ emails at a time",
+    "message": "Puoi inviare fino a $COUNT$ email alla volta",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -6082,13 +6104,55 @@
       }
     }
   },
+  "licenseAndBillingManagement": {
+    "message": "Licenza e gestione fatturazione"
+  },
+  "automaticSync": {
+    "message": "Sincronizzazione automatica"
+  },
+  "manualUpload": {
+    "message": "Caricamento manuale"
+  },
+  "manualUploadDesc": {
+    "message": "Se non si desidera l'opzione di sincronizzazione della fattura, caricare manualmente la licenza."
+  },
+  "syncLicense": {
+    "message": "Sincronizza licenza"
+  },
+  "licenseSyncSuccess": {
+    "message": "Licenza sincronizzata con successo"
+  },
+  "licenseUploadSuccess": {
+    "message": "Licenza caricata con successo"
+  },
+  "lastLicenseSync": {
+    "message": "Ultima sincronizzazione licenza"
+  },
+  "billingSyncHelp": {
+    "message": "Aiuto per la sincronizzazione della fatturazione"
+  },
+  "uploadLicense": {
+    "message": "Carica licenza"
+  },
   "lowKdfIterations": {
-    "message": "Low KDF Iterations"
+    "message": "Iterazioni KDF basse"
   },
   "lowKdfIterationsDesc": {
-    "message": "Increase your KDF encryption settings to improve the security of your account."
+    "message": "Aumenta le impostazioni di crittografia KDF per migliorare la sicurezza del tuo account."
   },
   "changeKdfSettings": {
-    "message": "Change KDF settings"
+    "message": "Cambia impostazioni KDF"
+  },
+  "changeKdfLoggedOutWarning": {
+    "message": "Procedendo verrai disconnesso dalla sessione corrente e dovrai effettuare di nuovo il login. Le sessioni attive su altri dispositivi possono continuare a rimanere attive per un massimo di un'ora. Si consiglia di esportare la cassaforte prima di modificare le impostazioni di crittografia, per evitare la perdita di dati."
+  },
+  "secretsManagerBeta": {
+    "message": "Gestore segreti (beta)"
+  },
+  "secretsManagerBetaDesc": {
+    "message": "Abilita gratuitamente l'accesso dell'utente al Gestore Segreti durante il programma beta."
+  },
+  "userAccessSecretsManager": {
+    "message": "Questo utente può accedere alla beta del gestore segreti"
   }
 }

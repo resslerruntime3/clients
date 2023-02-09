@@ -42,6 +42,7 @@ export class UserAdminService {
     request.type = user.type;
     request.collections = user.collections;
     request.groups = user.groups;
+    request.accessSecretsManager = user.accessSecretsManager;
 
     await this.organizationUserService.putOrganizationUser(user.organizationId, user.id, request);
   }
@@ -54,6 +55,7 @@ export class UserAdminService {
     request.type = user.type;
     request.collections = user.collections;
     request.groups = user.groups;
+    request.accessSecretsManager = user.accessSecretsManager;
 
     await this.organizationUserService.postOrganizationUserInvite(user.organizationId, request);
   }
@@ -70,6 +72,7 @@ export class UserAdminService {
       view.userId = u.userId;
       view.type = u.type;
       view.status = u.status;
+      view.externalId = u.externalId;
       view.accessAll = u.accessAll;
       view.permissions = u.permissions;
       view.resetPasswordEnrolled = u.resetPasswordEnrolled;
@@ -79,6 +82,7 @@ export class UserAdminService {
         readOnly: c.readOnly,
       }));
       view.groups = u.groups;
+      view.accessSecretsManager = u.accessSecretsManager;
 
       return view;
     });

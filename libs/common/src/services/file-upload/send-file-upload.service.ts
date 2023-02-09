@@ -34,7 +34,6 @@ export class SendFileUploadService implements SendFileUploadServiceAbstraction {
             this.generateMethods(uploadDataResponse, response)
           );
         } catch (e) {
-          alert(e);
           if (e instanceof ErrorResponse && (e as ErrorResponse).statusCode === 404) {
             response = await this.legacyServerSendFileUpload(sendData, request);
           } else if (e instanceof ErrorResponse) {

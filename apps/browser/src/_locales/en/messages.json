@@ -960,7 +960,10 @@
     "message": "If a login form is detected, auto-fill when the web page loads."
   },
   "experimentalFeature": {
-    "message": "This is currently an experimental feature. Use at your own risk."
+    "message": "Compromised or untrusted websites can exploit auto-fill on page load."
+  },
+  "learnMoreAboutAutofill": {
+    "message": "Learn more about auto-fill"
   },
   "defaultAutoFillOnPageLoad": {
     "message": "Default autofill setting for login items"
@@ -1982,7 +1985,7 @@
     "message": "Organization suspended."
   },
   "disabledOrganizationFilterError": {
-    "message" : "Items in suspended Organizations cannot be accessed. Contact your Organization owner for assistance."
+    "message": "Items in suspended Organizations cannot be accessed. Contact your Organization owner for assistance."
   },
   "cardBrandMir": {
     "message": "Mir"
@@ -2047,12 +2050,36 @@
   "rememberEmail": {
     "message": "Remember email"
   },
+  "loginWithDevice": {
+    "message": "Log in with device"
+  },
+  "loginWithDeviceEnabledInfo": {
+    "message": "Log in with device must be set up in the settings of the Bitwarden app. Need another option?"
+  },
+  "fingerprintPhraseHeader": {
+    "message": "Fingerprint phrase"
+  },
+  "fingerprintMatchInfo": {
+    "message": "Please make sure your vault is unlocked and the Fingerprint phrase matches on the other device."
+  },
+  "resendNotification": {
+    "message": "Resend notification"
+  },
+  "viewAllLoginOptions": {
+    "message": "View all log in options"
+  },
+  "notificationSentDevice": {
+    "message": "A notification has been sent to your device."
+  },
+  "logInInitiated": {
+    "message": "Log in initiated"
+  },
   "exposedMasterPassword": {
     "message": "Exposed Master Password"
   },
   "exposedMasterPasswordDesc": {
     "message": "Password found in a data breach. Use a unique password to protect your account. Are you sure you want to use an exposed password?"
-  }, 
+  },
   "weakAndExposedMasterPassword": {
     "message": "Weak and Exposed Master Password"
   },
@@ -2076,5 +2103,26 @@
         "example": "14"
       }
     }
+  },
+  "tryAutofillPageLoad": {
+    "message": "Try auto-fill on page load?"
+  },
+  "tryAutofill": {
+    "message": "How to auto-fill"
+  },
+  "autofillPageLoadInfo": {
+    "message": "Login forms will automatically fill in matching credentials if you turn on auto-fill on page load."
+  },
+  "autofillSelectInfo": {
+    "message": "Select an item from this page to auto-fill the active tab's form."
+  },
+  "autofillTurnedOn": {
+    "message": "Auto-fill on page load turned on"
+  },
+  "turnOn": {
+    "message": "Turn on"
+  },
+  "notNow": {
+    "message": "Not now"
   }
 }

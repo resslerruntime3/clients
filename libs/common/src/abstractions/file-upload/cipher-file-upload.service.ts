@@ -1,8 +1,8 @@
-import { Cipher } from "../../models/domain/cipher";
 import { EncArrayBuffer } from "../../models/domain/enc-array-buffer";
 import { EncString } from "../../models/domain/enc-string";
 import { SymmetricCryptoKey } from "../../models/domain/symmetric-crypto-key";
-import { CipherResponse } from "../../models/response/cipher.response";
+import { Cipher } from "../../vault/models/domain/cipher";
+import { CipherResponse } from "../../vault/models/response/cipher.response";
 
 export abstract class CipherFileUploadService {
   upload: (
