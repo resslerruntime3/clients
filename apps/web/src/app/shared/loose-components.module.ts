@@ -67,6 +67,7 @@ import { BillingHistoryComponent } from "../settings/billing-history.component";
 import { BillingSyncKeyComponent } from "../settings/billing-sync-key.component";
 import { ChangeAvatarComponent } from "../settings/change-avatar.component";
 import { ChangeEmailComponent } from "../settings/change-email.component";
+import { ChangeKdfConfirmationComponent } from "../settings/change-kdf-confirmation.component";
 import { ChangeKdfComponent } from "../settings/change-kdf.component";
 import { ChangePasswordComponent } from "../settings/change-password.component";
 import { CreateOrganizationComponent } from "../settings/create-organization.component";
@@ -136,6 +137,7 @@ import { SharedModule } from "./shared.module";
     BillingSyncKeyComponent,
     ChangeEmailComponent,
     ChangeKdfComponent,
+    ChangeKdfConfirmationComponent,
     ChangePasswordComponent,
     CollectionsComponent,
     CreateOrganizationComponent,
@@ -246,6 +248,7 @@ import { SharedModule } from "./shared.module";
     AttachmentsComponent,
     ChangeEmailComponent,
     ChangeKdfComponent,
+    ChangeKdfConfirmationComponent,
     ChangePasswordComponent,
     CollectionsComponent,
     CreateOrganizationComponent,
