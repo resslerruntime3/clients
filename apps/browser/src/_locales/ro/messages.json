@@ -960,7 +960,10 @@
     "message": "Dacă se detectează un formular de autentificare, completați-l automat la încărcarea paginii web."
   },
   "experimentalFeature": {
-    "message": "În acest moment, aceasta funcțiune este experimentală. O puteți folosi pe propria răspundere."
+    "message": "Compromised or untrusted websites can exploit auto-fill on page load."
+  },
+  "learnMoreAboutAutofill": {
+    "message": "Learn more about auto-fill"
   },
   "defaultAutoFillOnPageLoad": {
     "message": "Setarea implicită de completare automată pentru articole de conectare"
@@ -2046,6 +2049,30 @@
   },
   "rememberEmail": {
     "message": "Memorare e-mail"
+  },
+  "loginWithDevice": {
+    "message": "Log in with device"
+  },
+  "loginWithDeviceEnabledInfo": {
+    "message": "Log in with device must be set up in the settings of the Bitwarden app. Need another option?"
+  },
+  "fingerprintPhraseHeader": {
+    "message": "Fingerprint phrase"
+  },
+  "fingerprintMatchInfo": {
+    "message": "Please make sure your vault is unlocked and the Fingerprint phrase matches on the other device."
+  },
+  "resendNotification": {
+    "message": "Resend notification"
+  },
+  "viewAllLoginOptions": {
+    "message": "View all log in options"
+  },
+  "notificationSentDevice": {
+    "message": "A notification has been sent to your device."
+  },
+  "logInInitiated": {
+    "message": "Log in initiated"
   },
   "exposedMasterPassword": {
     "message": "Exposed Master Password"

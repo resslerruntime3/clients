@@ -960,7 +960,10 @@
     "message": "If a login form is detected, auto-fill when the web page loads."
   },
   "experimentalFeature": {
-    "message": "This is currently an experimental feature. Use at your own risk."
+    "message": "Compromised or untrusted websites can exploit auto-fill on page load."
+  },
+  "learnMoreAboutAutofill": {
+    "message": "Learn more about auto-fill"
   },
   "defaultAutoFillOnPageLoad": {
     "message": "Default autofill setting for login items"
@@ -1067,40 +1070,40 @@
     "message": "Expiration"
   },
   "january": {
-    "message": "January"
+    "message": "Januar"
   },
   "february": {
-    "message": "February"
+    "message": "Februar"
   },
   "march": {
-    "message": "March"
+    "message": "Mart"
   },
   "april": {
     "message": "April"
   },
   "may": {
-    "message": "May"
+    "message": "Maj"
   },
   "june": {
-    "message": "June"
+    "message": "Juni"
   },
   "july": {
-    "message": "July"
+    "message": "Juli"
   },
   "august": {
-    "message": "August"
+    "message": "Avgust"
   },
   "september": {
-    "message": "September"
+    "message": "Septembar"
   },
   "october": {
-    "message": "October"
+    "message": "Oktobar"
   },
   "november": {
-    "message": "November"
+    "message": "Novembar"
   },
   "december": {
-    "message": "December"
+    "message": "Decembar"
   },
   "securityCode": {
     "message": "Security code"
@@ -1112,13 +1115,13 @@
     "message": "Title"
   },
   "mr": {
-    "message": "Mr"
+    "message": "Gospodin"
   },
   "mrs": {
-    "message": "Mrs"
+    "message": "Gđa"
   },
   "ms": {
-    "message": "Ms"
+    "message": "G-đica"
   },
   "dr": {
     "message": "Dr"
@@ -1127,43 +1130,43 @@
     "message": "Mx"
   },
   "firstName": {
-    "message": "First name"
+    "message": "Ime"
   },
   "middleName": {
-    "message": "Middle name"
+    "message": "Nadimak"
   },
   "lastName": {
-    "message": "Last name"
+    "message": "Prezime"
   },
   "fullName": {
-    "message": "Full name"
+    "message": "Puno ime"
   },
   "identityName": {
-    "message": "Identity name"
+    "message": "Ime identiteta"
   },
   "company": {
-    "message": "Company"
+    "message": "Preduzeće"
   },
   "ssn": {
-    "message": "Social Security number"
+    "message": "Broj socijalnog osiguranja / Jmbg"
   },
   "passportNumber": {
-    "message": "Passport number"
+    "message": "Broj pasoša"
   },
   "licenseNumber": {
-    "message": "License number"
+    "message": "Broj vozačke dozvole"
   },
   "email": {
     "message": "Email"
   },
   "phone": {
-    "message": "Phone"
+    "message": "Telefon"
   },
   "address": {
-    "message": "Address"
+    "message": "Adresa"
   },
   "address1": {
-    "message": "Address 1"
+    "message": "Adresa 1"
   },
   "address2": {
     "message": "Address 2"
@@ -1266,10 +1269,10 @@
     "message": "Exact"
   },
   "startsWith": {
-    "message": "Starts with"
+    "message": "Počinje sa"
   },
   "regEx": {
-    "message": "Regular expression",
+    "message": "Regularni izraz",
     "description": "A programming term, also known as 'RegEx'."
   },
   "matchDetection": {
@@ -1338,15 +1341,15 @@
     "message": "Who owns this item?"
   },
   "strong": {
-    "message": "Strong",
+    "message": "Sigurno",
     "description": "ex. A strong password. Scale: Weak -> Good -> Strong"
   },
   "good": {
-    "message": "Good",
+    "message": "Dobro",
     "description": "ex. A good password. Scale: Weak -> Good -> Strong"
   },
   "weak": {
-    "message": "Weak",
+    "message": "Slabo",
     "description": "ex. A weak password. Scale: Weak -> Good -> Strong"
   },
   "weakMasterPassword": {
@@ -1360,7 +1363,7 @@
     "description": "PIN code. Ex. The short code (often numeric) that you use to unlock a device."
   },
   "unlockWithPin": {
-    "message": "Unlock with PIN"
+    "message": "Otključaj PIN-om"
   },
   "setYourPinCode": {
     "message": "Set your PIN code for unlocking Bitwarden. Your PIN settings will be reset if you ever fully log out of the application."
@@ -1399,11 +1402,11 @@
     "message": "Vault timeout action"
   },
   "lock": {
-    "message": "Lock",
+    "message": "Zaključaj",
     "description": "Verb form: to make secure or inaccesible by"
   },
   "trash": {
-    "message": "Trash",
+    "message": "Smeće",
     "description": "Noun: a special folder to hold deleted items"
   },
   "searchTrash": {
@@ -1599,10 +1602,10 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendTypeText": {
-    "message": "Text"
+    "message": "Tekst"
   },
   "sendTypeFile": {
-    "message": "File"
+    "message": "Fajl"
   },
   "allSends": {
     "message": "All Sends",
@@ -1613,7 +1616,7 @@
     "description": "This text will be displayed after a Send has been accessed the maximum amount of times."
   },
   "expired": {
-    "message": "Expired"
+    "message": "Isteklo"
   },
   "pendingDeletion": {
     "message": "Pending deletion"
@@ -1629,7 +1632,7 @@
     "message": "Remove Password"
   },
   "delete": {
-    "message": "Delete"
+    "message": "Izbriši"
   },
   "removedPassword": {
     "message": "Password removed"
@@ -1686,7 +1689,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "oneDay": {
-    "message": "1 day"
+    "message": "1 dan"
   },
   "days": {
     "message": "$DAYS$ days",
@@ -2045,7 +2048,31 @@
     "message": "New around here?"
   },
   "rememberEmail": {
-    "message": "Remember email"
+    "message": "Zapamti email"
+  },
+  "loginWithDevice": {
+    "message": "Log in with device"
+  },
+  "loginWithDeviceEnabledInfo": {
+    "message": "Log in with device must be set up in the settings of the Bitwarden app. Need another option?"
+  },
+  "fingerprintPhraseHeader": {
+    "message": "Fingerprint phrase"
+  },
+  "fingerprintMatchInfo": {
+    "message": "Please make sure your vault is unlocked and the Fingerprint phrase matches on the other device."
+  },
+  "resendNotification": {
+    "message": "Resend notification"
+  },
+  "viewAllLoginOptions": {
+    "message": "View all log in options"
+  },
+  "notificationSentDevice": {
+    "message": "A notification has been sent to your device."
+  },
+  "logInInitiated": {
+    "message": "Log in initiated"
   },
   "exposedMasterPassword": {
     "message": "Exposed Master Password"
@@ -2063,7 +2090,7 @@
     "message": "Check known data breaches for this password"
   },
   "important": {
-    "message": "Important:"
+    "message": "Važno:"
   },
   "masterPasswordHint": {
     "message": "Your master password cannot be recovered if you forget it!"

@@ -960,7 +960,10 @@
     "message": "Wenn eine Zugangsmaske erkannt wird, füge automatisch die Zugangsdaten ein während die Webseite lädt."
   },
   "experimentalFeature": {
-    "message": "Dies ist derzeit ein experimentelles Feature. Verwendung auf eigene Gefahr."
+    "message": "Compromised or untrusted websites can exploit auto-fill on page load."
+  },
+  "learnMoreAboutAutofill": {
+    "message": "Erfahre mehr über Auto-Ausfüllen"
   },
   "defaultAutoFillOnPageLoad": {
     "message": "Standard Auto-Ausfüllen Einstellung für Login-Einträge"
@@ -2046,6 +2049,30 @@
   },
   "rememberEmail": {
     "message": "E-Mail-Adresse merken"
+  },
+  "loginWithDevice": {
+    "message": "Mit Gerät anmelden"
+  },
+  "loginWithDeviceEnabledInfo": {
+    "message": "Mit Gerät anmelden muss in den Einstellungen der Bitwarden App eingerichtet werden. Benötigst du eine andere Option?"
+  },
+  "fingerprintPhraseHeader": {
+    "message": "Fingerabdruck-Phrase"
+  },
+  "fingerprintMatchInfo": {
+    "message": "Bitte stelle sicher, dass dein Tresor entsperrt ist und die Fingerabdruck-Phrase mit dem anderen Gerät übereinstimmt."
+  },
+  "resendNotification": {
+    "message": "Benachrichtigung erneut senden"
+  },
+  "viewAllLoginOptions": {
+    "message": "Alle Anmelde-Optionen anzeigen"
+  },
+  "notificationSentDevice": {
+    "message": "Eine Benachrichtigung wurde an dein Gerät gesendet."
+  },
+  "logInInitiated": {
+    "message": "Anmeldung initiiert"
   },
   "exposedMasterPassword": {
     "message": "Kompromittiertes Master-Passwort"

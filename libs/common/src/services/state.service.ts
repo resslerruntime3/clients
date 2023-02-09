@@ -8,6 +8,8 @@ import {
   AbstractMemoryStorageService,
   AbstractStorageService,
 } from "../abstractions/storage.service";
+import { EnvironmentUrls } from "../auth/models/domain/environment-urls";
+import { KdfConfig } from "../auth/models/domain/kdf-config";
 import { HtmlStorageLocation } from "../enums/htmlStorageLocation";
 import { KdfType } from "../enums/kdfType";
 import { StorageLocation } from "../enums/storageLocation";
@@ -30,10 +32,8 @@ import {
   AccountSettingsSettings,
 } from "../models/domain/account";
 import { EncString } from "../models/domain/enc-string";
-import { EnvironmentUrls } from "../models/domain/environment-urls";
 import { GeneratedPasswordHistory } from "../models/domain/generated-password-history";
 import { GlobalState } from "../models/domain/global-state";
-import { KdfConfig } from "../models/domain/kdf-config";
 import { Policy } from "../models/domain/policy";
 import { State } from "../models/domain/state";
 import { StorageOptions } from "../models/domain/storage-options";
@@ -976,6 +976,24 @@ export class StateService<
       this.reconcileOptions(options, await this.defaultOnDiskOptions())
     );
     account.settings.disableGa = value;
+    await this.saveAccount(
+      account,
+      this.reconcileOptions(options, await this.defaultOnDiskOptions())
+    );
+  }
+
+  async getDismissedAutofillCallout(options?: StorageOptions): Promise<boolean> {
+    return (
+      (await this.getAccount(this.reconcileOptions(options, await this.defaultOnDiskOptions())))
+        ?.settings?.dismissedAutoFillOnPageLoadCallout ?? false
+    );
+  }
+
+  async setDismissedAutofillCallout(value: boolean, options?: StorageOptions): Promise<void> {
+    const account = await this.getAccount(
+      this.reconcileOptions(options, await this.defaultOnDiskOptions())
+    );
+    account.settings.dismissedAutoFillOnPageLoadCallout = value;
     await this.saveAccount(
       account,
       this.reconcileOptions(options, await this.defaultOnDiskOptions())
@@ -2260,6 +2278,24 @@ export class StateService<
       this.reconcileOptions(options, await this.defaultOnDiskLocalOptions())
     );
     account.settings.vaultTimeoutAction = value;
+    await this.saveAccount(
+      account,
+      this.reconcileOptions(options, await this.defaultOnDiskLocalOptions())
+    );
+  }
+
+  async getApproveLoginRequests(options?: StorageOptions): Promise<boolean> {
+    const approveLoginRequests = (
+      await this.getAccount(this.reconcileOptions(options, await this.defaultOnDiskLocalOptions()))
+    )?.settings?.approveLoginRequests;
+    return approveLoginRequests;
+  }
+
+  async setApproveLoginRequests(value: boolean, options?: StorageOptions): Promise<void> {
+    const account = await this.getAccount(
+      this.reconcileOptions(options, await this.defaultOnDiskLocalOptions())
+    );
+    account.settings.approveLoginRequests = value;
     await this.saveAccount(
       account,
       this.reconcileOptions(options, await this.defaultOnDiskLocalOptions())
