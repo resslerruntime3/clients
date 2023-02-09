@@ -12,6 +12,8 @@ import BiometricWindowsMain from "./biometric.windows.main";
 import { BiometricsService } from "./biometrics.service";
 import { BiometricsServiceAbstraction } from "./biometrics.service.abstraction";
 
+jest.mock("@bitwarden/desktop-native");
+
 describe("biometrics tests", function () {
   const i18nService = mock<I18nService>();
   const windowMain = mock<WindowMain>();
