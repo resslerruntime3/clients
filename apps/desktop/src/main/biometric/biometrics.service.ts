@@ -1,5 +1,6 @@
 import { I18nService } from "@bitwarden/common/abstractions/i18n.service";
 import { LogService } from "@bitwarden/common/abstractions/log.service";
+import { MessagingService } from "@bitwarden/common/abstractions/messaging.service";
 import { StateService } from "@bitwarden/common/abstractions/state.service";
 
 import { WindowMain } from "../window.main";
@@ -13,7 +14,8 @@ export class BiometricsService implements BiometricsServiceAbstraction {
     private i18nService: I18nService,
     private windowMain: WindowMain,
     private stateService: StateService,
-    private logService: LogService
+    private logService: LogService,
+    private messagingService: MessagingService
   ) {
     this.loadPlatformSpecificService();
   }
@@ -52,6 +54,11 @@ export class BiometricsService implements BiometricsServiceAbstraction {
   }
 
   async authenticateBiometric(): Promise<boolean> {
-    return await this.platformSpecificService.authenticateBiometric();
+    this.messagingService.send("cancelProcessReload");
+    const response = await this.platformSpecificService.authenticateBiometric();
+    if (!response) {
+      this.messagingService.send("startProcessReload");
+    }
+    return response;
   }
 }

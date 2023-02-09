@@ -121,7 +121,8 @@ export class Main {
       this.i18nService,
       this.windowMain,
       this.stateService,
-      this.logService
+      this.logService,
+      this.messagingService
     );
 
     this.desktopCredentialStorageListener = new DesktopCredentialStorageListener(

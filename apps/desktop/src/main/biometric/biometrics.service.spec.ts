@@ -2,6 +2,7 @@ import { mock } from "jest-mock-extended";
 
 import { I18nService } from "@bitwarden/common/abstractions/i18n.service";
 import { LogService } from "@bitwarden/common/abstractions/log.service";
+import { MessagingService } from "@bitwarden/common/abstractions/messaging.service";
 import { StateService } from "@bitwarden/common/abstractions/state.service";
 
 import { WindowMain } from "../window.main";
@@ -16,9 +17,16 @@ describe("biometrics tests", function () {
   const windowMain = mock<WindowMain>();
   const stateService = mock<StateService>();
   const logService = mock<LogService>();
+  const messagingService = mock<MessagingService>();
 
   it("Should call the platformspecific methods", () => {
-    const sut = new BiometricsService(i18nService, windowMain, stateService, logService);
+    const sut = new BiometricsService(
+      i18nService,
+      windowMain,
+      stateService,
+      logService,
+      messagingService
+    );
 
     const mockService = mock<BiometricsServiceAbstraction>();
     (sut as any).platformSpecificService = mockService;
@@ -42,7 +50,13 @@ describe("biometrics tests", function () {
       });
     });
 
-    const sut = new BiometricsService(i18nService, windowMain, stateService, logService);
+    const sut = new BiometricsService(
+      i18nService,
+      windowMain,
+      stateService,
+      logService,
+      messagingService
+    );
 
     it("Should create a biometrics service specific for Windows", () => {
       const internalService = (sut as any).platformSpecificService;
@@ -68,7 +82,13 @@ describe("biometrics tests", function () {
     });
 
     it("Should create a biometrics service specific for MacOs", () => {
-      const sut = new BiometricsService(i18nService, windowMain, stateService, logService);
+      const sut = new BiometricsService(
+        i18nService,
+        windowMain,
+        stateService,
+        logService,
+        messagingService
+      );
       const internalService = (sut as any).platformSpecificService;
       expect(internalService).not.toBeNull();
       expect(internalService).toBeInstanceOf(BiometricDarwinMain);

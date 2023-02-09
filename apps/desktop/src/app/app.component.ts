@@ -199,6 +199,12 @@ export class AppComponent implements OnInit, OnDestroy {
             await this.systemService.clearPendingClipboard();
             await this.systemService.startProcessReload(this.authService);
             break;
+          case "startProcessReload":
+            this.systemService.startProcessReload(this.authService);
+            break;
+          case "cancelProcessReload":
+            this.systemService.cancelProcessReload();
+            break;
           case "reloadProcess":
             (window.location as any).reload(true);
             break;
