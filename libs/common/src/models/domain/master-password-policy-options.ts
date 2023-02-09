@@ -7,4 +7,11 @@ export class MasterPasswordPolicyOptions extends Domain {
   requireLower = false;
   requireNumbers = false;
   requireSpecial = false;
+
+  /**
+   * Flag to indicate if the policy should be enforced on login.
+   * If true, and the user's password does not meet the policy requirements,
+   * the user will be forced to update their password.
+   */
+  enforceOnLogin = false;
 }
