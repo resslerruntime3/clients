@@ -1,7 +1,6 @@
 import AddLoginRuntimeMessage from "../../background/models/addLoginRuntimeMessage";
 import ChangePasswordRuntimeMessage from "../../background/models/changePasswordRuntimeMessage";
 import AutofillField from "../models/autofill-field";
-import AutofillPageDetails from "../models/autofill-page-details";
 import { WatchedForm } from "../models/watched-form";
 import { FormData } from "../services/abstractions/autofill.service";
 
@@ -30,8 +29,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
   }
 
   // Initialize required variables and set default values
-  // TODO: this isn't used anywhere in the file except for being pushed onto?
-  const pageDetails: AutofillPageDetails[] = [];
   const watchedForms: WatchedForm[] = [];
   let barType: string = null;
   let pageHref: string = null;
@@ -175,7 +172,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
       // Ex: icloud.com uses a login form in an iframe from apple.com
 
       // See method collectPageDetails() for full call itinerary that leads to this message
-      pageDetails.push(msg.data.details);
       watchForms(msg.data.forms);
       sendResponse();
       return true;
