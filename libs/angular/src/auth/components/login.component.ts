@@ -1,6 +1,7 @@
 import { Directive, NgZone, OnInit } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
+import { firstValueFrom } from "rxjs";
 import { take } from "rxjs/operators";
 
 import { ApiService } from "@bitwarden/common/abstractions/api.service";
@@ -15,12 +16,17 @@ import { I18nService } from "@bitwarden/common/abstractions/i18n.service";
 import { LogService } from "@bitwarden/common/abstractions/log.service";
 import { PasswordGenerationService } from "@bitwarden/common/abstractions/passwordGeneration.service";
 import { PlatformUtilsService } from "@bitwarden/common/abstractions/platformUtils.service";
+import { PolicyApiServiceAbstraction } from "@bitwarden/common/abstractions/policy/policy-api.service.abstraction";
+import { InternalPolicyService } from "@bitwarden/common/abstractions/policy/policy.service.abstraction";
 import { StateService } from "@bitwarden/common/abstractions/state.service";
 import { AuthService } from "@bitwarden/common/auth/abstractions/auth.service";
 import { LoginService } from "@bitwarden/common/auth/abstractions/login.service";
 import { AuthResult } from "@bitwarden/common/auth/models/domain/auth-result";
 import { PasswordLogInCredentials } from "@bitwarden/common/auth/models/domain/log-in-credentials";
 import { Utils } from "@bitwarden/common/misc/utils";
+import { PolicyData } from "@bitwarden/common/models/data/policy.data";
+import { ListResponse } from "@bitwarden/common/models/response/list.response";
+import { PolicyResponse } from "@bitwarden/common/models/response/policy.response";
 
 import { CaptchaProtectedComponent } from "./captcha-protected.component";
 
@@ -67,7 +73,9 @@ export class LoginComponent extends CaptchaProtectedComponent implements OnInit 
     protected formBuilder: FormBuilder,
     protected formValidationErrorService: FormValidationErrorsService,
     protected route: ActivatedRoute,
-    protected loginService: LoginService
+    protected loginService: LoginService,
+    protected policyService: InternalPolicyService,
+    protected policyApiService: PolicyApiServiceAbstraction
   ) {
     super(environmentService, i18nService, platformUtilsService);
     this.selfHosted = platformUtilsService.isSelfHost();
@@ -149,6 +157,11 @@ export class LoginComponent extends CaptchaProtectedComponent implements OnInit 
           this.router.navigate([this.forcePasswordResetRoute]);
         }
       } else {
+        if (!(await this.evaluateMasterPasswordPolicies())) {
+          this.router.navigate([this.forcePasswordResetRoute]);
+          return;
+        }
+
         const disableFavicon = await this.stateService.getDisableFavicon();
         await this.stateService.setDisableFavicon(!!disableFavicon);
         if (this.onSuccessfulLogin != null) {
@@ -282,5 +295,63 @@ export class LoginComponent extends CaptchaProtectedComponent implements OnInit 
     } catch (e) {
       this.showLoginWithDevice = false;
     }
+  }
+
+  private async evaluateMasterPasswordPolicies(): Promise<boolean> {
+    const masterPassword = this.formGroup.value.masterPassword;
+    const policiesResponse = await this.policyApiService.getAllPolicies();
+
+    const enforcedPasswordPolicyOptions = await firstValueFrom(
+      this.policyService.masterPasswordPolicyOptions$(
+        this.policyService.mapPoliciesFromToken(policiesResponse)
+      )
+    );
+
+    // No policies to enforce on login
+    if (enforcedPasswordPolicyOptions == null || !enforcedPasswordPolicyOptions.enforceOnLogin) {
+      return true;
+    }
+
+    const passwordStrength = this.passwordGenerationService.passwordStrength(
+      masterPassword,
+      this.getPasswordStrengthUserInput()
+    )?.score;
+
+    // If the password doesn't meet the policy requirements, save the policies and return false
+    // to force navigation to update password page
+    if (
+      !this.policyService.evaluateMasterPassword(
+        passwordStrength,
+        masterPassword,
+        enforcedPasswordPolicyOptions
+      )
+    ) {
+      await this.savePolicies(policiesResponse);
+      return false;
+    }
+
+    return true;
+  }
+
+  protected getPasswordStrengthUserInput() {
+    const email = this.formGroup.value.email;
+    let userInput: string[] = [];
+    const atPosition = email.indexOf("@");
+    if (atPosition > -1) {
+      userInput = userInput.concat(
+        email
+          .substr(0, atPosition)
+          .trim()
+          .toLowerCase()
+          .split(/[^A-Za-z0-9]/)
+      );
+    }
+    return userInput;
+  }
+
+  protected async savePolicies(policyResponse: ListResponse<PolicyResponse>) {
+    const policiesData: { [id: string]: PolicyData } = {};
+    policyResponse.data.map((p) => (policiesData[p.id] = new PolicyData(p)));
+    await this.policyService.replace(policiesData);
   }
 }

@@ -19,7 +19,6 @@ import { PolicyApiServiceAbstraction } from "@bitwarden/common/abstractions/poli
 import { InternalPolicyService } from "@bitwarden/common/abstractions/policy/policy.service.abstraction";
 import { AuthService } from "@bitwarden/common/auth/abstractions/auth.service";
 import { LoginService } from "@bitwarden/common/auth/abstractions/login.service";
-import { PolicyData } from "@bitwarden/common/models/data/policy.data";
 import { MasterPasswordPolicyOptions } from "@bitwarden/common/models/domain/master-password-policy-options";
 import { Policy } from "@bitwarden/common/models/domain/policy";
 import { ListResponse } from "@bitwarden/common/models/response/list.response";
@@ -51,8 +50,8 @@ export class LoginComponent extends BaseLoginComponent implements OnInit, OnDest
     environmentService: EnvironmentService,
     passwordGenerationService: PasswordGenerationService,
     cryptoFunctionService: CryptoFunctionService,
-    private policyApiService: PolicyApiServiceAbstraction,
-    private policyService: InternalPolicyService,
+    protected policyApiService: PolicyApiServiceAbstraction,
+    protected policyService: InternalPolicyService,
     logService: LogService,
     ngZone: NgZone,
     protected stateService: StateService,
@@ -78,7 +77,9 @@ export class LoginComponent extends BaseLoginComponent implements OnInit, OnDest
       formBuilder,
       formValidationErrorService,
       route,
-      loginService
+      loginService,
+      policyService,
+      policyApiService
     );
     this.onSuccessfulLogin = async () => {
       this.messagingService.send("setFullWidth");
@@ -167,9 +168,7 @@ export class LoginComponent extends BaseLoginComponent implements OnInit, OnDest
           this.enforcedPasswordPolicyOptions
         )
       ) {
-        const policiesData: { [id: string]: PolicyData } = {};
-        this.policies.data.map((p) => (policiesData[p.id] = new PolicyData(p)));
-        await this.policyService.replace(policiesData);
+        await this.savePolicies(this.policies);
         this.router.navigate(["update-password"]);
         return;
       }
@@ -207,21 +206,5 @@ export class LoginComponent extends BaseLoginComponent implements OnInit, OnDest
       await this.stateService.setRememberedEmail(null);
     }
     await super.submit(false);
-  }
-
-  private getPasswordStrengthUserInput() {
-    const email = this.formGroup.value.email;
-    let userInput: string[] = [];
-    const atPosition = email.indexOf("@");
-    if (atPosition > -1) {
-      userInput = userInput.concat(
-        email
-          .substr(0, atPosition)
-          .trim()
-          .toLowerCase()
-          .split(/[^A-Za-z0-9]/)
-      );
-    }
-    return userInput;
   }
 }
