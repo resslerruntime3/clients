@@ -35,7 +35,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
   const watchedForms: WatchedForm[] = [];
   let barType: string = null;
   let pageHref: string = null;
-  let onFirstLoad = true;
 
   // Provides the ability to watch for changes being made to the DOM tree.
   let observer: MutationObserver = null;
@@ -52,9 +51,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
     "em",
     "hr",
   ]);
-  let domObservationCollectTimeout: number = null;
-  let collectIfNeededTimeout: number = null;
-  let observeDomTimeout: number = null;
+  let domObservationCollectTimeoutId: number = null;
+  let collectPageDetailsTimeoutId: number = null;
+  let handlePageChangeTimeoutId: number = null;
+
   const inIframe = isInIframe();
   const cancelButtonNames = new Set(["cancel", "close", "back"]);
   const logInButtonNames = new Set([
@@ -117,10 +117,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
     disabledChangedPasswordNotification = userSettings.disableChangedPasswordNotification;
 
     if (!disabledAddLoginNotification || !disabledChangedPasswordNotification) {
-      // If the user has not disabled both notifications, then collect the page details after a timeout
-      // The timeout is used to allow more time for the page to load before collecting the page details
-      // as there are some cases where SPAs do not load the entire page on initial load, so we need to wait
-      collectPageDetailsIfNeededWithTimeout();
+      // If the user has not disabled both notifications, then handle the initial page change (null -> actual page)
+      handlePageChange();
     }
   });
 
@@ -185,16 +183,21 @@ document.addEventListener("DOMContentLoaded", (event) => {
   //#endregion Message Processing
 
   /**
-   * Observe the DOM for changes and collect page details if the DOM changes.
+   * Observe the DOM for changes and collect page details if forms are added to the page
    */
   function observeDom() {
     const bodies = document.querySelectorAll("body");
     if (bodies && bodies.length > 0) {
       observer = new MutationObserver((mutations: MutationRecord[]) => {
-        // If mutations are not found, or the page href has changed, return
-        // We return on page change because the content script will re-run and
-        // collect page details and then re-start the observer
-        if (mutations == null || mutations.length === 0 || pageHref !== window.location.href) {
+        // If mutation observer detects a change in the page URL, collect page details
+        // which will reset the observer and start watching for new forms on the new page
+        if (pageHref !== window.location.href) {
+          handlePageChange();
+          return;
+        }
+
+        // If mutations are not found, return
+        if (mutations == null || mutations.length === 0) {
           return;
         }
 
@@ -262,13 +265,14 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
         // If page details need to be collected, clear any existing timeout and schedule a new one
         if (doCollectPageDetails) {
-          if (domObservationCollectTimeout != null) {
-            window.clearTimeout(domObservationCollectTimeout);
+          if (domObservationCollectTimeoutId != null) {
+            window.clearTimeout(domObservationCollectTimeoutId);
+            domObservationCollectTimeoutId = null;
           }
 
           // The timeout is used to avoid collecting page details too often on page mutation while also
           // giving the DOM time to settle down after a change (ex: multi-part forms being rendered)
-          domObservationCollectTimeout = window.setTimeout(collectPageDetails, 1000);
+          domObservationCollectTimeoutId = window.setTimeout(collectPageDetails, 1000);
         }
       });
 
@@ -277,62 +281,63 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
   }
 
-  //#region Page Detail Collection Methods
   /**
-   * Schedules a call to the `collectPageDetailsIfNeeded` method with a timeout of 1 second.
-   * If there is an existing timeout, it is cleared.
+   * Handles initial page load and page changes
+   * 3 ways this method is called:
+   *
+   * (1) On initial content script load
+   *
+   * (2) On page change (detected by observer)
+   *
+   * (3) On after scheduled delay setup in `scheduleHandlePageChange()
+   *
+   * On page change, we update the page href, empty the watched forms array, call collectPageDetails (w/ 1 second timeout), and reset the observer
    */
-  function collectPageDetailsIfNeededWithTimeout() {
-    if (collectIfNeededTimeout != null) {
-      window.clearTimeout(collectIfNeededTimeout);
-    }
-    collectIfNeededTimeout = window.setTimeout(collectPageDetailsIfNeeded, 1000);
-  }
-
-  /**
-   * Collects information about the page if needed (if the page has changed)
-   * and schedules a call to itself again in 1 second.
-   */
-  function collectPageDetailsIfNeeded() {
-    // On first load or any time the page changes, we need to collect the page details
+  function handlePageChange() {
+    // On first load the content script or any time the page changes, we need to collect the page details and setup the mutation observer
     if (pageHref !== window.location.href) {
       // update href
       pageHref = window.location.href;
+
+      // Empty watched forms so it doesn't carry over between SPA page changes
+      // This allows formOpIds to be unique for each page so that we can
+      // associate submit buttons with their respective forms in the getSubmitButton logic.
+      watchedForms.length = 0;
+
+      // collect the page details after a timeout
+      // The timeout is used to allow more time for the page to load before collecting the page details
+      // as there are some cases where SPAs do not load the entire page on initial load, so we need to wait
+      if (collectPageDetailsTimeoutId != null) {
+        window.clearTimeout(collectPageDetailsTimeoutId);
+        collectPageDetailsTimeoutId = null;
+      }
+      collectPageDetailsTimeoutId = window.setTimeout(collectPageDetails, 1000);
+
       if (observer) {
         // reset existing DOM mutation observer so it can listen for changes to the new page body
         observer.disconnect();
         observer = null;
       }
 
-      // Empty watched forms so it doesn't carry over between SPA page changes
-      // This allows formOpIds to be unique for each page
-      watchedForms.length = 0;
-
-      collectPageDetails();
-
-      if (observeDomTimeout != null) {
-        window.clearTimeout(observeDomTimeout);
-      }
-
-      // On first load, start observing the DOM immediately
-      // because the page details collection can miss forms that are being rendered
-      // and if we delay adding the observer by a second, the observer will also
-      // miss the forms. This was especially prevelant on refreshing.
-      if (onFirstLoad) {
-        observeDom();
-        onFirstLoad = false;
-      } else {
-        // Start observing the DOM after a short delay to allow the page to settle down
-        observeDomTimeout = window.setTimeout(observeDom, 1000);
-      }
+      // On first load or page change, start observing the DOM as early as possible
+      // to avoid missing any forms that are added after the page loads
+      observeDom();
     }
 
-    // Page has not changed
+    // This is a safeguard in case the observer misses a SPA page change.
+    scheduleHandlePageChange();
+  }
+
+  /**
+   * Set up a timeout to call handlePageChange after 1 second
+   */
+  function scheduleHandlePageChange() {
     // Check again in 1 second (but clear any existing timeout first)
-    if (collectIfNeededTimeout != null) {
-      window.clearTimeout(collectIfNeededTimeout);
+    if (handlePageChangeTimeoutId != null) {
+      window.clearTimeout(handlePageChangeTimeoutId);
+      handlePageChangeTimeoutId = null;
     }
-    collectIfNeededTimeout = window.setTimeout(collectPageDetailsIfNeeded, 1000);
+    handlePageChangeTimeoutId = window.setTimeout(handlePageChange, 1000);
   }
 
   /** *
