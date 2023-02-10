@@ -1214,7 +1214,7 @@ export class ApiService implements ApiServiceAbstraction {
   async getKnownDevice(email: string, deviceIdentifier: string): Promise<boolean> {
     const r = await this.send("GET", "/devices/knowndevice", null, false, true, null, (headers) => {
       headers.set("X-Device-Identifier", deviceIdentifier);
-      headers.set("X-Request-Email", email);
+      headers.set("X-Request-Email", Utils.fromUtf8ToUrlB64(email));
     });
     return r as boolean;
   }
