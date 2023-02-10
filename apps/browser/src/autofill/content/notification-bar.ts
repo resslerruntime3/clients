@@ -22,20 +22,6 @@ import { FormData } from "../services/abstractions/autofill.service";
  * https://developer.mozilla.org/en-US/docs/Web/API/Window/DOMContentLoaded_event
  */
 
-// TODO: Recommendations:
-// (1) Move small helper functions into a separate file and import them to reduce the size of this file.
-// (2) Reducing / removing timeouts delays could improve form detection for users who are fast at filling out forms.
-
-// TODO: test with and without ad blocker
-
-// TODO: How long does it take to execute full getPageDetails process to be ready to open the notification bar?
-// i.e., Investigate if nested setTimeouts are causing issues in terms of missing form inputs
-
-// Findings:
-// - Bank of America redirects to a new page after entering invalid credentials and the notification bar doesn't show up
-// - However, the bar normally persists across multiple pages.
-// https://training.knowbe4.com/ui/login doesn't work for adding a login
-
 document.addEventListener("DOMContentLoaded", (event) => {
   // Do not show the notification bar on the Bitwarden vault
   // because they can add logins and change passwords there
@@ -70,7 +56,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
   let observeDomTimeout: number = null;
   const inIframe = isInIframe();
   const cancelButtonNames = new Set(["cancel", "close", "back"]);
-  // TODO: how comprehensive is this set?
   const logInButtonNames = new Set([
     "log in",
     "sign in",
@@ -185,15 +170,16 @@ document.addEventListener("DOMContentLoaded", (event) => {
       sendResponse();
       return true;
     } else if (msg.command === "notificationBarPageDetails") {
-      // TODO: why do we not also check for inIframe here? Ask Kyle
-      // See method collectPageDetails() for full itinerary that ends up here
+      // Note: we deliberately do not check for inIframe here because a lot of websites
+      // embed their login forms into iframes
+      // Ex: icloud.com uses a login form in an iframe from apple.com
+
+      // See method collectPageDetails() for full call itinerary that leads to this message
       pageDetails.push(msg.data.details);
       watchForms(msg.data.forms);
       sendResponse();
       return true;
     }
-    // TODO: could sendResponse() and return true be called here to reduce repetition?
-    // only return true and send response when we have a matching command
   }
   //#endregion Message Processing
 
@@ -205,6 +191,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
     if (bodies && bodies.length > 0) {
       observer = new MutationObserver((mutations: MutationRecord[]) => {
         // If mutations are not found, or the page href has changed, return
+        // We return on page change because the content script will re-run and
+        // collect page details and then re-start the observer
         if (mutations == null || mutations.length === 0 || pageHref !== window.location.href) {
           return;
         }
@@ -300,6 +288,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     collectIfNeededTimeout = window.setTimeout(collectPageDetailsIfNeeded, 1000);
   }
 
+  // TODO: collectPageDetails can miss forms on refresh
   /**
    * Collects information about the page if needed (if the page has changed)
    * and schedules a call to itself again in 1 second.
@@ -320,9 +309,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       if (observeDomTimeout != null) {
         window.clearTimeout(observeDomTimeout);
       }
-      // Start observing the DOM
-      // TODO: This method is called every 1 second, so why wait another second to start observing the DOM?
-      // On page change, there is a min of 3 seconds before
+      // Start observing the DOM after a short delay to allow the page to settle down
       observeDomTimeout = window.setTimeout(observeDom, 1000);
     }
 
@@ -695,8 +682,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
       // Loop through all possible submit buttons and find the first one that matches a submit button name
       possibleSubmitButtons.forEach((button) => {
         if (submitButton != null || button == null || button.tagName == null) {
-          // Break out of loop if we already found a submit button or if the button is null or doesn't have a tag name
-          // TODO: why do we eject out of the loop if one of the buttons is null or is missing a tagName.. shouldn't we just skip that button?
+          // Continue if we already found a submit button or if the button is null or doesn't have a tag name
+          // Return in a forEach(...) is equivalent to continue
           return;
         }
         // Retrieve button text
