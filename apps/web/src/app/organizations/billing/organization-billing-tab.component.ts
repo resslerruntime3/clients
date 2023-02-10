@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { combineLatest, Observable } from "rxjs";
+import { map, Observable, switchMap } from "rxjs";
 
 import { OrganizationService } from "@bitwarden/common/abstractions/organization/organization.service.abstraction";
 import { PlatformUtilsService } from "@bitwarden/common/abstractions/platformUtils.service";
@@ -19,12 +19,9 @@ export class OrganizationBillingTabComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.showPaymentAndHistory$ = combineLatest(
-      [this.route.params, this.organizationService.organizations$],
-      (params, orgs) => {
-        const organization = orgs.find((o) => o.id === params.organizationId);
-        return !this.platformUtilsService.isSelfHost() && organization.canManageBilling;
-      }
+    this.showPaymentAndHistory$ = this.route.params.pipe(
+      switchMap((params) => this.organizationService.get$(params.organizationId)),
+      map((org) => !this.platformUtilsService.isSelfHost() && org.canManageBilling)
     );
   }
 }
