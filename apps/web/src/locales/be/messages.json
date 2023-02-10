@@ -133,6 +133,9 @@
   "ms": {
     "message": "Пані"
   },
+  "mx": {
+    "message": "Mx"
+  },
   "dr": {
     "message": "Доктар"
   },
@@ -277,12 +280,36 @@
   "searchFavorites": {
     "message": "Пошук у абраным"
   },
-  "searchType": {
-    "message": "Пошук па тыпу",
-    "description": "Search item type"
+  "searchLogin": {
+    "message": "Пошук даных уваходу",
+    "description": "Search Login type"
+  },
+  "searchCard": {
+    "message": "Пошук картак",
+    "description": "Search Card type"
+  },
+  "searchIdentity": {
+    "message": "Пошук пасведчанняў",
+    "description": "Search Identity type"
+  },
+  "searchSecureNote": {
+    "message": "Пошук абароненых нататак",
+    "description": "Search Secure Note type"
   },
   "searchVault": {
     "message": "Пошук у сховішчы"
+  },
+  "searchMyVault": {
+    "message": "Пошук у сховішчы"
+  },
+  "searchOrganization": {
+    "message": "Пошук у арганізацыі"
+  },
+  "searchMembers": {
+    "message": "Пошук удзельнікаў"
+  },
+  "searchGroups": {
+    "message": "Пошук груп"
   },
   "allItems": {
     "message": "Усе элементы"
@@ -365,6 +392,9 @@
   "select": {
     "message": "Выбраць"
   },
+  "newItem": {
+    "message": "Новы элемент"
+  },
   "addItem": {
     "message": "Дадаць элемент"
   },
@@ -373,6 +403,13 @@
   },
   "viewItem": {
     "message": "Прагледзець элемент"
+  },
+  "new": {
+    "message": "Новы",
+    "description": "for adding new items"
+  },
+  "item": {
+    "message": "Элемент"
   },
   "ex": {
     "message": "напр.",
@@ -438,6 +475,9 @@
   },
   "vaultItems": {
     "message": "Элементы сховішча"
+  },
+  "filter": {
+    "message": "Фільтр"
   },
   "moveSelectedToOrg": {
     "message": "Перамясціць выбранае ў арганізацыю"
@@ -544,6 +584,12 @@
   },
   "deletedFolder": {
     "message": "Папка выдалена"
+  },
+  "editInfo": {
+    "message": "Рэдагаваць інфармацыю"
+  },
+  "access": {
+    "message": "Доступ"
   },
   "loggedOut": {
     "message": "Вы выйшлі"
@@ -702,6 +748,9 @@
   "noItemsInList": {
     "message": "У спісе адсутнічаюць элементы."
   },
+  "noPermissionToViewAllCollectionItems": {
+    "message": "У вас няма правоў для прагляду ўсіх элементаў у гэтай калекцыі."
+  },
   "noCollectionsInList": {
     "message": "У спісе адсутнічаюць калекцыі."
   },
@@ -710,6 +759,9 @@
   },
   "noUsersInList": {
     "message": "У спісе адсутнічаюць карыстальнікі."
+  },
+  "noMembersInList": {
+    "message": "У спісе адсутнічаюць удзельнікі."
   },
   "noEventsInList": {
     "message": "У спісе адсутнічаюць падзеі."
@@ -854,6 +906,18 @@
         "example": "150"
       }
     }
+  },
+  "deleteSelectedCollectionsDesc": {
+    "message": "Наступная колькасць калекцый будзе незваротна выдалена: $COUNT$",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "150"
+      }
+    }
+  },
+  "deleteSelectedConfirmation": {
+    "message": "Вы сапраўды хочаце працягнуць?"
   },
   "moveSelectedItemsDesc": {
     "message": "Выберыце папку ў якую вы хочаце перамясціць выбраныя элементы (колькасць: $COUNT$ шт.).",
@@ -1092,6 +1156,19 @@
         "example": "50,000"
       }
     }
+  },
+  "kdfMemory": {
+    "message": "Памяць KDF (МБ)",
+    "description": "Memory refers to computer memory (RAM). MB is short for megabytes."
+  },
+  "argon2Warning": {
+    "message": "Занадта вялікае значэнне ітэрацый KDF, памяці і паралелізму можа стаць вынікам павольнай працы падчас выхаду (і разблакіроўкі) Bitwarden на бюджэтных і састарэлых прыладах. Мы рэкамендуем змяняць гэтыя параметры паасобку з невялікім крокам, а потым тэсціраваць на ўсіх вашых прыладах."
+  },
+  "kdfParallelism": {
+    "message": "Паралелізм KDF"
+  },
+  "argon2Desc": {
+    "message": "Высокае значэнне ітэрацыі KDF, памяці і паралелізму дапаможа абараніць асноўны пароль ад атакі поўным пераборам."
   },
   "changeKdf": {
     "message": "Змяніць KDF"
@@ -1558,7 +1635,7 @@
   },
   "orgsReportsDesc": {
     "message": "Выявіце і выпраўце недахопы ў бяспецы ўліковых запісаў вашай арганізацыі, націснуўшы на справаздачы ніжэй.",
-    "description": "Vault health reports can be used to evaluate the security of your Bitwarden individual or organization Vault."
+    "description": "Vault health reports can be used to evaluate the security of your Bitwarden individual or organization vault."
   },
   "unsecuredWebsitesReport": {
     "message": "Неабароненыя вэб-сайты"
@@ -1822,6 +1899,22 @@
       }
     }
   },
+  "premiumPriceWithFamilyPlan": {
+    "message": "Перайдзіце на прэміяльны тарыфны план усяго за $PRICE$/год або атрымайце прэміяльныя ўліковыя запісы для $FAMILYPLANUSERCOUNT$ карыстальнікаў і неабмежаванае сямейнае абагуленне з ",
+    "placeholders": {
+      "price": {
+        "content": "$1",
+        "example": "$10"
+      },
+      "familyplanusercount": {
+        "content": "$2",
+        "example": "6"
+      }
+    }
+  },
+  "bitwardenFamiliesPlan": {
+    "message": "Тарыфны план Bitwarden Families."
+  },
   "addons": {
     "message": "Дадаткі"
   },
@@ -1963,6 +2056,9 @@
   },
   "manageSubscription": {
     "message": "Кіраванне падпіскай"
+  },
+  "launchCloudSubscription": {
+    "message": "Запусціць воблачную падпіску"
   },
   "storage": {
     "message": "Сховішча"
@@ -2356,6 +2452,15 @@
   "deleteGroupConfirmation": {
     "message": "Вы сапраўды хочаце выдаліць гэту групу?"
   },
+  "deleteMultipleGroupsConfirmation": {
+    "message": "Вы сапраўды хочаце выдаліць наступную колькасць груп: $QUANTITY$?",
+    "placeholders": {
+      "quantity": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
   "removeUserConfirmation": {
     "message": "Вы сапраўды хочаце выдаліць гэтага карыстальніка?"
   },
@@ -2373,6 +2478,9 @@
   },
   "externalIdDesc": {
     "message": "Знешні ідэнтыфікатар можа быць выкарыстаны ў якасці спасылкі для сувязі гэтага рэсурсу са знешняй сістэмай, такой як каталог карыстальніка."
+  },
+  "nestCollectionUnder": {
+    "message": "Размясціць калекцыю пад"
   },
   "accessControl": {
     "message": "Кантроль доступу"
@@ -2395,14 +2503,23 @@
   "editCollection": {
     "message": "Рэдагаваць калекцыю"
   },
+  "collectionInfo": {
+    "message": "Інфармацыя пра калекцыю"
+  },
   "deleteCollectionConfirmation": {
     "message": "Вы сапраўды хочаце выдаліць гэту калекцыю?"
   },
-  "editUser": {
-    "message": "Рэдагаваць карыстальніка"
+  "editMember": {
+    "message": "Рэдагаваць удзельніка"
   },
-  "inviteUser": {
-    "message": "Запрасіць карыстальніка"
+  "fieldOnTabRequiresAttention": {
+    "message": "Поле на ўкладцы '$TAB$' патрабуе вашай увагі.",
+    "placeholders": {
+      "tab": {
+        "content": "$1",
+        "example": "Collection info"
+      }
+    }
   },
   "inviteUserDesc": {
     "message": "Запрасіць новага карыстальніка ў вашу арганізацыю, увёўшы яго электронную пошту ўліковага запісу Bitwarden. Калі ён не мае ўліковага запісу, то ён атрымае запыт на яго стварэнне."
@@ -2423,7 +2540,7 @@
     "message": "Гэты карыстальнік можа атрымліваць доступ і змяняць усе элементы."
   },
   "userAccessSelectedCollections": {
-    "message": "Гэта карыстальнік можа мець доступ толькі да выбраных калекцый."
+    "message": "Гэты карыстальнік можа мець доступ толькі да выбраных калекцый."
   },
   "search": {
     "message": "Пошук"
@@ -2668,6 +2785,9 @@
       }
     }
   },
+  "deletedCollections": {
+    "message": "Выдаленыя калекцыі"
+  },
   "deletedCollectionId": {
     "message": "Выдалена калекцыя $ID$.",
     "placeholders": {
@@ -2710,6 +2830,15 @@
       "id": {
         "content": "$1",
         "example": "Developers"
+      }
+    }
+  },
+  "deletedManyGroups": {
+    "message": "Выдалена груп: $QUANTITY$",
+    "placeholders": {
+      "quantity": {
+        "content": "$1",
+        "example": "3"
       }
     }
   },
@@ -5112,9 +5241,6 @@
   "billingSyncApiKeyRotated": {
     "message": "Токен зменены."
   },
-  "billingSync": {
-    "message": "Плацежная сінхранізацыя"
-  },
   "billingSyncDesc": {
     "message": "Плацежная сінхранізацыя дае магчымасць удзельнікам атрымаць бясплатны тарыфны план Bitwarden Families і пашыраныя магчымасці выстаўлення рахункаў звязваючы ваш уласны сервер Bitwarden з воблачным серверам нашай кампаніі."
   },
@@ -5165,6 +5291,15 @@
   },
   "required": {
     "message": "патрабуецца"
+  },
+  "characterMaximum": {
+    "message": "Максімум $MAX$ сімвалаў",
+    "placeholders": {
+      "max": {
+        "content": "$1",
+        "example": "100"
+      }
+    }
   },
   "idpSingleSignOnServiceUrlRequired": {
     "message": "Патрабуецца, калі ідэнтыфікатар аб'екта не з'яўляецца URL-адрасам."
@@ -5442,6 +5577,27 @@
       }
     }
   },
+  "inputForbiddenCharacters": {
+    "message": "Наступныя сімвалы забаронены: $CHARACTERS$",
+    "placeholders": {
+      "characters": {
+        "content": "$1",
+        "example": "@, #, $, %"
+      }
+    }
+  },
+  "multipleInputEmails": {
+    "message": "1 або некалькі адрасоў электроннай пошты з'яўляюцца памылковымі"
+  },
+  "tooManyEmails": {
+    "message": "Вы можаце адправіць за раз наступную колькасць лістоў: $COUNT$",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "20"
+      }
+    }
+  },
   "fieldsNeedAttention": {
     "message": "$COUNT$ полі(-ёў) вышэй патрабуе вашай увагі.",
     "placeholders": {
@@ -5562,13 +5718,13 @@
     "message": "Выдаліць сакрэты"
   },
   "secretProjectAssociationDescription": {
-    "message": "Select projects that the secret will be associated with. Only organization users with access to these projects will be able to see the secret."
+    "message": "Выберыце праекты з якімі будзе звязаны сакрэт. Толькі карыстальнікі арганізацыі з доступам да гэтых праектаў змогуць бачыць сакрэт."
   },
   "typeOrSelectProjects": {
-    "message": "Type or select Projects"
+    "message": "Увядзіце або выберыце праекты"
   },
   "typeOrSelectProject": {
-    "message": "Type or select Project"
+    "message": "Увядзіце або выберыце праект"
   },
   "project": {
     "message": "Праект"
@@ -5593,9 +5749,6 @@
   },
   "serviceAccounts": {
     "message": "Сэрвісныя ўліковыя запісы"
-  },
-  "new": {
-    "message": "Новы"
   },
   "secrets": {
     "message": "Сакрэты"
@@ -5704,7 +5857,7 @@
     "placeholders": {
       "confirm": {
         "content": "$1",
-        "example": "Delete 3 Projects"
+        "example": "Delete 3 projects"
       }
     }
   },
@@ -5807,8 +5960,44 @@
   "update": {
     "message": "Абнавіць"
   },
+  "plusNMore": {
+    "message": "+ яшчэ $QUANTITY$",
+    "placeholders": {
+      "quantity": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "groupInfo": {
+    "message": "Інфармацыя пра групу"
+  },
+  "editGroupMembersDesc": {
+    "message": "Забяспечыць удзельнікам групы доступ да прызначаных калекцый."
+  },
+  "editGroupCollectionsDesc": {
+    "message": "Забяспечыць доступ да калекцый, дадаўшы іх у гэту групу."
+  },
+  "accessAllCollectionsDesc": {
+    "message": "Забяспечыць доступ да ўсіх бягучых і будучых калекцый."
+  },
+  "accessAllCollectionsHelp": {
+    "message": "Калі пазначана, то гэта заменіць усе іншыя дазволы на калекцыю."
+  },
+  "selectMembers": {
+    "message": "Выбраць удзельнікаў"
+  },
+  "selectCollections": {
+    "message": "Выбраць калекцыі"
+  },
   "role": {
     "message": "Роля"
+  },
+  "removeMember": {
+    "message": "Выдаліць удзільніка"
+  },
+  "collection": {
+    "message": "Калекцыя"
   },
   "canView": {
     "message": "Можа праглядаць"
@@ -5822,6 +6011,15 @@
   "canEditExceptPass": {
     "message": "Можа рэдагаваць (без пароляў)"
   },
+  "noCollectionsAdded": {
+    "message": "Няма дадзеных калекцый"
+  },
+  "noMembersAdded": {
+    "message": "Няма дададзеных удзельнікаў"
+  },
+  "noGroupsAdded": {
+    "message": "Няма дадзеных груп"
+  },
   "group": {
     "message": "Група"
   },
@@ -5830,6 +6028,39 @@
   },
   "memberAccessAll": {
     "message": "Гэты ўдзельнік можа атрымліваць доступ і змяняць усе элементы."
+  },
+  "membersColumnHeader": {
+    "message": "Удзельнік/Група"
+  },
+  "groupAndMemberColumnHeader": {
+    "message": "Удзельнік"
+  },
+  "selectGroupsAndMembers": {
+    "message": "Выбраць групы і ўдзельнікаў"
+  },
+  "selectGroups": {
+    "message": "Выбраць групы"
+  },
+  "userPermissionOverrideHelper": {
+    "message": "Дазволы прызначаныя для ўдзельніка, заменяць дазволы, якія прызначаны групай гэтага ўдзельніка"
+  },
+  "noMembersOrGroupsAdded": {
+    "message": "Няма дададзены ўдзельнікі або групы"
+  },
+  "deleted": {
+    "message": "Выдалена"
+  },
+  "memberStatusFilter": {
+    "message": "Фільтр статусу ўдзельніка"
+  },
+  "inviteMember": {
+    "message": "Запрасіць удзельніка"
+  },
+  "needsConfirmation": {
+    "message": "Патрабуецца пацвярджэнне"
+  },
+  "memberRole": {
+    "message": "Роля ўдзельніка"
   },
   "moreFromBitwarden": {
     "message": "Больш ад Bitwarden"
@@ -5872,5 +6103,56 @@
         "example": "2"
       }
     }
+  },
+  "licenseAndBillingManagement": {
+    "message": "Кіраванне ліцэнзіямі і плацяжамі"
+  },
+  "automaticSync": {
+    "message": "Аўтаматычная сінхранізацыя"
+  },
+  "manualUpload": {
+    "message": "Ручное запампоўванне"
+  },
+  "manualUploadDesc": {
+    "message": "Калі вы не хочаце карыстацца плацежнай сінхранізацыяй, запампуйце сваю ліцэнзію тут."
+  },
+  "syncLicense": {
+    "message": "Сінхранізаваць ліцэнзію"
+  },
+  "licenseSyncSuccess": {
+    "message": "Ліцэнзія паспяхова сінхранізавана"
+  },
+  "licenseUploadSuccess": {
+    "message": "Ліцэнзія паспяхова запампавана"
+  },
+  "lastLicenseSync": {
+    "message": "Апошняя сінхранізацыя ліцэнзіі"
+  },
+  "billingSyncHelp": {
+    "message": "Дапамога з плацежнай сінхранізацыяй"
+  },
+  "uploadLicense": {
+    "message": "Запампаваць ліцэнзію"
+  },
+  "lowKdfIterations": {
+    "message": "Нізкае значэнне ітэрацыі KDF"
+  },
+  "lowKdfIterationsDesc": {
+    "message": "Наладзьце ўзровень шыфравання KDF, каб удасканаліць бяспеку вашага ўліковага запісу."
+  },
+  "changeKdfSettings": {
+    "message": "Змяніце налады KDF"
+  },
+  "changeKdfLoggedOutWarning": {
+    "message": "Працягваючы, вы выйдзіце з бягучага сеанса і вам неабходна будзе ўвайсці паўторна. Сеансы на іншых прыладах могуць заставацца актыўнымі на працягу адной гадзіны. Мы рэкамендуем экспартаваць ваша сховішча перад тым, як змяняць налады шыфравання, каб пазбегнуць страты даных."
+  },
+  "secretsManagerBeta": {
+    "message": "Менеджар сакрэтаў (бэта-версія)"
+  },
+  "secretsManagerBetaDesc": {
+    "message": "Дазвольце карыстальнікам доступ да Менеджара сакрэтаў падчас праграмы бэта-тэсціравання."
+  },
+  "userAccessSecretsManager": {
+    "message": "Гэты карыстальнік можа атрымаць доступ да Менеджара сакрэтаў у рэжыме бэта-тэсціравання"
   }
 }

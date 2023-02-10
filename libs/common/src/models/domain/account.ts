@@ -1,26 +1,26 @@
 import { Jsonify } from "type-fest";
 
-import { AuthenticationStatus } from "../../enums/authenticationStatus";
+import { AuthenticationStatus } from "../../auth/enums/authentication-status";
+import { EnvironmentUrls } from "../../auth/models/domain/environment-urls";
 import { KdfType } from "../../enums/kdfType";
 import { UriMatchType } from "../../enums/uriMatchType";
 import { Utils } from "../../misc/utils";
 import { DeepJsonify } from "../../types/deep-jsonify";
-import { CipherData } from "../data/cipher.data";
+import { CipherData } from "../../vault/models/data/cipher.data";
+import { FolderData } from "../../vault/models/data/folder.data";
+import { CipherView } from "../../vault/models/view/cipher.view";
 import { CollectionData } from "../data/collection.data";
 import { EncryptedOrganizationKeyData } from "../data/encrypted-organization-key.data";
 import { EventData } from "../data/event.data";
-import { FolderData } from "../data/folder.data";
 import { OrganizationData } from "../data/organization.data";
 import { PolicyData } from "../data/policy.data";
 import { ProviderData } from "../data/provider.data";
 import { SendData } from "../data/send.data";
 import { ServerConfigData } from "../data/server-config.data";
-import { CipherView } from "../view/cipher.view";
 import { CollectionView } from "../view/collection.view";
 import { SendView } from "../view/send.view";
 
 import { EncString } from "./enc-string";
-import { EnvironmentUrls } from "./environment-urls";
 import { GeneratedPasswordHistory } from "./generated-password-history";
 import { Policy } from "./policy";
 import { SymmetricCryptoKey } from "./symmetric-crypto-key";
@@ -189,6 +189,8 @@ export class AccountProfile {
   usesKeyConnector?: boolean;
   keyHash?: string;
   kdfIterations?: number;
+  kdfMemory?: number;
+  kdfParallelism?: number;
   kdfType?: KdfType;
 
   static fromJSON(obj: Jsonify<AccountProfile>): AccountProfile {
@@ -214,6 +216,7 @@ export class AccountSettings {
   disableChangedPasswordNotification?: boolean;
   disableContextMenuItem?: boolean;
   disableGa?: boolean;
+  dismissedAutoFillOnPageLoadCallout?: boolean;
   dontShowCardsCurrentTab?: boolean;
   dontShowIdentitiesCurrentTab?: boolean;
   enableAlwaysOnTop?: boolean;
@@ -233,6 +236,7 @@ export class AccountSettings {
   vaultTimeout?: number;
   vaultTimeoutAction?: string = "lock";
   serverConfig?: ServerConfigData;
+  approveLoginRequests?: boolean;
   avatarColor?: string;
 
   static fromJSON(obj: Jsonify<AccountSettings>): AccountSettings {

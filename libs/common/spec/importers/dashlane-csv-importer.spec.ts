@@ -1,5 +1,5 @@
-import { CipherType } from "@bitwarden/common/enums/cipherType";
 import { DashlaneCsvImporter as Importer } from "@bitwarden/common/importers/dashlane/dashlane-csv-importer";
+import { CipherType } from "@bitwarden/common/vault/enums/cipher-type";
 
 import { credentialsData } from "./test-data/dashlane-csv/credentials.csv";
 import { identityData } from "./test-data/dashlane-csv/id.csv";
@@ -79,8 +79,8 @@ describe("Dashlane CSV Importer", () => {
     expect(cipher2.card.cardholderName).toBe("John Doe");
     expect(cipher2.card.number).toBe("41111111111111111");
     expect(cipher2.card.code).toBe("123");
-    expect(cipher2.card.expMonth).toBe("01");
-    expect(cipher2.card.expYear).toBe("23");
+    expect(cipher2.card.expMonth).toBe("1");
+    expect(cipher2.card.expYear).toBe("2023");
 
     expect(cipher2.fields.length).toBe(2);
 

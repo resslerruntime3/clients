@@ -1,21 +1,20 @@
 import * as chalk from "chalk";
 import * as program from "commander";
 
-import { AuthenticationStatus } from "@bitwarden/common/enums/authenticationStatus";
+import { AuthenticationStatus } from "@bitwarden/common/auth/enums/authentication-status";
 import { KeySuffixOptions } from "@bitwarden/common/enums/keySuffixOptions";
 
+import { LockCommand } from "./auth/commands/lock.command";
+import { LoginCommand } from "./auth/commands/login.command";
+import { LogoutCommand } from "./auth/commands/logout.command";
+import { UnlockCommand } from "./auth/commands/unlock.command";
 import { Main } from "./bw";
 import { CompletionCommand } from "./commands/completion.command";
 import { ConfigCommand } from "./commands/config.command";
 import { EncodeCommand } from "./commands/encode.command";
 import { GenerateCommand } from "./commands/generate.command";
-import { LockCommand } from "./commands/lock.command";
-import { LoginCommand } from "./commands/login.command";
-import { LogoutCommand } from "./commands/logout.command";
 import { ServeCommand } from "./commands/serve.command";
 import { StatusCommand } from "./commands/status.command";
-import { SyncCommand } from "./commands/sync.command";
-import { UnlockCommand } from "./commands/unlock.command";
 import { UpdateCommand } from "./commands/update.command";
 import { Response } from "./models/response";
 import { ListResponse } from "./models/response/list.response";
@@ -23,6 +22,7 @@ import { MessageResponse } from "./models/response/message.response";
 import { StringResponse } from "./models/response/string.response";
 import { TemplateResponse } from "./models/response/template.response";
 import { CliUtils } from "./utils";
+import { SyncCommand } from "./vault/sync.command";
 
 const writeLn = CliUtils.writeLn;
 

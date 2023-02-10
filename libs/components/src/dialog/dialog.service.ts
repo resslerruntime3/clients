@@ -18,24 +18,24 @@ import {
 import { NavigationEnd, Router } from "@angular/router";
 import { filter, Subject, switchMap, takeUntil } from "rxjs";
 
-import { AuthService } from "@bitwarden/common/abstractions/auth.service";
-import { AuthenticationStatus } from "@bitwarden/common/enums/authenticationStatus";
+import { AuthService } from "@bitwarden/common/auth/abstractions/auth.service";
+import { AuthenticationStatus } from "@bitwarden/common/auth/enums/authentication-status";
+
+import { SimpleDialogOptions } from "./simple-configurable-dialog/models/simple-dialog-options";
+import { SimpleConfigurableDialogComponent } from "./simple-configurable-dialog/simple-configurable-dialog.component";
 
 @Injectable()
 export class DialogService extends Dialog implements OnDestroy {
   private _destroy$ = new Subject<void>();
 
-  override open<R = unknown, D = unknown, C = unknown>(
-    componentOrTemplateRef: ComponentType<C> | TemplateRef<C>,
-    config?: DialogConfig<D, DialogRef<R, C>>
-  ): DialogRef<R, C> {
-    config = {
-      backdropClass: ["tw-fixed", "tw-bg-black", "tw-bg-opacity-30", "tw-inset-0", "tw-z-40"],
-      ...config,
-    };
-
-    return super.open(componentOrTemplateRef, config);
-  }
+  private backDropClasses = [
+    "tw-fixed",
+    "tw-bg-black",
+    "tw-bg-opacity-30",
+    "tw-inset-0",
+    // CDK dialog panels have a default z-index of 1000. Matching this allows us to easily stack dialogs.
+    "tw-z-[1000]",
+  ];
 
   constructor(
     /** Parent class constructor */
@@ -69,5 +69,33 @@ export class DialogService extends Dialog implements OnDestroy {
     this._destroy$.next();
     this._destroy$.complete();
     super.ngOnDestroy();
+  }
+
+  override open<R = unknown, D = unknown, C = unknown>(
+    componentOrTemplateRef: ComponentType<C> | TemplateRef<C>,
+    config?: DialogConfig<D, DialogRef<R, C>>
+  ): DialogRef<R, C> {
+    config = {
+      backdropClass: this.backDropClasses,
+      ...config,
+    };
+
+    return super.open(componentOrTemplateRef, config);
+  }
+
+  /**
+   * Opens a simple dialog.
+   *
+   * @param {SimpleDialogOptions} simpleDialogOptions - An object containing options for the dialog.
+   * @returns `DialogRef` - The reference to the opened dialog.
+   * Contains a closed observable which can be subscribed to for determining which button
+   * a user pressed (see `SimpleDialogCloseType`)
+   */
+  openSimpleDialog(simpleDialogOptions: SimpleDialogOptions): DialogRef {
+    // Method needs to return dialog reference so devs can sub to closed and get results.
+    return this.open(SimpleConfigurableDialogComponent, {
+      data: simpleDialogOptions,
+      disableClose: simpleDialogOptions.disableClose,
+    });
   }
 }

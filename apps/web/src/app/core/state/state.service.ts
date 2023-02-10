@@ -8,14 +8,17 @@ import {
 } from "@bitwarden/angular/services/injection-tokens";
 import { LogService } from "@bitwarden/common/abstractions/log.service";
 import { StateMigrationService } from "@bitwarden/common/abstractions/stateMigration.service";
-import { AbstractStorageService } from "@bitwarden/common/abstractions/storage.service";
+import {
+  AbstractMemoryStorageService,
+  AbstractStorageService,
+} from "@bitwarden/common/abstractions/storage.service";
 import { StateFactory } from "@bitwarden/common/factories/stateFactory";
-import { CipherData } from "@bitwarden/common/models/data/cipher.data";
 import { CollectionData } from "@bitwarden/common/models/data/collection.data";
-import { FolderData } from "@bitwarden/common/models/data/folder.data";
 import { SendData } from "@bitwarden/common/models/data/send.data";
 import { StorageOptions } from "@bitwarden/common/models/domain/storage-options";
 import { StateService as BaseStateService } from "@bitwarden/common/services/state.service";
+import { CipherData } from "@bitwarden/common/vault/models/data/cipher.data";
+import { FolderData } from "@bitwarden/common/vault/models/data/folder.data";
 
 import { Account } from "./account";
 import { GlobalState } from "./global-state";
@@ -25,7 +28,7 @@ export class StateService extends BaseStateService<GlobalState, Account> {
   constructor(
     storageService: AbstractStorageService,
     @Inject(SECURE_STORAGE) secureStorageService: AbstractStorageService,
-    @Inject(MEMORY_STORAGE) memoryStorageService: AbstractStorageService,
+    @Inject(MEMORY_STORAGE) memoryStorageService: AbstractMemoryStorageService,
     logService: LogService,
     stateMigrationService: StateMigrationService,
     @Inject(STATE_FACTORY) stateFactory: StateFactory<GlobalState, Account>,

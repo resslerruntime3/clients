@@ -960,7 +960,10 @@
     "message": "Ако се открије образац за пријаву, извршите аутоматско попуњавање када се веб страница учита."
   },
   "experimentalFeature": {
-    "message": "Ово је тренутно експериментална способност. Користите на властиту одговорност."
+    "message": "Compromised or untrusted websites can exploit auto-fill on page load."
+  },
+  "learnMoreAboutAutofill": {
+    "message": "Сазнајте више о ауто-пуњење"
   },
   "defaultAutoFillOnPageLoad": {
     "message": "Подразумевано подешавање аутопуњења за пријаве"
@@ -1122,6 +1125,9 @@
   },
   "dr": {
     "message": "Др"
+  },
+  "mx": {
+    "message": "Mx"
   },
   "firstName": {
     "message": "Име"
@@ -2043,5 +2049,59 @@
   },
   "rememberEmail": {
     "message": "Запамти имејл"
+  },
+  "loginWithDevice": {
+    "message": "Пријавите се са уређајем"
+  },
+  "loginWithDeviceEnabledInfo": {
+    "message": "Пријава помоћу уређаја мора бити подешена у подешавањима Bitwarden апликације. Потребна је друга опција?"
+  },
+  "fingerprintPhraseHeader": {
+    "message": "Сигурносна фраза сефа"
+  },
+  "fingerprintMatchInfo": {
+    "message": "Уверите се да је ваш сеф откључан и да се фраза отиска прста подудара на другом уређају."
+  },
+  "resendNotification": {
+    "message": "Поново послати обавештење"
+  },
+  "viewAllLoginOptions": {
+    "message": "Погледајте сав извештај у опције"
+  },
+  "notificationSentDevice": {
+    "message": "Обавештење је послато на ваш уређај."
+  },
+  "logInInitiated": {
+    "message": "Пријава је покренута"
+  },
+  "exposedMasterPassword": {
+    "message": "Exposed Master Password"
+  },
+  "exposedMasterPasswordDesc": {
+    "message": "Password found in a data breach. Use a unique password to protect your account. Are you sure you want to use an exposed password?"
+  },
+  "weakAndExposedMasterPassword": {
+    "message": "Weak and Exposed Master Password"
+  },
+  "weakAndBreachedMasterPasswordDesc": {
+    "message": "Weak password identified and found in a data breach. Use a strong and unique password to protect your account. Are you sure you want to use this password?"
+  },
+  "checkForBreaches": {
+    "message": "Check known data breaches for this password"
+  },
+  "important": {
+    "message": "Important:"
+  },
+  "masterPasswordHint": {
+    "message": "Your master password cannot be recovered if you forget it!"
+  },
+  "characterMinimum": {
+    "message": "$LENGTH$ character minimum",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
   }
 }

@@ -1,10 +1,10 @@
-import { CipherType } from "../../enums/cipherType";
 import { SecureNoteType } from "../../enums/secureNoteType";
 import { ImportResult } from "../../models/domain/import-result";
-import { CardView } from "../../models/view/card.view";
-import { CipherView } from "../../models/view/cipher.view";
-import { IdentityView } from "../../models/view/identity.view";
-import { LoginView } from "../../models/view/login.view";
+import { CipherType } from "../../vault/enums/cipher-type";
+import { CardView } from "../../vault/models/view/card.view";
+import { CipherView } from "../../vault/models/view/cipher.view";
+import { IdentityView } from "../../vault/models/view/identity.view";
+import { LoginView } from "../../vault/models/view/login.view";
 import { BaseImporter } from "../base-importer";
 import { Importer } from "../importer";
 
@@ -137,8 +137,7 @@ export class DashlaneCsvImporter extends BaseImporter implements Importer {
         cipher.card.number = row.cc_number;
         cipher.card.brand = this.getCardBrand(cipher.card.number);
         cipher.card.code = row.code;
-        cipher.card.expMonth = row.expiration_month;
-        cipher.card.expYear = row.expiration_year.substring(2, 4);
+        this.setCardExpiration(cipher, `${row.expiration_month}/${row.expiration_year}`);
 
         // If you add more mapped fields please extend this
         mappedValues = [

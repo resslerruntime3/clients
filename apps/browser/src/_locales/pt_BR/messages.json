@@ -960,7 +960,10 @@
     "message": "Se um formulário de login for detectado, realizar automaticamente um auto-preenchimento quando a página web carregar."
   },
   "experimentalFeature": {
-    "message": "Atualmente, este é um recurso experimental. Utilize por sua conta e risco."
+    "message": "Compromised or untrusted websites can exploit auto-fill on page load."
+  },
+  "learnMoreAboutAutofill": {
+    "message": "Saiba mais sobre preenchimento automático"
   },
   "defaultAutoFillOnPageLoad": {
     "message": "Configuração de autopreenchimento padrão para itens de credenciais"
@@ -1122,6 +1125,9 @@
   },
   "dr": {
     "message": "Dr"
+  },
+  "mx": {
+    "message": "Mx"
   },
   "firstName": {
     "message": "Primeiro Nome"
@@ -2043,5 +2049,59 @@
   },
   "rememberEmail": {
     "message": "Lembrar e-mail"
+  },
+  "loginWithDevice": {
+    "message": "Log in with device"
+  },
+  "loginWithDeviceEnabledInfo": {
+    "message": "Log in with device must be set up in the settings of the Bitwarden app. Need another option?"
+  },
+  "fingerprintPhraseHeader": {
+    "message": "Fingerprint phrase"
+  },
+  "fingerprintMatchInfo": {
+    "message": "Please make sure your vault is unlocked and the Fingerprint phrase matches on the other device."
+  },
+  "resendNotification": {
+    "message": "Resend notification"
+  },
+  "viewAllLoginOptions": {
+    "message": "Ver todas as opções de login"
+  },
+  "notificationSentDevice": {
+    "message": "Uma notificação foi enviada para seu dispositivo."
+  },
+  "logInInitiated": {
+    "message": "Log in initiated"
+  },
+  "exposedMasterPassword": {
+    "message": "Senha Mestra comprometida"
+  },
+  "exposedMasterPasswordDesc": {
+    "message": "A senha foi encontrada em um vazamento de dados. Use uma senha única para proteger sua conta. Tem certeza de que deseja usar uma senha já exposta?"
+  },
+  "weakAndExposedMasterPassword": {
+    "message": "Senha Mestra fraca e comprometida"
+  },
+  "weakAndBreachedMasterPasswordDesc": {
+    "message": "Senha fraca identificada e encontrada em um vazamento de dados. Use uma senha forte e única para proteger a sua conta. Tem certeza de que deseja usar essa senha?"
+  },
+  "checkForBreaches": {
+    "message": "Verificar vazamento de dados conhecidos para esta senha"
+  },
+  "important": {
+    "message": "Importante:"
+  },
+  "masterPasswordHint": {
+    "message": "Sua Senha Mestra não pode ser recuperada se você a esquecer!"
+  },
+  "characterMinimum": {
+    "message": "$LENGTH$ caracteres mínimos",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
   }
 }

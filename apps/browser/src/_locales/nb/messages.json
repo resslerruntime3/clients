@@ -960,7 +960,10 @@
     "message": "Dersom et innloggingskjema blir oppdaget, utfør automatisk en auto-utfylling når nettstedet lastes inn."
   },
   "experimentalFeature": {
-    "message": "Dette er for øyeblikket en eksperimentell egenskap. Bruk det på din egen risiko."
+    "message": "Compromised or untrusted websites can exploit auto-fill on page load."
+  },
+  "learnMoreAboutAutofill": {
+    "message": "Learn more about auto-fill"
   },
   "defaultAutoFillOnPageLoad": {
     "message": "Standard autofyll innstilling for innloggingselementer"
@@ -1123,6 +1126,9 @@
   "dr": {
     "message": "Dr."
   },
+  "mx": {
+    "message": "Mx"
+  },
   "firstName": {
     "message": "Fornavn"
   },
@@ -1278,7 +1284,7 @@
     "description": "Default URI match detection for auto-fill."
   },
   "toggleOptions": {
-    "message": "Skru av/på innstillinger"
+    "message": "Skru innstillinger av/på"
   },
   "toggleCurrentUris": {
     "message": "Veksle nåværende URI-er",
@@ -1312,7 +1318,7 @@
     "description": "ex. Date this item was updated"
   },
   "dateCreated": {
-    "message": "Created",
+    "message": "Opprettet",
     "description": "ex. Date this item was created"
   },
   "datePasswordUpdated": {
@@ -2030,18 +2036,72 @@
     }
   },
   "loginWithMasterPassword": {
-    "message": "Log in with master password"
+    "message": "Logg på med hovedpassord"
   },
   "loggingInAs": {
-    "message": "Logging in as"
+    "message": "Logger på som"
   },
   "notYou": {
-    "message": "Not you?"
+    "message": "Ikke deg?"
   },
   "newAroundHere": {
-    "message": "New around here?"
+    "message": "Er du ny her?"
   },
   "rememberEmail": {
-    "message": "Remember email"
+    "message": "Husk e-post"
+  },
+  "loginWithDevice": {
+    "message": "Log in with device"
+  },
+  "loginWithDeviceEnabledInfo": {
+    "message": "Log in with device must be set up in the settings of the Bitwarden app. Need another option?"
+  },
+  "fingerprintPhraseHeader": {
+    "message": "Fingerprint phrase"
+  },
+  "fingerprintMatchInfo": {
+    "message": "Please make sure your vault is unlocked and the Fingerprint phrase matches on the other device."
+  },
+  "resendNotification": {
+    "message": "Resend notification"
+  },
+  "viewAllLoginOptions": {
+    "message": "View all log in options"
+  },
+  "notificationSentDevice": {
+    "message": "A notification has been sent to your device."
+  },
+  "logInInitiated": {
+    "message": "Log in initiated"
+  },
+  "exposedMasterPassword": {
+    "message": "Eksponert hovedpassord"
+  },
+  "exposedMasterPasswordDesc": {
+    "message": "Passord funnet i et databrudd. Bruk et unikt passord for å beskytte kontoen din. Er du sikker på at du vil bruke et utsatt passord?"
+  },
+  "weakAndExposedMasterPassword": {
+    "message": "Svakt og eksponert hovedpassord"
+  },
+  "weakAndBreachedMasterPasswordDesc": {
+    "message": "Svakt passord identifisert og funnet i et databrudd. Bruk et sterkt og unikt passord for å beskytte kontoen din. Er du sikker på at du vil bruke dette passordet?"
+  },
+  "checkForBreaches": {
+    "message": "Sjekk kjente databrudd for dette passordet"
+  },
+  "important": {
+    "message": "Viktig:"
+  },
+  "masterPasswordHint": {
+    "message": "Hovedpassordet ditt kan ikke gjenopprettes hvis du glemmer det!"
+  },
+  "characterMinimum": {
+    "message": "Minst $LENGTH$ tegn",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
   }
 }

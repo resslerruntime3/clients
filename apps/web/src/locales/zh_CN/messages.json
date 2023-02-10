@@ -133,6 +133,9 @@
   "ms": {
     "message": "女士"
   },
+  "mx": {
+    "message": "Mx"
+  },
   "dr": {
     "message": "博士"
   },
@@ -277,12 +280,36 @@
   "searchFavorites": {
     "message": "搜索收藏"
   },
-  "searchType": {
-    "message": "搜索类型",
-    "description": "Search item type"
+  "searchLogin": {
+    "message": "搜索登录",
+    "description": "Search Login type"
+  },
+  "searchCard": {
+    "message": "搜索卡片",
+    "description": "Search Card type"
+  },
+  "searchIdentity": {
+    "message": "搜索身份",
+    "description": "Search Identity type"
+  },
+  "searchSecureNote": {
+    "message": "搜索安全备注",
+    "description": "Search Secure Note type"
   },
   "searchVault": {
     "message": "搜索密码库"
+  },
+  "searchMyVault": {
+    "message": "搜索我的密码库"
+  },
+  "searchOrganization": {
+    "message": "搜索组织"
+  },
+  "searchMembers": {
+    "message": "搜索成员"
+  },
+  "searchGroups": {
+    "message": "Search groups"
   },
   "allItems": {
     "message": "所有项目"
@@ -365,6 +392,9 @@
   "select": {
     "message": "选择"
   },
+  "newItem": {
+    "message": "新项目"
+  },
   "addItem": {
     "message": "添加项目"
   },
@@ -373,6 +403,13 @@
   },
   "viewItem": {
     "message": "查看项目"
+  },
+  "new": {
+    "message": "新建",
+    "description": "for adding new items"
+  },
+  "item": {
+    "message": "项目"
   },
   "ex": {
     "message": "例如",
@@ -438,6 +475,9 @@
   },
   "vaultItems": {
     "message": "密码库项目"
+  },
+  "filter": {
+    "message": "筛选"
   },
   "moveSelectedToOrg": {
     "message": "移动所选项目到组织"
@@ -544,6 +584,12 @@
   },
   "deletedFolder": {
     "message": "文件夹已删除"
+  },
+  "editInfo": {
+    "message": "编辑信息"
+  },
+  "access": {
+    "message": "Access"
   },
   "loggedOut": {
     "message": "已登出"
@@ -702,6 +748,9 @@
   "noItemsInList": {
     "message": "没有可列出的项目。"
   },
+  "noPermissionToViewAllCollectionItems": {
+    "message": "您没有查看此集合中的所有项目的权限。"
+  },
   "noCollectionsInList": {
     "message": "没有可列出的集合。"
   },
@@ -710,6 +759,9 @@
   },
   "noUsersInList": {
     "message": "没有可列出的用户。"
+  },
+  "noMembersInList": {
+    "message": "没有可列出的成员。"
   },
   "noEventsInList": {
     "message": "没有可列出的事件。"
@@ -854,6 +906,18 @@
         "example": "150"
       }
     }
+  },
+  "deleteSelectedCollectionsDesc": {
+    "message": "$COUNT$ 个集合将被永久删除。",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "150"
+      }
+    }
+  },
+  "deleteSelectedConfirmation": {
+    "message": "您确定要继续吗？"
   },
   "moveSelectedItemsDesc": {
     "message": "选择要将这 $COUNT$ 个项目移动到的文件夹。",
@@ -1092,6 +1156,19 @@
         "example": "50,000"
       }
     }
+  },
+  "kdfMemory": {
+    "message": "KDF 内存 (MB)",
+    "description": "Memory refers to computer memory (RAM). MB is short for megabytes."
+  },
+  "argon2Warning": {
+    "message": "如果将 KDF 迭代、内存占用和并行设置得太高，可能导致在相对老旧的设备上登录（解锁） Bitwarden 时性能不佳。 我们建议以小量递增的方式更改这些设置，然后测试您的所有设备。"
+  },
+  "kdfParallelism": {
+    "message": "KDF 并行性"
+  },
+  "argon2Desc": {
+    "message": "更高的 KDF 迭代、内存占用和并行可以帮助保护您的主密码免遭攻击者的暴力破解。"
   },
   "changeKdf": {
     "message": "更改 KDF"
@@ -1558,7 +1635,7 @@
   },
   "orgsReportsDesc": {
     "message": "点击下面的报告来验证和消除您组织帐户中的安全漏洞。",
-    "description": "Vault health reports can be used to evaluate the security of your Bitwarden individual or organization Vault."
+    "description": "Vault health reports can be used to evaluate the security of your Bitwarden individual or organization vault."
   },
   "unsecuredWebsitesReport": {
     "message": "不安全的网站"
@@ -1822,6 +1899,22 @@
       }
     }
   },
+  "premiumPriceWithFamilyPlan": {
+    "message": "Go premium for just $PRICE$ /year, or get premium accounts for $FAMILYPLANUSERCOUNT$ users and unlimited family sharing with a ",
+    "placeholders": {
+      "price": {
+        "content": "$1",
+        "example": "$10"
+      },
+      "familyplanusercount": {
+        "content": "$2",
+        "example": "6"
+      }
+    }
+  },
+  "bitwardenFamiliesPlan": {
+    "message": "Bitwarden 家庭计划。"
+  },
   "addons": {
     "message": "附加项目"
   },
@@ -1963,6 +2056,9 @@
   },
   "manageSubscription": {
     "message": "管理订阅"
+  },
+  "launchCloudSubscription": {
+    "message": "启动云订阅"
   },
   "storage": {
     "message": "存储"
@@ -2356,6 +2452,15 @@
   "deleteGroupConfirmation": {
     "message": "您确定要删除此群组吗？"
   },
+  "deleteMultipleGroupsConfirmation": {
+    "message": "Are you sure you want to delete the following $QUANTITY$ group(s)?",
+    "placeholders": {
+      "quantity": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
   "removeUserConfirmation": {
     "message": "您确实要移除此用户吗？"
   },
@@ -2373,6 +2478,9 @@
   },
   "externalIdDesc": {
     "message": "外部 ID 可用作参考，或将此资源与用户目录等外部系统联系起来。"
+  },
+  "nestCollectionUnder": {
+    "message": "Nest collection under"
   },
   "accessControl": {
     "message": "访问控制"
@@ -2395,14 +2503,23 @@
   "editCollection": {
     "message": "编辑集合"
   },
+  "collectionInfo": {
+    "message": "Collection info"
+  },
   "deleteCollectionConfirmation": {
     "message": "你确定要删除此集合吗？"
   },
-  "editUser": {
-    "message": "编辑用户"
+  "editMember": {
+    "message": "编辑成员"
   },
-  "inviteUser": {
-    "message": "邀请用户"
+  "fieldOnTabRequiresAttention": {
+    "message": "A field on the '$TAB$' tab requires your attention.",
+    "placeholders": {
+      "tab": {
+        "content": "$1",
+        "example": "Collection info"
+      }
+    }
   },
   "inviteUserDesc": {
     "message": "在下面输入 Bitwarden 账户的电子邮件地址，以邀请新用户加入您的组织。如果他们没有 Bitwarden 账户，将会提示他们创建一个。"
@@ -2668,6 +2785,9 @@
       }
     }
   },
+  "deletedCollections": {
+    "message": "Deleted collections"
+  },
   "deletedCollectionId": {
     "message": "删除了集合 $ID$。",
     "placeholders": {
@@ -2710,6 +2830,15 @@
       "id": {
         "content": "$1",
         "example": "Developers"
+      }
+    }
+  },
+  "deletedManyGroups": {
+    "message": "Deleted $QUANTITY$ group(s).",
+    "placeholders": {
+      "quantity": {
+        "content": "$1",
+        "example": "3"
       }
     }
   },
@@ -5112,9 +5241,6 @@
   "billingSyncApiKeyRotated": {
     "message": "令牌已轮换"
   },
-  "billingSync": {
-    "message": "计费同步"
-  },
   "billingSyncDesc": {
     "message": "计费同步通过将您的自托管 Bitwarden 链接到 Bitwarden 云服务器，为成员提供免费家庭计划和高级计费功能。"
   },
@@ -5165,6 +5291,15 @@
   },
   "required": {
     "message": "必填"
+  },
+  "characterMaximum": {
+    "message": "$MAX$ 字符最大值",
+    "placeholders": {
+      "max": {
+        "content": "$1",
+        "example": "100"
+      }
+    }
   },
   "idpSingleSignOnServiceUrlRequired": {
     "message": "如果实体 ID 不是一个 URL，则必填。"
@@ -5442,6 +5577,27 @@
       }
     }
   },
+  "inputForbiddenCharacters": {
+    "message": "The following characters are not allowed: $CHARACTERS$",
+    "placeholders": {
+      "characters": {
+        "content": "$1",
+        "example": "@, #, $, %"
+      }
+    }
+  },
+  "multipleInputEmails": {
+    "message": "1 or more emails are invalid"
+  },
+  "tooManyEmails": {
+    "message": "You can only submit up to $COUNT$ emails at a time",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "20"
+      }
+    }
+  },
   "fieldsNeedAttention": {
     "message": "上面的 $COUNT$ 个字段需要您注意。",
     "placeholders": {
@@ -5562,13 +5718,13 @@
     "message": "删除机密"
   },
   "secretProjectAssociationDescription": {
-    "message": "Select projects that the secret will be associated with. Only organization users with access to these projects will be able to see the secret."
+    "message": "选择与机密相关联的项目。仅有权访问该项目的组织用户能查看该机密。"
   },
   "typeOrSelectProjects": {
-    "message": "Type or select Projects"
+    "message": "输入或选择项目"
   },
   "typeOrSelectProject": {
-    "message": "Type or select Project"
+    "message": "输入或选择项目"
   },
   "project": {
     "message": "项目"
@@ -5593,9 +5749,6 @@
   },
   "serviceAccounts": {
     "message": "服务帐户"
-  },
-  "new": {
-    "message": "新建"
   },
   "secrets": {
     "message": "机密"
@@ -5625,7 +5778,7 @@
     "message": "还没有要显示的内容"
   },
   "serviceAccountsNoItemsMessage": {
-    "message": "Create a new Service Account to get started automating secret access."
+    "message": "Create a new service account to get started automating secret access."
   },
   "searchSecrets": {
     "message": "搜索机密"
@@ -5704,7 +5857,7 @@
     "placeholders": {
       "confirm": {
         "content": "$1",
-        "example": "Delete 3 Projects"
+        "example": "Delete 3 projects"
       }
     }
   },
@@ -5807,8 +5960,44 @@
   "update": {
     "message": "更新"
   },
+  "plusNMore": {
+    "message": "+ $QUANTITY$ more",
+    "placeholders": {
+      "quantity": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "groupInfo": {
+    "message": "Group info"
+  },
+  "editGroupMembersDesc": {
+    "message": "Grant members access to the group's assigned collections."
+  },
+  "editGroupCollectionsDesc": {
+    "message": "Grant access to collections by adding them to this group."
+  },
+  "accessAllCollectionsDesc": {
+    "message": "Grant access to all current and future collections."
+  },
+  "accessAllCollectionsHelp": {
+    "message": "If checked, this will replace all other collection permissions."
+  },
+  "selectMembers": {
+    "message": "Select members"
+  },
+  "selectCollections": {
+    "message": "Select collections"
+  },
   "role": {
     "message": "角色"
+  },
+  "removeMember": {
+    "message": "Remove member"
+  },
+  "collection": {
+    "message": "Collection"
   },
   "canView": {
     "message": "可以查看"
@@ -5822,6 +6011,15 @@
   "canEditExceptPass": {
     "message": "除密码外，可以编辑"
   },
+  "noCollectionsAdded": {
+    "message": "No collections added"
+  },
+  "noMembersAdded": {
+    "message": "No members added"
+  },
+  "noGroupsAdded": {
+    "message": "No groups added"
+  },
   "group": {
     "message": "群组"
   },
@@ -5830,6 +6028,39 @@
   },
   "memberAccessAll": {
     "message": "此成员可以访问和修改所有项目。"
+  },
+  "membersColumnHeader": {
+    "message": "Member/Group"
+  },
+  "groupAndMemberColumnHeader": {
+    "message": "成员"
+  },
+  "selectGroupsAndMembers": {
+    "message": "Select groups and members"
+  },
+  "selectGroups": {
+    "message": "Select groups"
+  },
+  "userPermissionOverrideHelper": {
+    "message": "Permissions set for a member will replace permissions set by that member's group"
+  },
+  "noMembersOrGroupsAdded": {
+    "message": "No members or groups added"
+  },
+  "deleted": {
+    "message": "已删除"
+  },
+  "memberStatusFilter": {
+    "message": "Member status filter"
+  },
+  "inviteMember": {
+    "message": "Invite member"
+  },
+  "needsConfirmation": {
+    "message": "Needs confirmation"
+  },
+  "memberRole": {
+    "message": "Member role"
   },
   "moreFromBitwarden": {
     "message": "来自 Bitwarden 的更多产品"
@@ -5872,5 +6103,56 @@
         "example": "2"
       }
     }
+  },
+  "licenseAndBillingManagement": {
+    "message": "许可证和账单管理"
+  },
+  "automaticSync": {
+    "message": "自动同步"
+  },
+  "manualUpload": {
+    "message": "手动上传"
+  },
+  "manualUploadDesc": {
+    "message": "如果您不想进行账单同步，可以在这里手动上传您的许可证。"
+  },
+  "syncLicense": {
+    "message": "同步许可证"
+  },
+  "licenseSyncSuccess": {
+    "message": "成功同步许可证"
+  },
+  "licenseUploadSuccess": {
+    "message": "成功上传许可证"
+  },
+  "lastLicenseSync": {
+    "message": "最后一次许可证同步"
+  },
+  "billingSyncHelp": {
+    "message": "账单同步帮助"
+  },
+  "uploadLicense": {
+    "message": "上传许可证"
+  },
+  "lowKdfIterations": {
+    "message": "低KDF 迭代数"
+  },
+  "lowKdfIterationsDesc": {
+    "message": "增加您的 KDF 加密设置，以提高您账户的安全。"
+  },
+  "changeKdfSettings": {
+    "message": "更改 KDF 设置"
+  },
+  "changeKdfLoggedOutWarning": {
+    "message": "本操作将您注销当前会话，要求您重新登录。在其他设备上的活动会话可能将继续保持一小时。 我们建议在更改您的加密设置之前导出您的密码库，以防止数据丢失。"
+  },
+  "secretsManagerBeta": {
+    "message": "Secrets Manager 测试版"
+  },
+  "secretsManagerBetaDesc": {
+    "message": "在测试版期间，允许用户免费访问 Secrets Manager。"
+  },
+  "userAccessSecretsManager": {
+    "message": "此用户可以访问 Secrets Manager 测试版"
   }
 }

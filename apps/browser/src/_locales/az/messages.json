@@ -960,7 +960,10 @@
     "message": "Giriş formu aşkarlananda, səhifə yüklənən zaman formu avto-doldurma icra edilsin."
   },
   "experimentalFeature": {
-    "message": "Bu, hazırda təcrübi bir özəllikdir. İstifadə zamanı riski sizə aiddir."
+    "message": "Compromised or untrusted websites can exploit auto-fill on page load."
+  },
+  "learnMoreAboutAutofill": {
+    "message": "Avto-doldurma haqqında daha ətraflı"
   },
   "defaultAutoFillOnPageLoad": {
     "message": "Giriş məlumatları üçün ilkin avto-doldurma tənzimləməsi"
@@ -1122,6 +1125,9 @@
   },
   "dr": {
     "message": "Dr"
+  },
+  "mx": {
+    "message": "Hörmətli"
   },
   "firstName": {
     "message": "Ad"
@@ -2043,5 +2049,59 @@
   },
   "rememberEmail": {
     "message": "E-poçtu xatırla"
+  },
+  "loginWithDevice": {
+    "message": "Cihazla giriş et"
+  },
+  "loginWithDeviceEnabledInfo": {
+    "message": "Cihazla giriş etmə, Bitwarden tətbiqinin tənzimləmələrində quraşdırılmalıdır. Başqa bir seçimə ehtiyacınız var?"
+  },
+  "fingerprintPhraseHeader": {
+    "message": "Barmaq izi ifadəsi"
+  },
+  "fingerprintMatchInfo": {
+    "message": "Zəhmət olmasa anbarınızın kilidinin açıq olduğuna və Barmaq izi ifadəsinin digər cihazda uyğun gəldiyinə əmin olun."
+  },
+  "resendNotification": {
+    "message": "Bildirişi təkrar göndər"
+  },
+  "viewAllLoginOptions": {
+    "message": "Bütün giriş etmə seçimlərinə bax"
+  },
+  "notificationSentDevice": {
+    "message": "Cihazınıza bir bildiriş göndərildi."
+  },
+  "logInInitiated": {
+    "message": "Giriş etmə başladıldı"
+  },
+  "exposedMasterPassword": {
+    "message": "İfşa olunmuş ana parol"
+  },
+  "exposedMasterPasswordDesc": {
+    "message": "Parol, məlumat pozuntusunda tapıldı. Hesabınızı qorumaq üçün unikal bir parol istifadə edin. İfşa olunmuş bir parol istifadə etmək istədiyinizə əminsiniz?"
+  },
+  "weakAndExposedMasterPassword": {
+    "message": "Zəif və ifşa olunmuş ana parol"
+  },
+  "weakAndBreachedMasterPasswordDesc": {
+    "message": "Zəif parol məlumat pozuntusunda aşkarlandı və tapıldı. Hesabınızı qorumaq üçün güclü və unikal bir parol istifadə edin. Bu parolu istifadə etmək istədiyinizə əminsiniz?"
+  },
+  "checkForBreaches": {
+    "message": "Bu parol üçün bilinən məlumat pozuntularını yoxlayın"
+  },
+  "important": {
+    "message": "Vacib:"
+  },
+  "masterPasswordHint": {
+    "message": "Unutsanız, ana parolunuz bərpa edilə bilməz!"
+  },
+  "characterMinimum": {
+    "message": "Minimum $LENGTH$ simvol",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
   }
 }

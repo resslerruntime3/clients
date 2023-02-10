@@ -1,6 +1,6 @@
 import { FieldType } from "../enums/fieldType";
 import { ImportResult } from "../models/domain/import-result";
-import { FolderView } from "../models/view/folder.view";
+import { FolderView } from "../vault/models/view/folder.view";
 
 import { BaseImporter } from "./base-importer";
 import { Importer } from "./importer";
@@ -15,7 +15,23 @@ export class KeePass2XmlImporter extends BaseImporter implements Importer {
       return Promise.resolve(this.result);
     }
 
-    const rootGroup = doc.querySelector("KeePassFile > Root > Group");
+    //Note: The doc.querySelector("KeePassFile > Root > Group") no longers works on node and we have to breakdown the query by nodes
+    const KeePassFileNode = doc.querySelector("KeePassFile");
+
+    if (KeePassFileNode == null) {
+      this.result.errorMessage = "Missing `KeePassFile` node.";
+      this.result.success = false;
+      return Promise.resolve(this.result);
+    }
+
+    const RootNode = KeePassFileNode.querySelector("Root");
+    if (RootNode == null) {
+      this.result.errorMessage = "Missing `KeePassFile > Root` node.";
+      this.result.success = false;
+      return Promise.resolve(this.result);
+    }
+
+    const rootGroup = RootNode.querySelector("Group");
     if (rootGroup == null) {
       this.result.errorMessage = "Missing `KeePassFile > Root > Group` node.";
       this.result.success = false;

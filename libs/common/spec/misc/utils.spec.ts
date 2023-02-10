@@ -309,4 +309,41 @@ describe("Utils Service", () => {
       expect(Utils.recordToMap(map as any)).toEqual(map);
     });
   });
+
+  describe("encodeRFC3986URIComponent", () => {
+    it("returns input string with expected encoded chars", () => {
+      expect(Utils.encodeRFC3986URIComponent("test'user@example.com")).toBe(
+        "test%27user%40example.com"
+      );
+      expect(Utils.encodeRFC3986URIComponent("(test)user@example.com")).toBe(
+        "%28test%29user%40example.com"
+      );
+      expect(Utils.encodeRFC3986URIComponent("testuser!@example.com")).toBe(
+        "testuser%21%40example.com"
+      );
+      expect(Utils.encodeRFC3986URIComponent("Test*User@example.com")).toBe(
+        "Test%2AUser%40example.com"
+      );
+    });
+  });
+
+  describe("normalizePath", () => {
+    it("removes a single traversal", () => {
+      expect(Utils.normalizePath("../test")).toBe("test");
+    });
+
+    it("removes deep traversals", () => {
+      expect(Utils.normalizePath("../../test")).toBe("test");
+    });
+
+    it("removes intermediate traversals", () => {
+      expect(Utils.normalizePath("test/../test")).toBe("test");
+    });
+
+    it("removes multiple encoded traversals", () => {
+      expect(
+        Utils.normalizePath("api/sends/access/..%2f..%2f..%2fapi%2fsends%2faccess%2fsendkey")
+      ).toBe("api/sends/access/sendkey");
+    });
+  });
 });
