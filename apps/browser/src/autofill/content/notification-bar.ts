@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   const watchedForms: WatchedForm[] = [];
   let barType: string = null;
   let pageHref: string = null;
+  let onFirstLoad = true;
 
   // Provides the ability to watch for changes being made to the DOM tree.
   let observer: MutationObserver = null;
@@ -288,7 +289,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
     collectIfNeededTimeout = window.setTimeout(collectPageDetailsIfNeeded, 1000);
   }
 
-  // TODO: collectPageDetails can miss forms on refresh
   /**
    * Collects information about the page if needed (if the page has changed)
    * and schedules a call to itself again in 1 second.
@@ -313,8 +313,18 @@ document.addEventListener("DOMContentLoaded", (event) => {
       if (observeDomTimeout != null) {
         window.clearTimeout(observeDomTimeout);
       }
-      // Start observing the DOM after a short delay to allow the page to settle down
-      observeDomTimeout = window.setTimeout(observeDom, 1000);
+
+      // On first load, start observing the DOM immediately
+      // because the page details collection can miss forms that are being rendered
+      // and if we delay adding the observer by a second, the observer will also
+      // miss the forms. This was especially prevelant on refreshing.
+      if (onFirstLoad) {
+        observeDom();
+        onFirstLoad = false;
+      } else {
+        // Start observing the DOM after a short delay to allow the page to settle down
+        observeDomTimeout = window.setTimeout(observeDom, 1000);
+      }
     }
 
     // Page has not changed
