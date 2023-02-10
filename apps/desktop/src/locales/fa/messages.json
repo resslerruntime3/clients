@@ -2061,8 +2061,138 @@
   "logInWithAnotherDevice": {
     "message": "با دستگاه دیگری وارد شوید"
   },
+  "logInInitiated": {
+    "message": "ورود به سیستم آغاز شد"
+  },
+  "notificationSentDevice": {
+    "message": "یک اعلان به دستگاه شما ارسال شده است."
+  },
+  "fingerprintMatchInfo": {
+    "message": "لطفاً مطمئن شوید که قفل گاوصندوق شما باز است و عبارت اثر انگشت در دستگاه دیگر مطابقت دارد."
+  },
+  "fingerprintPhraseHeader": {
+    "message": "عبارت اثر انگشت"
+  },
+  "needAnotherOption": {
+    "message": "ورود به سیستم با دستگاه باید در تنظیمات برنامه‌ی Bitwarden تنظیم شود. به گزینه دیگری نیاز دارید؟"
+  },
+  "viewAllLoginOptions": {
+    "message": "مشاهده همه گزینه‌های ورود به سیستم"
+  },
+  "resendNotification": {
+    "message": "ارسال مجدد اعلان"
+  },
   "toggleCharacterCount": {
     "message": "تغییر تعداد کاراکترها",
     "description": "'Character count' describes a feature that displays a number next to each character of the password."
+  },
+  "areYouTryingtoLogin": {
+    "message": "آیا در تلاش برای ورود به سیستم هستید؟"
+  },
+  "logInAttemptBy": {
+    "message": "تلاش برای ورود به سیستم توسط $EMAIL$",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
+  },
+  "deviceType": {
+    "message": "نوع دستگاه"
+  },
+  "ipAddress": {
+    "message": "نشانی IP"
+  },
+  "time": {
+    "message": "زمان"
+  },
+  "confirmLogIn": {
+    "message": "تأیید ورود"
+  },
+  "denyLogIn": {
+    "message": "رد ورود"
+  },
+  "approveLoginRequests": {
+    "message": "درخواست های ورود را تأیید کنید"
+  },
+  "logInConfirmedForEmailOnDevice": {
+    "message": "ورود به سیستم برای $EMAIL$ در $DEVICE$ تأیید شد",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      },
+      "device": {
+        "content": "$2",
+        "example": "iOS"
+      }
+    }
+  },
+  "youDeniedALogInAttemptFromAnotherDevice": {
+    "message": "شما تلاش برای ورود به سیستم از دستگاه دیگری را رد کردید. اگر واقعاً این شما بودید، سعی کنید دوباره با دستگاه وارد شوید."
+  },
+  "justNow": {
+    "message": "همین الان"
+  },
+  "requestedXMinutesAgo": {
+    "message": "$MINUTES$ دقیقه قبل درخواست شد",
+    "placeholders": {
+      "minutes": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "loginRequestHasAlreadyExpired": {
+    "message": "درخواست ورود قبلاً منقضی شده است."
+  },
+  "thisRequestIsNoLongerValid": {
+    "message": "این درخواست دیگر معتبر نیست."
+  },
+  "approveLoginRequestDesc": {
+    "message": "از این دستگاه برای تأیید درخواست‌های ورود به سیستم از دستگاه‌های دیگر استفاده کنید."
+  },
+  "confirmLoginAtemptForMail": {
+    "message": "تأیید تلاش برای ورود به سیستم برای $EMAIL$",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
+  },
+  "logInRequested": {
+    "message": "ورود الزامیست"
+  },
+  "exposedMasterPassword": {
+    "message": "کلمه عبور اصلی افشا شده"
+  },
+  "exposedMasterPasswordDesc": {
+    "message": "کلمه عبور در نقض داده پیدا شد. از یک کلمه عبور منحصر به فرد برای محافظت از حساب خود استفاده کنید. آیا مطمئنید که می‌خواهید از یک کلمه عبور افشا شده استفاده کنید؟"
+  },
+  "weakAndExposedMasterPassword": {
+    "message": "کلمه عبور اصلی ضعیف و افشا شده"
+  },
+  "weakAndBreachedMasterPasswordDesc": {
+    "message": "کلمه عبور ضعیف شناسایی و در یک نقض داده پیدا شد. از یک کلمه عبور قوی و منحصر به فرد برای محافظت از حساب خود استفاده کنید. آیا مطمئنید که می‌خواهید از این کلمه عبور استفاده کنید؟"
+  },
+  "checkForBreaches": {
+    "message": "نقض اطلاعات شناخته شده برای این کلمه عبور را بررسی کنید"
+  },
+  "important": {
+    "message": "مهم:"
+  },
+  "masterPasswordHint": {
+    "message": "کلمه عبور اصلی شما در صورت فراموشی قابل بازیابی نیست!"
+  },
+  "characterMinimum": {
+    "message": "حداقل کاراکتر $LENGTH$",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
   }
 }
