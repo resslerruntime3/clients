@@ -5,7 +5,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "module": "ES2020",
-    "target": "ES2022",
+    "target": "ES2016",
     "sourceMap": true,
     "types": [],
     "baseUrl": ".",

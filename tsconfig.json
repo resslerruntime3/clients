@@ -3,7 +3,7 @@
     "pretty": true,
     "moduleResolution": "node",
     "noImplicitAny": true,
-    "target": "ES2022",
+    "target": "ES2016",
     "module": "ES2020",
     "lib": ["es5", "es6", "es7", "dom"],
     "sourceMap": true,
