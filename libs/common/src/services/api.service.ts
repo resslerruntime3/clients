@@ -1212,10 +1212,10 @@ export class ApiService implements ApiServiceAbstraction {
   }
 
   async getKnownDevice(email: string, deviceIdentifier: string): Promise<boolean> {
-    const path = `/devices/knowndevice?email=${Utils.encodeRFC3986URIComponent(
-      email
-    )}&identifier=${deviceIdentifier}`;
-    const r = await this.send("POST", path, null, false, true);
+    const r = await this.send("GET", "/devices/knowndevice", null, false, true, null, (headers) => {
+      headers.set("X-Device-Identifier", deviceIdentifier);
+      headers.set("X-Request-Email", email);
+    });
     return r as boolean;
   }
 
