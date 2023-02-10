@@ -41,6 +41,14 @@ export class PolicyApiService implements PolicyApiServiceAbstraction {
     return new ListResponse(r, PolicyResponse);
   }
 
+  /**
+   * Get all policies, across all organizations, for the current user.
+   */
+  async getAllPolicies(): Promise<ListResponse<PolicyResponse>> {
+    const r = await this.apiService.send("GET", "/policies", null, true, true);
+    return new ListResponse(r, PolicyResponse);
+  }
+
   async getPoliciesByToken(
     organizationId: string,
     token: string,
