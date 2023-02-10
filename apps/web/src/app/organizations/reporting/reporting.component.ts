@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { combineLatest, map, Observable } from "rxjs";
+import { combineLatest, map, Observable, startWith } from "rxjs";
 
 import { OrganizationService } from "@bitwarden/common/abstractions/organization/organization.service.abstraction";
 import { Organization } from "@bitwarden/common/models/domain/organization";
@@ -24,7 +24,8 @@ export class ReportingComponent implements OnInit {
     );
 
     this.showLeftNav$ = this.organization$.pipe(
-      map((o) => o.canAccessEventLogs && o.canAccessReports)
+      map((o) => o.canAccessEventLogs && o.canAccessReports),
+      startWith(true)
     );
   }
 }
