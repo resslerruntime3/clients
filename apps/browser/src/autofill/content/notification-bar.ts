@@ -4,6 +4,10 @@ import AutofillField from "../models/autofill-field";
 import { WatchedForm } from "../models/watched-form";
 import { FormData } from "../services/abstractions/autofill.service";
 
+interface HTMLElementWithFormOpId extends HTMLElement {
+  formOpId: string;
+}
+
 /**
  * @fileoverview This file contains the code for the Bitwarden Notification Bar
  * The notification bar is used to notify logged in users that they can
@@ -20,7 +24,6 @@ import { FormData } from "../services/abstractions/autofill.service";
  * and async scripts to finish loading.
  * https://developer.mozilla.org/en-US/docs/Web/API/Window/DOMContentLoaded_event
  */
-
 document.addEventListener("DOMContentLoaded", (event) => {
   // Do not show the notification bar on the Bitwarden vault
   // because they can add logins and change passwords there
@@ -67,6 +70,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     "update password",
     "change password",
     "change",
+    "save",
   ]);
   const changePasswordButtonContainsNames = new Set(["pass", "change", "contras", "senha"]);
 
@@ -300,6 +304,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
         observer = null;
       }
 
+      // Empty watched forms so it doesn't carry over between SPA page changes
+      // This allows formOpIds to be unique for each page
+      watchedForms.length = 0;
+
       collectPageDetails();
 
       if (observeDomTimeout != null) {
@@ -405,10 +413,19 @@ document.addEventListener("DOMContentLoaded", (event) => {
     // for form submission and submit button click
     form.removeEventListener("submit", formSubmitted, false);
     form.addEventListener("submit", formSubmitted, false);
-    const submitButton = getSubmitButton(form, logInButtonNames);
+
+    // Use login button names and change password names since we don't know what type of form we are watching
+    const submitButton = getSubmitButton(
+      form,
+      unionSets(logInButtonNames, changePasswordButtonNames)
+    );
+
     if (submitButton != null) {
       submitButton.removeEventListener("click", formSubmitted, false);
       submitButton.addEventListener("click", formSubmitted, false);
+
+      // Associate the form opid with the submit button so we can find the form on submit.
+      (submitButton as HTMLElementWithFormOpId).formOpId = form.opid;
     }
   }
 
@@ -518,6 +535,13 @@ document.addEventListener("DOMContentLoaded", (event) => {
             form = modalForms[0];
           }
         }
+      }
+
+      // see if the event target is a submit button with a formOpId
+      const formOpId = (e.target as HTMLElementWithFormOpId).formOpId;
+      if (form == null && formOpId != null) {
+        // Find form in watched forms array via form op id
+        form = watchedForms.find((wf: WatchedForm) => wf.formEl.opid === formOpId).formEl;
       }
     } else {
       // If the event is a submit event, we can get the form element from the event target
@@ -717,6 +741,17 @@ document.addEventListener("DOMContentLoaded", (event) => {
           submitButton = getSubmitButton(parentModal, buttonNames);
         }
       }
+
+      // If we still don't have a submit button, then try to find a submit button by using the form's
+      // parent element as the wrapping element
+      if (submitButton == null) {
+        const parentElement = wrappingEl.parentElement;
+
+        // Going up a level and looking for loginButtonNames
+        if (parentElement != null) {
+          submitButton = getSubmitButton(parentElement, buttonNames);
+        }
+      }
     }
     return submitButton;
   }
@@ -859,5 +894,19 @@ document.addEventListener("DOMContentLoaded", (event) => {
       return true;
     }
   }
+
+  // https://stackoverflow.com/a/50296208
+  function unionSets(...iterables: Set<any>[]): Set<any> {
+    const set = new Set();
+
+    for (const iterable of iterables) {
+      for (const item of iterable) {
+        set.add(item);
+      }
+    }
+
+    return set;
+  }
+
   //#endregion Helper Functions
 });

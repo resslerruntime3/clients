@@ -53,6 +53,32 @@ export default class AutofillService implements AutofillServiceInterface {
       return formData;
     }
 
+    // Back up check for cases where there are several password fields detected,
+    // but they are not all part of the form b/c of bad HTML
+
+    // gather password fields that don't have an enclosing form
+    const passwordFieldsWithoutForm = passwordFields.filter((pf) => pf.form === undefined);
+    const formKeys = Object.keys(pageDetails.forms);
+    const formCount = formKeys.length;
+
+    // if we have 3 password fields and only 1 form, and there are password fields that are not within a form
+    // but there is at least one password field within the form, then most likely this is a poorly built password change form
+    if (passwordFields.length === 3 && formCount == 1 && passwordFieldsWithoutForm.length > 0) {
+      // Only one form so get the singular form key
+      const soloFormKey = formKeys[0];
+
+      const atLeastOnePasswordFieldWithinSoloForm =
+        passwordFields.filter((pf) => pf.form !== null && pf.form === soloFormKey).length > 0;
+
+      if (atLeastOnePasswordFieldWithinSoloForm) {
+        // We have a form with at least one password field,
+        // so let's make an assumption that the password fields without a form are actually part of this form
+        passwordFieldsWithoutForm.forEach((pf) => {
+          pf.form = soloFormKey;
+        });
+      }
+    }
+
     for (const formKey in pageDetails.forms) {
       // eslint-disable-next-line
       if (!pageDetails.forms.hasOwnProperty(formKey)) {
