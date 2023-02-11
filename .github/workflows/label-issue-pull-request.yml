@@ -16,6 +16,6 @@ jobs:
     steps:
       - name: Add label to pull request
         uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90
-        if: ${{ github.base_ref == 'master' }}
+        if: ${{ !github.event.pull_request.head.repo.fork && github.base_ref == 'master' }} # Only apply when it's not a community PR and targeting master
         with:
           add-labels: "needs-qa"
