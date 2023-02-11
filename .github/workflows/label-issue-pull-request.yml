@@ -1,13 +1,12 @@
-# Runs on creation of new Pull Requests
+# Runs on review of Pull Requests
 # If the PR destination branch is master, add a needs-qa label
 ---
 name: Label Issue Pull Request
 
 on:
-  pull_request_target:
+  pull_request_review:
     types:
-      - opened # Check when opened
-      - edited # Check when base branch could change
+      - submitted # Check when PR review is submitted
     paths-ignore:
       - .github/workflows/** # We don't need QA on workflow changes
     branches:
@@ -17,10 +16,8 @@ jobs:
   add-needs-qa-label:
     runs-on: ubuntu-latest
     steps:
-      - name: View PR author
-        run: echo "This PR is opened by ${{ github.event.pull_request.user.login }}."
       - name: Add label to pull request
         uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90
-        if: ${{ !github.event.pull_request.head.repo.fork && github.event.pull_request.user.login != 'github-actions' }}
+        if: ${{ github.event.review.state == 'approved' && !github.event.pull_request.head.repo.fork }}
         with:
           add-labels: "needs-qa"
