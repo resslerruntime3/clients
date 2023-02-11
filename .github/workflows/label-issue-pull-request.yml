@@ -1,5 +1,5 @@
 # Runs on creation of new Pull Requests
-# If the source branch starts with /feature, add a needs-qa label
+# If the PR destination branch is master, add a needs-qa label
 ---
 
 name: Label Feature Pull Request
@@ -9,8 +9,6 @@ on:
     types:
       - opened
       - synchronize
-    branches:
-      - 'feature/**'
 
 jobs:
   add-needs-qa-label:
@@ -18,5 +16,6 @@ jobs:
     steps:
       - name: Add label to pull request
         uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90
+        if: ${{ github.base_ref == 'master' }}
         with:
           add-labels: "needs-qa"
