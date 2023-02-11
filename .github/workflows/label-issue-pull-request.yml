@@ -4,17 +4,23 @@
 name: Label Issue Pull Request
 
 on:
-  pull_request:
+  pull_request_target:
     types:
       - opened # Check when opened
       - edited # Check when base branch could change
+    paths-ignore:
+      - .github/workflows/** # We don't need QA on workflow changes
+    branches:
+      - 'master' # Only run when targeting master
 
 jobs:
   add-needs-qa-label:
     runs-on: ubuntu-latest
     steps:
+      - name: View PR author
+        run: echo "This PR is opened by ${{ github.event.pull_request.user.login }}."
       - name: Add label to pull request
         uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90
-        if: ${{ !github.event.pull_request.head.repo.fork && github.base_ref == 'master' }} # Only apply when it's not a community PR and targeting master
+        if: ${{ !github.event.pull_request.head.repo.fork && github.event.pull_request.user.login != 'github-actions' }}
         with:
           add-labels: "needs-qa"
