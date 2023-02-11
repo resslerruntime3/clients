@@ -7,8 +7,8 @@ name: Label Feature Pull Request
 on:
   pull_request:
     types:
-      - opened
-      - synchronize
+      - opened # Check when opened
+      - edited # Check when base branch could change
 
 jobs:
   add-needs-qa-label:
