@@ -97,5 +97,9 @@ export default class AutofillField {
    * The `tagName` for the field
    */
   tagName: string;
+  /**
+   * The Angular `formControlName` attribute for the field
+   */
+  formControlName: string;
   [key: string]: any;
 }

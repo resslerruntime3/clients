@@ -1122,6 +1122,9 @@ export default class AutofillService implements AutofillServiceInterface {
         if (valueIsLikePassword(f.placeholder)) {
           return true;
         }
+        if (valueIsLikePassword(f.formControlName)) {
+          return true;
+        }
         return false;
       };
       if (
@@ -1210,6 +1213,9 @@ export default class AutofillService implements AutofillServiceInterface {
       if (this.fieldPropertyIsMatch(field, "placeholder", names[i])) {
         return i;
       }
+      if (this.fieldPropertyIsMatch(field, "formControlName", names[i])) {
+        return i;
+      }
     }
 
     return -1;
@@ -1295,6 +1301,12 @@ export default class AutofillService implements AutofillServiceInterface {
     if (
       AutofillService.hasValue(field["label-aria"]) &&
       this.fuzzyMatch(names, field["label-aria"])
+    ) {
+      return true;
+    }
+    if (
+      AutofillService.hasValue(field["formControlName"]) &&
+      this.fuzzyMatch(names, field["formControlName"])
     ) {
       return true;
     }
