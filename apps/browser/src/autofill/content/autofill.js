@@ -370,6 +370,7 @@
               addProp(field, 'onepasswordSectionFieldKind', el.dataset.onepasswordSectionFieldKind);
               addProp(field, 'onepasswordSectionFieldTitle', el.dataset.onepasswordSectionFieldTitle);
               addProp(field, 'onepasswordSectionFieldValue', el.dataset.onepasswordSectionFieldValue);
+              addProp(field, 'formControlName', el.getElementAttrValue('formControlName'));
 
               if (el.form) {
                   field.form = getElementAttrValue(el.form, 'opid');
