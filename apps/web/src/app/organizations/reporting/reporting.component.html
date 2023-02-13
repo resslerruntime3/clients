@@ -1,14 +1,14 @@
 <div class="container page-content">
   <div class="row">
     <div class="col-3" *ngIf="showLeftNav$ | async">
-      <div class="card" *ngIf="organization$ | async">
+      <div class="card" *ngIf="organization$ | async as org">
         <div class="card-header">{{ "reporting" | i18n }}</div>
         <div class="list-group list-group-flush">
           <a
             routerLink="events"
             class="list-group-item"
             routerLinkActive="active"
-            *ngIf="(organization$ | async).canAccessEventLogs"
+            *ngIf="org.canAccessEventLogs"
           >
             {{ "eventLogs" | i18n }}
           </a>
@@ -16,7 +16,7 @@
             routerLink="reports"
             class="list-group-item"
             routerLinkActive="active"
-            *ngIf="(organization$ | async).canAccessReports"
+            *ngIf="org.canAccessReports"
           >
             {{ "reports" | i18n }}
           </a>
