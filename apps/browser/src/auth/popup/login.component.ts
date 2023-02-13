@@ -12,6 +12,8 @@ import { I18nService } from "@bitwarden/common/abstractions/i18n.service";
 import { LogService } from "@bitwarden/common/abstractions/log.service";
 import { PasswordGenerationService } from "@bitwarden/common/abstractions/passwordGeneration.service";
 import { PlatformUtilsService } from "@bitwarden/common/abstractions/platformUtils.service";
+import { PolicyApiServiceAbstraction } from "@bitwarden/common/abstractions/policy/policy-api.service.abstraction";
+import { InternalPolicyService } from "@bitwarden/common/abstractions/policy/policy.service.abstraction";
 import { StateService } from "@bitwarden/common/abstractions/state.service";
 import { AuthService } from "@bitwarden/common/auth/abstractions/auth.service";
 import { LoginService } from "@bitwarden/common/auth/abstractions/login.service";
@@ -43,7 +45,9 @@ export class LoginComponent extends BaseLoginComponent {
     formBuilder: FormBuilder,
     formValidationErrorService: FormValidationErrorsService,
     route: ActivatedRoute,
-    loginService: LoginService
+    loginService: LoginService,
+    protected policyApiService: PolicyApiServiceAbstraction,
+    protected policyService: InternalPolicyService
   ) {
     super(
       apiService,
@@ -61,7 +65,9 @@ export class LoginComponent extends BaseLoginComponent {
       formBuilder,
       formValidationErrorService,
       route,
-      loginService
+      loginService,
+      policyService,
+      policyApiService
     );
     super.onSuccessfulLogin = async () => {
       await syncService.fullSync(true);
