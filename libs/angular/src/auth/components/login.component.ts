@@ -1,7 +1,6 @@
 import { Directive, NgZone, OnInit } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { firstValueFrom } from "rxjs";
 import { take } from "rxjs/operators";
 
 import { ApiService } from "@bitwarden/common/abstractions/api.service";
@@ -23,12 +22,14 @@ import { AuthService } from "@bitwarden/common/auth/abstractions/auth.service";
 import { LoginService } from "@bitwarden/common/auth/abstractions/login.service";
 import { AuthResult } from "@bitwarden/common/auth/models/domain/auth-result";
 import { PasswordLogInCredentials } from "@bitwarden/common/auth/models/domain/log-in-credentials";
+import { PolicyType } from "@bitwarden/common/enums/policyType";
 import { Utils } from "@bitwarden/common/misc/utils";
 import { PolicyData } from "@bitwarden/common/models/data/policy.data";
 import { ListResponse } from "@bitwarden/common/models/response/list.response";
 import { PolicyResponse } from "@bitwarden/common/models/response/policy.response";
 
 import { CaptchaProtectedComponent } from "./captcha-protected.component";
+import { UpdatePasswordReason } from "./update-temp-password.component";
 
 @Directive()
 export class LoginComponent extends CaptchaProtectedComponent implements OnInit {
@@ -157,8 +158,14 @@ export class LoginComponent extends CaptchaProtectedComponent implements OnInit 
           this.router.navigate([this.forcePasswordResetRoute]);
         }
       } else {
-        if (!(await this.evaluateMasterPasswordPolicies())) {
-          this.router.navigate([this.forcePasswordResetRoute]);
+        const [mpMeetsRequirements, orgId] = await this.evaluateMasterPasswordPolicies();
+        if (!mpMeetsRequirements) {
+          this.router.navigate([this.forcePasswordResetRoute], {
+            queryParams: {
+              reason: UpdatePasswordReason.WeakMasterPasswordOnLogin,
+              orgId,
+            },
+          });
           return;
         }
 
@@ -297,40 +304,36 @@ export class LoginComponent extends CaptchaProtectedComponent implements OnInit 
     }
   }
 
-  private async evaluateMasterPasswordPolicies(): Promise<boolean> {
+  private async evaluateMasterPasswordPolicies(): Promise<[boolean, string?]> {
     const masterPassword = this.formGroup.value.masterPassword;
-    const policiesResponse = await this.policyApiService.getAllPolicies();
-
-    const enforcedPasswordPolicyOptions = await firstValueFrom(
-      this.policyService.masterPasswordPolicyOptions$(
-        this.policyService.mapPoliciesFromToken(policiesResponse)
-      )
-    );
-
-    // No policies to enforce on login
-    if (enforcedPasswordPolicyOptions == null || !enforcedPasswordPolicyOptions.enforceOnLogin) {
-      return true;
-    }
-
     const passwordStrength = this.passwordGenerationService.passwordStrength(
       masterPassword,
       this.getPasswordStrengthUserInput()
     )?.score;
 
-    // If the password doesn't meet the policy requirements, save the policies and return false
-    // to force navigation to update password page
-    if (
-      !this.policyService.evaluateMasterPassword(
-        passwordStrength,
-        masterPassword,
-        enforcedPasswordPolicyOptions
-      )
-    ) {
-      await this.savePolicies(policiesResponse);
-      return false;
+    const policiesResponse = await this.policyApiService.getAllPolicies();
+
+    // We only care about enabled, master password policies, with enforce on login enabled
+    const policies = this.policyService
+      .mapPoliciesFromToken(policiesResponse)
+      .filter((p) => p.type === PolicyType.MasterPassword && p.enabled && p.data.enforceOnLogin);
+
+    const [meetsRequirements, failedOrgId] = this.policyService.evaluateMasterPasswordByEachPolicy(
+      passwordStrength,
+      masterPassword,
+      policies
+    );
+
+    // Password meets the requirements of all required organizations
+    if (meetsRequirements) {
+      return [true];
     }
 
-    return true;
+    // Password doesn't meet the requirements for all organizations
+    // Save the policies and return false to force navigation to update password page
+    await this.savePolicies(policiesResponse);
+
+    return [meetsRequirements, failedOrgId];
   }
 
   protected getPasswordStrengthUserInput() {
