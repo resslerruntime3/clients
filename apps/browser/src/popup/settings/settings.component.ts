@@ -166,6 +166,15 @@ export class SettingsComponent implements OnInit {
         takeUntil(this.destroy$)
       )
       .subscribe();
+
+    this.form.controls.vaultTimeoutAction.valueChanges
+      .pipe(
+        tap(async (action) => {
+          await this.saveVaultTimeoutAction(action);
+        }),
+        takeUntil(this.destroy$)
+      )
+      .subscribe();
   }
 
   async saveVaultTimeout(newValue: number) {
@@ -221,6 +230,7 @@ export class SettingsComponent implements OnInit {
               i + ": " + this.form.value.vaultTimeoutAction;
           }
         });
+        this.form.controls.vaultTimeoutAction.patchValue("lock", { emitEvent: false });
         return;
       }
     }
@@ -234,10 +244,9 @@ export class SettingsComponent implements OnInit {
       return;
     }
 
-    this.form.controls.vaultTimeoutAction.setValue(newValue);
     await this.vaultTimeoutSettingsService.setVaultTimeoutOptions(
       this.form.value.vaultTimeout,
-      this.form.value.vaultTimeoutAction
+      newValue
     );
   }
 
