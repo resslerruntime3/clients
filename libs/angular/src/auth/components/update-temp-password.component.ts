@@ -1,10 +1,13 @@
 import { Directive } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { takeUntil } from "rxjs";
 
 import { ApiService } from "@bitwarden/common/abstractions/api.service";
 import { CryptoService } from "@bitwarden/common/abstractions/crypto.service";
 import { I18nService } from "@bitwarden/common/abstractions/i18n.service";
 import { LogService } from "@bitwarden/common/abstractions/log.service";
 import { MessagingService } from "@bitwarden/common/abstractions/messaging.service";
+import { OrganizationService } from "@bitwarden/common/abstractions/organization/organization.service.abstraction";
 import { PasswordGenerationService } from "@bitwarden/common/abstractions/passwordGeneration.service";
 import { PlatformUtilsService } from "@bitwarden/common/abstractions/platformUtils.service";
 import { PolicyService } from "@bitwarden/common/abstractions/policy/policy.service.abstraction";
@@ -12,10 +15,16 @@ import { StateService } from "@bitwarden/common/abstractions/state.service";
 import { UpdateTempPasswordRequest } from "@bitwarden/common/auth/models/request/update-temp-password.request";
 import { EncString } from "@bitwarden/common/models/domain/enc-string";
 import { MasterPasswordPolicyOptions } from "@bitwarden/common/models/domain/master-password-policy-options";
+import { Organization } from "@bitwarden/common/models/domain/organization";
 import { SymmetricCryptoKey } from "@bitwarden/common/models/domain/symmetric-crypto-key";
 import { SyncService } from "@bitwarden/common/vault/abstractions/sync/sync.service.abstraction";
 
 import { ChangePasswordComponent as BaseChangePasswordComponent } from "./change-password.component";
+
+export enum UpdatePasswordReason {
+  AdminForcePasswordReset,
+  WeakMasterPasswordOnLogin,
+}
 
 @Directive()
 export class UpdateTempPasswordComponent extends BaseChangePasswordComponent {
@@ -23,6 +32,9 @@ export class UpdateTempPasswordComponent extends BaseChangePasswordComponent {
   key: string;
   enforcedPolicyOptions: MasterPasswordPolicyOptions;
   showPassword = false;
+
+  reason: UpdatePasswordReason = UpdatePasswordReason.AdminForcePasswordReset;
+  organization?: Organization;
 
   onSuccessfulChangePassword: () => Promise<any>;
 
@@ -36,7 +48,9 @@ export class UpdateTempPasswordComponent extends BaseChangePasswordComponent {
     private apiService: ApiService,
     stateService: StateService,
     private syncService: SyncService,
-    private logService: LogService
+    private logService: LogService,
+    private route: ActivatedRoute,
+    private organizationService: OrganizationService
   ) {
     super(
       i18nService,
@@ -51,7 +65,21 @@ export class UpdateTempPasswordComponent extends BaseChangePasswordComponent {
 
   async ngOnInit() {
     await this.syncService.fullSync(true);
+
+    this.route.queryParams.pipe(takeUntil(this.destroy$)).subscribe((params) => {
+      this.reason = parseInt(params.reason);
+      if (this.reason === UpdatePasswordReason.WeakMasterPasswordOnLogin) {
+        this.organization = this.organizationService.get(params.orgId);
+      }
+    });
+
     super.ngOnInit();
+  }
+
+  get masterPasswordWarningText(): string {
+    return this.reason == UpdatePasswordReason.WeakMasterPasswordOnLogin
+      ? this.i18nService.t("updateWeakMasterPasswordWarning", this.organization?.name)
+      : this.i18nService.t("masterPasswordWarning");
   }
 
   togglePassword(confirmField: boolean) {
