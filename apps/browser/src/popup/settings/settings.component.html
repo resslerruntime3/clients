@@ -69,14 +69,15 @@
           id="vaultTimeoutAction"
           name="VaultTimeoutActions"
           formControlName="vaultTimeoutAction"
-          (ngModelChange)="saveVaultTimeoutAction($event)"
         >
-          <option *ngFor="let o of vaultTimeoutActions" [ngValue]="o.value">{{ o.name }}</option>
+          <option *ngFor="let o of vaultTimeoutActionOptions" [ngValue]="o.value">
+            {{ o.name }}
+          </option>
         </select>
       </div>
       <div class="box-content-row box-content-row-checkbox" appBoxRow>
         <label for="pin">{{ "unlockWithPin" | i18n }}</label>
-        <input id="pin" type="checkbox" (change)="updatePin()" [(ngModel)]="pin" />
+        <input id="pin" type="checkbox" (change)="updatePin()" formControlName="pin" />
       </div>
       <div class="box-content-row box-content-row-checkbox" appBoxRow *ngIf="supportsBiometric">
         <label for="biometric">{{ "unlockWithBiometrics" | i18n }}</label>
@@ -84,21 +85,21 @@
           id="biometric"
           type="checkbox"
           (change)="updateBiometric()"
-          [(ngModel)]="biometric"
+          formControlName="biometric"
         />
       </div>
       <div
         class="box-content-row box-content-row-checkbox"
         appBoxRow
-        *ngIf="supportsBiometric && biometric"
+        *ngIf="supportsBiometric && this.form.value.biometric"
       >
         <label for="autoBiometricsPrompt">{{ "enableAutoBiometricsPrompt" | i18n }}</label>
         <input
           id="autoBiometricsPrompt"
           type="checkbox"
           (change)="updateAutoBiometricsPrompt()"
-          [disabled]="!biometric"
-          [(ngModel)]="enableAutoBiometricsPrompt"
+          [disabled]="!this.form.value.biometric"
+          formControlName="enableAutoBiometricsPrompt"
         />
       </div>
       <button
