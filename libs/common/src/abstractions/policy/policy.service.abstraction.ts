@@ -25,6 +25,16 @@ export abstract class PolicyService {
     newPassword: string,
     enforcedPolicyOptions?: MasterPasswordPolicyOptions
   ) => boolean;
+  /**
+   * Evaluates a master password against each policy and returns for the first policy that the password fails.
+   * @returns [boolean, string?] - boolean is true if the password passes all policies,
+   * string is the id of the organization that owns the policy that failed (if any)
+   */
+  evaluateMasterPasswordByEachPolicy: (
+    passwordStrength: number,
+    password: string,
+    policies: Policy[]
+  ) => [boolean, string?];
   getResetPasswordPolicyOptions: (
     policies: Policy[],
     orgId: string

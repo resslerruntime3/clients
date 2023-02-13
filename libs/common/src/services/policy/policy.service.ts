@@ -176,6 +176,32 @@ export class PolicyService implements InternalPolicyServiceAbstraction {
     return true;
   }
 
+  /**
+   * Evaluates a master password against each policy and returns for the first policy that the password fails.
+   * @returns [boolean, string?] - boolean is true if the password passes all policies,
+   * string is the id of the organization that owns the policy that failed (if any)
+   */
+  evaluateMasterPasswordByEachPolicy(
+    passwordStrength: number,
+    password: string,
+    policies: Policy[]
+  ): [boolean, string?] {
+    if (policies == null) {
+      return [true];
+    }
+
+    const mpPolicies = policies.filter((p) => p.type === PolicyType.MasterPassword);
+
+    for (const mpPolicy of mpPolicies) {
+      const enforcedPasswordPolicyOptions = MasterPasswordPolicyOptions.fromPolicy(mpPolicy);
+      if (!this.evaluateMasterPassword(passwordStrength, password, enforcedPasswordPolicyOptions)) {
+        return [false, mpPolicy.organizationId];
+      }
+    }
+
+    return [true];
+  }
+
   getResetPasswordPolicyOptions(
     policies: Policy[],
     orgId: string

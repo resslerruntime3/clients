@@ -1,4 +1,7 @@
+import { PolicyType } from "../../enums/policyType";
+
 import Domain from "./domain-base";
+import { Policy } from "./policy";
 
 export class MasterPasswordPolicyOptions extends Domain {
   minComplexity = 0;
@@ -14,4 +17,19 @@ export class MasterPasswordPolicyOptions extends Domain {
    * the user will be forced to update their password.
    */
   enforceOnLogin = false;
+
+  static fromPolicy(policy: Policy): MasterPasswordPolicyOptions {
+    if (policy.type !== PolicyType.MasterPassword || policy.data == null) {
+      return null;
+    }
+    const options = new MasterPasswordPolicyOptions();
+    options.minComplexity = policy.data.minComplexity;
+    options.minLength = policy.data.minLength;
+    options.requireUpper = policy.data.requireUpper;
+    options.requireLower = policy.data.requireLower;
+    options.requireNumbers = policy.data.requireNumbers;
+    options.requireSpecial = policy.data.requireSpecial;
+    options.enforceOnLogin = policy.data.enforceOnLogin;
+    return options;
+  }
 }

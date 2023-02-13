@@ -162,6 +162,7 @@ describe("PolicyService", () => {
         requireNumbers: false,
         requireSpecial: false,
         requireUpper: true,
+        enforceOnLogin: false,
       });
     });
 
@@ -201,6 +202,7 @@ describe("PolicyService", () => {
         requireNumbers: false,
         requireSpecial: false,
         requireUpper: false,
+        enforceOnLogin: false,
       });
     });
   });
@@ -219,6 +221,46 @@ describe("PolicyService", () => {
       const result = policyService.evaluateMasterPassword(0, "password", enforcedPolicyOptions);
 
       expect(result).toEqual(true);
+    });
+  });
+
+  describe("evaluateMasterPasswordByEachPolicy", () => {
+    const org1Id = "test-organization-1";
+    const org2Id = "test-organization-2";
+    const org1Policy = new Policy(
+      policyData("1", org1Id, PolicyType.MasterPassword, true, {
+        minLength: 8,
+      })
+    );
+
+    const org2Policy = new Policy(
+      policyData("2", org2Id, PolicyType.MasterPassword, true, {
+        minLength: 12,
+      })
+    );
+
+    it("null", async () => {
+      const result = policyService.evaluateMasterPasswordByEachPolicy(10, "password123$", null);
+
+      expect(result).toEqual([true]);
+    });
+
+    it("true", async () => {
+      const result = policyService.evaluateMasterPasswordByEachPolicy(10, "password123$", [
+        org1Policy,
+        org2Policy,
+      ]);
+
+      expect(result).toEqual([true]);
+    });
+
+    it("false", async () => {
+      const result = policyService.evaluateMasterPasswordByEachPolicy(10, "password", [
+        org1Policy,
+        org2Policy,
+      ]);
+
+      expect(result).toEqual([false, "test-organization-2"]);
     });
   });
 
