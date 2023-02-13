@@ -5,7 +5,7 @@ import {
   Urls,
 } from "../abstractions/environment.service";
 import { StateService } from "../abstractions/state.service";
-import { EnvironmentUrls } from "../models/domain/environment-urls";
+import { EnvironmentUrls } from "../auth/models/domain/environment-urls";
 
 export class EnvironmentService implements EnvironmentServiceAbstraction {
   private readonly urlsSubject = new Subject<Urls>();
@@ -212,5 +212,14 @@ export class EnvironmentService implements EnvironmentServiceAbstraction {
     return ["https://api.bitwarden.com", "https://vault.bitwarden.com/api"].includes(
       this.getApiUrl()
     );
+  }
+
+  isSelfHosted(): boolean {
+    return ![
+      "http://vault.bitwarden.com",
+      "https://vault.bitwarden.com",
+      "http://vault.qa.bitwarden.pw",
+      "https://vault.qa.bitwarden.pw",
+    ].includes(this.getWebVaultUrl());
   }
 }

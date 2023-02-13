@@ -1,5 +1,7 @@
 import { Observable } from "rxjs";
 
+import { EnvironmentUrls } from "../auth/models/domain/environment-urls";
+import { KdfConfig } from "../auth/models/domain/kdf-config";
 import { KdfType } from "../enums/kdfType";
 import { ThemeType } from "../enums/themeType";
 import { UriMatchType } from "../enums/uriMatchType";
@@ -13,9 +15,7 @@ import { SendData } from "../models/data/send.data";
 import { ServerConfigData } from "../models/data/server-config.data";
 import { Account, AccountSettingsSettings } from "../models/domain/account";
 import { EncString } from "../models/domain/enc-string";
-import { EnvironmentUrls } from "../models/domain/environment-urls";
 import { GeneratedPasswordHistory } from "../models/domain/generated-password-history";
-import { KdfConfig } from "../models/domain/kdf-config";
 import { Policy } from "../models/domain/policy";
 import { StorageOptions } from "../models/domain/storage-options";
 import { SymmetricCryptoKey } from "../models/domain/symmetric-crypto-key";
@@ -142,6 +142,8 @@ export abstract class StateService<T extends Account = Account> {
   setDisableFavicon: (value: boolean, options?: StorageOptions) => Promise<void>;
   getDisableGa: (options?: StorageOptions) => Promise<boolean>;
   setDisableGa: (value: boolean, options?: StorageOptions) => Promise<void>;
+  getDismissedAutofillCallout: (options?: StorageOptions) => Promise<boolean>;
+  setDismissedAutofillCallout: (value: boolean, options?: StorageOptions) => Promise<void>;
   getDontShowCardsCurrentTab: (options?: StorageOptions) => Promise<boolean>;
   setDontShowCardsCurrentTab: (value: boolean, options?: StorageOptions) => Promise<void>;
   getDontShowIdentitiesCurrentTab: (options?: StorageOptions) => Promise<boolean>;
@@ -338,6 +340,8 @@ export abstract class StateService<T extends Account = Account> {
   setVaultTimeout: (value: number, options?: StorageOptions) => Promise<void>;
   getVaultTimeoutAction: (options?: StorageOptions) => Promise<string>;
   setVaultTimeoutAction: (value: string, options?: StorageOptions) => Promise<void>;
+  getApproveLoginRequests: (options?: StorageOptions) => Promise<boolean>;
+  setApproveLoginRequests: (value: boolean, options?: StorageOptions) => Promise<void>;
   getStateVersion: () => Promise<number>;
   setStateVersion: (value: number) => Promise<void>;
   getWindow: () => Promise<WindowState>;

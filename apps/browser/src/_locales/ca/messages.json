@@ -960,7 +960,10 @@
     "message": "Si es detecta un formulari d'inici de sessió, es realitza automàticament un emplenament automàtic quan es carrega la pàgina web."
   },
   "experimentalFeature": {
-    "message": "Actualment és una característica experimental. Utilitzeu sota el vostre propi risc."
+    "message": "Compromised or untrusted websites can exploit auto-fill on page load."
+  },
+  "learnMoreAboutAutofill": {
+    "message": "Obteniu més informació sobre l'emplenament automàtic"
   },
   "defaultAutoFillOnPageLoad": {
     "message": "Configuració per defecte d'emplenament automàtic per als elements d'inici de sessió"
@@ -2046,6 +2049,30 @@
   },
   "rememberEmail": {
     "message": "Recorda el correu electronic"
+  },
+  "loginWithDevice": {
+    "message": "Inici de sessió amb dispositiu"
+  },
+  "loginWithDeviceEnabledInfo": {
+    "message": "L'inici de sessió amb el dispositiu ha d'estar activat a la configuració de l'aplicació Bitwarden. Necessiteu una altra opció?"
+  },
+  "fingerprintPhraseHeader": {
+    "message": "Frase d'empremta digital"
+  },
+  "fingerprintMatchInfo": {
+    "message": "Assegureu-vos que la vostra caixa forta estiga desbloquejada i que la frase d'empremta digital coincidisca amb l'altre dispositiu."
+  },
+  "resendNotification": {
+    "message": "Torna a enviar la notificació"
+  },
+  "viewAllLoginOptions": {
+    "message": "Veure totes les opcions d'inici de sessió"
+  },
+  "notificationSentDevice": {
+    "message": "S'ha enviat una notificació al vostre dispositiu."
+  },
+  "logInInitiated": {
+    "message": "S'ha iniciat la sessió"
   },
   "exposedMasterPassword": {
     "message": "Contrasenya mestra exposada"
