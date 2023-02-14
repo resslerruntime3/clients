@@ -1,4 +1,4 @@
-import { Directive, Input, OnDestroy, OnInit } from "@angular/core";
+import { Directive, Input, OnChanges, OnDestroy, OnInit } from "@angular/core";
 import {
   AbstractControl,
   ControlValueAccessor,
@@ -15,7 +15,7 @@ import { Policy } from "@bitwarden/common/models/domain/policy";
 
 @Directive()
 export class VaultTimeoutInputComponent
-  implements ControlValueAccessor, Validator, OnInit, OnDestroy
+  implements ControlValueAccessor, Validator, OnInit, OnDestroy, OnChanges
 {
   get showCustom() {
     return this.form.get("vaultTimeout").value === VaultTimeoutInputComponent.CUSTOM_VALUE;
@@ -68,9 +68,10 @@ export class VaultTimeoutInputComponent
         }
       });
 
-    // eslint-disable-next-line rxjs/no-async-subscribe
-    this.form.valueChanges.subscribe(async (value) => {
-      this.onChange(this.getVaultTimeout(value));
+    this.form.valueChanges.pipe(takeUntil(this.destroy$)).subscribe((value) => {
+      if (this.onChange) {
+        this.onChange(this.getVaultTimeout(value));
+      }
     });
 
     // Assign the previous value to the custom fields
@@ -95,10 +96,14 @@ export class VaultTimeoutInputComponent
   }
 
   ngOnChanges() {
-    this.vaultTimeoutOptions.push({
-      name: this.i18nService.t("custom"),
-      value: VaultTimeoutInputComponent.CUSTOM_VALUE,
-    });
+    if (
+      !this.vaultTimeoutOptions.find((p) => p.value === VaultTimeoutInputComponent.CUSTOM_VALUE)
+    ) {
+      this.vaultTimeoutOptions.push({
+        name: this.i18nService.t("custom"),
+        value: VaultTimeoutInputComponent.CUSTOM_VALUE,
+      });
+    }
   }
 
   getVaultTimeout(value: any) {
