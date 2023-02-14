@@ -35,7 +35,11 @@ export class RoutedVaultFilterBridge implements VaultFilter {
     return this.legacyFilter.selectedOrganizationNode;
   }
   set selectedOrganizationNode(value: TreeNode<OrganizationFilter>) {
-    this.bridgeService.navigate({ ...this.routedFilter, organizationId: value.node.id });
+    this.bridgeService.navigate({
+      ...this.routedFilter,
+      organizationId: value.node.id,
+      collectionId: null,
+    });
   }
   get selectedCipherTypeNode(): TreeNode<CipherTypeFilter> {
     return this.legacyFilter.selectedCipherTypeNode;
