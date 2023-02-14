@@ -60,6 +60,7 @@ export class RoutedVaultFilterBridge implements VaultFilter {
       this.bridgeService.navigate({
         ...this.routedFilter,
         folderId: Unassigned,
+        type: null,
         collectionId: null,
       });
       return;

@@ -7,6 +7,7 @@ import { ITreeNodeObject, TreeNode } from "@bitwarden/common/models/domain/tree-
 import { RoutedVaultFilterBridge } from "../shared/models/routed-vault-filter-bridge.model";
 import { RoutedVaultFilterModel, Unassigned } from "../shared/models/routed-vault-filter.model";
 import { VaultFilter } from "../shared/models/vault-filter.model";
+import { CipherTypeFilter } from "../shared/models/vault-filter.type";
 
 import { VaultFilterService } from "./abstractions/vault-filter.service";
 import { RoutedVaultFilterService } from "./routed-vault-filter.service";
@@ -49,7 +50,13 @@ export class RoutedVaultFilterBridgeService {
           );
         }
 
-        if (filter.type !== undefined) {
+        if (filter.type !== undefined && filter.type === "trash") {
+          legacyFilter.selectedCipherTypeNode = {
+            node: { id: "trash", name: "", icon: "", type: "trash" },
+          } as unknown as TreeNode<CipherTypeFilter>;
+        }
+
+        if (filter.type !== undefined && filter.type !== "trash") {
           legacyFilter.selectedCipherTypeNode = this.findNode(cipherTypeTree, filter.type);
         }
 
