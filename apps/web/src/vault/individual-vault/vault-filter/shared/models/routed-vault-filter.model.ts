@@ -1,3 +1,5 @@
+export const Unassigned = "unassigned";
+
 export interface RoutedVaultFilterModel {
   collectionId?: string;
   folderId?: string;

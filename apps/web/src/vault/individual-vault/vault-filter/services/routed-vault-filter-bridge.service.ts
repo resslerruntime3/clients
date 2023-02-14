@@ -5,7 +5,7 @@ import { combineLatest, map, Observable } from "rxjs";
 import { ITreeNodeObject, TreeNode } from "@bitwarden/common/models/domain/tree-node";
 
 import { RoutedVaultFilterBridge } from "../shared/models/routed-vault-filter-bridge.model";
-import { RoutedVaultFilterModel } from "../shared/models/routed-vault-filter.model";
+import { RoutedVaultFilterModel, Unassigned } from "../shared/models/routed-vault-filter.model";
 import { VaultFilter } from "../shared/models/vault-filter.model";
 
 import { VaultFilterService } from "./abstractions/vault-filter.service";
@@ -34,7 +34,11 @@ export class RoutedVaultFilterBridgeService {
           legacyFilter.selectedCollectionNode = this.findNode(collectionTree, filter.collectionId);
         }
 
-        if (filter.folderId !== undefined) {
+        if (filter.folderId !== undefined && filter.folderId === Unassigned) {
+          legacyFilter.selectedFolderNode = this.findNode(folderTree, null);
+        }
+
+        if (filter.folderId !== undefined && filter.folderId !== Unassigned) {
           legacyFilter.selectedFolderNode = this.findNode(folderTree, filter.folderId);
         }
 
@@ -65,7 +69,10 @@ export class RoutedVaultFilterBridgeService {
     node: TreeNode<T>,
     idOrPredicate: string | ((node: T) => boolean)
   ): TreeNode<T> | undefined {
-    if (typeof idOrPredicate === "string" && node.node.id === idOrPredicate) {
+    if (
+      (typeof idOrPredicate === "string" || idOrPredicate == null) &&
+      node.node.id === idOrPredicate
+    ) {
       return node;
     }
 
