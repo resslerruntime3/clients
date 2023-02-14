@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { FormBuilder, FormControl } from "@angular/forms";
 import { Router } from "@angular/router";
-import { combineLatest, Observable, Subject, takeUntil, tap } from "rxjs";
+import { map, Observable, Subject, takeUntil, tap } from "rxjs";
 import Swal from "sweetalert2";
 
 import { ModalService } from "@bitwarden/angular/services/modal.service";
@@ -85,31 +85,22 @@ export class SettingsComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
-    this.vaultTimeoutPolicyCallout = combineLatest(
-      [
-        this.policyService.policyAppliesToActiveUser$(PolicyType.MaximumVaultTimeout),
-        this.policyService.policies$,
-      ],
-      (policyAppliesToActiveUser, policies) => {
-        if (policyAppliesToActiveUser) {
-          const policy = policies.find(
-            (policy) => policy.type === PolicyType.MaximumVaultTimeout && policy.enabled
-          );
-          let timeout;
-          if (policy.data?.minutes) {
-            timeout = {
-              hours: Math.floor(policy.data?.minutes / 60),
-              minutes: policy.data?.minutes % 60,
-            };
-          }
-          if (policy.data?.action) {
-            this.form.controls.vaultTimeoutAction.disable({ emitEvent: false });
-          } else {
-            this.form.controls.vaultTimeoutAction.enable({ emitEvent: false });
-          }
-          return { timeout: timeout, action: policy.data?.action };
+    this.vaultTimeoutPolicyCallout = this.policyService.get$(PolicyType.MaximumVaultTimeout).pipe(
+      map((policy) => {
+        let timeout;
+        if (policy.data?.minutes) {
+          timeout = {
+            hours: Math.floor(policy.data?.minutes / 60),
+            minutes: policy.data?.minutes % 60,
+          };
         }
-      }
+        if (policy.data?.action) {
+          this.form.controls.vaultTimeoutAction.disable({ emitEvent: false });
+        } else {
+          this.form.controls.vaultTimeoutAction.enable({ emitEvent: false });
+        }
+        return { timeout: timeout, action: policy.data?.action };
+      })
     );
 
     const showOnLocked =

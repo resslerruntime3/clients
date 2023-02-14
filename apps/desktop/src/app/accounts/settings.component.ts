@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl } from "@angular/forms";
-import { combineLatest, Observable, Subject } from "rxjs";
-import { debounceTime, takeUntil, tap } from "rxjs/operators";
+import { Observable, Subject } from "rxjs";
+import { debounceTime, map, takeUntil, tap } from "rxjs/operators";
 
 import { ModalService } from "@bitwarden/angular/services/modal.service";
 import { AbstractThemingService } from "@bitwarden/angular/services/theming/theming.service.abstraction";
@@ -183,31 +183,22 @@ export class SettingsComponent implements OnInit {
     this.currentUserEmail = await this.stateService.getEmail();
 
     // Load timeout policy
-    this.vaultTimeoutPolicyCallout = combineLatest(
-      [
-        this.policyService.policyAppliesToActiveUser$(PolicyType.MaximumVaultTimeout),
-        this.policyService.policies$,
-      ],
-      (policyAppliesToActiveUser, policies) => {
-        if (policyAppliesToActiveUser) {
-          const policy = policies.find(
-            (policy) => policy.type === PolicyType.MaximumVaultTimeout && policy.enabled
-          );
-          let timeout;
-          if (policy.data?.minutes) {
-            timeout = {
-              hours: Math.floor(policy.data?.minutes / 60),
-              minutes: policy.data?.minutes % 60,
-            };
-          }
-          if (policy.data?.action) {
-            this.form.controls.vaultTimeoutAction.disable({ emitEvent: false });
-          } else {
-            this.form.controls.vaultTimeoutAction.enable({ emitEvent: false });
-          }
-          return { timeout: timeout, action: policy.data?.action };
+    this.vaultTimeoutPolicyCallout = this.policyService.get$(PolicyType.MaximumVaultTimeout).pipe(
+      map((policy) => {
+        let timeout;
+        if (policy.data?.minutes) {
+          timeout = {
+            hours: Math.floor(policy.data?.minutes / 60),
+            minutes: policy.data?.minutes % 60,
+          };
         }
-      }
+        if (policy.data?.action) {
+          this.form.controls.vaultTimeoutAction.disable({ emitEvent: false });
+        } else {
+          this.form.controls.vaultTimeoutAction.enable({ emitEvent: false });
+        }
+        return { timeout: timeout, action: policy.data?.action };
+      })
     );
 
     // Load initial values
