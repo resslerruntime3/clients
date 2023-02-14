@@ -198,16 +198,6 @@ export class VaultComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  async applyVaultFilter(filter: VaultFilter) {
-    this.activeFilter = filter;
-    this.vaultItemsComponent.showAddNew = !this.activeFilter.isDeleted;
-    await this.vaultItemsComponent.reload(
-      this.activeFilter.buildFilter(),
-      this.activeFilter.isDeleted
-    );
-    // this.go();
-  }
-
   async applyOrganizationFilter(orgId: string) {
     if (orgId == null) {
       orgId = "MyVault";

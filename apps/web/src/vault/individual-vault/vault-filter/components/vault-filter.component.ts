@@ -32,7 +32,6 @@ import { OrganizationOptionsComponent } from "./organization-options.component";
 export class VaultFilterComponent implements OnInit, OnDestroy {
   filters?: VaultFilterList;
   @Input() activeFilter: VaultFilter = new VaultFilter();
-  @Output() activeFilterChanged = new EventEmitter<VaultFilter>();
   @Output() onSearchTextChanged = new EventEmitter<string>();
   @Output() onAddFolder = new EventEmitter<never>();
   @Output() onEditFolder = new EventEmitter<FolderFilter>();
@@ -105,10 +104,6 @@ export class VaultFilterComponent implements OnInit, OnDestroy {
     this.onSearchTextChanged.emit(t);
   }
 
-  protected applyVaultFilter(filter: VaultFilter) {
-    this.activeFilterChanged.emit(filter);
-  }
-
   applyOrganizationFilter = async (orgNode: TreeNode<OrganizationFilter>): Promise<void> => {
     if (!orgNode?.node.enabled) {
       this.platformUtilsService.showToast(
@@ -126,28 +121,24 @@ export class VaultFilterComponent implements OnInit, OnDestroy {
     }
     this.vaultFilterService.setOrganizationFilter(orgNode.node);
     await this.vaultFilterService.expandOrgFilter();
-    this.applyVaultFilter(filter);
   };
 
   applyTypeFilter = async (filterNode: TreeNode<CipherTypeFilter>): Promise<void> => {
     const filter = this.activeFilter;
     filter.resetFilter();
     filter.selectedCipherTypeNode = filterNode;
-    this.applyVaultFilter(filter);
   };
 
   applyFolderFilter = async (folderNode: TreeNode<FolderFilter>): Promise<void> => {
     const filter = this.activeFilter;
     filter.resetFilter();
     filter.selectedFolderNode = folderNode;
-    this.applyVaultFilter(filter);
   };
 
   applyCollectionFilter = async (collectionNode: TreeNode<CollectionFilter>): Promise<void> => {
     const filter = this.activeFilter;
     filter.resetFilter();
     filter.selectedCollectionNode = collectionNode;
-    this.applyVaultFilter(filter);
   };
 
   addFolder = async (): Promise<void> => {
