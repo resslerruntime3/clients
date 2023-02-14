@@ -83,11 +83,14 @@ export class PreferencesComponent implements OnInit {
   async ngOnInit() {
     this.vaultTimeoutPolicyCallout = this.policyService.get$(PolicyType.MaximumVaultTimeout).pipe(
       map((policy) => {
+        if (!policy) {
+          return null;
+        }
         let timeout;
         if (policy.data?.minutes) {
           timeout = {
-            hours: Math.floor(policy.data?.minutes / 60),
-            minutes: policy.data?.minutes % 60,
+            hours: Math.floor(policy.data.minutes / 60),
+            minutes: policy.data.minutes % 60,
           };
         }
         if (policy.data?.action) {
