@@ -511,6 +511,9 @@
   "masterPassHintDesc": {
     "message": "A master password hint can help you remember your password if you forget it."
   },
+  "currentMasterPass": {
+    "message": "Current master password"
+  },
   "reTypeMasterPass": {
     "message": "Re-type master password"
   },
