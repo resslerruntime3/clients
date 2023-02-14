@@ -45,7 +45,12 @@ export class RoutedVaultFilterBridge implements VaultFilter {
     return this.legacyFilter.selectedCipherTypeNode;
   }
   set selectedCipherTypeNode(value: TreeNode<CipherTypeFilter>) {
-    this.bridgeService.navigate({ ...this.routedFilter, type: value.node.id });
+    this.bridgeService.navigate({
+      ...this.routedFilter,
+      type: value.node.id,
+      folderId: null,
+      collectionId: null,
+    });
   }
   get selectedFolderNode(): TreeNode<FolderFilter> {
     return this.legacyFilter.selectedFolderNode;
@@ -63,6 +68,7 @@ export class RoutedVaultFilterBridge implements VaultFilter {
     this.bridgeService.navigate({
       ...this.routedFilter,
       folderId: value.node.id,
+      type: null,
       collectionId: null,
     });
   }
@@ -72,6 +78,7 @@ export class RoutedVaultFilterBridge implements VaultFilter {
   set selectedCollectionNode(value: TreeNode<CollectionFilter>) {
     this.bridgeService.navigate({
       ...this.routedFilter,
+      type: null,
       folderId: null,
       collectionId: value.node.id,
     });
