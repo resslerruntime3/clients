@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { map, Observable, startWith, switchMap } from "rxjs";
+import { map, Observable, shareReplay, startWith, switchMap } from "rxjs";
 
 import { OrganizationService } from "@bitwarden/common/abstractions/organization/organization.service.abstraction";
 import { Organization } from "@bitwarden/common/models/domain/organization";
@@ -17,7 +17,8 @@ export class ReportingComponent implements OnInit {
 
   ngOnInit() {
     this.organization$ = this.route.params.pipe(
-      switchMap((params) => this.organizationService.get$(params.organizationId))
+      switchMap((params) => this.organizationService.get$(params.organizationId)),
+      shareReplay({ refCount: true, bufferSize: 1 })
     );
 
     this.showLeftNav$ = this.organization$.pipe(

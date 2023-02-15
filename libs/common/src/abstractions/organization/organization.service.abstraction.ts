@@ -63,7 +63,7 @@ export function isNotProviderUser(org: Organization): boolean {
 export abstract class OrganizationService {
   organizations$: Observable<Organization[]>;
 
-  get$: (id: string) => Observable<Organization>;
+  get$: (id: string) => Observable<Organization | undefined>;
   get: (id: string) => Organization;
   getByIdentifier: (identifier: string) => Organization;
   getAll: (userId?: string) => Promise<Organization[]>;

@@ -26,7 +26,7 @@ export class OrganizationService implements InternalOrganizationServiceAbstracti
       .subscribe();
   }
 
-  get$(id: string): Observable<Organization> {
+  get$(id: string): Observable<Organization | undefined> {
     return this.organizations$.pipe(map((orgs) => orgs.find((o) => o.id === id)));
   }
 
