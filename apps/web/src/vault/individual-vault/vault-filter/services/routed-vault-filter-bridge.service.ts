@@ -31,7 +31,11 @@ export class RoutedVaultFilterBridgeService {
       map(([filter, collectionTree, folderTree, organizationTree, cipherTypeTree]) => {
         const legacyFilter = new VaultFilter();
 
-        if (filter.collectionId !== undefined) {
+        if (filter.collectionId !== undefined && filter.collectionId === Unassigned) {
+          legacyFilter.selectedCollectionNode = this.findNode(collectionTree, null);
+        }
+
+        if (filter.collectionId !== undefined && filter.collectionId !== Unassigned) {
           legacyFilter.selectedCollectionNode = this.findNode(collectionTree, filter.collectionId);
         }
 
