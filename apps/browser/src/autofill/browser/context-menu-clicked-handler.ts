@@ -1,8 +1,8 @@
-import { AuthService } from "@bitwarden/common/abstractions/auth.service";
 import { EventCollectionService } from "@bitwarden/common/abstractions/event/event-collection.service";
 import { SearchService } from "@bitwarden/common/abstractions/search.service";
 import { TotpService } from "@bitwarden/common/abstractions/totp.service";
-import { AuthenticationStatus } from "@bitwarden/common/enums/authenticationStatus";
+import { AuthService } from "@bitwarden/common/auth/abstractions/auth.service";
+import { AuthenticationStatus } from "@bitwarden/common/auth/enums/authentication-status";
 import { EventType } from "@bitwarden/common/enums/eventType";
 import { StateFactory } from "@bitwarden/common/factories/stateFactory";
 import { GlobalState } from "@bitwarden/common/models/domain/global-state";
@@ -10,17 +10,17 @@ import { CipherService } from "@bitwarden/common/vault/abstractions/cipher.servi
 import { CipherRepromptType } from "@bitwarden/common/vault/enums/cipher-reprompt-type";
 import { CipherView } from "@bitwarden/common/vault/models/view/cipher.view";
 
-import LockedVaultPendingNotificationsItem from "../../background/models/lockedVaultPendingNotificationsItem";
 import {
   authServiceFactory,
   AuthServiceInitOptions,
-} from "../../background/service_factories/auth-service.factory";
+} from "../../auth/background/service-factories/auth-service.factory";
+import { totpServiceFactory } from "../../auth/background/service-factories/totp-service.factory";
+import LockedVaultPendingNotificationsItem from "../../background/models/lockedVaultPendingNotificationsItem";
 import { eventCollectionServiceFactory } from "../../background/service_factories/event-collection-service.factory";
 import { CachedServices } from "../../background/service_factories/factory-options";
 import { passwordGenerationServiceFactory } from "../../background/service_factories/password-generation-service.factory";
 import { searchServiceFactory } from "../../background/service_factories/search-service.factory";
 import { stateServiceFactory } from "../../background/service_factories/state-service.factory";
-import { totpServiceFactory } from "../../background/service_factories/totp-service.factory";
 import { BrowserApi } from "../../browser/browserApi";
 import { Account } from "../../models/account";
 import {
@@ -43,6 +43,7 @@ import {
 
 export type CopyToClipboardOptions = { text: string; tab: chrome.tabs.Tab };
 export type CopyToClipboardAction = (options: CopyToClipboardOptions) => void;
+export type AutofillAction = (tab: chrome.tabs.Tab, cipher: CipherView) => Promise<void>;
 
 export type GeneratePasswordToClipboardAction = (tab: chrome.tabs.Tab) => Promise<void>;
 
@@ -53,9 +54,9 @@ export class ContextMenuClickedHandler {
   constructor(
     private copyToClipboard: CopyToClipboardAction,
     private generatePasswordToClipboard: GeneratePasswordToClipboardAction,
+    private autofillAction: AutofillAction,
     private authService: AuthService,
     private cipherService: CipherService,
-    private autofillTabCommand: AutofillTabCommand,
     private totpService: TotpService,
     private eventCollectionService: EventCollectionService
   ) {}
@@ -104,12 +105,16 @@ export class ContextMenuClickedHandler {
       await stateServiceFactory(cachedServices, serviceOptions)
     );
 
+    const autofillCommand = new AutofillTabCommand(
+      await autofillServiceFactory(cachedServices, serviceOptions)
+    );
+
     return new ContextMenuClickedHandler(
       (options) => copyToClipboard(options.tab, options.text),
       (tab) => generatePasswordToClipboardCommand.generatePasswordToClipboard(tab),
+      (tab, cipher) => autofillCommand.doAutofillTabWithCipherCommand(tab, cipher),
       await authServiceFactory(cachedServices, serviceOptions),
       await cipherServiceFactory(cachedServices, serviceOptions),
-      new AutofillTabCommand(await autofillServiceFactory(cachedServices, serviceOptions)),
       await totpServiceFactory(cachedServices, serviceOptions),
       await eventCollectionServiceFactory(cachedServices, serviceOptions)
     );
@@ -205,7 +210,7 @@ export class ContextMenuClickedHandler {
         if (tab == null) {
           return;
         }
-        await this.autofillTabCommand.doAutofillTabWithCipherCommand(tab, cipher);
+        await this.autofillAction(tab, cipher);
         break;
       case COPY_USERNAME_ID:
         this.copyToClipboard({ text: cipher.login.username, tab: tab });

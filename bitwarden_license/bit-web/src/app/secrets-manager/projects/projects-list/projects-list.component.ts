@@ -24,8 +24,12 @@ export class ProjectsListComponent implements OnDestroy {
   }
   private _projects: ProjectListView[];
 
+  @Input()
+  set search(search: string) {
+    this.dataSource.filter = search;
+  }
+
   @Output() editProjectEvent = new EventEmitter<string>();
-  @Output() viewProjectEvent = new EventEmitter<string>();
   @Output() deleteProjectEvent = new EventEmitter<ProjectListView[]>();
   @Output() onProjectCheckedEvent = new EventEmitter<string[]>();
   @Output() newProjectEvent = new EventEmitter();
