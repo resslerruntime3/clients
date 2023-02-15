@@ -319,7 +319,14 @@ function getBgService<T>(service: keyof MainBackground) {
     },
     {
       provide: SendApiServiceAbstraction,
-      useFactory: getBgService<SendApiService>("sendApiService"),
+      useFactory: (
+        apiService: ApiService,
+        fileUploadService: FileUploadService,
+        sendService: InternalSendServiceAbstraction
+      ) => {
+        return new SendApiService(apiService, fileUploadService, sendService);
+      },
+      deps: [ApiService, FileUploadService, InternalSendServiceAbstraction],
     },
     { provide: SyncService, useFactory: getBgService<SyncService>("syncService"), deps: [] },
     {
