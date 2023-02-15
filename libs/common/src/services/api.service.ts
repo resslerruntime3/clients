@@ -28,6 +28,7 @@ import { TwoFactorEmailRequest } from "../auth/models/request/two-factor-email.r
 import { TwoFactorProviderRequest } from "../auth/models/request/two-factor-provider.request";
 import { TwoFactorRecoveryRequest } from "../auth/models/request/two-factor-recovery.request";
 import { UpdateProfileRequest } from "../auth/models/request/update-profile.request";
+import { UpdateTempPasswordRequest } from "../auth/models/request/update-temp-password.request";
 import { UpdateTwoFactorAuthenticatorRequest } from "../auth/models/request/update-two-factor-authenticator.request";
 import { UpdateTwoFactorDuoRequest } from "../auth/models/request/update-two-factor-duo.request";
 import { UpdateTwoFactorEmailRequest } from "../auth/models/request/update-two-factor-email.request";
@@ -96,7 +97,6 @@ import { TaxInfoUpdateRequest } from "../models/request/tax-info-update.request"
 import { UpdateAvatarRequest } from "../models/request/update-avatar.request";
 import { UpdateDomainsRequest } from "../models/request/update-domains.request";
 import { UpdateKeyRequest } from "../models/request/update-key.request";
-import { UpdateTempPasswordRequest } from "../models/request/update-temp-password.request";
 import { VerifyDeleteRecoverRequest } from "../models/request/verify-delete-recover.request";
 import { VerifyEmailRequest } from "../models/request/verify-email.request";
 import { BillingHistoryResponse } from "../models/response/billing-history.response";
@@ -1991,7 +1991,9 @@ export class ApiService implements ApiServiceAbstraction {
     apiUrl = Utils.isNullOrWhitespace(apiUrl) ? this.environmentService.getApiUrl() : apiUrl;
 
     // Prevent directory traversal from malicious paths
-    const requestUrl = apiUrl + Utils.normalizePath(path);
+    const pathParts = path.split("?");
+    const requestUrl =
+      apiUrl + Utils.normalizePath(pathParts[0]) + (pathParts.length > 1 ? `?${pathParts[1]}` : "");
 
     const headers = new Headers({
       "Device-Type": this.deviceType,
