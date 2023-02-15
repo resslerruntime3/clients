@@ -17,7 +17,9 @@ export class RoutedVaultFilterService implements OnDestroy {
           collectionId: queryParams.get("collectionId") ?? undefined,
           folderId: queryParams.get("folderId") ?? undefined,
           organizationId:
-            queryParams.get("organizationId") ?? params.get("organizationId") ?? undefined,
+            params.get("organizationId") ?? queryParams.get("organizationId") ?? undefined,
+          organizationIdParamType:
+            params.get("organizationId") != undefined ? ("path" as const) : ("query" as const),
           type: queryParams.get("type") ?? undefined,
         };
       }),
@@ -32,7 +34,8 @@ export class RoutedVaultFilterService implements OnDestroy {
         queryParams: {
           collectionId: filter.collectionId ?? null,
           folderId: filter.folderId ?? null,
-          organizationId: filter.organizationId ?? null,
+          organizationId:
+            filter.organizationIdParamType === "path" ? null : filter.organizationId ?? null,
           type: filter.type ?? null,
         },
         queryParamsHandling: "merge",

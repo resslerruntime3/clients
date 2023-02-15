@@ -119,7 +119,13 @@ export class RoutedVaultFilterBridge implements VaultFilter {
     return this.legacyFilter.collectionId;
   }
   resetFilter(): void {
-    this.bridgeService.navigate({});
+    this.bridgeService.navigate({
+      ...this.routedFilter,
+      collectionId: null,
+      folderId: null,
+      organizationId: null,
+      type: null,
+    });
   }
   resetOrganization(): void {
     this.bridgeService.navigate({ ...this.routedFilter, organizationId: null });

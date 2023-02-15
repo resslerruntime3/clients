@@ -5,4 +5,6 @@ export interface RoutedVaultFilterModel {
   folderId?: string;
   organizationId?: string;
   type?: string;
+
+  organizationIdParamType?: "path" | "query";
 }
