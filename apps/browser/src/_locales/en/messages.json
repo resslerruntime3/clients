@@ -34,6 +34,15 @@
   "emailAddress": {
     "message": "Email address"
   },
+  "currentMasterPass": {
+    "message": "Current master password"
+  },
+  "newMasterPass": {
+    "message": "New master password"
+  },
+  "confirmNewMasterPass": {
+    "message": "Confirm new master password"
+  },
   "masterPass": {
     "message": "Master password"
   },
