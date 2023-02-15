@@ -6,10 +6,16 @@
   <div class="row">
     <div class="col-6">
       <app-callout type="info" *ngIf="vaultTimeoutPolicyCallout | async as policy">
-        <span *ngIf="policy.timeout">
+        <span *ngIf="policy.timeout && policy.action">
+          {{
+            "vaultTimeoutPolicyWithActionInEffect"
+              | i18n: policy.timeout.hours:policy.timeout.minutes:(policy.action | i18n)
+          }}
+        </span>
+        <span *ngIf="policy.timeout && !policy.action">
           {{ "vaultTimeoutPolicyInEffect" | i18n: policy.timeout.hours:policy.timeout.minutes }}
         </span>
-        <span *ngIf="policy.action">
+        <span *ngIf="!policy.timeout && policy.action">
           {{ "vaultTimeoutActionPolicyInEffect" | i18n: (policy.action | i18n) }}
         </span>
       </app-callout>
