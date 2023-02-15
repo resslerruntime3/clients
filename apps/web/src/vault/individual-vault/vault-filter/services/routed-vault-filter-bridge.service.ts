@@ -74,21 +74,14 @@ export class RoutedVaultFilterBridgeService {
 
   private findNode<T extends ITreeNodeObject>(
     node: TreeNode<T>,
-    idOrPredicate: string | ((node: T) => boolean)
+    id: string
   ): TreeNode<T> | undefined {
-    if (
-      (typeof idOrPredicate === "string" || idOrPredicate == null) &&
-      node.node.id === idOrPredicate
-    ) {
-      return node;
-    }
-
-    if (typeof idOrPredicate === "function" && idOrPredicate(node.node)) {
+    if (node.node.id === id) {
       return node;
     }
 
     for (const child of node.children) {
-      const result = this.findNode(child, idOrPredicate);
+      const result = this.findNode(child, id);
       if (result !== undefined) {
         return result;
       }
