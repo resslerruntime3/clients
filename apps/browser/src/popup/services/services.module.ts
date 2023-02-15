@@ -19,7 +19,6 @@ import { EnvironmentService } from "@bitwarden/common/abstractions/environment.s
 import { EventCollectionService } from "@bitwarden/common/abstractions/event/event-collection.service";
 import { EventUploadService } from "@bitwarden/common/abstractions/event/event-upload.service";
 import { ExportService } from "@bitwarden/common/abstractions/export.service";
-import { CipherFileUploadService } from "@bitwarden/common/abstractions/file-upload/cipher-file-upload.service";
 import { FileUploadService } from "@bitwarden/common/abstractions/file-upload/file-upload.service";
 import { FileDownloadService } from "@bitwarden/common/abstractions/fileDownload/fileDownload.service";
 import { I18nService as I18nServiceAbstraction } from "@bitwarden/common/abstractions/i18n.service";
@@ -71,6 +70,7 @@ import { PolicyApiService } from "@bitwarden/common/services/policy/policy-api.s
 import { SearchService } from "@bitwarden/common/services/search.service";
 import { SendApiService } from "@bitwarden/common/services/send/send-api.service";
 import { CipherService } from "@bitwarden/common/vault/abstractions/cipher.service";
+import { CipherFileUploadService } from "@bitwarden/common/vault/abstractions/file-upload/cipher-file-upload.service";
 import { FolderApiServiceAbstraction } from "@bitwarden/common/vault/abstractions/folder/folder-api.service.abstraction";
 import {
   FolderService,

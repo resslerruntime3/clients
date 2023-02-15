@@ -28,7 +28,6 @@ import { CryptoService } from "@bitwarden/common/services/crypto.service";
 import { EncryptServiceImplementation } from "@bitwarden/common/services/cryptography/encrypt.service.implementation";
 import { EnvironmentService } from "@bitwarden/common/services/environment.service";
 import { ExportService } from "@bitwarden/common/services/export.service";
-import { CipherFileUploadService } from "@bitwarden/common/services/file-upload/cipher-file-upload.service";
 import { FileUploadService } from "@bitwarden/common/services/file-upload/file-upload.service";
 import { SendFileUploadService } from "@bitwarden/common/services/file-upload/send-file-upload.service";
 import { ImportApiService } from "@bitwarden/common/services/import/import-api.service";
@@ -52,6 +51,7 @@ import { VaultTimeoutService } from "@bitwarden/common/services/vaultTimeout/vau
 import { VaultTimeoutSettingsService } from "@bitwarden/common/services/vaultTimeout/vaultTimeoutSettings.service";
 import { InternalFolderService } from "@bitwarden/common/vault/abstractions/folder/folder.service.abstraction";
 import { CipherService } from "@bitwarden/common/vault/services/cipher.service";
+import { CipherFileUploadService } from "@bitwarden/common/vault/services/file-upload/cipher-file-upload.service";
 import { FolderApiService } from "@bitwarden/common/vault/services/folder/folder-api.service";
 import { FolderService } from "@bitwarden/common/vault/services/folder/folder.service";
 import { SyncNotifierService } from "@bitwarden/common/vault/services/sync/sync-notifier.service";
