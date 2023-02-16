@@ -1,5 +1,3 @@
-# Runs creation of Pull Requests
-# If the PR destination branch is master, add a needs-qa label
 ---
 name: Label Issue Pull Request
 
@@ -12,12 +10,12 @@ on:
     branches:
       - 'master'
 
-  jobs:
-    add-needs-qa-label:
-      runs-on: ubuntu-latest
-      steps:
-        - name: Add label to pull request
-          uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90
-          if: ${{ !github.event.pull_request.head.repo.fork }}
-          with:
-            add-labels: "needs-qa"
+jobs:
+  add-needs-qa-label:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add label to pull request
+        uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90
+        if: ${{ !github.event.pull_request.head.repo.fork }}
+        with:
+          add-labels: "needs-qa"
