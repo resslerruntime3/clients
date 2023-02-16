@@ -13,7 +13,6 @@ import { BiometricsService } from "./biometrics.service";
 import { BiometricsServiceAbstraction } from "./biometrics.service.abstraction";
 
 jest.mock("@bitwarden/desktop-native");
-jest.mock("@bitwarden/desktop-native-linux-x64-musl");
 
 describe("biometrics tests", function () {
   const i18nService = mock<I18nService>();
