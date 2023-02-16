@@ -6,7 +6,7 @@ import {
   ValidationErrors,
   Validator,
 } from "@angular/forms";
-import { combineLatestWith, Subject, takeUntil } from "rxjs";
+import { Subject, takeUntil } from "rxjs";
 
 import { I18nService } from "@bitwarden/common/abstractions/i18n.service";
 import { PolicyService } from "@bitwarden/common/abstractions/policy/policy.service.abstraction";
@@ -55,17 +55,14 @@ export class VaultTimeoutInputComponent
 
   async ngOnInit() {
     this.policyService
-      .policyAppliesToActiveUser$(PolicyType.MaximumVaultTimeout)
-      .pipe(combineLatestWith(this.policyService.policies$), takeUntil(this.destroy$))
-      .subscribe(([policyAppliesToActiveUser, policies]) => {
-        if (policyAppliesToActiveUser) {
-          const vaultTimeoutPolicy = policies.find(
-            (policy) => policy.type === PolicyType.MaximumVaultTimeout && policy.enabled
-          );
-
-          this.vaultTimeoutPolicy = vaultTimeoutPolicy;
-          this.applyVaultTimeoutPolicy();
+      .get$(PolicyType.MaximumVaultTimeout)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((policy) => {
+        if (!policy) {
+          return;
         }
+        this.vaultTimeoutPolicy = policy;
+        this.applyVaultTimeoutPolicy();
       });
 
     this.form.valueChanges.pipe(takeUntil(this.destroy$)).subscribe((value) => {
