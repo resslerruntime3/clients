@@ -122,7 +122,8 @@ export class Main {
       this.windowMain,
       this.stateService,
       this.logService,
-      this.messagingService
+      this.messagingService,
+      process.platform
     );
 
     this.desktopCredentialStorageListener = new DesktopCredentialStorageListener(

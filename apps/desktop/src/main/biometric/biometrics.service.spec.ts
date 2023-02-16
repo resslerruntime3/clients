@@ -32,7 +32,8 @@ describe("biometrics tests", function () {
       windowMain,
       stateService,
       logService,
-      messagingService
+      messagingService,
+      process.platform
     );
 
     const mockService = mock<BiometricsServiceAbstraction>();
@@ -47,45 +48,20 @@ describe("biometrics tests", function () {
     expect(mockService.authenticateBiometric).toBeCalled();
   });
 
-  describe("win32 process platform", function () {
-    let originalPlatform: NodeJS.Platform = null;
-
-    beforeAll(function () {
-      originalPlatform = process.platform;
-      Object.defineProperty(process, "platform", {
-        value: "win32",
-      });
-    });
-
-    const sut = new BiometricsService(
-      i18nService,
-      windowMain,
-      stateService,
-      logService,
-      messagingService
-    );
-
+  describe("Should create a platform specific service", function () {
     it("Should create a biometrics service specific for Windows", () => {
+      const sut = new BiometricsService(
+        i18nService,
+        windowMain,
+        stateService,
+        logService,
+        messagingService,
+        "win32"
+      );
+
       const internalService = (sut as any).platformSpecificService;
       expect(internalService).not.toBeNull();
       expect(internalService).toBeInstanceOf(BiometricWindowsMain);
-    });
-
-    afterAll(function () {
-      Object.defineProperty(process, "platform", {
-        value: originalPlatform,
-      });
-    });
-  });
-
-  describe("darwin process platform", function () {
-    let originalPlatform: NodeJS.Platform = null;
-
-    beforeAll(function () {
-      originalPlatform = process.platform;
-      Object.defineProperty(process, "platform", {
-        value: "darwin",
-      });
     });
 
     it("Should create a biometrics service specific for MacOs", () => {
@@ -94,17 +70,12 @@ describe("biometrics tests", function () {
         windowMain,
         stateService,
         logService,
-        messagingService
+        messagingService,
+        "darwin"
       );
       const internalService = (sut as any).platformSpecificService;
       expect(internalService).not.toBeNull();
       expect(internalService).toBeInstanceOf(BiometricDarwinMain);
-    });
-
-    afterAll(function () {
-      Object.defineProperty(process, "platform", {
-        value: originalPlatform,
-      });
     });
   });
 });

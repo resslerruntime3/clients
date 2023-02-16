@@ -15,15 +15,16 @@ export class BiometricsService implements BiometricsServiceAbstraction {
     private windowMain: WindowMain,
     private stateService: StateService,
     private logService: LogService,
-    private messagingService: MessagingService
+    private messagingService: MessagingService,
+    private platform: NodeJS.Platform
   ) {
-    this.loadPlatformSpecificService();
+    this.loadPlatformSpecificService(this.platform);
   }
 
-  private loadPlatformSpecificService() {
-    if (process.platform === "win32") {
+  private loadPlatformSpecificService(platform: NodeJS.Platform) {
+    if (platform === "win32") {
       this.loadWindowsHelloService();
-    } else if (process.platform === "darwin") {
+    } else if (platform === "darwin") {
       this.loadMacOSService();
     }
   }
