@@ -16,6 +16,7 @@ export class IdentityTokenResponse extends BaseResponse {
   kdfMemory?: number;
   kdfParallelism?: number;
   forcePasswordReset: boolean;
+  enforceMasterPasswordPolicyOnLogin: boolean;
   apiUseKeyConnector: boolean;
   keyConnectorUrl: string;
 
@@ -35,6 +36,9 @@ export class IdentityTokenResponse extends BaseResponse {
     this.kdfMemory = this.getResponseProperty("KdfMemory");
     this.kdfParallelism = this.getResponseProperty("KdfParallelism");
     this.forcePasswordReset = this.getResponseProperty("ForcePasswordReset");
+    this.enforceMasterPasswordPolicyOnLogin = this.getResponseProperty(
+      "EnforceMasterPasswordPolicyOnLogin"
+    );
     this.apiUseKeyConnector = this.getResponseProperty("ApiUseKeyConnector");
     this.keyConnectorUrl = this.getResponseProperty("KeyConnectorUrl");
   }

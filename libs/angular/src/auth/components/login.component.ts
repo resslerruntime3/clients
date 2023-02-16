@@ -158,15 +158,17 @@ export class LoginComponent extends CaptchaProtectedComponent implements OnInit 
           this.router.navigate([this.forcePasswordResetRoute]);
         }
       } else {
-        const [mpMeetsRequirements, orgId] = await this.evaluateMasterPasswordPolicies();
-        if (!mpMeetsRequirements) {
-          this.router.navigate([this.forcePasswordResetRoute], {
-            queryParams: {
-              reason: UpdatePasswordReason.WeakMasterPasswordOnLogin,
-              orgId,
-            },
-          });
-          return;
+        if (response.enforceMasterPasswordPolicyOnLogin) {
+          const [meetsRequirements, orgId] = await this.evaluateMasterPasswordPolicies();
+          if (!meetsRequirements) {
+            this.router.navigate([this.forcePasswordResetRoute], {
+              queryParams: {
+                reason: UpdatePasswordReason.WeakMasterPasswordOnLogin,
+                orgId,
+              },
+            });
+            return;
+          }
         }
 
         const disableFavicon = await this.stateService.getDisableFavicon();

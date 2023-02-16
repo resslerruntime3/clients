@@ -12,10 +12,10 @@ import { TwoFactorService } from "../abstractions/two-factor.service";
 import { TwoFactorProviderType } from "../enums/two-factor-provider-type";
 import { AuthResult } from "../models/domain/auth-result";
 import {
-  UserApiLogInCredentials,
+  PasswordlessLogInCredentials,
   PasswordLogInCredentials,
   SsoLogInCredentials,
-  PasswordlessLogInCredentials,
+  UserApiLogInCredentials,
 } from "../models/domain/log-in-credentials";
 import { DeviceRequest } from "../models/request/identity-token/device.request";
 import { PasswordTokenRequest } from "../models/request/identity-token/password-token.request";
@@ -127,6 +127,7 @@ export abstract class LogInStrategy {
     const result = new AuthResult();
     result.resetMasterPassword = response.resetMasterPassword;
     result.forcePasswordReset = response.forcePasswordReset;
+    result.enforceMasterPasswordPolicyOnLogin = response.enforceMasterPasswordPolicyOnLogin;
 
     await this.saveAccountInformation(response);
 
