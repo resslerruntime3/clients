@@ -1,4 +1,4 @@
-# Runs on review of Pull Requests
+# Runs creation of Pull Requests
 # If the PR destination branch is master, add a needs-qa label
 ---
 name: Label Issue Pull Request
