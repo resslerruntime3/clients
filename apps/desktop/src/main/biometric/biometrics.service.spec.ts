@@ -12,7 +12,12 @@ import BiometricWindowsMain from "./biometric.windows.main";
 import { BiometricsService } from "./biometrics.service";
 import { BiometricsServiceAbstraction } from "./biometrics.service.abstraction";
 
-jest.mock("@bitwarden/desktop-native");
+jest.mock("@bitwarden/desktop-native", () => {
+  return {
+    biometrics: jest.fn(),
+    passwords: jest.fn(),
+  };
+});
 
 describe("biometrics tests", function () {
   const i18nService = mock<I18nService>();
