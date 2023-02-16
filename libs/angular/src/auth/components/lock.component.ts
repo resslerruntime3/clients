@@ -9,7 +9,10 @@ import { EnvironmentService } from "@bitwarden/common/abstractions/environment.s
 import { I18nService } from "@bitwarden/common/abstractions/i18n.service";
 import { LogService } from "@bitwarden/common/abstractions/log.service";
 import { MessagingService } from "@bitwarden/common/abstractions/messaging.service";
+import { PasswordGenerationService } from "@bitwarden/common/abstractions/passwordGeneration.service";
 import { PlatformUtilsService } from "@bitwarden/common/abstractions/platformUtils.service";
+import { PolicyApiServiceAbstraction } from "@bitwarden/common/abstractions/policy/policy-api.service.abstraction";
+import { InternalPolicyService } from "@bitwarden/common/abstractions/policy/policy.service.abstraction";
 import { StateService } from "@bitwarden/common/abstractions/state.service";
 import { VaultTimeoutService } from "@bitwarden/common/abstractions/vaultTimeout/vaultTimeout.service";
 import { VaultTimeoutSettingsService } from "@bitwarden/common/abstractions/vaultTimeout/vaultTimeoutSettings.service";
@@ -17,9 +20,15 @@ import { KeyConnectorService } from "@bitwarden/common/auth/abstractions/key-con
 import { SecretVerificationRequest } from "@bitwarden/common/auth/models/request/secret-verification.request";
 import { HashPurpose } from "@bitwarden/common/enums/hashPurpose";
 import { KeySuffixOptions } from "@bitwarden/common/enums/keySuffixOptions";
+import { PolicyType } from "@bitwarden/common/enums/policyType";
 import { Utils } from "@bitwarden/common/misc/utils";
+import { PolicyData } from "@bitwarden/common/models/data/policy.data";
 import { EncString } from "@bitwarden/common/models/domain/enc-string";
 import { SymmetricCryptoKey } from "@bitwarden/common/models/domain/symmetric-crypto-key";
+import { ListResponse } from "@bitwarden/common/models/response/list.response";
+import { PolicyResponse } from "@bitwarden/common/models/response/policy.response";
+
+import { UpdatePasswordReason } from "./update-temp-password.component";
 
 @Directive()
 export class LockComponent implements OnInit, OnDestroy {
@@ -36,6 +45,7 @@ export class LockComponent implements OnInit, OnDestroy {
   hideInput: boolean;
 
   protected successRoute = "vault";
+  protected forcePasswordResetRoute = "update-temp-password";
   protected onSuccessfulSubmit: () => Promise<void>;
 
   private invalidPinAttempts = 0;
@@ -56,7 +66,10 @@ export class LockComponent implements OnInit, OnDestroy {
     protected apiService: ApiService,
     protected logService: LogService,
     private keyConnectorService: KeyConnectorService,
-    protected ngZone: NgZone
+    protected ngZone: NgZone,
+    protected policyApiService: PolicyApiServiceAbstraction,
+    protected policyService: InternalPolicyService,
+    protected passwordGenerationService: PasswordGenerationService
   ) {}
 
   async ngOnInit() {
@@ -251,6 +264,18 @@ export class LockComponent implements OnInit, OnDestroy {
     const disableFavicon = await this.stateService.getDisableFavicon();
     await this.stateService.setDisableFavicon(!!disableFavicon);
     this.messagingService.send("unlocked");
+
+    const [requiresChange, orgId] = await this.requirePasswordChange();
+    if (requiresChange) {
+      this.router.navigate([this.forcePasswordResetRoute], {
+        queryParams: {
+          reason: UpdatePasswordReason.WeakMasterPasswordOnLogin,
+          orgId,
+        },
+      });
+      return;
+    }
+
     if (this.onSuccessfulSubmit != null) {
       await this.onSuccessfulSubmit();
     } else if (this.router != null) {
@@ -282,5 +307,64 @@ export class LockComponent implements OnInit, OnDestroy {
     const vaultUrl =
       webVaultUrl === "https://vault.bitwarden.com" ? "https://bitwarden.com" : webVaultUrl;
     this.webVaultHostname = Utils.getHostname(vaultUrl);
+  }
+
+  /**
+   * Checks if the master password meets the requirements of all organizations
+   * If not, returns false and the ID of the first organization that the password doesn't
+   * meet the requirements for
+   * @returns [requiresChange, failedOrgId?]
+   */
+  private async requirePasswordChange(): Promise<[boolean, string?]> {
+    const passwordStrength = this.passwordGenerationService.passwordStrength(
+      this.masterPassword,
+      this.getPasswordStrengthUserInput()
+    )?.score;
+
+    // Must fetch policies from the API because we have not synced yet
+    const policiesResponse = await this.policyApiService.getAllPolicies();
+
+    // Only care about enabled, master password policies, with enforce on login enabled
+    const policies = this.policyService
+      .mapPoliciesFromToken(policiesResponse)
+      .filter((p) => p.type === PolicyType.MasterPassword && p.enabled && p.data.enforceOnLogin);
+
+    const [meetsRequirements, failedOrgId] = this.policyService.evaluateMasterPasswordByEachPolicy(
+      passwordStrength,
+      this.masterPassword,
+      policies
+    );
+
+    // Password meets the requirements of all required organizations
+    if (meetsRequirements) {
+      return [false];
+    }
+
+    // Password doesn't meet the requirements for all organizations
+    // Save the policies and return true to force navigation to update password page
+    await this.savePolicies(policiesResponse);
+
+    return [true, failedOrgId];
+  }
+
+  protected getPasswordStrengthUserInput() {
+    let userInput: string[] = [];
+    const atPosition = this.email.indexOf("@");
+    if (atPosition > -1) {
+      userInput = userInput.concat(
+        this.email
+          .substr(0, atPosition)
+          .trim()
+          .toLowerCase()
+          .split(/[^A-Za-z0-9]/)
+      );
+    }
+    return userInput;
+  }
+
+  protected async savePolicies(policyResponse: ListResponse<PolicyResponse>) {
+    const policiesData: { [id: string]: PolicyData } = {};
+    policyResponse.data.map((p) => (policiesData[p.id] = new PolicyData(p)));
+    await this.policyService.replace(policiesData);
   }
 }
