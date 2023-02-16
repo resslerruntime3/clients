@@ -12,6 +12,7 @@ on:
 
 jobs:
   add-needs-qa-label:
+    name: Add label
     runs-on: ubuntu-latest
     steps:
       - name: Add label to pull request
