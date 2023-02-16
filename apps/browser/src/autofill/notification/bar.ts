@@ -25,6 +25,7 @@ function load() {
     folder: chrome.i18n.getMessage("folder"),
     notificationAddSave: chrome.i18n.getMessage("notificationAddSave"),
     notificationAddDesc: chrome.i18n.getMessage("notificationAddDesc"),
+    notificationEdit: chrome.i18n.getMessage("edit"),
     notificationChangeSave: chrome.i18n.getMessage("notificationChangeSave"),
     notificationChangeDesc: chrome.i18n.getMessage("notificationChangeDesc"),
   };
@@ -44,6 +45,9 @@ function load() {
   const addButton = addTemplate.content.getElementById("add-save");
   addButton.textContent = i18n.notificationAddSave;
 
+  const addEditButton = addTemplate.content.getElementById("add-edit");
+  addEditButton.textContent = i18n.notificationEdit;
+
   addTemplate.content.getElementById("add-text").textContent = i18n.notificationAddDesc;
 
   // i18n for "Change" (update password) template
@@ -51,6 +55,9 @@ function load() {
 
   const changeButton = changeTemplate.content.getElementById("change-save");
   changeButton.textContent = i18n.notificationChangeSave;
+
+  const changeEditButton = changeTemplate.content.getElementById("change-edit");
+  changeEditButton.textContent = i18n.notificationEdit;
 
   changeTemplate.content.getElementById("change-text").textContent = i18n.notificationChangeDesc;
 
@@ -93,20 +100,28 @@ function handleTypeAdd(isVaultLocked: boolean) {
   setContent(document.getElementById("template-add") as HTMLTemplateElement);
 
   const addButton = document.getElementById("add-save");
-  const neverButton = document.getElementById("never-save");
-
   addButton.addEventListener("click", (e) => {
     e.preventDefault();
 
-    const folderId = (document.getElementById("select-folder") as HTMLSelectElement).value;
-
-    const bgAddSaveMessage = {
+    sendPlatformMessage({
       command: "bgAddSave",
-      folder: folderId,
-    };
-    sendPlatformMessage(bgAddSaveMessage);
+      folder: getSelectedFolder(),
+      edit: false,
+    });
   });
 
+  const editButton = document.getElementById("add-edit");
+  editButton.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    sendPlatformMessage({
+      command: "bgAddSave",
+      folder: getSelectedFolder(),
+      edit: true,
+    });
+  });
+
+  const neverButton = document.getElementById("never-save");
   neverButton.addEventListener("click", (e) => {
     e.preventDefault();
     sendPlatformMessage({
@@ -134,10 +149,20 @@ function handleTypeChange() {
   changeButton.addEventListener("click", (e) => {
     e.preventDefault();
 
-    const bgChangeSaveMessage = {
+    sendPlatformMessage({
       command: "bgChangeSave",
-    };
-    sendPlatformMessage(bgChangeSaveMessage);
+      edit: false,
+    });
+  });
+
+  const editButton = document.getElementById("change-edit");
+  editButton.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    sendPlatformMessage({
+      command: "bgChangeSave",
+      edit: true,
+    });
   });
 }
 
@@ -162,6 +187,10 @@ function fillSelectorWithFolders(folders: Jsonify<FolderView[]>) {
     // Select "No Folder" (id=null) folder by default
     select.appendChild(new Option(folder.name, folder.id || "", false));
   });
+}
+
+function getSelectedFolder(): string {
+  return (document.getElementById("select-folder") as HTMLSelectElement).value;
 }
 
 function adjustHeight() {

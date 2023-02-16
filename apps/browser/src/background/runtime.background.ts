@@ -56,19 +56,15 @@ export default class RuntimeBackground {
     }
   }
 
-  async processMessage(msg: any, sender: any, sendResponse: any) {
+  async processMessage(msg: any, sender: chrome.runtime.MessageSender, sendResponse: any) {
     switch (msg.command) {
       case "loggedIn":
       case "unlocked": {
         let item: LockedVaultPendingNotificationsItem;
 
         if (this.lockedVaultPendingNotifications?.length > 0) {
-          await BrowserApi.closeLoginTab();
-
           item = this.lockedVaultPendingNotifications.pop();
-          if (item.commandToRetry.sender?.tab?.id) {
-            await BrowserApi.focusSpecifiedTab(item.commandToRetry.sender.tab.id);
-          }
+          BrowserApi.closeBitwardenExtensionTab();
         }
 
         await this.main.refreshBadge();
@@ -104,7 +100,15 @@ export default class RuntimeBackground {
         await this.main.openPopup();
         break;
       case "promptForLogin":
-        await BrowserApi.createNewTab("popup/index.html?uilocation=popout", true, true);
+        BrowserApi.openBitwardenExtensionTab("popup/index.html", true, sender.tab);
+        break;
+      case "openAddEditCipher":
+        BrowserApi.openBitwardenExtensionTab("popup/index.html#/edit-cipher", true, sender.tab);
+        break;
+      case "closeTab":
+        setTimeout(() => {
+          BrowserApi.closeBitwardenExtensionTab();
+        }, msg.delay ?? 0);
         break;
       case "showDialogResolve":
         this.platformUtilsService.resolveDialogPromise(msg.dialogId, msg.confirmed);
@@ -183,11 +187,7 @@ export default class RuntimeBackground {
         const params =
           `webAuthnResponse=${encodeURIComponent(msg.data)};` +
           `remember=${encodeURIComponent(msg.remember)}`;
-        BrowserApi.createNewTab(
-          `popup/index.html?uilocation=popout#/2fa;${params}`,
-          undefined,
-          false
-        );
+        BrowserApi.openBitwardenExtensionTab(`popup/index.html#/2fa;${params}`, false);
         break;
       }
       case "reloadPopup":

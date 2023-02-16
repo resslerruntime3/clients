@@ -149,16 +149,22 @@ export class AddEditComponent extends BaseAddEditComponent {
   }
 
   async submit(): Promise<boolean> {
-    if (await super.submit()) {
-      if (this.cloneMode) {
-        this.router.navigate(["/tabs/vault"]);
-      } else {
-        this.location.back();
-      }
+    const success = await super.submit();
+    if (!success) {
+      return false;
+    }
+
+    if (this.popupUtilsService.inTab(window)) {
+      this.messagingService.send("closeTab", { delay: 1000 });
       return true;
     }
 
-    return false;
+    if (this.cloneMode) {
+      this.router.navigate(["/tabs/vault"]);
+    } else {
+      this.location.back();
+    }
+    return true;
   }
 
   attachments() {
@@ -184,6 +190,12 @@ export class AddEditComponent extends BaseAddEditComponent {
 
   cancel() {
     super.cancel();
+
+    if (this.popupUtilsService.inTab(window)) {
+      this.messagingService.send("closeTab");
+      return;
+    }
+
     this.location.back();
   }
 
