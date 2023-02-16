@@ -169,7 +169,7 @@ export class LoginWithDeviceComponent
   }
 
   private async buildAuthRequest() {
-    this.authRequestKeyPair = await this.cryptoFunctionService.rsaGenerateKeyPair(2048);
+    this.authRequestKeyPair = await this.cryptoFunctionService.rsaGenerateKeyPair(2048); //change
     const fingerprint = await (
       await this.cryptoService.getFingerprint(this.email, this.authRequestKeyPair[0])
     ).join("-");
