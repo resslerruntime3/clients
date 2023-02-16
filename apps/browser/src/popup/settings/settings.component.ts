@@ -169,6 +169,16 @@ export class SettingsComponent implements OnInit {
         takeUntil(this.destroy$)
       )
       .subscribe();
+
+    this.form.controls.biometric.valueChanges
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((enabled) => {
+        if (enabled) {
+          this.form.controls.enableAutoBiometricsPrompt.enable();
+        } else {
+          this.form.controls.enableAutoBiometricsPrompt.disable();
+        }
+      });
   }
 
   async saveVaultTimeout(newValue: number) {
