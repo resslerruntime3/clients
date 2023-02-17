@@ -48,8 +48,8 @@ export class RoutedVaultFilterBridge implements VaultFilter {
     this.bridgeService.navigate({
       ...this.routedFilter,
       organizationId: value.node.id,
-      folderId: null,
-      collectionId: null,
+      folderId: undefined,
+      collectionId: undefined,
     });
   }
   get selectedCipherTypeNode(): TreeNode<CipherTypeFilter> {
@@ -59,9 +59,9 @@ export class RoutedVaultFilterBridge implements VaultFilter {
     if (value?.node.id === "AllItems") {
       this.bridgeService.navigate({
         ...this.routedFilter,
-        type: null,
-        folderId: null,
-        collectionId: null,
+        type: undefined,
+        folderId: undefined,
+        collectionId: undefined,
       });
       return;
     }
@@ -69,8 +69,8 @@ export class RoutedVaultFilterBridge implements VaultFilter {
     this.bridgeService.navigate({
       ...this.routedFilter,
       type: value.node.id,
-      folderId: null,
-      collectionId: null,
+      folderId: undefined,
+      collectionId: undefined,
     });
   }
   get selectedFolderNode(): TreeNode<FolderFilter> {
@@ -81,8 +81,8 @@ export class RoutedVaultFilterBridge implements VaultFilter {
       this.bridgeService.navigate({
         ...this.routedFilter,
         folderId: Unassigned,
-        type: null,
-        collectionId: null,
+        type: undefined,
+        collectionId: undefined,
       });
       return;
     }
@@ -90,8 +90,8 @@ export class RoutedVaultFilterBridge implements VaultFilter {
     this.bridgeService.navigate({
       ...this.routedFilter,
       folderId: value.node.id,
-      type: null,
-      collectionId: null,
+      type: undefined,
+      collectionId: undefined,
     });
   }
   get selectedCollectionNode(): TreeNode<CollectionFilter> {
@@ -102,16 +102,16 @@ export class RoutedVaultFilterBridge implements VaultFilter {
       this.bridgeService.navigate({
         ...this.routedFilter,
         collectionId: Unassigned,
-        type: null,
-        folderId: null,
+        type: undefined,
+        folderId: undefined,
       });
       return;
     }
 
     this.bridgeService.navigate({
       ...this.routedFilter,
-      type: null,
-      folderId: null,
+      type: undefined,
+      folderId: undefined,
       collectionId: value.node.id,
     });
   }
@@ -142,14 +142,14 @@ export class RoutedVaultFilterBridge implements VaultFilter {
   resetFilter(): void {
     this.bridgeService.navigate({
       ...this.routedFilter,
-      collectionId: null,
-      folderId: null,
-      organizationId: null,
-      type: null,
+      collectionId: undefined,
+      folderId: undefined,
+      organizationId: undefined,
+      type: undefined,
     });
   }
   resetOrganization(): void {
-    this.bridgeService.navigate({ ...this.routedFilter, organizationId: null });
+    this.bridgeService.navigate({ ...this.routedFilter, organizationId: undefined });
   }
   buildFilter(): VaultFilterFunction {
     return this.legacyFilter.buildFilter();
