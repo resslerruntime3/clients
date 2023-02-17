@@ -4,10 +4,21 @@ import { combineLatest, map, Observable, Subject, takeUntil } from "rxjs";
 
 import { RoutedVaultFilterModel } from "../shared/models/routed-vault-filter.model";
 
+/**
+ * This service is an abstraction layer on top of ActivatedRoute that
+ * encapsulates the logic of how filters are stored in the URL.
+ *
+ * The service builds and emits filter models based on URL params and
+ * also contains a method for generating routes to corresponding to those params.
+ */
 @Injectable()
 export class RoutedVaultFilterService implements OnDestroy {
   private onDestroy = new Subject<void>();
 
+  /**
+   * Filter values extracted from the URL.
+   * To change the values use {@link RoutedVaultFilterService.createRoute}.
+   */
   filter$: Observable<RoutedVaultFilterModel>;
 
   constructor(activatedRoute: ActivatedRoute) {
@@ -27,6 +38,13 @@ export class RoutedVaultFilterService implements OnDestroy {
     );
   }
 
+  /**
+   * Create a route that can be used with Router or RouterLink.
+   * To subscribe to changes use {@link RoutedVaultFilterService.filter$}
+   *
+   * @param filter Filter values that should be applied to the URL.
+   * @returns route that can be used with Router or RouterLink
+   */
   createRoute(filter: RoutedVaultFilterModel): { commands: any[]; extras?: NavigationExtras } {
     return {
       commands: [],

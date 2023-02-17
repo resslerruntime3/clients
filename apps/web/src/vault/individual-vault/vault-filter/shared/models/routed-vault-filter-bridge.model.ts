@@ -13,6 +13,16 @@ import {
   CipherStatus,
 } from "./vault-filter.type";
 
+/**
+ * This file is part of a layer that is used to temporary bridge between URL filtering and the old state-in-code method.
+ * This should be removed after we have refactored the {@link VaultItemsComponent} and introduced vertical navigation
+ * (which will refactor the {@link VaultFilterComponent}).
+ *
+ * This model supplies legacy code with the old state-in-code models saved as tree nodes.
+ * It can also receive requests to select a new tree node by using setters.
+ * However instead of just replacing the tree node models, it requests a URL navigation,
+ * thereby bridging between legacy and URL filtering.
+ */
 export class RoutedVaultFilterBridge implements VaultFilter {
   constructor(
     private routedFilter: RoutedVaultFilterModel,

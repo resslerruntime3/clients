@@ -12,6 +12,15 @@ import { CipherTypeFilter } from "../shared/models/vault-filter.type";
 import { VaultFilterService } from "./abstractions/vault-filter.service";
 import { RoutedVaultFilterService } from "./routed-vault-filter.service";
 
+/**
+ * This file is part of a layer that is used to temporary bridge between URL filtering and the old state-in-code method.
+ * This should be removed after we have refactored the {@link VaultItemsComponent} and introduced vertical navigation
+ * (which will refactor the {@link VaultFilterComponent}).
+ *
+ * This class listens to both the new {@link RoutedVaultFilterService} and the old {@link VaultFilterService}.
+ * When a new filter is emitted the service uses the ids to find the corresponding tree nodes needed for
+ * the old {@link VaultFilter} model. It then emits a bridge model that contains this information.
+ */
 @Injectable()
 export class RoutedVaultFilterBridgeService {
   readonly activeFilter$: Observable<VaultFilter>;
