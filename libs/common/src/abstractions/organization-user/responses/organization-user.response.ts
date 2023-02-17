@@ -10,7 +10,9 @@ export class OrganizationUserResponse extends BaseResponse {
   userId: string;
   type: OrganizationUserType;
   status: OrganizationUserStatusType;
+  externalId: string;
   accessAll: boolean;
+  accessSecretsManager: boolean;
   permissions: PermissionsApi;
   resetPasswordEnrolled: boolean;
   collections: SelectionReadOnlyResponse[] = [];
@@ -23,7 +25,9 @@ export class OrganizationUserResponse extends BaseResponse {
     this.type = this.getResponseProperty("Type");
     this.status = this.getResponseProperty("Status");
     this.permissions = new PermissionsApi(this.getResponseProperty("Permissions"));
+    this.externalId = this.getResponseProperty("ExternalId");
     this.accessAll = this.getResponseProperty("AccessAll");
+    this.accessSecretsManager = this.getResponseProperty("AccessSecretsManager");
     this.resetPasswordEnrolled = this.getResponseProperty("ResetPasswordEnrolled");
 
     const collections = this.getResponseProperty("Collections");

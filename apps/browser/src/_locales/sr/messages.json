@@ -430,7 +430,14 @@
     "message": "Поновно уписивање главне лозинке је неопходно."
   },
   "masterPasswordMinlength": {
-    "message": "Главна лозинка треба имати барем 8 карактера."
+    "message": "Master password must be at least $VALUE$ characters long.",
+    "description": "The Master Password must be at least a specific number of characters long.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
   },
   "masterPassDoesntMatch": {
     "message": "Потврда главне лозинке се не подудара."
@@ -960,7 +967,10 @@
     "message": "Ако се открије образац за пријаву, извршите аутоматско попуњавање када се веб страница учита."
   },
   "experimentalFeature": {
-    "message": "Ово је тренутно експериментална способност. Користите на властиту одговорност."
+    "message": "Compromised or untrusted websites can exploit auto-fill on page load."
+  },
+  "learnMoreAboutAutofill": {
+    "message": "Сазнајте више о ауто-пуњење"
   },
   "defaultAutoFillOnPageLoad": {
     "message": "Подразумевано подешавање аутопуњења за пријаве"
@@ -2047,6 +2057,30 @@
   "rememberEmail": {
     "message": "Запамти имејл"
   },
+  "loginWithDevice": {
+    "message": "Пријавите се са уређајем"
+  },
+  "loginWithDeviceEnabledInfo": {
+    "message": "Пријава помоћу уређаја мора бити подешена у подешавањима Bitwarden апликације. Потребна је друга опција?"
+  },
+  "fingerprintPhraseHeader": {
+    "message": "Сигурносна фраза сефа"
+  },
+  "fingerprintMatchInfo": {
+    "message": "Уверите се да је ваш сеф откључан и да се фраза отиска прста подудара на другом уређају."
+  },
+  "resendNotification": {
+    "message": "Поново послати обавештење"
+  },
+  "viewAllLoginOptions": {
+    "message": "Погледајте сав извештај у опције"
+  },
+  "notificationSentDevice": {
+    "message": "Обавештење је послато на ваш уређај."
+  },
+  "logInInitiated": {
+    "message": "Пријава је покренута"
+  },
   "exposedMasterPassword": {
     "message": "Exposed Master Password"
   },
@@ -2076,5 +2110,26 @@
         "example": "14"
       }
     }
+  },
+  "tryAutofillPageLoad": {
+    "message": "Пробај Аутоматско попуњавање наконг учитавања странице?"
+  },
+  "tryAutofill": {
+    "message": "Како ауто-попуњавати"
+  },
+  "autofillPageLoadInfo": {
+    "message": "Обрасци за пријаву ће аутоматски бити попуњени одговарајућим акредитивима ако укључите аутоматско попуњавање при учитавању странице."
+  },
+  "autofillSelectInfo": {
+    "message": "Изаберите ставку са ове странице да бисте аутоматски попунили образац из активне картице."
+  },
+  "autofillTurnedOn": {
+    "message": "Аутоматско попуњавање при учитавању странице је укључено"
+  },
+  "turnOn": {
+    "message": "Укључи"
+  },
+  "notNow": {
+    "message": "Не сада"
   }
 }

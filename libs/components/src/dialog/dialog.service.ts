@@ -18,8 +18,8 @@ import {
 import { NavigationEnd, Router } from "@angular/router";
 import { filter, Subject, switchMap, takeUntil } from "rxjs";
 
-import { AuthService } from "@bitwarden/common/abstractions/auth.service";
-import { AuthenticationStatus } from "@bitwarden/common/enums/authenticationStatus";
+import { AuthService } from "@bitwarden/common/auth/abstractions/auth.service";
+import { AuthenticationStatus } from "@bitwarden/common/auth/enums/authentication-status";
 
 import { SimpleDialogOptions } from "./simple-configurable-dialog/models/simple-dialog-options";
 import { SimpleConfigurableDialogComponent } from "./simple-configurable-dialog/simple-configurable-dialog.component";
@@ -33,7 +33,8 @@ export class DialogService extends Dialog implements OnDestroy {
     "tw-bg-black",
     "tw-bg-opacity-30",
     "tw-inset-0",
-    "tw-z-40",
+    // CDK dialog panels have a default z-index of 1000. Matching this allows us to easily stack dialogs.
+    "tw-z-[1000]",
   ];
 
   constructor(

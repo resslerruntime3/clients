@@ -697,7 +697,14 @@
     "message": "نوشتن مجدد کلمه عبور اصلی ضروری است."
   },
   "masterPasswordMinlength": {
-    "message": "طول کلمه عبور اصلی باید حداقل ۸ کاراکتر باشد."
+    "message": "Master password must be at least $VALUE$ characters long.",
+    "description": "The Master Password must be at least a specific number of characters long.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
   },
   "masterPassDoesntMatch": {
     "message": "کلمه عبور اصلی با تکرار آن مطابقت ندارد."
@@ -1157,6 +1164,19 @@
       }
     }
   },
+  "kdfMemory": {
+    "message": "حافظه‌ی KDF (MB)",
+    "description": "Memory refers to computer memory (RAM). MB is short for megabytes."
+  },
+  "argon2Warning": {
+    "message": "تنظیم تکرارهای KDF، حافظه و موازی سازی بیش از حد می‌تواند منجر به عملکرد ضعیف هنگام ورود به Bitwarden (و باز کردن قفل) در دستگاه های کندتر یا قدیمی تر شود. توصیه می‌کنیم این موارد را به صورت جداگانه و با افزایش های کوچک تغییر دهید و سپس همه دستگاه های خود را آزمایش کنید."
+  },
+  "kdfParallelism": {
+    "message": "موازی سازی KDF"
+  },
+  "argon2Desc": {
+    "message": "تکرارهای KDF بالاتر، حافظه و موازی سازی می‌تواند به محافظت از کلمه عبور اصلی شما در برابر حمله بروت فورث توسط مهاجم کمک کند."
+  },
   "changeKdf": {
     "message": "تغییر KDF"
   },
@@ -1234,6 +1254,9 @@
   },
   "importSuccess": {
     "message": "داده‌ها با موفقیت درون ریزی شد"
+  },
+  "dataExportSuccess": {
+    "message": "Data successfully exported"
   },
   "importWarning": {
     "message": "شما در حال درون ریزی داده به $ORGANIZATION$ هستید. داده‌های شما ممکن است با اعضای این سازمان به اشتراک گذاشته شود. آیا می‌خواهید ادامه دهید؟",
@@ -2043,6 +2066,9 @@
   },
   "manageSubscription": {
     "message": "مدیریت اشتراک"
+  },
+  "launchCloudSubscription": {
+    "message": "اشتراک Cloud را راه اندازی کنید"
   },
   "storage": {
     "message": "حافظه"
@@ -5225,9 +5251,6 @@
   "billingSyncApiKeyRotated": {
     "message": "توکن چرخانده شد"
   },
-  "billingSync": {
-    "message": "همگام‌سازی صورتحساب"
-  },
   "billingSyncDesc": {
     "message": "همگام‌سازی صورتحساب با پیوند دادن Bitwarden خود میزبان شما به سرور ابری Bitwarden، برنامه‌های خانواده رایگان را برای اعضا و قابلیت‌های پیشرفته صورتحساب ارائه می‌کند."
   },
@@ -5278,6 +5301,15 @@
   },
   "required": {
     "message": "الزامی است"
+  },
+  "characterMaximum": {
+    "message": "حداکثر کاراکتر $MAX$",
+    "placeholders": {
+      "max": {
+        "content": "$1",
+        "example": "100"
+      }
+    }
   },
   "idpSingleSignOnServiceUrlRequired": {
     "message": "اگر شناسه موجودیت یک نشانی اینترنتی نباشد، الزامی است."
@@ -5648,6 +5680,9 @@
   "customColor": {
     "message": "رنگ سفارشی"
   },
+  "selectPlaceholder": {
+    "message": "-- انتخاب --"
+  },
   "multiSelectPlaceholder": {
     "message": "-- برای فیلتر تایپ کنید --"
   },
@@ -5698,11 +5733,8 @@
   "secretProjectAssociationDescription": {
     "message": "پروژه هایی را انتخاب کنید که راز با آن‌ها مرتبط باشد. فقط کاربران سازمانی که به این پروژه ها دسترسی دارند می‌توانند این راز را ببینند."
   },
-  "typeOrSelectProjects": {
-    "message": "پروژه ها را تایپ یا انتخاب کنید"
-  },
-  "typeOrSelectProject": {
-    "message": "پروژه را تایپ یا انتخاب کنید"
+  "selectProjects": {
+    "message": "انتخاب پروژه‌ها"
   },
   "project": {
     "message": "پروژه"
@@ -5923,6 +5955,16 @@
   "revokeAccessToken": {
     "message": "لغو دسترسی به توکن"
   },
+  "revokeAccessTokens": {
+    "message": "Revoke access tokens"
+  },
+  "revokeAccessTokenDesc": {
+    "message": "Revoking access tokens is permanent and irreversible."
+  },
+  "accessTokenRevoked": {
+    "message": "Access tokens revoked",
+    "description": "Toast message after deleting one or multiple access tokens."
+  },
   "submenu": {
     "message": "زیرمنو"
   },
@@ -5977,6 +6019,9 @@
   "collection": {
     "message": "مجموعه"
   },
+  "noCollection": {
+    "message": "مجموعه ای وجود ندارد"
+  },
   "canView": {
     "message": "می‌تواند مشاهده کند"
   },
@@ -6006,6 +6051,135 @@
   },
   "memberAccessAll": {
     "message": "این عضو می‌تواند به همه موارد دسترسی داشته باشد و آن‌ها را تغییر دهد."
+  },
+  "domainVerification": {
+    "message": "Domain verification"
+  },
+  "newDomain": {
+    "message": "New domain"
+  },
+  "noDomains": {
+    "message": "No domains"
+  },
+  "noDomainsSubText": {
+    "message": "Connecting a domain allows members to skip the SSO identifier field during Login with SSO."
+  },
+  "verifyDomain": {
+    "message": "Verify domain"
+  },
+  "reverifyDomain": {
+    "message": "Reverify domain"
+  },
+  "copyDnsTxtRecord": {
+    "message": "Copy DNS TXT record"
+  },
+  "dnsTxtRecord": {
+    "message": "DNS TXT record"
+  },
+  "dnsTxtRecordInputHint": {
+    "message": "Copy and paste the TXT record into your DNS Provider."
+  },
+  "domainNameInputHint": {
+    "message": "Example: mydomain.com. Subdomains require separate entries to be verified."
+  },
+  "automaticDomainVerification": {
+    "message": "Automatic Domain Verification"
+  },
+  "automaticDomainVerificationProcess": {
+    "message": "Bitwarden will attempt to verify the domain 3 times during the first 72 hours. If the domain can’t be verified, check the DNS record in your host and manually verify. The domain will be removed from your organization in 7 days if it is not verified"
+  },
+  "invalidDomainNameMessage": {
+    "message": "Input is not a valid format. Format: mydomain.com. Subdomains require separate entries to be verified."
+  },
+  "removeDomain": {
+    "message": "Remove domain"
+  },
+  "removeDomainWarning": {
+    "message": "Removing a domain cannot be undone. Are you sure you want to continue?"
+  },
+  "domainRemoved": {
+    "message": "Domain removed"
+  },
+  "domainSaved": {
+    "message": "Domain saved"
+  },
+  "domainVerified": {
+    "message": "Domain verified"
+  },
+  "duplicateDomainError": {
+    "message": "You can't claim the same domain twice."
+  },
+  "domainNotAvailable": {
+    "message": "Someone else is using $DOMAIN$. Use a different domain to continue.",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainNotVerified": {
+    "message": "$DOMAIN$ not verified. Check your DNS record.",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainStatusVerified": {
+    "message": "Verified"
+  },
+  "domainStatusUnverified": {
+    "message": "Unverified"
+  },
+  "domainNameTh": {
+    "message": "Name"
+  },
+  "domainStatusTh": {
+    "message": "Status"
+  },
+  "lastChecked": {
+    "message": "Last checked"
+  },
+  "domainFormInvalid": {
+    "message": "There are form errors that need your attention"
+  },
+  "addedDomain": {
+    "message": "Added domain $DOMAIN$",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "removedDomain": {
+    "message": "Removed domain $DOMAIN$",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainVerifiedEvent": {
+    "message": "$DOMAIN$ verified",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainNotVerifiedEvent": {
+    "message": "$DOMAIN$ not verified",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
   },
   "membersColumnHeader": {
     "message": "عضو/گروه"
@@ -6082,13 +6256,140 @@
       }
     }
   },
+  "server": {
+    "message": "Server"
+  },
+  "exportData": {
+    "message": "Export data"
+  },
+  "exportingOrganizationSecretDataTitle": {
+    "message": "Exporting Organization Secret Data"
+  },
+  "exportingOrganizationSecretDataDescription": {
+    "message": "Only the Secrets Manager data associated with $ORGANIZATION$ will be exported. Items in other products or from other organizations will not be included.",
+    "placeholders": {
+      "ORGANIZATION": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "fileUpload": {
+    "message": "File upload"
+  },
+  "acceptedFormats": {
+    "message": "Accepted Formats:"
+  },
+  "copyPasteImportContents": {
+    "message": "Copy & paste import contents:"
+  },
+  "or": {
+    "message": "or"
+  },
+  "licenseAndBillingManagement": {
+    "message": "مدیریت مجوز و صورتحساب"
+  },
+  "automaticSync": {
+    "message": "همگام‌سازی خودکار"
+  },
+  "manualUpload": {
+    "message": "آپلود دستی"
+  },
+  "manualUploadDesc": {
+    "message": "اگر نمی‌خواهید همگام‌سازی صورتحساب را انتخاب کنید، مجوز خود را به‌صورت دستی در اینجا آپلود کنید."
+  },
+  "syncLicense": {
+    "message": "مجوز همگام‌سازی"
+  },
+  "licenseSyncSuccess": {
+    "message": "مجوز همگام‌سازی با موفقیت انجام شد"
+  },
+  "licenseUploadSuccess": {
+    "message": "مجوز با موفقیت بارگذاری شد"
+  },
+  "lastLicenseSync": {
+    "message": "آخرین همگام‌سازی مجوز"
+  },
+  "billingSyncHelp": {
+    "message": "راهنمای همگام‌سازی صورتحساب"
+  },
+  "uploadLicense": {
+    "message": "بارگذاری مجوز"
+  },
+  "projectPeopleDescription": {
+    "message": "به گروه‌ها یا افراد اجازه دسترسی به این پروژه را بدهید."
+  },
+  "projectPeopleSelectHint": {
+    "message": "افراد یا گروه‌ها را تایپ یا انتخاب کنید"
+  },
+  "projectServiceAccountsDescription": {
+    "message": "به حساب‌های خدماتی اجازه دسترسی به این پروژه را بدهید."
+  },
+  "projectServiceAccountsSelectHint": {
+    "message": "حساب‌های سرویس را تایپ یا انتخاب کنید"
+  },
+  "projectEmptyPeopleAccessPolicies": {
+    "message": "برای شروع همکاری افراد یا گروه‌ها را اضافه کنید"
+  },
+  "projectEmptyServiceAccountAccessPolicies": {
+    "message": "برای اعطای دسترسی، حساب‌های سرویس اضافه کنید"
+  },
+  "canWrite": {
+    "message": "می‌توان نوشت"
+  },
+  "canReadWrite": {
+    "message": "می‌توان خواند، نوشت"
+  },
+  "groupSlashUser": {
+    "message": "گروه/کاربر"
+  },
   "lowKdfIterations": {
-    "message": "Low KDF Iterations"
+    "message": "تکرار KDF کم"
   },
   "lowKdfIterationsDesc": {
-    "message": "Increase your KDF encryption settings to improve the security of your account."
+    "message": "تنظیمات رمزگذاری KDF خود را برای بهبود امنیت حساب خود افزایش دهید."
   },
   "changeKdfSettings": {
-    "message": "Change KDF settings"
+    "message": "تغییر تنظیمات KDF"
+  },
+  "changeKdfLoggedOutWarning": {
+    "message": "ادامه، شما را از نشست فعلی خارج می‌کند و باید دوباره وارد سیستم شوید. نشست‌های فعال در دستگاه‌های دیگر ممکن است تا یک ساعت فعال بمانند. توصیه می‌کنیم قبل از تغییر تنظیمات رمزگذاری برای جلوگیری از دست رفتن داده‌ها، گاوصندوق خود را برون ریزی کنید."
+  },
+  "secretsManagerBeta": {
+    "message": "بتا مدیر اسرار"
+  },
+  "secretsManagerBetaDesc": {
+    "message": "در طول برنامه بتا، دسترسی کاربر به مدیر اسرار را بدون هیچ هزینه ای فعال کنید."
+  },
+  "userAccessSecretsManager": {
+    "message": "این کاربر می‌تواند به بتای مدیر اسرار دسترسی داشته باشد"
+  },
+  "important": {
+    "message": "Important:"
+  },
+  "viewAll": {
+    "message": "View all"
+  },
+  "showingPortionOfTotal": {
+    "message": "Showing $PORTION$ of $TOTAL$",
+    "placeholders": {
+      "portion": {
+        "content": "$1",
+        "example": "2"
+      },
+      "total": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "resolveTheErrorsBelowAndTryAgain": {
+    "message": "Resolve the errors below and try again."
+  },
+  "description": {
+    "message": "Description"
+  },
+  "errorReadingImportFile": {
+    "message": "An error occurred when trying to read the import file"
   }
 }

@@ -15,35 +15,13 @@
       (mainContentClicked)="toggle()"
       [hideActiveStyles]="true"
     >
-      <button
-        slot-end
-        bitIconButton="bwi-ellipsis-v"
-        [bitMenuTriggerFor]="orgSwitchMenu"
-        size="small"
-        [title]="'options' | i18n"
-        [attr.aria-label]="['organization' | i18n, org.name, 'options' | i18n].join(' ')"
-      ></button>
     </bit-nav-item>
   </ng-container>
   <bit-nav-item
+    *ngIf="!hideNewButton"
     icon="bwi-plus"
     [text]="'newOrganization' | i18n"
     route="/create-organization"
   ></bit-nav-item>
   <bit-nav-divider></bit-nav-divider>
 </bit-nav-group>
-
-<bit-menu #orgSwitchMenu>
-  <button type="button" bitMenuItem>
-    <i class="bwi bwi-fw bwi-key tw-text-xl" aria-hidden="true"></i>
-    <span>{{ "enrollPasswordReset" | i18n }}</span>
-  </button>
-  <button type="button" bitMenuItem>
-    <i class="bwi bwi-fw bwi-link tw-text-xl" aria-hidden="true"></i>
-    <span>{{ "linkSso" | i18n }}</span>
-  </button>
-  <button type="button" bitMenuItem>
-    <i class="bwi bwi-fw bwi-sign-out tw-text-xl tw-text-danger" aria-hidden="true"></i>
-    <span class="tw-text-danger">{{ "leaveOrganization" | i18n }}</span>
-  </button>
-</bit-menu>

@@ -430,7 +430,14 @@
     "message": "Vyžaduje sa opätovné zadanie hlavného hesla."
   },
   "masterPasswordMinlength": {
-    "message": "Hlavné heslo musí obsahovať aspoň 8 znakov."
+    "message": "Master password must be at least $VALUE$ characters long.",
+    "description": "The Master Password must be at least a specific number of characters long.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
   },
   "masterPassDoesntMatch": {
     "message": "Potvrdenie hlavného hesla sa nezhoduje."
@@ -543,7 +550,7 @@
     "message": "Naozaj chcete odstrániť túto položku?"
   },
   "deletedItem": {
-    "message": "Odstránená položka"
+    "message": "Položka odstránená"
   },
   "overwritePassword": {
     "message": "Prepísať heslo"
@@ -960,7 +967,10 @@
     "message": "Ak je detekovaný prihlasovací formulár, automaticky vykonať vypĺňanie pri načítaní stránky."
   },
   "experimentalFeature": {
-    "message": "Toto je zatiaľ experimentálna funkcia. Použite na vlastné riziko."
+    "message": "Skompromitované alebo nedôveryhodné stránky môžu pri svojom načítaní zneužiť automatické dopĺňanie."
+  },
+  "learnMoreAboutAutofill": {
+    "message": "Dozvedieť sa viac o automatickom dopĺňaní"
   },
   "defaultAutoFillOnPageLoad": {
     "message": "Predvolené nastavenie automatického vypĺňania pre prihlasovacie položky"
@@ -2047,6 +2057,30 @@
   "rememberEmail": {
     "message": "Zapamätať si e-mail"
   },
+  "loginWithDevice": {
+    "message": "Prihlásiť pomocou zariadenia"
+  },
+  "loginWithDeviceEnabledInfo": {
+    "message": "Prihlásenie pomocou zariadenia musí byť nastavené v nastaveniach aplikácie Bitwarden. Potrebujete inú možnosť?"
+  },
+  "fingerprintPhraseHeader": {
+    "message": "Fráza odtlačku prsta"
+  },
+  "fingerprintMatchInfo": {
+    "message": "Uistite sa, že je váš trezor odomknutý a fráza odtlačku prsta sa zhoduje s frázou na druhom zariadení."
+  },
+  "resendNotification": {
+    "message": "Znova odoslať upozornenie"
+  },
+  "viewAllLoginOptions": {
+    "message": "Zobraziť všetky možnosti prihlásenia"
+  },
+  "notificationSentDevice": {
+    "message": "Do vášho zariadenia bolo odoslané upozornenie."
+  },
+  "logInInitiated": {
+    "message": "Iniciované prihlásenie"
+  },
   "exposedMasterPassword": {
     "message": "Odhalené hlavné heslo"
   },
@@ -2076,5 +2110,26 @@
         "example": "14"
       }
     }
+  },
+  "tryAutofillPageLoad": {
+    "message": "Chcete vyskúšať automatické vypĺňanie pri načítaní stránky?"
+  },
+  "tryAutofill": {
+    "message": "Ako používať automatické vypĺňanie"
+  },
+  "autofillPageLoadInfo": {
+    "message": "Ak zapnete automatické vyplňovanie pri načítaní stránky, prihlasovacie polia sa automaticky vyplnia zodpovedajúce povereniami."
+  },
+  "autofillSelectInfo": {
+    "message": "Výberom položky na tejto stránke automaticky vyplníte formulár aktívnej karty."
+  },
+  "autofillTurnedOn": {
+    "message": "Automatické vypĺňanie pri načítaní stránky zapnuté"
+  },
+  "turnOn": {
+    "message": "Zapnúť"
+  },
+  "notNow": {
+    "message": "Teraz nie"
   }
 }

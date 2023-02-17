@@ -697,7 +697,14 @@
     "message": "Поновно уписивање главне лозинке је неопходно."
   },
   "masterPasswordMinlength": {
-    "message": "Главна лозинка треба имати барем 8 карактера."
+    "message": "Master password must be at least $VALUE$ characters long.",
+    "description": "The Master Password must be at least a specific number of characters long.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
   },
   "masterPassDoesntMatch": {
     "message": "Потврђена Главна Лозинка се не подудара."
@@ -1157,6 +1164,19 @@
       }
     }
   },
+  "kdfMemory": {
+    "message": "KDF меморија (МБ)",
+    "description": "Memory refers to computer memory (RAM). MB is short for megabytes."
+  },
+  "argon2Warning": {
+    "message": "Постављање превисоких KDF итерација, меморија и паралелизам може резултирати лошим перформансама приликом пријављивања (и откључавања) Bitwarden-а на старим уређајима или са споријим процесорима. Препоручујемо вам да промените вредност у корацима, а затим тестирате све своје уређаје."
+  },
+  "kdfParallelism": {
+    "message": "KDF паралелизам"
+  },
+  "argon2Desc": {
+    "message": "Веће KDF итерације, меморија и паралелизам могу помоћи у заштити ваше главне лозинке од грубе присиле од стране нападача."
+  },
   "changeKdf": {
     "message": "Променити KDF"
   },
@@ -1234,6 +1254,9 @@
   },
   "importSuccess": {
     "message": "Подаци су успешно увезени у ваш сеф."
+  },
+  "dataExportSuccess": {
+    "message": "Подаци су успешно извезени"
   },
   "importWarning": {
     "message": "Увозите податке у $ORGANIZATION$. Ваши подаци могу бити подељени са члановима ове организације. Да ли желите да наставите?",
@@ -2043,6 +2066,9 @@
   },
   "manageSubscription": {
     "message": "Управљај претплатама"
+  },
+  "launchCloudSubscription": {
+    "message": "Покренути Cloud претплату"
   },
   "storage": {
     "message": "Складиште"
@@ -5225,11 +5251,8 @@
   "billingSyncApiKeyRotated": {
     "message": "Токен је обрнут."
   },
-  "billingSync": {
-    "message": "Синхронизација наплате"
-  },
   "billingSyncDesc": {
-    "message": "Billing sync provides Free Families plans for members and advanced billing capabilities by linking your self-hosted Bitwarden to the Bitwarden cloud server."
+    "message": "Billing sync unlocks Families sponsorships and automatic license syncing on your server. After making updates in the Bitwarden cloud server, select Sync License to apply changes."
   },
   "billingSyncKeyDesc": {
     "message": "A billing sync token from your cloud organization's subscription settings is required to complete this form."
@@ -5278,6 +5301,15 @@
   },
   "required": {
     "message": "обавезно"
+  },
+  "characterMaximum": {
+    "message": "Максимум $MAX$ карактера",
+    "placeholders": {
+      "max": {
+        "content": "$1",
+        "example": "100"
+      }
+    }
   },
   "idpSingleSignOnServiceUrlRequired": {
     "message": "Потребно ако Entity ID није УРЛ."
@@ -5648,6 +5680,9 @@
   "customColor": {
     "message": "Сопствена боја"
   },
+  "selectPlaceholder": {
+    "message": "-- Одабрати --"
+  },
   "multiSelectPlaceholder": {
     "message": "-- Тип за филтрирање --"
   },
@@ -5698,11 +5733,8 @@
   "secretProjectAssociationDescription": {
     "message": "Select projects that the secret will be associated with. Only organization users with access to these projects will be able to see the secret."
   },
-  "typeOrSelectProjects": {
-    "message": "Type or select Projects"
-  },
-  "typeOrSelectProject": {
-    "message": "Type or select Project"
+  "selectProjects": {
+    "message": "Одабрати пројекте"
   },
   "project": {
     "message": "Пројекат"
@@ -5923,6 +5955,16 @@
   "revokeAccessToken": {
     "message": "Revoke access token"
   },
+  "revokeAccessTokens": {
+    "message": "Опозови приступ токена"
+  },
+  "revokeAccessTokenDesc": {
+    "message": "Опозив приступних токена је трајно и неповратно."
+  },
+  "accessTokenRevoked": {
+    "message": "Приступ токена опозван",
+    "description": "Toast message after deleting one or multiple access tokens."
+  },
   "submenu": {
     "message": "Под-мени"
   },
@@ -5977,6 +6019,9 @@
   "collection": {
     "message": "Collection"
   },
+  "noCollection": {
+    "message": "Нема колекције"
+  },
   "canView": {
     "message": "Може прегледати"
   },
@@ -6006,6 +6051,135 @@
   },
   "memberAccessAll": {
     "message": "Овај члан може приступити и изменити све ставке."
+  },
+  "domainVerification": {
+    "message": "Верификација домена"
+  },
+  "newDomain": {
+    "message": "Нови домен"
+  },
+  "noDomains": {
+    "message": "Нема домена"
+  },
+  "noDomainsSubText": {
+    "message": "Повезивање домена омогућава члановима да прескоче SSO идентификацију при пријављивање са SSO."
+  },
+  "verifyDomain": {
+    "message": "Потврди домен"
+  },
+  "reverifyDomain": {
+    "message": "Поново верификујте домен"
+  },
+  "copyDnsTxtRecord": {
+    "message": "Копирати DNS TXT запис"
+  },
+  "dnsTxtRecord": {
+    "message": "DNS TXT запис"
+  },
+  "dnsTxtRecordInputHint": {
+    "message": "Копирајте и налепите TXT запис у DNS провајдер."
+  },
+  "domainNameInputHint": {
+    "message": "Пример: mydomain.com. Под-домени захтевају посебне уносе да би били верификовани."
+  },
+  "automaticDomainVerification": {
+    "message": "Аутоматска верификација домена"
+  },
+  "automaticDomainVerificationProcess": {
+    "message": "Bitwarden ће покушати да верификује домен 3 пута током прва 72 сата. Ако домен не може да се верификује, проверите DNS запис у вашен хосту и верификујте ручно. Домен ће бити уклоњен из ваше организације за 7 дана ако не буде верификован"
+  },
+  "invalidDomainNameMessage": {
+    "message": "Унос није важећи формат. Формат: mydomain.com. Под-домени захтевају посебне уносе за проверу."
+  },
+  "removeDomain": {
+    "message": "Уклони домен"
+  },
+  "removeDomainWarning": {
+    "message": "Уклањање домена се не може опозвати. Сигурно наставити?"
+  },
+  "domainRemoved": {
+    "message": "Домен уклоњен"
+  },
+  "domainSaved": {
+    "message": "Домен сачуван"
+  },
+  "domainVerified": {
+    "message": "Домен верификован"
+  },
+  "duplicateDomainError": {
+    "message": "Не можете два пута тражити исти домен."
+  },
+  "domainNotAvailable": {
+    "message": "Неко други користи $DOMAIN$. Користите други домен да бисте наставили.",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainNotVerified": {
+    "message": "$DOMAIN$ није проверен. Проверите ваш DNS запис.",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainStatusVerified": {
+    "message": "Проверено"
+  },
+  "domainStatusUnverified": {
+    "message": "Није потврђен"
+  },
+  "domainNameTh": {
+    "message": "Име"
+  },
+  "domainStatusTh": {
+    "message": "Статус"
+  },
+  "lastChecked": {
+    "message": "Последња провера"
+  },
+  "domainFormInvalid": {
+    "message": "Постоје грешке у формулару које захтевају вашу пажњу"
+  },
+  "addedDomain": {
+    "message": "Домен $DOMAIN$ додат",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "removedDomain": {
+    "message": "Домен $DOMAIN$ уклоњен",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainVerifiedEvent": {
+    "message": "$DOMAIN$ проверен",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainNotVerifiedEvent": {
+    "message": "$DOMAIN$ није проверен",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
   },
   "membersColumnHeader": {
     "message": "Member/Group"
@@ -6082,6 +6256,93 @@
       }
     }
   },
+  "server": {
+    "message": "Сервер"
+  },
+  "exportData": {
+    "message": "Увези податке"
+  },
+  "exportingOrganizationSecretDataTitle": {
+    "message": "Извоз тајних података организације"
+  },
+  "exportingOrganizationSecretDataDescription": {
+    "message": "Само подаци тајног менаџера повезани са $ORGANIZATION$ биће извезени. Ставке у другим производима или из других организација неће бити укључене.",
+    "placeholders": {
+      "ORGANIZATION": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "fileUpload": {
+    "message": "Отпремање датотеке"
+  },
+  "acceptedFormats": {
+    "message": "Прихваћени формати:"
+  },
+  "copyPasteImportContents": {
+    "message": "Копирајте и налепите садржај увоза:"
+  },
+  "or": {
+    "message": "или"
+  },
+  "licenseAndBillingManagement": {
+    "message": "Управљање лиценцама и наплатом"
+  },
+  "automaticSync": {
+    "message": "Аутоматска синхронизација"
+  },
+  "manualUpload": {
+    "message": "Ручно отпремање"
+  },
+  "manualUploadDesc": {
+    "message": "If you do not want to opt into billing sync, manually upload your license here."
+  },
+  "syncLicense": {
+    "message": "Синхронизација лиценце"
+  },
+  "licenseSyncSuccess": {
+    "message": "Успешна синхронизација лиценце"
+  },
+  "licenseUploadSuccess": {
+    "message": "Успешан унос лиценце"
+  },
+  "lastLicenseSync": {
+    "message": "Последња синх лиценце"
+  },
+  "billingSyncHelp": {
+    "message": "Помоћ синх наплате"
+  },
+  "uploadLicense": {
+    "message": "Унос лиценце"
+  },
+  "projectPeopleDescription": {
+    "message": "Одобрите групама или људима приступ овом пројекту."
+  },
+  "projectPeopleSelectHint": {
+    "message": "Унесите или изаберите људе или групе"
+  },
+  "projectServiceAccountsDescription": {
+    "message": "Одобрите услужним налозима приступ овом пројекту."
+  },
+  "projectServiceAccountsSelectHint": {
+    "message": "Унесите или изаберите сервисне налоге"
+  },
+  "projectEmptyPeopleAccessPolicies": {
+    "message": "Додајте људе или групе да бисте започели сарадњу"
+  },
+  "projectEmptyServiceAccountAccessPolicies": {
+    "message": "Додајте налоге услуге да бисте одобрили приступ"
+  },
+  "canWrite": {
+    "message": "Може писати"
+  },
+  "canReadWrite": {
+    "message": "Може читати, писати"
+  },
+  "groupSlashUser": {
+    "message": "Група/Корисник"
+  },
   "lowKdfIterations": {
     "message": "Low KDF Iterations"
   },
@@ -6090,5 +6351,45 @@
   },
   "changeKdfSettings": {
     "message": "Change KDF settings"
+  },
+  "changeKdfLoggedOutWarning": {
+    "message": "Ако наставите, одјавићете се са ваше тренутне сесије, што захтева да се поново пријавите. Активне сесије на другим уређајима могу да остану активне до један сат. Препоручујемо да извезете сеф пре него што промените подешавања шифровања да бисте спречили губитак података."
+  },
+  "secretsManagerBeta": {
+    "message": "Secrets Manager Beta"
+  },
+  "secretsManagerBetaDesc": {
+    "message": "Омогућите приступ корисницима Secrets Manager без накнаде током Beta програма."
+  },
+  "userAccessSecretsManager": {
+    "message": "Овај корисник може приступити Secrets Manager Beta"
+  },
+  "important": {
+    "message": "Important:"
+  },
+  "viewAll": {
+    "message": "Прегледај све"
+  },
+  "showingPortionOfTotal": {
+    "message": "Приказ $PORTION$ од $TOTAL$",
+    "placeholders": {
+      "portion": {
+        "content": "$1",
+        "example": "2"
+      },
+      "total": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "resolveTheErrorsBelowAndTryAgain": {
+    "message": "Поправите грешке испод и покушајте поново."
+  },
+  "description": {
+    "message": "Опис"
+  },
+  "errorReadingImportFile": {
+    "message": "Дошло је до грешке у покушају читања датотеке за увоз"
   }
 }

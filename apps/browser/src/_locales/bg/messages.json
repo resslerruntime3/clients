@@ -430,7 +430,14 @@
     "message": "Повторното въвеждане на главната парола е задължително."
   },
   "masterPasswordMinlength": {
-    "message": "Главната парола трябва да е дълга поне 8 знака."
+    "message": "Master password must be at least $VALUE$ characters long.",
+    "description": "The Master Password must be at least a specific number of characters long.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
   },
   "masterPassDoesntMatch": {
     "message": "Главната парола и потвърждението ѝ не съвпадат."
@@ -960,7 +967,10 @@
     "message": "При засичане на формуляр за вписване при зареждането на уеб страницата автоматично да се попълват данните на съответстващата регистрация."
   },
   "experimentalFeature": {
-    "message": "Това все още е в експериментална фаза, ползвате го на собствена глава."
+    "message": "Compromised or untrusted websites can exploit auto-fill on page load."
+  },
+  "learnMoreAboutAutofill": {
+    "message": "Научете повече относно автоматичното попълване"
   },
   "defaultAutoFillOnPageLoad": {
     "message": "Стандартна настройка за автоматичното попълване"
@@ -2047,6 +2057,30 @@
   "rememberEmail": {
     "message": "Запомняне на е-пощата"
   },
+  "loginWithDevice": {
+    "message": "Вписване с устройство"
+  },
+  "loginWithDeviceEnabledInfo": {
+    "message": "Вписването с устройство трябва да е включено в настройките на приложението на Битуорден. Друга настройка ли търсите?"
+  },
+  "fingerprintPhraseHeader": {
+    "message": "Уникална фраза"
+  },
+  "fingerprintMatchInfo": {
+    "message": "Уверете се, че трезорът Ви е отключен и че Уникалната фраза съвпада с другото устройство."
+  },
+  "resendNotification": {
+    "message": "Повторно изпращане на известието"
+  },
+  "viewAllLoginOptions": {
+    "message": "Вижте всички възможности за вписване"
+  },
+  "notificationSentDevice": {
+    "message": "Към устройството Ви е изпратено известие."
+  },
+  "logInInitiated": {
+    "message": "Вписването е стартирано"
+  },
   "exposedMasterPassword": {
     "message": "Exposed Master Password"
   },
@@ -2076,5 +2110,26 @@
         "example": "14"
       }
     }
+  },
+  "tryAutofillPageLoad": {
+    "message": "Да се направи ли опит за автоматично попълване при зареждане на страницата?"
+  },
+  "tryAutofill": {
+    "message": "Как се ползва автоматичното попълване"
+  },
+  "autofillPageLoadInfo": {
+    "message": "Ако включите автоматичното попълване при зареждане на страницата, формулярите за вписване ще бъдат автоматично попълвани при наличие на съвпадение в трезора."
+  },
+  "autofillSelectInfo": {
+    "message": "Изберете елемент от тази страница, за да се попълни автоматично формуляра в текущия раздел."
+  },
+  "autofillTurnedOn": {
+    "message": "Авт. попълване при зареждане на страницата е включено"
+  },
+  "turnOn": {
+    "message": "Включване"
+  },
+  "notNow": {
+    "message": "Не сега"
   }
 }

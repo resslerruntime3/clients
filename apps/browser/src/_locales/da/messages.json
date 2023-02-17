@@ -430,7 +430,14 @@
     "message": "Hovedadgangskode kræves angivet igen."
   },
   "masterPasswordMinlength": {
-    "message": "Hovedadgangskode skal være mindst 8 tegn."
+    "message": "Master password must be at least $VALUE$ characters long.",
+    "description": "The Master Password must be at least a specific number of characters long.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
   },
   "masterPassDoesntMatch": {
     "message": "De to adgangskoder matcher ikke."
@@ -960,7 +967,10 @@
     "message": "Hvis der registreres en loginformular, så auto-udfyld, når websiden indlæses."
   },
   "experimentalFeature": {
-    "message": "Dette er i øjeblikket en eksperimentel funktion. Brug på egen risiko."
+    "message": "Compromised or untrusted websites can exploit auto-fill on page load."
+  },
+  "learnMoreAboutAutofill": {
+    "message": "Learn more about auto-fill"
   },
   "defaultAutoFillOnPageLoad": {
     "message": "Standardindstilling for autofyld for loginelementer"
@@ -1124,7 +1134,7 @@
     "message": "Dr"
   },
   "mx": {
-    "message": "Mx"
+    "message": "Neutral"
   },
   "firstName": {
     "message": "Fornavn"
@@ -2047,6 +2057,30 @@
   "rememberEmail": {
     "message": "Husk e-mail"
   },
+  "loginWithDevice": {
+    "message": "Log ind med enhed"
+  },
+  "loginWithDeviceEnabledInfo": {
+    "message": "Log ind med enhed skal være opsat i indstillingerne i Bitwarden mobil-appen. Behov for en anden mulighed?"
+  },
+  "fingerprintPhraseHeader": {
+    "message": "Fingeraftrykssætning"
+  },
+  "fingerprintMatchInfo": {
+    "message": "Sørg for, at din boks er oplåst, samt at Fingeraftrykssætningen på den anden enhed matcher."
+  },
+  "resendNotification": {
+    "message": "Gensend notifikation"
+  },
+  "viewAllLoginOptions": {
+    "message": "Vis alle indlogningsmuligheder"
+  },
+  "notificationSentDevice": {
+    "message": "En notifikation er sendt til din enhed."
+  },
+  "logInInitiated": {
+    "message": "Indlogning påbegyndt"
+  },
   "exposedMasterPassword": {
     "message": "Kompromitteret hovedadgangskode"
   },
@@ -2076,5 +2110,26 @@
         "example": "14"
       }
     }
+  },
+  "tryAutofillPageLoad": {
+    "message": "Prøv autoudfyldning ved sideindlæsning?"
+  },
+  "tryAutofill": {
+    "message": "Sådan autoudfyldes"
+  },
+  "autofillPageLoadInfo": {
+    "message": "Login-formularer udfyldes automatisk med matchende legitimationsoplysninger, hvis autoudfyldning ved sideindlæsning aktiveres."
+  },
+  "autofillSelectInfo": {
+    "message": "Vælg et element fra denne side for at autoudfylde den aktive fanes formular."
+  },
+  "autofillTurnedOn": {
+    "message": "Autoudfyldning ved sideindlæsning aktiveret"
+  },
+  "turnOn": {
+    "message": "Aktivér"
+  },
+  "notNow": {
+    "message": "Ikke nu"
   }
 }

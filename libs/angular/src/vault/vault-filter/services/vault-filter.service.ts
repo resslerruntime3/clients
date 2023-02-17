@@ -1,9 +1,7 @@
 import { Injectable } from "@angular/core";
 import { firstValueFrom, from, mergeMap, Observable } from "rxjs";
 
-import { CipherService } from "@bitwarden/common/abstractions/cipher.service";
 import { CollectionService } from "@bitwarden/common/abstractions/collection.service";
-import { FolderService } from "@bitwarden/common/abstractions/folder/folder.service.abstraction";
 import {
   isNotProviderUser,
   OrganizationService,
@@ -15,9 +13,11 @@ import { ServiceUtils } from "@bitwarden/common/misc/serviceUtils";
 import { Organization } from "@bitwarden/common/models/domain/organization";
 import { TreeNode } from "@bitwarden/common/models/domain/tree-node";
 import { CollectionView } from "@bitwarden/common/models/view/collection.view";
-import { FolderView } from "@bitwarden/common/models/view/folder.view";
+import { CipherService } from "@bitwarden/common/vault/abstractions/cipher.service";
+import { FolderService } from "@bitwarden/common/vault/abstractions/folder/folder.service.abstraction";
+import { FolderView } from "@bitwarden/common/vault/models/view/folder.view";
 
-import { DeprecatedVaultFilterService as DeprecatedVaultFilterServiceAbstraction } from "../../../abstractions/deprecated-vault-filter.service";
+import { DeprecatedVaultFilterService as DeprecatedVaultFilterServiceAbstraction } from "../../abstractions/deprecated-vault-filter.service";
 import { DynamicTreeNode } from "../models/dynamic-tree-node.model";
 
 const NestingDelimiter = "/";
@@ -55,17 +55,19 @@ export class VaultFilterService implements DeprecatedVaultFilterServiceAbstracti
   buildNestedFolders(organizationId?: string): Observable<DynamicTreeNode<FolderView>> {
     const transformation = async (storedFolders: FolderView[]) => {
       let folders: FolderView[];
-      if (organizationId != null) {
+
+      // If no org or "My Vault" is selected, show all folders
+      if (organizationId == null || organizationId == "MyVault") {
+        folders = storedFolders;
+      } else {
+        // Otherwise, show only folders that have ciphers from the selected org and the "no folder" folder
         const ciphers = await this.cipherService.getAllDecrypted();
         const orgCiphers = ciphers.filter((c) => c.organizationId == organizationId);
         folders = storedFolders.filter(
-          (f) =>
-            orgCiphers.filter((oc) => oc.folderId == f.id).length > 0 ||
-            ciphers.filter((c) => c.folderId == f.id).length < 1
+          (f) => orgCiphers.some((oc) => oc.folderId == f.id) || f.id == null
         );
-      } else {
-        folders = storedFolders;
       }
+
       const nestedFolders = await this.getAllFoldersNested(folders);
       return new DynamicTreeNode<FolderView>({
         fullList: folders,

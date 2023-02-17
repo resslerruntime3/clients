@@ -47,6 +47,7 @@ export class Organization {
   familySponsorshipLastSyncDate?: Date;
   familySponsorshipValidUntil?: Date;
   familySponsorshipToDelete?: boolean;
+  accessSecretsManager: boolean;
 
   constructor(obj?: OrganizationData) {
     if (obj == null) {
@@ -93,6 +94,7 @@ export class Organization {
     this.familySponsorshipLastSyncDate = obj.familySponsorshipLastSyncDate;
     this.familySponsorshipValidUntil = obj.familySponsorshipValidUntil;
     this.familySponsorshipToDelete = obj.familySponsorshipToDelete;
+    this.accessSecretsManager = obj.accessSecretsManager;
   }
 
   get canAccess() {
@@ -170,6 +172,10 @@ export class Organization {
     return (this.isAdmin || this.permissions.manageSso) && this.useSso;
   }
 
+  get canManageDomainVerification() {
+    return (this.isAdmin || this.permissions.manageSso) && this.useSso;
+  }
+
   get canManageScim() {
     return (this.isAdmin || this.permissions.manageScim) && this.useScim;
   }
@@ -199,7 +205,7 @@ export class Organization {
   }
 
   get canAccessSecretsManager() {
-    return this.useSecretsManager;
+    return this.useSecretsManager && this.accessSecretsManager;
   }
 
   static fromJSON(json: Jsonify<Organization>) {

@@ -430,7 +430,14 @@
     "message": "Je vyžadováno zopakovat zadání hlavního hesla."
   },
   "masterPasswordMinlength": {
-    "message": "Hlavní heslo musí obsahovat alespoň 8 znaků."
+    "message": "Master password must be at least $VALUE$ characters long.",
+    "description": "The Master Password must be at least a specific number of characters long.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
   },
   "masterPassDoesntMatch": {
     "message": "Potvrzení hlavního hesla se neshoduje."
@@ -960,7 +967,10 @@
     "message": "Pokud je zjištěn přihlašovací formulář, automaticky se při načítání webové stránky vyplní přihlašovací údaje."
   },
   "experimentalFeature": {
-    "message": "Toto je momentálně experimentální funkce. Použijte na vlastní riziko."
+    "message": "Compromised or untrusted websites can exploit auto-fill on page load."
+  },
+  "learnMoreAboutAutofill": {
+    "message": "Learn more about auto-fill"
   },
   "defaultAutoFillOnPageLoad": {
     "message": "Výchozí nastavení automatického vyplňování pro položky přihlášení"
@@ -2047,6 +2057,30 @@
   "rememberEmail": {
     "message": "Pamatovat si e-mail"
   },
+  "loginWithDevice": {
+    "message": "Log in with device"
+  },
+  "loginWithDeviceEnabledInfo": {
+    "message": "Log in with device must be set up in the settings of the Bitwarden app. Need another option?"
+  },
+  "fingerprintPhraseHeader": {
+    "message": "Fingerprint phrase"
+  },
+  "fingerprintMatchInfo": {
+    "message": "Please make sure your vault is unlocked and the Fingerprint phrase matches on the other device."
+  },
+  "resendNotification": {
+    "message": "Resend notification"
+  },
+  "viewAllLoginOptions": {
+    "message": "View all log in options"
+  },
+  "notificationSentDevice": {
+    "message": "A notification has been sent to your device."
+  },
+  "logInInitiated": {
+    "message": "Log in initiated"
+  },
   "exposedMasterPassword": {
     "message": "Exposed Master Password"
   },
@@ -2076,5 +2110,26 @@
         "example": "14"
       }
     }
+  },
+  "tryAutofillPageLoad": {
+    "message": "Try auto-fill on page load?"
+  },
+  "tryAutofill": {
+    "message": "How to auto-fill"
+  },
+  "autofillPageLoadInfo": {
+    "message": "Login forms will automatically fill in matching credentials if you turn on auto-fill on page load."
+  },
+  "autofillSelectInfo": {
+    "message": "Select an item from this page to auto-fill the active tab's form."
+  },
+  "autofillTurnedOn": {
+    "message": "Auto-fill on page load turned on"
+  },
+  "turnOn": {
+    "message": "Turn on"
+  },
+  "notNow": {
+    "message": "Not now"
   }
 }

@@ -1,28 +1,39 @@
 import { Injectable, NgModule } from "@angular/core";
 import { ActivatedRouteSnapshot, RouteReuseStrategy, RouterModule, Routes } from "@angular/router";
 
-import { AuthGuard } from "@bitwarden/angular/guards/auth.guard";
-import { LockGuard } from "@bitwarden/angular/guards/lock.guard";
-import { UnauthGuard } from "@bitwarden/angular/guards/unauth.guard";
+import { AuthGuard } from "@bitwarden/angular/auth/guards/auth.guard";
+import { LockGuard } from "@bitwarden/angular/auth/guards/lock.guard";
+import { UnauthGuard } from "@bitwarden/angular/auth/guards/unauth.guard";
 
-import { EnvironmentComponent } from "./accounts/environment.component";
-import { HintComponent } from "./accounts/hint.component";
-import { HomeComponent } from "./accounts/home.component";
-import { LockComponent } from "./accounts/lock.component";
-import { LoginComponent } from "./accounts/login.component";
-import { RegisterComponent } from "./accounts/register.component";
-import { RemovePasswordComponent } from "./accounts/remove-password.component";
-import { SetPasswordComponent } from "./accounts/set-password.component";
-import { SsoComponent } from "./accounts/sso.component";
-import { TwoFactorOptionsComponent } from "./accounts/two-factor-options.component";
-import { TwoFactorComponent } from "./accounts/two-factor.component";
-import { UpdateTempPasswordComponent } from "./accounts/update-temp-password.component";
+import { EnvironmentComponent } from "../auth/popup/environment.component";
+import { HintComponent } from "../auth/popup/hint.component";
+import { HomeComponent } from "../auth/popup/home.component";
+import { LockComponent } from "../auth/popup/lock.component";
+import { LoginWithDeviceComponent } from "../auth/popup/login-with-device.component";
+import { LoginComponent } from "../auth/popup/login.component";
+import { RegisterComponent } from "../auth/popup/register.component";
+import { RemovePasswordComponent } from "../auth/popup/remove-password.component";
+import { SetPasswordComponent } from "../auth/popup/set-password.component";
+import { SsoComponent } from "../auth/popup/sso.component";
+import { TwoFactorOptionsComponent } from "../auth/popup/two-factor-options.component";
+import { TwoFactorComponent } from "../auth/popup/two-factor.component";
+import { UpdateTempPasswordComponent } from "../auth/popup/update-temp-password.component";
+import { AddEditComponent } from "../vault/popup/components/vault/add-edit.component";
+import { AttachmentsComponent } from "../vault/popup/components/vault/attachments.component";
+import { CurrentTabComponent } from "../vault/popup/components/vault/current-tab.component";
+import { PasswordHistoryComponent } from "../vault/popup/components/vault/password-history.component";
+import { ShareComponent } from "../vault/popup/components/vault/share.component";
+import { VaultFilterComponent } from "../vault/popup/components/vault/vault-filter.component";
+import { VaultItemsComponent } from "../vault/popup/components/vault/vault-items.component";
+import { ViewComponent } from "../vault/popup/components/vault/view.component";
+
 import { GeneratorComponent } from "./generator/generator.component";
 import { PasswordGeneratorHistoryComponent } from "./generator/password-generator-history.component";
 import { SendAddEditComponent } from "./send/send-add-edit.component";
 import { SendGroupingsComponent } from "./send/send-groupings.component";
 import { SendTypeComponent } from "./send/send-type.component";
 import { DebounceNavigationService } from "./services/debounceNavigationService";
+import { AutofillComponent } from "./settings/autofill.component";
 import { ExcludedDomainsComponent } from "./settings/excluded-domains.component";
 import { ExportComponent } from "./settings/export.component";
 import { FolderAddEditComponent } from "./settings/folder-add-edit.component";
@@ -32,15 +43,7 @@ import { PremiumComponent } from "./settings/premium.component";
 import { SettingsComponent } from "./settings/settings.component";
 import { SyncComponent } from "./settings/sync.component";
 import { TabsComponent } from "./tabs.component";
-import { AddEditComponent } from "./vault/add-edit.component";
-import { AttachmentsComponent } from "./vault/attachments.component";
 import { CollectionsComponent } from "./vault/collections.component";
-import { CurrentTabComponent } from "./vault/current-tab.component";
-import { PasswordHistoryComponent } from "./vault/password-history.component";
-import { ShareComponent } from "./vault/share.component";
-import { VaultFilterComponent } from "./vault/vault-filter.component";
-import { VaultItemsComponent } from "./vault/vault-items.component";
-import { ViewComponent } from "./vault/view.component";
 
 const routes: Routes = [
   {
@@ -64,6 +67,12 @@ const routes: Routes = [
     component: LoginComponent,
     canActivate: [UnauthGuard],
     data: { state: "login" },
+  },
+  {
+    path: "login-with-device",
+    component: LoginWithDeviceComponent,
+    canActivate: [UnauthGuard],
+    data: { state: "login-with-device" },
   },
   {
     path: "lock",
@@ -185,6 +194,12 @@ const routes: Routes = [
     component: ExportComponent,
     canActivate: [AuthGuard],
     data: { state: "export" },
+  },
+  {
+    path: "autofill",
+    component: AutofillComponent,
+    canActivate: [AuthGuard],
+    data: { state: "autofill" },
   },
   {
     path: "folders",

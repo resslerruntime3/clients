@@ -697,7 +697,14 @@
     "message": "Cal tornar a escriure la contrasenya mestra."
   },
   "masterPasswordMinlength": {
-    "message": "La contrasenya mestra ha de contenir almenys 8 caràcters."
+    "message": "Master password must be at least $VALUE$ characters long.",
+    "description": "The Master Password must be at least a specific number of characters long.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
   },
   "masterPassDoesntMatch": {
     "message": "La confirmació de la contrasenya mestra no coincideix."
@@ -1157,6 +1164,19 @@
       }
     }
   },
+  "kdfMemory": {
+    "message": "Memòria KDF (MB)",
+    "description": "Memory refers to computer memory (RAM). MB is short for megabytes."
+  },
+  "argon2Warning": {
+    "message": "La configuració de les iteracions, la memòria i el paral·lelisme de KDF massa alts podria provocar un rendiment baix quan inicieu sessió (i desbloquegeu) Bitwarden en dispositius més lents o antics. Us recomanem que els canvieu individualment en increments més menuts i després proveu tots els vostres dispositius."
+  },
+  "kdfParallelism": {
+    "message": "Paral·lelisme KDF"
+  },
+  "argon2Desc": {
+    "message": "Les iteracions de KDF, la memòria i el paral·lelisme més alts poden ajudar a protegir la vostra contrasenya mestra de ser forçada per força bruta per un atacant."
+  },
   "changeKdf": {
     "message": "Canvia KDF"
   },
@@ -1234,6 +1254,9 @@
   },
   "importSuccess": {
     "message": "Les dades s'han importat amb èxit"
+  },
+  "dataExportSuccess": {
+    "message": "Les dades s'han exportat correctament"
   },
   "importWarning": {
     "message": "Esteu important dades a $ORGANIZATION$. Les vostres dades es poden compartir amb membres d'aquesta organització. Voleu continuar?",
@@ -2043,6 +2066,9 @@
   },
   "manageSubscription": {
     "message": "Administra la subscripció"
+  },
+  "launchCloudSubscription": {
+    "message": "Inicia la subscripció al núvol"
   },
   "storage": {
     "message": "Emmagatzematge"
@@ -5225,9 +5251,6 @@
   "billingSyncApiKeyRotated": {
     "message": "Token girat."
   },
-  "billingSync": {
-    "message": "Sincronització de facturació"
-  },
   "billingSyncDesc": {
     "message": "La sincronització de facturació ofereix plans familiars gratuïts i capacitats de facturació avançades enllaçant el vostre Bitwarden autoallotjat amb el vostre servidor al núvol de Bitwarden."
   },
@@ -5278,6 +5301,15 @@
   },
   "required": {
     "message": "requerit"
+  },
+  "characterMaximum": {
+    "message": "$MAX$ caràcters màxim",
+    "placeholders": {
+      "max": {
+        "content": "$1",
+        "example": "100"
+      }
+    }
   },
   "idpSingleSignOnServiceUrlRequired": {
     "message": "Requerit si l'identificador d'entitat no és un URL."
@@ -5648,6 +5680,9 @@
   "customColor": {
     "message": "Color personalitzat"
   },
+  "selectPlaceholder": {
+    "message": "-- Selecciona --"
+  },
   "multiSelectPlaceholder": {
     "message": "-- Escriviu per filtrar --"
   },
@@ -5698,11 +5733,8 @@
   "secretProjectAssociationDescription": {
     "message": "Selecciona los proyectos a los que se asociará el secreto. Sólo los usuarios de la organización con acceso a estos proyectos podrán verlo."
   },
-  "typeOrSelectProjects": {
-    "message": "Teclea o selecciona proyectos"
-  },
-  "typeOrSelectProject": {
-    "message": "Teclea o selecciona proyecto"
+  "selectProjects": {
+    "message": "Selecciona projectes"
   },
   "project": {
     "message": "Projecte"
@@ -5888,7 +5920,7 @@
     "message": "Caduca"
   },
   "canRead": {
-    "message": "Pot llegir"
+    "message": "Es pot llegir"
   },
   "accessTokensNoItemsTitle": {
     "message": "No hi ha tokens d'accés per mostrar"
@@ -5922,6 +5954,16 @@
   },
   "revokeAccessToken": {
     "message": "Revoca el token d'accés"
+  },
+  "revokeAccessTokens": {
+    "message": "Revoca tokens d'accés"
+  },
+  "revokeAccessTokenDesc": {
+    "message": "La revocació de tokens d'accés és permanent i irreversible."
+  },
+  "accessTokenRevoked": {
+    "message": "S'han revocat tokens d'accés",
+    "description": "Toast message after deleting one or multiple access tokens."
   },
   "submenu": {
     "message": "Submenú"
@@ -5977,6 +6019,9 @@
   "collection": {
     "message": "Col·lecció"
   },
+  "noCollection": {
+    "message": "Cap col·lecció"
+  },
   "canView": {
     "message": "Pot veure"
   },
@@ -6006,6 +6051,135 @@
   },
   "memberAccessAll": {
     "message": "Aquest usuari pot accedir i modificar tots els elements."
+  },
+  "domainVerification": {
+    "message": "Verificació de dominis"
+  },
+  "newDomain": {
+    "message": "Domini nou"
+  },
+  "noDomains": {
+    "message": "Sense dominis"
+  },
+  "noDomainsSubText": {
+    "message": "La connexió d'un domini permet als membres ometre el camp d'identificador de SSO durant l'inici de sessió amb aquest."
+  },
+  "verifyDomain": {
+    "message": "Verifica domini"
+  },
+  "reverifyDomain": {
+    "message": "Torna a verificar el domini"
+  },
+  "copyDnsTxtRecord": {
+    "message": "Copia registre DNS TXT"
+  },
+  "dnsTxtRecord": {
+    "message": "Registre DNS TXT"
+  },
+  "dnsTxtRecordInputHint": {
+    "message": "Copieu i enganxeu el registre TXT al vostre proveïdor de DNS."
+  },
+  "domainNameInputHint": {
+    "message": "Exemple: el meudomini.com. Els subdominis requereixen que es verifiquen entrades separades."
+  },
+  "automaticDomainVerification": {
+    "message": "Verificació automàtica de dominis"
+  },
+  "automaticDomainVerificationProcess": {
+    "message": "Bitwarden intentarà verificar el domini 3 vegades durant les primeres 72 hores. Si el domini no es pot verificar, comproveu el registre DNS del vostre amfitrió i verifiqueu-lo manualment. El domini s'eliminarà de la vostra organització en 7 dies si no es verifica"
+  },
+  "invalidDomainNameMessage": {
+    "message": "L'entrada no és un format vàlid. Format: el meudomini.com. Els subdominis requereixen que es verifiquen entrades separades."
+  },
+  "removeDomain": {
+    "message": "Suprimeix domini"
+  },
+  "removeDomainWarning": {
+    "message": "L'eliminació d'un domini no es pot desfer. Esteu segur que voleu continuar?"
+  },
+  "domainRemoved": {
+    "message": "Domini suprimit"
+  },
+  "domainSaved": {
+    "message": "Domini guardat"
+  },
+  "domainVerified": {
+    "message": "Domini verificat"
+  },
+  "duplicateDomainError": {
+    "message": "No pots reclamar el mateix domini dues vegades."
+  },
+  "domainNotAvailable": {
+    "message": "Algú més està utilitzant $DOMAIN$. Utilitzeu un domini diferent per continuar.",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainNotVerified": {
+    "message": "$DOMAIN$ no verificat. Comproveu el vostre registre DNS.",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainStatusVerified": {
+    "message": "Verificat"
+  },
+  "domainStatusUnverified": {
+    "message": "Sense verificar"
+  },
+  "domainNameTh": {
+    "message": "Nom"
+  },
+  "domainStatusTh": {
+    "message": "Estat"
+  },
+  "lastChecked": {
+    "message": "Última comprovació"
+  },
+  "domainFormInvalid": {
+    "message": "Hi ha errors de forma que necessiten la vostra atenció"
+  },
+  "addedDomain": {
+    "message": "S'ha afegit el domini $DOMAIN$",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "removedDomain": {
+    "message": "S'ha suprimit el domini $DOMAIN$",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainVerifiedEvent": {
+    "message": "$DOMAIN$ verificat",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainNotVerifiedEvent": {
+    "message": "$DOMAIN$ sense verificar",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
   },
   "membersColumnHeader": {
     "message": "Membre/grup"
@@ -6082,6 +6256,93 @@
       }
     }
   },
+  "server": {
+    "message": "Servidor"
+  },
+  "exportData": {
+    "message": "Exportar dades"
+  },
+  "exportingOrganizationSecretDataTitle": {
+    "message": "Exportació de dades secretes de l’organització"
+  },
+  "exportingOrganizationSecretDataDescription": {
+    "message": "Només s'exportaran les dades del gestor de Secrets associades a $ORGANIZATION$. No s'inclouran elements d'altres productes o d'altres organitzacions.",
+    "placeholders": {
+      "ORGANIZATION": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "fileUpload": {
+    "message": "Càrrega de fitxers"
+  },
+  "acceptedFormats": {
+    "message": "Formats acceptats:"
+  },
+  "copyPasteImportContents": {
+    "message": "Copia i enganxa contingut d'importació:"
+  },
+  "or": {
+    "message": "o"
+  },
+  "licenseAndBillingManagement": {
+    "message": "Gestió de llicències i facturació"
+  },
+  "automaticSync": {
+    "message": "Sincronització automàtica"
+  },
+  "manualUpload": {
+    "message": "Pujada manual"
+  },
+  "manualUploadDesc": {
+    "message": "Si no voleu activar la sincronització de facturació, pugeu manualment la vostra llicència ací."
+  },
+  "syncLicense": {
+    "message": "Sincronització de la llicència"
+  },
+  "licenseSyncSuccess": {
+    "message": "Llicència sincronitzada correctament"
+  },
+  "licenseUploadSuccess": {
+    "message": "Llicència pujada correctament"
+  },
+  "lastLicenseSync": {
+    "message": "Última sincronització de llicència"
+  },
+  "billingSyncHelp": {
+    "message": "Ajuda de sincronització de facturació"
+  },
+  "uploadLicense": {
+    "message": "Puja la llicència"
+  },
+  "projectPeopleDescription": {
+    "message": "Dona accés a aquest projecte a grups o persones."
+  },
+  "projectPeopleSelectHint": {
+    "message": "Escriu o selecciona persones o grups"
+  },
+  "projectServiceAccountsDescription": {
+    "message": "Dona accés a aquest projecte als comptes de servei."
+  },
+  "projectServiceAccountsSelectHint": {
+    "message": "Escriu o selecciona comptes de servei"
+  },
+  "projectEmptyPeopleAccessPolicies": {
+    "message": "Afegeix persones o grups per començar a col·laborar"
+  },
+  "projectEmptyServiceAccountAccessPolicies": {
+    "message": "Afig comptes de servei per concedir accés"
+  },
+  "canWrite": {
+    "message": "Es pot escriure"
+  },
+  "canReadWrite": {
+    "message": "Es pot llegir, escriure"
+  },
+  "groupSlashUser": {
+    "message": "Grup/Usuari"
+  },
   "lowKdfIterations": {
     "message": "Iteracions de KDF baixes"
   },
@@ -6090,5 +6351,45 @@
   },
   "changeKdfSettings": {
     "message": "Canvia la configuració de KDF"
+  },
+  "changeKdfLoggedOutWarning": {
+    "message": "Si continueu, es tancarà la sessió de la vostra sessió actual i us demanarà que torneu a iniciar sessió. Les sessions actives en altres dispositius poden continuar romanent actives fins a una hora. Us recomanem que exporteu la vostra caixa forta abans de canviar la configuració d'encriptació per evitar la pèrdua de dades."
+  },
+  "secretsManagerBeta": {
+    "message": "Administrador de secrets Beta"
+  },
+  "secretsManagerBetaDesc": {
+    "message": "Activa l'accés dels usuaris a l'administrador de secrets sense cap càrrec durant el programa beta."
+  },
+  "userAccessSecretsManager": {
+    "message": "Aquest usuari pot accedir a la beta de l'administrador de secrets"
+  },
+  "important": {
+    "message": "Important:"
+  },
+  "viewAll": {
+    "message": "View all"
+  },
+  "showingPortionOfTotal": {
+    "message": "Showing $PORTION$ of $TOTAL$",
+    "placeholders": {
+      "portion": {
+        "content": "$1",
+        "example": "2"
+      },
+      "total": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "resolveTheErrorsBelowAndTryAgain": {
+    "message": "Resoleu els errors següents i torneu-ho a provar."
+  },
+  "description": {
+    "message": "Descripció"
+  },
+  "errorReadingImportFile": {
+    "message": "S'ha produït un error en intentar llegir el fitxer d'importació"
   }
 }

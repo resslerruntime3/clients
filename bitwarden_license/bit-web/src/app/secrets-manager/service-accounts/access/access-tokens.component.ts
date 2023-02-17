@@ -2,16 +2,15 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { combineLatestWith, Observable, startWith, switchMap } from "rxjs";
 
+import { ModalService } from "@bitwarden/angular/services/modal.service";
+import { PlatformUtilsService } from "@bitwarden/common/abstractions/platformUtils.service";
 import { DialogService } from "@bitwarden/components";
+import { UserVerificationPromptComponent } from "@bitwarden/web-vault/app/components/user-verification-prompt.component";
 
-import { ServiceAccountView } from "../../models/view/service-account.view";
 import { AccessTokenView } from "../models/view/access-token.view";
 
 import { AccessService } from "./access.service";
-import {
-  AccessTokenOperation,
-  AccessTokenCreateDialogComponent,
-} from "./dialogs/access-token-create-dialog.component";
+import { AccessTokenCreateDialogComponent } from "./dialogs/access-token-create-dialog.component";
 
 @Component({
   selector: "sm-access-tokens",
@@ -26,7 +25,9 @@ export class AccessTokenComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private accessService: AccessService,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private modalService: ModalService,
+    private platformUtilsService: PlatformUtilsService
   ) {}
 
   ngOnInit() {
@@ -41,21 +42,45 @@ export class AccessTokenComponent implements OnInit {
     );
   }
 
-  private async getAccessTokens(): Promise<AccessTokenView[]> {
-    return await this.accessService.getAccessTokens(this.organizationId, this.serviceAccountId);
+  protected async revoke(tokens: AccessTokenView[]) {
+    if (!(await this.verifyUser())) {
+      return;
+    }
+
+    await this.accessService.revokeAccessTokens(
+      this.serviceAccountId,
+      tokens.map((t) => t.id)
+    );
+
+    this.platformUtilsService.showToast("success", null, "Access tokens revoked.");
   }
 
-  async openNewAccessTokenDialog() {
-    // TODO once service account names are implemented in service account contents page pass in here.
-    const serviceAccountView = new ServiceAccountView();
-    serviceAccountView.id = this.serviceAccountId;
-    serviceAccountView.name = "placeholder";
+  protected openNewAccessTokenDialog() {
+    AccessTokenCreateDialogComponent.openNewAccessTokenDialog(
+      this.dialogService,
+      this.serviceAccountId,
+      this.organizationId
+    );
+  }
 
-    this.dialogService.open<unknown, AccessTokenOperation>(AccessTokenCreateDialogComponent, {
+  private verifyUser() {
+    const ref = this.modalService.open(UserVerificationPromptComponent, {
+      allowMultipleModals: true,
       data: {
-        organizationId: this.organizationId,
-        serviceAccountView: serviceAccountView,
+        confirmDescription: "revokeAccessTokenDesc",
+        confirmButtonText: "revokeAccessToken",
+        modalTitle: "revokeAccessToken",
       },
     });
+
+    if (ref == null) {
+      return;
+    }
+
+    return ref.onClosedPromise();
+  }
+
+  private async getAccessTokens(): Promise<AccessTokenView[]> {
+    return await this.accessService.getAccessTokens(this.organizationId, this.serviceAccountId);
   }
 }

@@ -430,7 +430,14 @@
     "message": "Pääsalasanan uudelleensyöttö vaaditaan."
   },
   "masterPasswordMinlength": {
-    "message": "Pääsalasanan tulee sisältää ainakin 8 merkkiä."
+    "message": "Master password must be at least $VALUE$ characters long.",
+    "description": "The Master Password must be at least a specific number of characters long.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
   },
   "masterPassDoesntMatch": {
     "message": "Pääsalasanan vahvistus ei täsmää."
@@ -491,7 +498,7 @@
     "message": "Voit vaihtaa pääsalasanasi bitwarden.com-verkkoholvissa. Haluatko käydä sivustolla nyt?"
   },
   "twoStepLoginConfirmation": {
-    "message": "Kaksivaiheinen kirjautuminen tekee tilistäsi turvallisemman edellyttämällä salasanan lisäksi kirjautumisen lisätodennusta todennuslaitteen, ‑sovelluksen, tekstiviestin, puhelun tai sähköpostin avulla. Voit ottaa kaksivaiheisen kirjautumisen käyttöön bitwarden.com‑verkkoholvissa. Haluatko käydä sivustolla nyt?"
+    "message": "Kaksivaiheinen kirjautuminen parantaa tilisi suojausta vaatimalla kirjautumisen vahvistuksen salasanan lisäksi todennuslaitteen, ‑sovelluksen, tekstiviestin, puhelun tai sähköpostin avulla. Voit ottaa kaksivaiheisen kirjautumisen käyttöön bitwarden.com‑verkkoholvissa. Haluatko avata sen nyt?"
   },
   "editedFolder": {
     "message": "Kansio tallennettiin"
@@ -960,13 +967,16 @@
     "message": "Jos havaitaan kirjautumislomake, suorita automaattinen täyttö sivun avautuessa."
   },
   "experimentalFeature": {
-    "message": "Tämä on vielä kokeellinen toiminto. Käytä omalla vastuullasi."
+    "message": "Vaarantuneet tai epäluotettavat sivustot voivat väärinkäyttää sivun avautuessa suoritettavaa automaattista täyttöä."
+  },
+  "learnMoreAboutAutofill": {
+    "message": "Lue lisää automaattisesta täytöstä"
   },
   "defaultAutoFillOnPageLoad": {
     "message": "Automaattisen täytön oletusasetus kirjautumistiedoille"
   },
   "defaultAutoFillOnPageLoadDesc": {
-    "message": "Voit ottaa automaattisen täytön käyttöön tai poistaa sen käytöstä kirjautumistietokohtaisesti muokkaamalla kohdetta."
+    "message": "Voit ottaa automaattisen täytön käyttöön tai poistaa sen käytöstä kirjautumistietokohtaisesti muokkaamalla kirjautumistetoa."
   },
   "itemAutoFillOnPageLoad": {
     "message": "Automaattinen täyttö sivun avautuessa (jos määritetty asetuksista)"
@@ -1823,7 +1833,7 @@
     "message": "Vaihda pääsalasana"
   },
   "updateMasterPasswordWarning": {
-    "message": "Organisaatiosi ylläpito on hiljattain vaihtanut pääsalasanasi. Käyttääksesi holvia, on sinun päivitettävä se nyt. Tämä uloskirjaa kaikki nykyiset istunnot pakottaen uudelleenkirjautumisen. Muiden laitteiden aktiiviset istunnot saattavat toimia vielä tunnin ajan."
+    "message": "Organisaatiosi ylläpito on hiljattain vaihtanut pääsalasanasi. Käyttääksesi holvia sinun on päivitettävä pääsalasanasi nyt. Tämä uloskirjaa kaikki nykyiset istunnot pakottaen uudelleenkirjautumisen. Muiden laitteiden aktiiviset istunnot saattavat toimia vielä tunnin ajan."
   },
   "resetPasswordPolicyAutoEnroll": {
     "message": "Automaattinen liitos"
@@ -2047,6 +2057,30 @@
   "rememberEmail": {
     "message": "Muista sähköpostiosoite"
   },
+  "loginWithDevice": {
+    "message": "Laitteella kirjautuminen"
+  },
+  "loginWithDeviceEnabledInfo": {
+    "message": "Laitteella kirjautuminen on määritettävä Bitwarden-mobiilisovelluksen asetuksista. Tarvitsetko eri vaihtoehdon?"
+  },
+  "fingerprintPhraseHeader": {
+    "message": "Tunnistelauseke"
+  },
+  "fingerprintMatchInfo": {
+    "message": "Varmista, että holvisi on avattu ja tunnistelauseke täsmää toisella laitteella."
+  },
+  "resendNotification": {
+    "message": "Lähetä ilmoitus uudelleen"
+  },
+  "viewAllLoginOptions": {
+    "message": "Näytä kaikki kirjautumisvaihtoehdot"
+  },
+  "notificationSentDevice": {
+    "message": "Laitteellesi on lähetetty ilmoitus."
+  },
+  "logInInitiated": {
+    "message": "Kirjautuminen aloitettu"
+  },
   "exposedMasterPassword": {
     "message": "Paljastunut pääsalasana"
   },
@@ -2076,5 +2110,26 @@
         "example": "14"
       }
     }
+  },
+  "tryAutofillPageLoad": {
+    "message": "Pyritäänkö lomakkeet täyttämään sivun avautuessa automaattisesti?"
+  },
+  "tryAutofill": {
+    "message": "Miten täytetään automaattisesti"
+  },
+  "autofillPageLoadInfo": {
+    "message": "Jos otat automaattisen täytön sivun avautuessa käyttöön, täytetään kirjautumislomakkeet automaattisesti sopivilla tunnuksilla."
+  },
+  "autofillSelectInfo": {
+    "message": "Valitse tältä sivulta aktiivisella välilehdellä olevan lomakkeen automaattiseen täyttöön käytettävä kohde."
+  },
+  "autofillTurnedOn": {
+    "message": "Automaattinen täyttö sivun avautuessa otettiin käyttöön"
+  },
+  "turnOn": {
+    "message": "Ota käyttöön"
+  },
+  "notNow": {
+    "message": "Ei nyt"
   }
 }

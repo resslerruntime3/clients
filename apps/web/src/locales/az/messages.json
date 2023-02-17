@@ -309,7 +309,7 @@
     "message": "Üzvlərdə axtar"
   },
   "searchGroups": {
-    "message": "Search groups"
+    "message": "Qrupları axtar"
   },
   "allItems": {
     "message": "Bütün elementlər"
@@ -697,7 +697,14 @@
     "message": "Ana parolun yenidən yazılması lazımdır."
   },
   "masterPasswordMinlength": {
-    "message": "Ana parol ən azı 8 simvol uzunluğunda olmalıdır."
+    "message": "Master password must be at least $VALUE$ characters long.",
+    "description": "The Master Password must be at least a specific number of characters long.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
   },
   "masterPassDoesntMatch": {
     "message": "Ana parol təsdiqləməsi uyğun gəlmir."
@@ -1149,13 +1156,26 @@
     }
   },
   "kdfIterationsWarning": {
-    "message": "KDF iterasiyalarınızı çox yüksək tənzimləmək, zəif prosessora malik cihazlarda \"Bitwarden\"ə giriş edərkən (və ya kilidi açarkən) aşağı performansa səbəb ola bilər. Dəyəri $INCREMENT$ artımları ilə artırmağınızı və daha sonra bütün cihazlarınızda test etməyinizi məsləhət görürük.",
+    "message": "KDF iterasiyalarınızı çox yüksək tənzimləmək, yavaş və ya köhnə cihazlarda \"Bitwarden\"ə giriş edərkən (və ya kilidi açarkən) aşağı performansa səbəb ola bilər. Dəyəri $INCREMENT$ artımları ilə artırmağınızı və daha sonra bütün cihazlarınızda test etməyinizi məsləhət görürük.",
     "placeholders": {
       "increment": {
         "content": "$1",
         "example": "50,000"
       }
     }
+  },
+  "kdfMemory": {
+    "message": "KDF yaddaş (MB)",
+    "description": "Memory refers to computer memory (RAM). MB is short for megabytes."
+  },
+  "argon2Warning": {
+    "message": "KDF iterasiyalarınızı, yaddaşınızı və paralelizminizi çox yüksək tənzimləmək, daha yavaş və ya daha köhnə cihazlarda \"Bitwarden\"ə giriş edərkən (və ya kilidi açarkən) aşağı performansa səbəb ola bilər. Biz bunları fərdi olaraq kiçik artımlarla dəyişməyi, sonra bütün cihazlarınızı sınaqdan keçirməyi tövsiyə edirik."
+  },
+  "kdfParallelism": {
+    "message": "KDF paralelizm"
+  },
+  "argon2Desc": {
+    "message": "Yüksək KDF iterasiyaları, yaddaşı və paralelizmi, ana parolunuzu təcavüzkar tərəfindən \"brute force\" hücumuna qarşı qorumağa kömək edir."
   },
   "changeKdf": {
     "message": "KDF-i dəyişdir"
@@ -1234,6 +1254,9 @@
   },
   "importSuccess": {
     "message": "Verilənlər anbarınıza uğurla idxal edildi."
+  },
+  "dataExportSuccess": {
+    "message": "Məlumat uğurla xaricə köçürüldü"
   },
   "importWarning": {
     "message": "$ORGANIZATION$ təşkilatına verilənləri idxal edirsiniz. Verilənlərinizi bu təşkilatın üzvləri ilə paylaşa bilərsiniz. Davam etmək istəyirsiniz?",
@@ -2044,6 +2067,9 @@
   "manageSubscription": {
     "message": "Abunəliyi idarə et"
   },
+  "launchCloudSubscription": {
+    "message": "Bulud Abunəliyini Başlat"
+  },
   "storage": {
     "message": "Saxlama"
   },
@@ -2497,7 +2523,7 @@
     "message": "Üzvə düzəliş et"
   },
   "fieldOnTabRequiresAttention": {
-    "message": "A field on the '$TAB$' tab requires your attention.",
+    "message": "\"$TAB$\" vərəqindəki bir sahə diqqətinizi tələb edir.",
     "placeholders": {
       "tab": {
         "content": "$1",
@@ -5225,9 +5251,6 @@
   "billingSyncApiKeyRotated": {
     "message": "Token döndərildi."
   },
-  "billingSync": {
-    "message": "Faktura eyniləşdirmə"
-  },
   "billingSyncDesc": {
     "message": "Faktura eyniləşdirmə, öz-özünə sahiblik edən Bitwarden-inizi Bitwarden bulud serveri ilə əlaqələndirərək ailələr üçün Ödənişsiz Ailələr planını və qabaqcıl faktura özəllilərini təmin edir."
   },
@@ -5278,6 +5301,15 @@
   },
   "required": {
     "message": "tələb olunur"
+  },
+  "characterMaximum": {
+    "message": "maksimum $MAX$ simvol",
+    "placeholders": {
+      "max": {
+        "content": "$1",
+        "example": "100"
+      }
+    }
   },
   "idpSingleSignOnServiceUrlRequired": {
     "message": "Varlıq Kimliyi bir URL deyilsə tələb olunur."
@@ -5565,10 +5597,10 @@
     }
   },
   "multipleInputEmails": {
-    "message": "1 or more emails are invalid"
+    "message": "1 və ya daha çox e-poçt yararsızdır"
   },
   "tooManyEmails": {
-    "message": "You can only submit up to $COUNT$ emails at a time",
+    "message": "Bir dəfəyə ən çox $COUNT$ e-poçt göndərə bilərsiniz",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -5648,6 +5680,9 @@
   "customColor": {
     "message": "Özəl rəng"
   },
+  "selectPlaceholder": {
+    "message": "-- Seç --"
+  },
   "multiSelectPlaceholder": {
     "message": "-- Filtrləmək üçün yazın --"
   },
@@ -5698,11 +5733,8 @@
   "secretProjectAssociationDescription": {
     "message": "Sirrin əlaqələndiriləcəyi layihələri seçin. Yalnız bu layihələrə müraciəti olan təşkilat istifadəçiləri sirri görə biləcək."
   },
-  "typeOrSelectProjects": {
-    "message": "Layihələri yazın və ya seçin"
-  },
-  "typeOrSelectProject": {
-    "message": "Layihə yazın və ya seçin"
+  "selectProjects": {
+    "message": "Layihələri seçin"
   },
   "project": {
     "message": "Layihə"
@@ -5923,6 +5955,16 @@
   "revokeAccessToken": {
     "message": "Müraciət tokenini ləğv et"
   },
+  "revokeAccessTokens": {
+    "message": "Müraciət tokenlərini ləğv et"
+  },
+  "revokeAccessTokenDesc": {
+    "message": "Müraciət tokenlərinin ləğv edilməsi daimi və geri qaytarıla bilməyən prosesdir."
+  },
+  "accessTokenRevoked": {
+    "message": "Müraciət tokenləri ləğv edildi",
+    "description": "Toast message after deleting one or multiple access tokens."
+  },
   "submenu": {
     "message": "Alt menyu"
   },
@@ -5977,6 +6019,9 @@
   "collection": {
     "message": "Kolleksiya"
   },
+  "noCollection": {
+    "message": "Kolleksiya yoxdur"
+  },
   "canView": {
     "message": "Baxa bilər"
   },
@@ -6006,6 +6051,135 @@
   },
   "memberAccessAll": {
     "message": "Bu üzv, bütün elementlərə müraciət edə və onları dəyişdirə bilər."
+  },
+  "domainVerification": {
+    "message": "Domen təsdiqləməsi"
+  },
+  "newDomain": {
+    "message": "Yeni domen"
+  },
+  "noDomains": {
+    "message": "Domen yoxdur"
+  },
+  "noDomainsSubText": {
+    "message": "Bir domenin bağlantı qurması, üzvlərin SSO ilə Giriş etməsi əsnasında SSO identifikatorunu ötürməsinə icazə verir."
+  },
+  "verifyDomain": {
+    "message": "Domeni təsdiqlə"
+  },
+  "reverifyDomain": {
+    "message": "Domeni yenidən təsdiqlə"
+  },
+  "copyDnsTxtRecord": {
+    "message": "DNS TXT qeydini kopyala"
+  },
+  "dnsTxtRecord": {
+    "message": "DNS TXT qeydi"
+  },
+  "dnsTxtRecordInputHint": {
+    "message": "TXT qeydini DNS Provayderinizə kopyalayıb yapışdırın."
+  },
+  "domainNameInputHint": {
+    "message": "Nümunə: mydomain.com. Alt domenlərin təsdiqlənməsi üçün ayrıca girişlər tələb olunur."
+  },
+  "automaticDomainVerification": {
+    "message": "Avtomatik Domen Təsdiqləməsi"
+  },
+  "automaticDomainVerificationProcess": {
+    "message": "Bitwarden, ilk 72 saat ərzində domeni 3 dəfə təsdiqləməyə çalışacaq. Əgər domen təsdiqlənə bilməsə, \"host\"unuzdakı DNS qeydini yoxlayıb əllə təsdiqləyin. Domen təsdiqlənməsə, 7 gün ərzində təşkilatınızdan silinəcək"
+  },
+  "invalidDomainNameMessage": {
+    "message": "Giriş, yararlı bir format deyil. Format: mydomain.com. Alt domenlərin təsdiqlənməsi üçün ayrıca girişlər tələb olunur."
+  },
+  "removeDomain": {
+    "message": "Domeni sil"
+  },
+  "removeDomainWarning": {
+    "message": "Domenin silinməsi, geri qaytarıla bilməyən prosesdir. Davam etmək istədiyinizə əminsiniz?"
+  },
+  "domainRemoved": {
+    "message": "Domen silindi"
+  },
+  "domainSaved": {
+    "message": "Domen saxlanıldı"
+  },
+  "domainVerified": {
+    "message": "Domen təsdiqləndi"
+  },
+  "duplicateDomainError": {
+    "message": "Eyni domeni iki dəfə tələb edə bilməzsiniz."
+  },
+  "domainNotAvailable": {
+    "message": "Kimsə $DOMAIN$ domenini istifadə edir. Davam etmək üçün fərqli bir domen istifadə edin.",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainNotVerified": {
+    "message": "$DOMAIN$ təsdiqlənmədi. DNS qeydinizi yoxlayın.",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainStatusVerified": {
+    "message": "Təsdiqləndi"
+  },
+  "domainStatusUnverified": {
+    "message": "Təsdiqlənmədi"
+  },
+  "domainNameTh": {
+    "message": "Ad"
+  },
+  "domainStatusTh": {
+    "message": "Vəziyyət"
+  },
+  "lastChecked": {
+    "message": "Son yoxlama"
+  },
+  "domainFormInvalid": {
+    "message": "Diqqətinizi tələb edən form xətaları var"
+  },
+  "addedDomain": {
+    "message": "$DOMAIN$ domeni əlavə edildi",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "removedDomain": {
+    "message": "$DOMAIN$ domeni silindi",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainVerifiedEvent": {
+    "message": "$DOMAIN$ təsdiqləndi",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainNotVerifiedEvent": {
+    "message": "$DOMAIN$ təsdiqlənmədi",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
   },
   "membersColumnHeader": {
     "message": "Üzv/Qrup"
@@ -6082,13 +6256,140 @@
       }
     }
   },
+  "server": {
+    "message": "Server"
+  },
+  "exportData": {
+    "message": "Məlumatı xaricə köçür"
+  },
+  "exportingOrganizationSecretDataTitle": {
+    "message": "Təşkilat Gizli Məlumatlarının xaricə köçürülməsi"
+  },
+  "exportingOrganizationSecretDataDescription": {
+    "message": "Yalnız $ORGANIZATION$ ilə əlaqəli Secrets Manager məlumatları xaricə köçürüləcək. Digər məhsullardakı və ya digər təşkilatlardan olan elementlər daxil edilmir.",
+    "placeholders": {
+      "ORGANIZATION": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "fileUpload": {
+    "message": "Fayl yüklə"
+  },
+  "acceptedFormats": {
+    "message": "Qəbul edilən formatlar:"
+  },
+  "copyPasteImportContents": {
+    "message": "Daxilə köçürmə məzmunlarını kopyala və yapışdır:"
+  },
+  "or": {
+    "message": "və ya"
+  },
+  "licenseAndBillingManagement": {
+    "message": "Lisenziya və faktura idarəetməsi"
+  },
+  "automaticSync": {
+    "message": "Avto-sinxronlaşdırma"
+  },
+  "manualUpload": {
+    "message": "Əllə yükləmə"
+  },
+  "manualUploadDesc": {
+    "message": "Faktura sinxronlaşdırmasını fəallaşdırmaq istəmirsinizsə, lisenziyanızı burada əllə yükləyin."
+  },
+  "syncLicense": {
+    "message": "Lisenziyanı sinxronlaşdır"
+  },
+  "licenseSyncSuccess": {
+    "message": "Lisenziya uğurla sinxronlaşdırıldı"
+  },
+  "licenseUploadSuccess": {
+    "message": "Lisenziya uğurla yükləndi"
+  },
+  "lastLicenseSync": {
+    "message": "Son lisenziya sinxronlaşdırması"
+  },
+  "billingSyncHelp": {
+    "message": "Faktura Sinxronlaşdırma köməyi"
+  },
+  "uploadLicense": {
+    "message": "Lisenziyanı yüklə"
+  },
+  "projectPeopleDescription": {
+    "message": "Qrup və ya insanların bu layihəyə müraciətinə icazə verin."
+  },
+  "projectPeopleSelectHint": {
+    "message": "İnsanları və ya qrupları yazın və ya seçin"
+  },
+  "projectServiceAccountsDescription": {
+    "message": "Xidmət hesablarının bu layihəyə müraciətinə icazə verin."
+  },
+  "projectServiceAccountsSelectHint": {
+    "message": "Xidmət hesablarını yazın və ya seçin"
+  },
+  "projectEmptyPeopleAccessPolicies": {
+    "message": "Əməkdaşlığa başlamaq insanları və ya qrupları əlavə edin"
+  },
+  "projectEmptyServiceAccountAccessPolicies": {
+    "message": "Müraciət icazəsi veriləcək xidmət hesablarını əlavə edin"
+  },
+  "canWrite": {
+    "message": "Yaza bilər"
+  },
+  "canReadWrite": {
+    "message": "Oxuya, yaza bilər"
+  },
+  "groupSlashUser": {
+    "message": "Qrup/İstifadəçi"
+  },
   "lowKdfIterations": {
-    "message": "Low KDF Iterations"
+    "message": "Aşağı KDF iterasiyaları"
   },
   "lowKdfIterationsDesc": {
-    "message": "Increase your KDF encryption settings to improve the security of your account."
+    "message": "Hesabınızın güvənliyini artırmaq üçün KDF şifrələmə tənzimləmələrinizi yüksəldin."
   },
   "changeKdfSettings": {
-    "message": "Change KDF settings"
+    "message": "KDF tənzimləmələrini dəyişdir"
+  },
+  "changeKdfLoggedOutWarning": {
+    "message": "Davam etsəniz hazırkı seansdan çıxış ediləcək, təkrar giriş etməyiniz tələb olunacaq. Digər cihazlardakı aktiv seanslar bir saata qədər aktiv qalmağa davam edə bilər. Məlumat itkisinin qarşısını almaq üçün şifrələmə tənzimləmələrinizi dəyişdirməzdən əvvəl anbarınızı xaricə köçürməyinizi tövsiyə edirik."
+  },
+  "secretsManagerBeta": {
+    "message": "Secrets Manager Beta"
+  },
+  "secretsManagerBetaDesc": {
+    "message": "Beta proqramı əsnasında \"Secrets Manager\"ə istifadəçi müraciətini ödənişsiz fəallaşdırın."
+  },
+  "userAccessSecretsManager": {
+    "message": "Bu istifadəçi \"Secrets Manager Beta\"ya müraciət edə bilər"
+  },
+  "important": {
+    "message": "Important:"
+  },
+  "viewAll": {
+    "message": "Hamısına bax"
+  },
+  "showingPortionOfTotal": {
+    "message": "$PORTION$/$TOTAL$ göstərilir",
+    "placeholders": {
+      "portion": {
+        "content": "$1",
+        "example": "2"
+      },
+      "total": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "resolveTheErrorsBelowAndTryAgain": {
+    "message": "Aşağıdakı xətaları həll edin və yenidən sınayın."
+  },
+  "description": {
+    "message": "Açıqlama"
+  },
+  "errorReadingImportFile": {
+    "message": "Daxilə köçürmə faylını oxumağa çalışarkən xəta baş verdi"
   }
 }

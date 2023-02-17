@@ -309,7 +309,7 @@
     "message": "Cerca membri"
   },
   "searchGroups": {
-    "message": "Search groups"
+    "message": "Cerca gruppi"
   },
   "allItems": {
     "message": "Tutti gli elementi"
@@ -697,7 +697,14 @@
     "message": "È necessario reinserire la password principale."
   },
   "masterPasswordMinlength": {
-    "message": "La password principale deve essere lunga almeno 8 caratteri."
+    "message": "Master password must be at least $VALUE$ characters long.",
+    "description": "The Master Password must be at least a specific number of characters long.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
   },
   "masterPassDoesntMatch": {
     "message": "La conferma della password principale non corrisponde."
@@ -1157,6 +1164,19 @@
       }
     }
   },
+  "kdfMemory": {
+    "message": "Memoria KDF (MB)",
+    "description": "Memory refers to computer memory (RAM). MB is short for megabytes."
+  },
+  "argon2Warning": {
+    "message": "Impostare le tue iterazioni KDF, la memoria e il parallelismo su livelli troppo alti potrebbe comportare scarse performance durante l'accesso (e lo sblocco) di Bitwarden su dispositivi vecchi o già lenti. Si raccomanda di modificare gradualmente queste impostazioni e fare gli opportuni test sui tutti i tuoi dispositivi."
+  },
+  "kdfParallelism": {
+    "message": "Parallelismo KDF"
+  },
+  "argon2Desc": {
+    "message": "Un valore più alto di iterazioni KDF, memoria e parallelismo può aiutarti a proteggere la tua password principale da attacchi \"brute force\"."
+  },
   "changeKdf": {
     "message": "Cambia KDF"
   },
@@ -1234,6 +1254,9 @@
   },
   "importSuccess": {
     "message": "I dati sono stati importati correttamente nella tua cassaforte."
+  },
+  "dataExportSuccess": {
+    "message": "Dati esportati con successo"
   },
   "importWarning": {
     "message": "Stai importando dati in $ORGANIZATION$. I tuoi dati potrebbero essere condivisi con i membri di questa organizzazione. Vuoi procedere?",
@@ -2044,6 +2067,9 @@
   "manageSubscription": {
     "message": "Gestisci abbonamento"
   },
+  "launchCloudSubscription": {
+    "message": "Avvia abbonamento cloud"
+  },
   "storage": {
     "message": "Spazio di archiviazione"
   },
@@ -2497,7 +2523,7 @@
     "message": "Modifica membro"
   },
   "fieldOnTabRequiresAttention": {
-    "message": "A field on the '$TAB$' tab requires your attention.",
+    "message": "Un campo nel tab '$TAB$' richiede la tua attenzione.",
     "placeholders": {
       "tab": {
         "content": "$1",
@@ -5225,9 +5251,6 @@
   "billingSyncApiKeyRotated": {
     "message": "Token ruotato."
   },
-  "billingSync": {
-    "message": "Sincronizzazione fatturazione"
-  },
   "billingSyncDesc": {
     "message": "La sincronizzazione fatturazione fornisce piani Famiglie Gratis per i membri e funzionalità di fatturazione avanzate collegando il tuo Bitwarden self-hosted al server cloud Bitwarden."
   },
@@ -5278,6 +5301,15 @@
   },
   "required": {
     "message": "obbligatorio"
+  },
+  "characterMaximum": {
+    "message": "Massimo $MAX$ caratteri",
+    "placeholders": {
+      "max": {
+        "content": "$1",
+        "example": "100"
+      }
+    }
   },
   "idpSingleSignOnServiceUrlRequired": {
     "message": "Richiesto se l'Entity ID non è un URL."
@@ -5565,10 +5597,10 @@
     }
   },
   "multipleInputEmails": {
-    "message": "1 or more emails are invalid"
+    "message": "Una o più email non valide"
   },
   "tooManyEmails": {
-    "message": "You can only submit up to $COUNT$ emails at a time",
+    "message": "Puoi inviare fino a $COUNT$ email alla volta",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -5648,6 +5680,9 @@
   "customColor": {
     "message": "Colore Personalizzato"
   },
+  "selectPlaceholder": {
+    "message": "-- Seleziona --"
+  },
   "multiSelectPlaceholder": {
     "message": "-- Scrivi per filtrare --"
   },
@@ -5698,11 +5733,8 @@
   "secretProjectAssociationDescription": {
     "message": "Seleziona i progetti a cui sarà associato il segreto. Solo gli utenti dell'organizzazione con accesso a questi progetti saranno in grado di vedere il segreto."
   },
-  "typeOrSelectProjects": {
-    "message": "Digita o seleziona progetti"
-  },
-  "typeOrSelectProject": {
-    "message": "Digita o seleziona progetto"
+  "selectProjects": {
+    "message": "Seleziona i progetti"
   },
   "project": {
     "message": "Progetto"
@@ -5923,6 +5955,16 @@
   "revokeAccessToken": {
     "message": "Revoca token di accesso"
   },
+  "revokeAccessTokens": {
+    "message": "Revoke access tokens"
+  },
+  "revokeAccessTokenDesc": {
+    "message": "Revoking access tokens is permanent and irreversible."
+  },
+  "accessTokenRevoked": {
+    "message": "Access tokens revoked",
+    "description": "Toast message after deleting one or multiple access tokens."
+  },
   "submenu": {
     "message": "Sottomenu"
   },
@@ -5977,6 +6019,9 @@
   "collection": {
     "message": "Raccolta"
   },
+  "noCollection": {
+    "message": "Nessuna raccolta"
+  },
   "canView": {
     "message": "Può visualizzare"
   },
@@ -6006,6 +6051,135 @@
   },
   "memberAccessAll": {
     "message": "Questo utente può accedere e modificare tutti gli elementi."
+  },
+  "domainVerification": {
+    "message": "Domain verification"
+  },
+  "newDomain": {
+    "message": "New domain"
+  },
+  "noDomains": {
+    "message": "No domains"
+  },
+  "noDomainsSubText": {
+    "message": "Connecting a domain allows members to skip the SSO identifier field during Login with SSO."
+  },
+  "verifyDomain": {
+    "message": "Verify domain"
+  },
+  "reverifyDomain": {
+    "message": "Reverify domain"
+  },
+  "copyDnsTxtRecord": {
+    "message": "Copy DNS TXT record"
+  },
+  "dnsTxtRecord": {
+    "message": "DNS TXT record"
+  },
+  "dnsTxtRecordInputHint": {
+    "message": "Copy and paste the TXT record into your DNS Provider."
+  },
+  "domainNameInputHint": {
+    "message": "Example: mydomain.com. Subdomains require separate entries to be verified."
+  },
+  "automaticDomainVerification": {
+    "message": "Automatic Domain Verification"
+  },
+  "automaticDomainVerificationProcess": {
+    "message": "Bitwarden will attempt to verify the domain 3 times during the first 72 hours. If the domain can’t be verified, check the DNS record in your host and manually verify. The domain will be removed from your organization in 7 days if it is not verified"
+  },
+  "invalidDomainNameMessage": {
+    "message": "Input is not a valid format. Format: mydomain.com. Subdomains require separate entries to be verified."
+  },
+  "removeDomain": {
+    "message": "Remove domain"
+  },
+  "removeDomainWarning": {
+    "message": "Removing a domain cannot be undone. Are you sure you want to continue?"
+  },
+  "domainRemoved": {
+    "message": "Domain removed"
+  },
+  "domainSaved": {
+    "message": "Domain saved"
+  },
+  "domainVerified": {
+    "message": "Domain verified"
+  },
+  "duplicateDomainError": {
+    "message": "You can't claim the same domain twice."
+  },
+  "domainNotAvailable": {
+    "message": "Someone else is using $DOMAIN$. Use a different domain to continue.",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainNotVerified": {
+    "message": "$DOMAIN$ not verified. Check your DNS record.",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainStatusVerified": {
+    "message": "Verified"
+  },
+  "domainStatusUnverified": {
+    "message": "Unverified"
+  },
+  "domainNameTh": {
+    "message": "Name"
+  },
+  "domainStatusTh": {
+    "message": "Status"
+  },
+  "lastChecked": {
+    "message": "Last checked"
+  },
+  "domainFormInvalid": {
+    "message": "There are form errors that need your attention"
+  },
+  "addedDomain": {
+    "message": "Added domain $DOMAIN$",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "removedDomain": {
+    "message": "Removed domain $DOMAIN$",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainVerifiedEvent": {
+    "message": "$DOMAIN$ verified",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainNotVerifiedEvent": {
+    "message": "$DOMAIN$ not verified",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
   },
   "membersColumnHeader": {
     "message": "Membro/gruppo"
@@ -6082,13 +6256,140 @@
       }
     }
   },
+  "server": {
+    "message": "Server"
+  },
+  "exportData": {
+    "message": "Esporta dati"
+  },
+  "exportingOrganizationSecretDataTitle": {
+    "message": "Esportazione dati segreti dell'organizzazione in corso"
+  },
+  "exportingOrganizationSecretDataDescription": {
+    "message": "Saranno esportati solo i dati del Gestore dei Segreti associato a $ORGANIZATION$. Gli elementi in altri prodotti e gli elementi da altre organizzazioni non saranno inclusi.",
+    "placeholders": {
+      "ORGANIZATION": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "fileUpload": {
+    "message": "Caricamento file"
+  },
+  "acceptedFormats": {
+    "message": "Formati accettati:"
+  },
+  "copyPasteImportContents": {
+    "message": "Copia e incolla contenuti d'importazione:"
+  },
+  "or": {
+    "message": "o"
+  },
+  "licenseAndBillingManagement": {
+    "message": "Licenza e gestione fatturazione"
+  },
+  "automaticSync": {
+    "message": "Sincronizzazione automatica"
+  },
+  "manualUpload": {
+    "message": "Caricamento manuale"
+  },
+  "manualUploadDesc": {
+    "message": "Se non si desidera l'opzione di sincronizzazione della fattura, caricare manualmente la licenza."
+  },
+  "syncLicense": {
+    "message": "Sincronizza licenza"
+  },
+  "licenseSyncSuccess": {
+    "message": "Licenza sincronizzata con successo"
+  },
+  "licenseUploadSuccess": {
+    "message": "Licenza caricata con successo"
+  },
+  "lastLicenseSync": {
+    "message": "Ultima sincronizzazione licenza"
+  },
+  "billingSyncHelp": {
+    "message": "Aiuto per la sincronizzazione della fatturazione"
+  },
+  "uploadLicense": {
+    "message": "Carica licenza"
+  },
+  "projectPeopleDescription": {
+    "message": "Consenti ai gruppi o alle persone l'accesso a questo progetto."
+  },
+  "projectPeopleSelectHint": {
+    "message": "Digita o seleziona persone o gruppi"
+  },
+  "projectServiceAccountsDescription": {
+    "message": "Concedi l'accesso a questo progetto agli account di servizio."
+  },
+  "projectServiceAccountsSelectHint": {
+    "message": "Digita o seleziona account di servizio"
+  },
+  "projectEmptyPeopleAccessPolicies": {
+    "message": "Aggiungi persone o gruppi per iniziare a collaborare"
+  },
+  "projectEmptyServiceAccountAccessPolicies": {
+    "message": "Aggiungi account di servizio per concedere l'accesso"
+  },
+  "canWrite": {
+    "message": "Può scrivere"
+  },
+  "canReadWrite": {
+    "message": "Può leggere, scrivere"
+  },
+  "groupSlashUser": {
+    "message": "Gruppo/Utente"
+  },
   "lowKdfIterations": {
-    "message": "Low KDF Iterations"
+    "message": "Iterazioni KDF basse"
   },
   "lowKdfIterationsDesc": {
-    "message": "Increase your KDF encryption settings to improve the security of your account."
+    "message": "Aumenta le impostazioni di crittografia KDF per migliorare la sicurezza del tuo account."
   },
   "changeKdfSettings": {
-    "message": "Change KDF settings"
+    "message": "Cambia impostazioni KDF"
+  },
+  "changeKdfLoggedOutWarning": {
+    "message": "Procedendo verrai disconnesso dalla sessione corrente e dovrai effettuare di nuovo il login. Le sessioni attive su altri dispositivi possono continuare a rimanere attive per un massimo di un'ora. Si consiglia di esportare la cassaforte prima di modificare le impostazioni di crittografia, per evitare la perdita di dati."
+  },
+  "secretsManagerBeta": {
+    "message": "Gestore segreti (beta)"
+  },
+  "secretsManagerBetaDesc": {
+    "message": "Abilita gratuitamente l'accesso dell'utente al Gestore Segreti durante il programma beta."
+  },
+  "userAccessSecretsManager": {
+    "message": "Questo utente può accedere alla beta del gestore segreti"
+  },
+  "important": {
+    "message": "Important:"
+  },
+  "viewAll": {
+    "message": "View all"
+  },
+  "showingPortionOfTotal": {
+    "message": "Showing $PORTION$ of $TOTAL$",
+    "placeholders": {
+      "portion": {
+        "content": "$1",
+        "example": "2"
+      },
+      "total": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "resolveTheErrorsBelowAndTryAgain": {
+    "message": "Correggi gli errori sotto e prova di nuovo."
+  },
+  "description": {
+    "message": "Descrizione"
+  },
+  "errorReadingImportFile": {
+    "message": "Si è verificato un errore durante la lettura del file d'importazione"
   }
 }

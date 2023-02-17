@@ -309,7 +309,7 @@
     "message": "Mitglieder suchen"
   },
   "searchGroups": {
-    "message": "Search groups"
+    "message": "Gruppen suchen"
   },
   "allItems": {
     "message": "Alle Einträge"
@@ -697,7 +697,14 @@
     "message": "Erneute Eingabe des Master-Passworts ist erforderlich."
   },
   "masterPasswordMinlength": {
-    "message": "Das Master-Passwort muss mindestens 8 Zeichen lang sein."
+    "message": "Master password must be at least $VALUE$ characters long.",
+    "description": "The Master Password must be at least a specific number of characters long.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
   },
   "masterPassDoesntMatch": {
     "message": "Master-Passwort-Bestätigung stimmt nicht überein."
@@ -833,7 +840,7 @@
     "message": "Optionen für Zwei-Faktor-Authentifizierung"
   },
   "recoveryCodeDesc": {
-    "message": "Zugang zu allen Zwei-Faktor-Anbietern verloren? Benutzen Sie Ihren Wiederherstellungscode, um alle Zwei-Faktor-Anbieter in Ihrem Konto zu deaktivieren."
+    "message": "Zugang zu allen Zwei-Faktor-Anbietern verloren? Benutze deinen Wiederherstellungscode, um alle Zwei-Faktor-Anbieter in deinem Konto zu deaktivieren."
   },
   "recoveryCodeTitle": {
     "message": "Wiederherstellungscode"
@@ -961,7 +968,7 @@
     "message": "Dieser Export enthält Ihre Tresor-Daten in einem unverschlüsseltem Format. Sie sollten die Datei daher nicht über unsichere Kanäle (z.B. E-Mail) versenden oder speichern. Löschen Sie die Datei sofort nach ihrer Verwendung."
   },
   "encExportKeyWarningDesc": {
-    "message": "Dieser Export verschlüsselt Ihre Daten mit dem Verschlüsselungscode Ihres Kontos. Falls Sie Ihren Verschlüsselungscode erneuern, sollten Sie den Export erneut durchführen, da Sie die zuvor erstellte Datei ansonsten nicht mehr entschlüsseln können."
+    "message": "Dieser Export verschlüsselt deine Daten mit dem Verschlüsselungscode deines Kontos. Falls du deinen Verschlüsselungscode erneuerst, solltest du den Export erneut durchführen, da du die zuvor erstellte Datei ansonsten nicht mehr entschlüsseln kannst."
   },
   "encExportAccountWarningDesc": {
     "message": "Die Verschlüsselungscodes eines Kontos sind für jedes Bitwarden-Benutzerkonto einzigartig, deshalb kannst du keinen verschlüsselten Export in ein anderes Konto importieren."
@@ -1018,7 +1025,7 @@
     "message": "Diese Datei ist passwortgeschützt. Bitte gebe das Dateipasswort ein, um Daten zu importieren."
   },
   "exportSuccess": {
-    "message": "Ihre Daten wurden exportiert."
+    "message": "Tresor-Daten exportiert"
   },
   "passwordGenerator": {
     "message": "Passwortgenerator"
@@ -1149,13 +1156,26 @@
     }
   },
   "kdfIterationsWarning": {
-    "message": "Wenn du die Anzahl der KDF-Iterationen zu hoch setzt, kann es sein, dass das Einloggen in Bitwarden (und Entsperren) auf langsameren Geräten länger dauert. Wir empfehlen, dass du den Wert um $INCREMENT$ Schrittweise anhebest und es auf allen Geräten testest.",
+    "message": "Wenn du die Anzahl der KDF-Iterationen zu hoch setzt, kann es sein, dass das Einloggen in (und Entsperren von) Bitwarden auf langsameren Geräten länger dauert. Wir empfehlen, dass du den Wert wiederholt um $INCREMENT$ anhebst und auf all deinen Geräten testest.",
     "placeholders": {
       "increment": {
         "content": "$1",
         "example": "50,000"
       }
     }
+  },
+  "kdfMemory": {
+    "message": "KDF-Speicher (MB)",
+    "description": "Memory refers to computer memory (RAM). MB is short for megabytes."
+  },
+  "argon2Warning": {
+    "message": "Werden KDF-Iterationen, -Speicher und -Parallelität zu hoch eingestellt, kann das zu einer schlechten Leistung führen, wenn du dich bei Bitwarden auf langsameren oder älteren Geräten einloggst (und diese entsperrst). Wir empfehlen dir, diese individuell in kleinen Schritten zu ändern und dann alle deine Geräte zu testen."
+  },
+  "kdfParallelism": {
+    "message": "KDF-Parallelität"
+  },
+  "argon2Desc": {
+    "message": "Höhere KDF-Iterationen, -Speicher und -Parallelität helfen dabei, dein Master-Passwort besser vor Brute-Force-Angriffen zu schützen."
   },
   "changeKdf": {
     "message": "KDF ändern"
@@ -1233,7 +1253,10 @@
     "message": "Es gab ein Problem mit den Daten, die Sie importieren wollten. Bitte beheben Sie die unten aufgeführten Fehler in Ihrer Quelldatei und versuchen Sie es erneut."
   },
   "importSuccess": {
-    "message": "Daten wurden erfolgreich in Ihren Tresor importiert."
+    "message": "Daten erfolgreich importiert"
+  },
+  "dataExportSuccess": {
+    "message": "Daten erfolgreich exportiert"
   },
   "importWarning": {
     "message": "Sie importieren Daten nach $ORGANIZATION$. Ihre Daten können mit Mitgliedern dieser Organisation geteilt werden. Möchten Sie fortfahren?",
@@ -1607,7 +1630,7 @@
     "message": "Ihr Wiederherstellungsschlüssel für die Zwei-Faktor-Anmeldung in Bitwarden"
   },
   "twoFactorRecoveryNoCode": {
-    "message": "Sie haben noch keine Variante der Zwei-Faktor-Anmeldung aktiviert. Nachdem Sie eine Zwei-Faktor-Anmeldung aktiviert haben, finden Sie hier Ihren Wiederherstellungs-Code."
+    "message": "Du hast noch keinen Anbieter für die Zwei-Faktor-Anmeldung eingerichtet. Nachdem du einen Anbieter für die Zwei-Faktor-Anmeldung eingerichtet hast, findest du hier deinen Wiederherstellungscode."
   },
   "printCode": {
     "message": "Code drucken",
@@ -1854,7 +1877,7 @@
     "message": "Sie haben ein Premium-Abo aktiviert."
   },
   "premiumUpgradeUnlockFeatures": {
-    "message": "Machen Sie ein Upgrade Ihres Kontos auf eine Premium-Mitgliedschaft, um zusätzliche, großartige Funktionen freizuschalten."
+    "message": "Mache ein Upgrade deines Kontos auf eine Premium-Mitgliedschaft, um zusätzliche, großartige Funktionen freizuschalten."
   },
   "premiumSignUpStorage": {
     "message": "1 GB verschlüsselter Speicherplatz für Datei-Anhänge."
@@ -1991,7 +2014,7 @@
     "message": "Kreditkarte"
   },
   "paypalClickSubmit": {
-    "message": "Klicken Sie auf die Schaltfläche PayPal, um sich bei Ihrem PayPal-Konto anzumelden und anschließend auf die Schaltfläche Senden, um fortzufahren."
+    "message": "Klicke auf den PayPal Button, um dich bei deinem PayPal-Konto anzumelden und anschließend auf den Senden-Button, um fortzufahren."
   },
   "cancelSubscription": {
     "message": "Abo kündigen"
@@ -2043,6 +2066,9 @@
   },
   "manageSubscription": {
     "message": "Abo verwalten"
+  },
+  "launchCloudSubscription": {
+    "message": "Cloud-Abonnement starten"
   },
   "storage": {
     "message": "Speicher"
@@ -2323,7 +2349,7 @@
     "message": "Zugriffskontrolle durch Gruppen"
   },
   "syncUsersFromDirectory": {
-    "message": "Synchronisieren Sie Ihre Benutzer und Gruppen aus einem Verzeichnis"
+    "message": "Synchronisiere deine Benutzer und Gruppen aus einem Ordner"
   },
   "trackAuditLogs": {
     "message": "Nachverfolgung von Benutzeraktivitäten mittels Auditprotokollen"
@@ -2497,7 +2523,7 @@
     "message": "Mitglied bearbeiten"
   },
   "fieldOnTabRequiresAttention": {
-    "message": "A field on the '$TAB$' tab requires your attention.",
+    "message": "Ein Feld auf der Registerkarte '$TAB$' erfordert deine Aufmerksamkeit.",
     "placeholders": {
       "tab": {
         "content": "$1",
@@ -3061,7 +3087,7 @@
     "message": "Sehen Sie in Ihrem E-Mail-Posteingang nach, ob Sie Ihren Bestätigungscode erhalten haben"
   },
   "emailVerified": {
-    "message": "Ihre E-Mail-Adresse wurde verifiziert"
+    "message": "Deine Konto-E-Mail-Adresse wurde verifiziert"
   },
   "emailVerifiedFailed": {
     "message": "Ihre E-Mail kann nicht verifiziert werden. Versuchen Sie eine neue Bestätigungs-E-Mail zu senden."
@@ -3106,13 +3132,13 @@
     "message": "E-Mail-Adresse merken"
   },
   "recoverAccountTwoStepDesc": {
-    "message": "Falls Sie nicht mit Ihren normalen Zwei-Faktor-Anmeldemethoden auf Ihren Account zugreifen können, nutzen Sie Ihren Zwei-Faktor-Wiederherstellungscode, um alle Zwei-Faktor-Anbieter für Ihr Konto zu deaktivieren."
+    "message": "Falls du nicht mit deinen normalen Zwei-Faktor-Anmeldemethoden auf dein Konto zugreifen kannst, nutze deinen Zwei-Faktor-Wiederherstellungscode, um alle Zwei-Faktor-Anbieter für dein Konto zu deaktivieren."
   },
   "recoverAccountTwoStep": {
     "message": "Zwei-Faktor-Authentifizierung wiederherstellen"
   },
   "twoStepRecoverDisabled": {
-    "message": "Zwei-Faktor-Authentifizierung wurde für Ihren Account deaktiviert."
+    "message": "Zwei-Faktor Anmeldung wurde für deinen Account deaktiviert."
   },
   "learnMore": {
     "message": "Erfahre mehr"
@@ -3124,7 +3150,7 @@
     "message": "Wir haben Ihnen eine E-Mail mit weiteren Anweisungen gesendet, sofern Ihr Konto existiert."
   },
   "deleteRecoverConfirmDesc": {
-    "message": "Sie haben die Löschung Ihres Bitwarden-Kontos angefragt. Klicken Sie diesen Button, um die Löschung zu bestätigen."
+    "message": "Du hast die Löschung deines Bitwarden-Kontos angefragt. Benutze den Button unten, um die Löschung zu bestätigen."
   },
   "myOrganization": {
     "message": "Meine Organisation"
@@ -4962,7 +4988,7 @@
     "message": "Gemeinsame Sammlungen für Familiengeheimnisse"
   },
   "badToken": {
-    "message": "Der Link ist nicht mehr gültig. Bitte lasse dir vom Förderer das Angebot erneut senden."
+    "message": "Der Link ist nicht mehr gültig. Bitte lasse dir vom Paten das Angebot erneut senden."
   },
   "reclaimedFreePlan": {
     "message": "Kostenloses Abo zurückgefordert"
@@ -5187,10 +5213,10 @@
     "message": "KOSTENLOS mit Patenschaft"
   },
   "viewBillingSyncToken": {
-    "message": "Rechnungssynchronisierungs-Token ansehen"
+    "message": "Rechnungssynchronisations-Token ansehen"
   },
   "generateBillingSyncToken": {
-    "message": "Rechnungssynchronisierungs-Token generieren"
+    "message": "Rechnungssynchronisations-Token generieren"
   },
   "copyPasteBillingSync": {
     "message": "Kopiere dieses Token und füge es in die Rechnungssynchronisations-Einstellungen deiner selbst gehosteten Organisation ein."
@@ -5223,10 +5249,7 @@
     "message": "Um deine Organisation auf deinem eigenen Server einzurichten, musst du deine Lizenzdatei hochladen. Um kostenlose Familien-Abos und erweiterte Abrechnungsmöglichkeiten für deine selbst gehostete Organisation anzubieten, musst du die Rechnungssynchronisation einrichten."
   },
   "billingSyncApiKeyRotated": {
-    "message": "Token erneuert."
-  },
-  "billingSync": {
-    "message": "Rechnungssynchronisation"
+    "message": "Token erneuert"
   },
   "billingSyncDesc": {
     "message": "Die Rechnungssynchronisation bietet ein kostenloses Familien-Abo für Mitglieder und erweiterte Abrechnungsmöglichkeiten, indem du dein selbst gehostetes Bitwarden mit dem Bitwarden Cloud-Server verbindest."
@@ -5278,6 +5301,15 @@
   },
   "required": {
     "message": "erforderlich"
+  },
+  "characterMaximum": {
+    "message": "Maximal $MAX$ Zeichen",
+    "placeholders": {
+      "max": {
+        "content": "$1",
+        "example": "100"
+      }
+    }
   },
   "idpSingleSignOnServiceUrlRequired": {
     "message": "Erforderlich, wenn die Entitäts-ID keine URL ist."
@@ -5403,7 +5435,7 @@
     }
   },
   "awaitingSyncSingular": {
-    "message": "Token vor $DAYS$ Tag erneuert. Aktualisiere den Rechnungssynchronsierungs-Token in deinen selbst gehosteten Organisationseinstellungen.",
+    "message": "Token vor $DAYS$ Tag erneuert. Aktualisiere den Rechnungssynchronisations-Token in deinen selbst gehosteten Organisationseinstellungen.",
     "placeholders": {
       "days": {
         "content": "$1",
@@ -5412,7 +5444,7 @@
     }
   },
   "awaitingSyncPlural": {
-    "message": "Token vor $DAYS$ Tagen erneuert. Aktualisiere den Rechnungssynchronsierungs-Token in deinen selbst gehosteten Organisationseinstellungen.",
+    "message": "Token vor $DAYS$ Tagen erneuert. Aktualisiere den Rechnungssynchronisations-Token in deinen selbst gehosteten Organisationseinstellungen.",
     "placeholders": {
       "days": {
         "content": "$1",
@@ -5565,10 +5597,10 @@
     }
   },
   "multipleInputEmails": {
-    "message": "1 or more emails are invalid"
+    "message": "Mindestens 1 E-Mail-Adresse ist ungültig"
   },
   "tooManyEmails": {
-    "message": "You can only submit up to $COUNT$ emails at a time",
+    "message": "Du kannst nur bis zu $COUNT$ E-Mails gleichzeitig senden",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -5648,6 +5680,9 @@
   "customColor": {
     "message": "Eigene Farbe"
   },
+  "selectPlaceholder": {
+    "message": "-- Auswählen --"
+  },
   "multiSelectPlaceholder": {
     "message": "-- Typ zum Filtern --"
   },
@@ -5698,11 +5733,8 @@
   "secretProjectAssociationDescription": {
     "message": "Wähle Projekte aus, denen das Geheimnis zugeordnet werden soll. Nur Organisationsbenutzer mit Zugriff auf diese Projekte können das Geheimnis sehen."
   },
-  "typeOrSelectProjects": {
-    "message": "Projektnamen eingeben oder auswählen"
-  },
-  "typeOrSelectProject": {
-    "message": "Projektname eingeben oder auswählen"
+  "selectProjects": {
+    "message": "Projekte auswählen"
   },
   "project": {
     "message": "Projekt"
@@ -5923,6 +5955,16 @@
   "revokeAccessToken": {
     "message": "Zugriffstoken widerrufen"
   },
+  "revokeAccessTokens": {
+    "message": "Zugriffstokens widerrufen"
+  },
+  "revokeAccessTokenDesc": {
+    "message": "Das Widerrufen von Zugriffstokens ist dauerhaft und unumkehrbar."
+  },
+  "accessTokenRevoked": {
+    "message": "Zugriffstokens widerrufen",
+    "description": "Toast message after deleting one or multiple access tokens."
+  },
   "submenu": {
     "message": "Untermenü"
   },
@@ -5977,6 +6019,9 @@
   "collection": {
     "message": "Sammlung"
   },
+  "noCollection": {
+    "message": "Keine Sammlung"
+  },
   "canView": {
     "message": "Darf anzeigen"
   },
@@ -6006,6 +6051,135 @@
   },
   "memberAccessAll": {
     "message": "Dieses Mitglied darf auf alle Elemente zugreifen und diese ändern."
+  },
+  "domainVerification": {
+    "message": "Domain-Verifizierung"
+  },
+  "newDomain": {
+    "message": "Neue Domain"
+  },
+  "noDomains": {
+    "message": "Keine Domains"
+  },
+  "noDomainsSubText": {
+    "message": "Durch das Verbinden einer Domain können Mitglieder das SSO-Kennungsfeld während der Anmeldung mit SSO überspringen."
+  },
+  "verifyDomain": {
+    "message": "Domain überprüfen"
+  },
+  "reverifyDomain": {
+    "message": "Domain erneut verifizieren"
+  },
+  "copyDnsTxtRecord": {
+    "message": "DNS-TXT-Eintrag kopieren"
+  },
+  "dnsTxtRecord": {
+    "message": "DNS-TXT-Eintrag"
+  },
+  "dnsTxtRecordInputHint": {
+    "message": "Kopiere den TXT-Eintrag und füge ihn bei deinem DNS-Provider ein."
+  },
+  "domainNameInputHint": {
+    "message": "Beispiel: mydomain.com. Subdomains erfordern separate Einträge zur Verifizierung."
+  },
+  "automaticDomainVerification": {
+    "message": "Automatische Domain-Verifizierung"
+  },
+  "automaticDomainVerificationProcess": {
+    "message": "Bitwarden wird in den ersten 72 Stunden 3 Mal versuchen, die Domain zu überprüfen. Wenn die Domain nicht verifiziert werden kann, überprüfe den DNS-Eintrag auf deinem Host und verifiziere sie manuell. Die Domain wird in 7 Tagen aus deiner Organisation entfernt, wenn sie nicht verifiziert ist"
+  },
+  "invalidDomainNameMessage": {
+    "message": "Eingabe ist kein gültiges Format. Format: mydomain.com. Subdomains erfordern separate Einträge, um verifiziert zu werden."
+  },
+  "removeDomain": {
+    "message": "Domain entfernen"
+  },
+  "removeDomainWarning": {
+    "message": "Das Entfernen einer Domain kann nicht rückgängig gemacht werden. Bist du sicher, dass du fortfahren möchtest?"
+  },
+  "domainRemoved": {
+    "message": "Domain entfernt"
+  },
+  "domainSaved": {
+    "message": "Domain gespeichert"
+  },
+  "domainVerified": {
+    "message": "Domain verifiziert"
+  },
+  "duplicateDomainError": {
+    "message": "Du kannst die gleiche Domain nicht zweimal beanspruchen."
+  },
+  "domainNotAvailable": {
+    "message": "Jemand anderes benutzt $DOMAIN$. Verwende eine andere Domain, um fortzufahren.",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainNotVerified": {
+    "message": "$DOMAIN$ nicht verifiziert. Überprüfe deinen DNS-Eintrag.",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainStatusVerified": {
+    "message": "Verifiziert"
+  },
+  "domainStatusUnverified": {
+    "message": "Nicht verifiziert"
+  },
+  "domainNameTh": {
+    "message": "Name"
+  },
+  "domainStatusTh": {
+    "message": "Status"
+  },
+  "lastChecked": {
+    "message": "Zuletzt überprüft"
+  },
+  "domainFormInvalid": {
+    "message": "Es gibt Formularfehler, die deine Aufmerksamkeit benötigen"
+  },
+  "addedDomain": {
+    "message": "Domain $DOMAIN$ hinzugefügt",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "removedDomain": {
+    "message": "Domain $DOMAIN$ entfernt",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainVerifiedEvent": {
+    "message": "$DOMAIN$ verifiziert",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainNotVerifiedEvent": {
+    "message": "$DOMAIN$ nicht verifiziert",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
   },
   "membersColumnHeader": {
     "message": "Mitglied/Gruppe"
@@ -6082,6 +6256,93 @@
       }
     }
   },
+  "server": {
+    "message": "Server"
+  },
+  "exportData": {
+    "message": "Daten exportieren"
+  },
+  "exportingOrganizationSecretDataTitle": {
+    "message": "Geheimdaten der Organisation exportieren"
+  },
+  "exportingOrganizationSecretDataDescription": {
+    "message": "Nur die mit $ORGANIZATION$ verknüpften Daten des Secrets Manager werden exportiert. Einträge in anderen Produkten oder anderen Organisationen werden nicht berücksichtigt.",
+    "placeholders": {
+      "ORGANIZATION": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "fileUpload": {
+    "message": "Datei-Upload"
+  },
+  "acceptedFormats": {
+    "message": "Akzeptierte Formate:"
+  },
+  "copyPasteImportContents": {
+    "message": "Kopiere und füge importierte Inhalte ein:"
+  },
+  "or": {
+    "message": "oder"
+  },
+  "licenseAndBillingManagement": {
+    "message": "Lizenz- und Rechnungsverwaltung"
+  },
+  "automaticSync": {
+    "message": "Automatische Synchronisierung"
+  },
+  "manualUpload": {
+    "message": "Manuelles Hochladen"
+  },
+  "manualUploadDesc": {
+    "message": "Wenn du dich nicht für die Rechnungssynchronisation entscheiden möchtest, lade deine Lizenz hier manuell hoch."
+  },
+  "syncLicense": {
+    "message": "Lizenz synchronisieren"
+  },
+  "licenseSyncSuccess": {
+    "message": "Lizenz erfolgreich synchronisiert"
+  },
+  "licenseUploadSuccess": {
+    "message": "Lizenz erfolgreich hochgeladen"
+  },
+  "lastLicenseSync": {
+    "message": "Letzte Lizenz-Synchronisierung"
+  },
+  "billingSyncHelp": {
+    "message": "Hilfe zur Rechnungssynchronisation"
+  },
+  "uploadLicense": {
+    "message": "Lizenz hochladen"
+  },
+  "projectPeopleDescription": {
+    "message": "Gruppen oder Personen Zugriff auf dieses Projekt gewähren."
+  },
+  "projectPeopleSelectHint": {
+    "message": "Personen oder Gruppen suchen oder auswählen"
+  },
+  "projectServiceAccountsDescription": {
+    "message": "Dienstkonten Zugriff auf dieses Projekt gewähren."
+  },
+  "projectServiceAccountsSelectHint": {
+    "message": "Dienstkonten suchen oder auswählen"
+  },
+  "projectEmptyPeopleAccessPolicies": {
+    "message": "Personen oder Gruppen hinzufügen, um mit der Zusammenarbeit zu beginnen"
+  },
+  "projectEmptyServiceAccountAccessPolicies": {
+    "message": "Dienstkonten hinzufügen, um Zugriff zu gewähren"
+  },
+  "canWrite": {
+    "message": "Kann schreiben"
+  },
+  "canReadWrite": {
+    "message": "Kann lesen, schreiben"
+  },
+  "groupSlashUser": {
+    "message": "Gruppe/Benutzer"
+  },
   "lowKdfIterations": {
     "message": "Geringe KDF-Iterationen"
   },
@@ -6090,5 +6351,45 @@
   },
   "changeKdfSettings": {
     "message": "KDF-Einstellungen ändern"
+  },
+  "changeKdfLoggedOutWarning": {
+    "message": "Wenn du fortfährst, wirst du aus deiner aktuellen Sitzung abgemeldet und musst dich neu anmelden. Aktive Sitzungen auf anderen Geräten können bis zu einer Stunde weiter aktiv bleiben. Wir empfehlen, deinen Tresor zu exportieren, bevor du die Verschlüsselungseinstellungen änderst, um Datenverlust zu vermeiden."
+  },
+  "secretsManagerBeta": {
+    "message": "Secrets Manager Beta"
+  },
+  "secretsManagerBetaDesc": {
+    "message": "Aktiviere kostenlosen Benutzerzugriff auf den Secrets Manager während des Beta-Programms."
+  },
+  "userAccessSecretsManager": {
+    "message": "Dieser Benutzer kann auf die Secrets Manager Beta zugreifen"
+  },
+  "important": {
+    "message": "Important:"
+  },
+  "viewAll": {
+    "message": "Alles anzeigen"
+  },
+  "showingPortionOfTotal": {
+    "message": "Zeige $PORTION$ von $TOTAL$",
+    "placeholders": {
+      "portion": {
+        "content": "$1",
+        "example": "2"
+      },
+      "total": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "resolveTheErrorsBelowAndTryAgain": {
+    "message": "Behebe die unten aufgeführten Fehler und versuche es erneut."
+  },
+  "description": {
+    "message": "Beschreibung"
+  },
+  "errorReadingImportFile": {
+    "message": "Beim Lesen der Importdatei ist ein Fehler aufgetreten"
   }
 }

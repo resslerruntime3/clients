@@ -430,7 +430,14 @@
     "message": "Erneute Eingabe des Master-Passworts ist erforderlich."
   },
   "masterPasswordMinlength": {
-    "message": "Das Master-Passwort muss mindestens 8 Zeichen lang sein."
+    "message": "Master password must be at least $VALUE$ characters long.",
+    "description": "The Master Password must be at least a specific number of characters long.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
   },
   "masterPassDoesntMatch": {
     "message": "Die Master-Passwort-Wiederholung stimmt nicht überein."
@@ -960,7 +967,10 @@
     "message": "Wenn eine Zugangsmaske erkannt wird, füge automatisch die Zugangsdaten ein während die Webseite lädt."
   },
   "experimentalFeature": {
-    "message": "Dies ist derzeit ein experimentelles Feature. Verwendung auf eigene Gefahr."
+    "message": "Compromised or untrusted websites can exploit auto-fill on page load."
+  },
+  "learnMoreAboutAutofill": {
+    "message": "Erfahre mehr über Auto-Ausfüllen"
   },
   "defaultAutoFillOnPageLoad": {
     "message": "Standard Auto-Ausfüllen Einstellung für Login-Einträge"
@@ -2047,6 +2057,30 @@
   "rememberEmail": {
     "message": "E-Mail-Adresse merken"
   },
+  "loginWithDevice": {
+    "message": "Mit Gerät anmelden"
+  },
+  "loginWithDeviceEnabledInfo": {
+    "message": "Mit Gerät anmelden muss in den Einstellungen der Bitwarden App eingerichtet werden. Benötigst du eine andere Option?"
+  },
+  "fingerprintPhraseHeader": {
+    "message": "Fingerabdruck-Phrase"
+  },
+  "fingerprintMatchInfo": {
+    "message": "Bitte stelle sicher, dass dein Tresor entsperrt ist und die Fingerabdruck-Phrase mit dem anderen Gerät übereinstimmt."
+  },
+  "resendNotification": {
+    "message": "Benachrichtigung erneut senden"
+  },
+  "viewAllLoginOptions": {
+    "message": "Alle Anmelde-Optionen anzeigen"
+  },
+  "notificationSentDevice": {
+    "message": "Eine Benachrichtigung wurde an dein Gerät gesendet."
+  },
+  "logInInitiated": {
+    "message": "Anmeldung initiiert"
+  },
   "exposedMasterPassword": {
     "message": "Kompromittiertes Master-Passwort"
   },
@@ -2076,5 +2110,26 @@
         "example": "14"
       }
     }
+  },
+  "tryAutofillPageLoad": {
+    "message": "Auto-Ausfüllen beim Laden einer Seite versuchen?"
+  },
+  "tryAutofill": {
+    "message": "So funktioniert Auto-Ausfüllen"
+  },
+  "autofillPageLoadInfo": {
+    "message": "Anmeldeformulare werden automatisch die passenden Anmeldedaten ausfüllen, wenn du Auto-Ausfüllen beim Laden einer Seite aktivierst."
+  },
+  "autofillSelectInfo": {
+    "message": "Wähle einen Eintrag von dieser Seite, um das Formular auf dem aktiven Tab automatisch auszufüllen."
+  },
+  "autofillTurnedOn": {
+    "message": "Auto-Ausfüllen beim Laden einer Seite eingeschaltet"
+  },
+  "turnOn": {
+    "message": "Einschalten"
+  },
+  "notNow": {
+    "message": "Nicht jetzt"
   }
 }

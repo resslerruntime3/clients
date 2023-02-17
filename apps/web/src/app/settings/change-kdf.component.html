@@ -1,7 +1,7 @@
 <div class="tabbed-header">
   <h1>{{ "encKeySettings" | i18n }}</h1>
 </div>
-<bit-callout type="warning">{{ "loggedOutWarning" | i18n }}</bit-callout>
+<bit-callout type="warning">{{ "changeKdfLoggedOutWarning" | i18n }}</bit-callout>
 <form #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate autocomplete="off">
   <div class="row">
     <div class="col-6">
@@ -25,7 +25,7 @@
         <label for="kdf">{{ "kdfAlgorithm" | i18n }}</label>
         <a
           class="ml-auto"
-          href="https://en.wikipedia.org/wiki/Key_derivation_function"
+          href="https://bitwarden.com/help/kdf-algorithms"
           target="_blank"
           rel="noopener"
           appA11yTitle="{{ 'learnMore' | i18n }}"
@@ -63,7 +63,7 @@
           <label for="kdfIterations">{{ "kdfIterations" | i18n }}</label>
           <a
             class="ml-auto"
-            href="https://bitwarden.com/help/kdf-algorithms"
+            href="https://bitwarden.com/help/what-encryption-is-used/#changing-kdf-iterations"
             target="_blank"
             rel="noopener"
             appA11yTitle="{{ 'learnMore' | i18n }}"
@@ -73,7 +73,7 @@
           <input
             id="kdfIterations"
             type="number"
-            min="5000"
+            min="100000"
             max="2000000"
             name="KdfIterations"
             class="form-control"
@@ -86,8 +86,8 @@
           <input
             id="iterations"
             type="number"
-            min="1"
-            max="1024"
+            min="2"
+            max="10"
             name="Iterations"
             class="form-control mb-3"
             [(ngModel)]="kdfConfig.iterations"

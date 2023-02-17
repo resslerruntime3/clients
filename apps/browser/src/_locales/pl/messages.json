@@ -430,7 +430,14 @@
     "message": "Wymagane jest ponowne wpisanie hasła głównego."
   },
   "masterPasswordMinlength": {
-    "message": "Hasło główne musi zawierać co najmniej 8 znaków."
+    "message": "Hasło główne musi zawierać co najmniej $VALUE$ znaki(-ów).",
+    "description": "The Master Password must be at least a specific number of characters long.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
   },
   "masterPassDoesntMatch": {
     "message": "Hasła nie pasują do siebie."
@@ -960,7 +967,10 @@
     "message": "Jeśli zostanie wykryty formularz logowania, automatycznie uzupełnij dane logowania po załadowaniu strony."
   },
   "experimentalFeature": {
-    "message": "Obecnie jest to funkcja eksperymentalna. Używaj na własne ryzyko."
+    "message": "Zaatakowane lub niezaufane witryny internetowe mogą wykorzystać funkcję autouzupełniania podczas wczytywania strony, aby wyrządzić szkody."
+  },
+  "learnMoreAboutAutofill": {
+    "message": "Dowiedz się więcej o autouzupełnianiu"
   },
   "defaultAutoFillOnPageLoad": {
     "message": "Domyślne ustawienie autouzupełniania"
@@ -2047,6 +2057,30 @@
   "rememberEmail": {
     "message": "Zapamiętaj adres e-mail"
   },
+  "loginWithDevice": {
+    "message": "Zaloguj się za pomocą urządzenia"
+  },
+  "loginWithDeviceEnabledInfo": {
+    "message": "Logowanie za pomocą urządzenia musi być włączone w ustawieniach aplikacji Bitwarden. Potrzebujesz innej opcji?"
+  },
+  "fingerprintPhraseHeader": {
+    "message": "Unikalny identyfikator konta"
+  },
+  "fingerprintMatchInfo": {
+    "message": "Upewnij się, że sejf jest odblokowany, a unikalny identyfikator konta pasuje do drugiego urządzenia."
+  },
+  "resendNotification": {
+    "message": "Wyślij ponownie powiadomienie"
+  },
+  "viewAllLoginOptions": {
+    "message": "Zobacz wszystkie sposoby logowania"
+  },
+  "notificationSentDevice": {
+    "message": "Powiadomienie zostało wysłane na urządzenie."
+  },
+  "logInInitiated": {
+    "message": "Logowanie rozpoczęte"
+  },
   "exposedMasterPassword": {
     "message": "Ujawnione hasło główne"
   },
@@ -2076,5 +2110,26 @@
         "example": "14"
       }
     }
+  },
+  "tryAutofillPageLoad": {
+    "message": "Spróbować autouzupełnić po załadowaniu strony?"
+  },
+  "tryAutofill": {
+    "message": "Jak autouzupełniać"
+  },
+  "autofillPageLoadInfo": {
+    "message": "Formularze logowania automatycznie wypełnią się pasującymi danymi uwierzytelniającymi, jeśli włączysz autouzupełnianie po załadowaniu strony."
+  },
+  "autofillSelectInfo": {
+    "message": "Wybierz element z tej strony, aby automatycznie wypełnić formularz na aktywnej karcie."
+  },
+  "autofillTurnedOn": {
+    "message": "Automatyczne uzupełnianie przy wczytywaniu strony zostało włączone"
+  },
+  "turnOn": {
+    "message": "Włącz"
+  },
+  "notNow": {
+    "message": "Nie teraz"
   }
 }
