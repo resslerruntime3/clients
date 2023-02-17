@@ -73,6 +73,13 @@ export class RoutedVaultFilterBridgeService {
           );
         }
 
+        if (filter.type === undefined) {
+          legacyFilter.selectedCipherTypeNode = ServiceUtils.getTreeNodeObject(
+            cipherTypeTree,
+            "AllItems"
+          );
+        }
+
         if (filter.type !== undefined && filter.type === "trash") {
           legacyFilter.selectedCipherTypeNode = new TreeNode<CipherTypeFilter>(
             { id: "trash", name: "", type: "trash", icon: "" },
