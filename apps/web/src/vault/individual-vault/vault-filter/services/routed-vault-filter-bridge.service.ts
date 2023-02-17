@@ -65,9 +65,7 @@ export class RoutedVaultFilterBridgeService {
           legacyFilter.selectedCipherTypeNode = this.findNode(cipherTypeTree, filter.type);
         }
 
-        const bridgeModel = new RoutedVaultFilterBridge(filter, legacyFilter, this);
-
-        return bridgeModel;
+        return new RoutedVaultFilterBridge(filter, legacyFilter, this);
       })
     );
   }
