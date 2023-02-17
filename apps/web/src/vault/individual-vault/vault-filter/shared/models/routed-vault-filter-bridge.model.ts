@@ -56,19 +56,10 @@ export class RoutedVaultFilterBridge implements VaultFilter {
     return this.legacyFilter.selectedCipherTypeNode;
   }
   set selectedCipherTypeNode(value: TreeNode<CipherTypeFilter>) {
-    if (value?.node.id === "AllItems") {
-      this.bridgeService.navigate({
-        ...this.routedFilter,
-        type: undefined,
-        folderId: undefined,
-        collectionId: undefined,
-      });
-      return;
-    }
-
+    const type = value?.node.id === "AllItems" ? null : value?.node.id;
     this.bridgeService.navigate({
       ...this.routedFilter,
-      type: value.node.id,
+      type,
       folderId: undefined,
       collectionId: undefined,
     });
@@ -77,19 +68,10 @@ export class RoutedVaultFilterBridge implements VaultFilter {
     return this.legacyFilter.selectedFolderNode;
   }
   set selectedFolderNode(value: TreeNode<FolderFilter>) {
-    if (value != null && value.node.id === null) {
-      this.bridgeService.navigate({
-        ...this.routedFilter,
-        folderId: Unassigned,
-        type: undefined,
-        collectionId: undefined,
-      });
-      return;
-    }
-
+    const folderId = value != null && value.node.id === null ? Unassigned : value?.node.id;
     this.bridgeService.navigate({
       ...this.routedFilter,
-      folderId: value.node.id,
+      folderId,
       type: undefined,
       collectionId: undefined,
     });
@@ -98,21 +80,12 @@ export class RoutedVaultFilterBridge implements VaultFilter {
     return this.legacyFilter.selectedCollectionNode;
   }
   set selectedCollectionNode(value: TreeNode<CollectionFilter>) {
-    if (value != null && value.node.id === null) {
-      this.bridgeService.navigate({
-        ...this.routedFilter,
-        collectionId: Unassigned,
-        type: undefined,
-        folderId: undefined,
-      });
-      return;
-    }
-
+    const collectionId = value != null && value.node.id === null ? Unassigned : value?.node.id;
     this.bridgeService.navigate({
       ...this.routedFilter,
+      collectionId,
       type: undefined,
       folderId: undefined,
-      collectionId: value.node.id,
     });
   }
   get isFavorites(): boolean {
