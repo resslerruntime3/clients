@@ -3,7 +3,11 @@ import { CipherType } from "@bitwarden/common/vault/enums/cipher-type";
 
 import { RoutedVaultFilterBridgeService } from "../../services/routed-vault-filter-bridge.service";
 
-import { RoutedVaultFilterModel, Unassigned } from "./routed-vault-filter.model";
+import {
+  RoutedVaultFilterItemType,
+  RoutedVaultFilterModel,
+  Unassigned,
+} from "./routed-vault-filter.model";
 import { VaultFilter, VaultFilterFunction } from "./vault-filter.model";
 import {
   OrganizationFilter,
@@ -57,9 +61,15 @@ export class RoutedVaultFilterBridge implements VaultFilter {
   }
   set selectedCipherTypeNode(value: TreeNode<CipherTypeFilter>) {
     const type = value?.node.id === "AllItems" ? null : value?.node.id;
+
+    let safeType: RoutedVaultFilterItemType | undefined = undefined;
+    if (["favorites", "login", "card", "identity", "note", "trash"].includes(type)) {
+      safeType = type as RoutedVaultFilterItemType;
+    }
+
     this.bridgeService.navigate({
       ...this.routedFilter,
-      type,
+      type: safeType,
       folderId: undefined,
       collectionId: undefined,
     });
