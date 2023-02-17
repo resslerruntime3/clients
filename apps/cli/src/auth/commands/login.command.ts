@@ -41,6 +41,7 @@ export class LoginCommand {
 
   private ssoRedirectUri: string = null;
   private options: program.OptionValues;
+  private masterPasswordPolicies?: Policy[] = undefined;
 
   constructor(
     protected authService: AuthService,
@@ -55,6 +56,8 @@ export class LoginCommand {
     protected twoFactorService: TwoFactorService,
     protected syncService: SyncService,
     protected keyConnectorService: KeyConnectorService,
+    protected policyApiService: PolicyApiServiceAbstraction,
+    protected orgService: OrganizationService,
     protected logoutCallback: () => Promise<void>
   ) {}
 
@@ -658,5 +661,46 @@ export class LoginCommand {
     const stateSplit = state.split("_identifier=");
     const checkStateSplit = checkState.split("_identifier=");
     return stateSplit[0] === checkStateSplit[0];
+  }
+
+  private async loadMasterPasswordPolicies(): Promise<void> {
+    const policiesResponse = await this.policyApiService.getAllPolicies();
+
+    if (policiesResponse == null || policiesResponse.data.length === 0) {
+      this.masterPasswordPolicies = [];
+      return;
+    }
+
+    // We only care about enabled master password policies
+    this.masterPasswordPolicies = this.policyService
+      .mapPoliciesFromToken(policiesResponse)
+      .filter((p) => p.type === PolicyType.MasterPassword && p.enabled);
+  }
+  private async requirePasswordUpdateOnLogin(masterPassword: string): Promise<[boolean, string?]> {
+    // Ensure we have the master password policies available
+    if (this.masterPasswordPolicies == undefined) {
+      await this.loadMasterPasswordPolicies();
+    }
+
+    // We only care about policies that are enforced on login here
+    const policies = this.masterPasswordPolicies.filter((p) => p.data.enforceOnLogin);
+
+    // No policies to enforce, so we can return early
+    if (policies.length === 0) {
+      return [false];
+    }
+
+    const passwordStrength = this.passwordGenerationService.passwordStrength(
+      masterPassword,
+      this.getPasswordStrengthUserInput()
+    )?.score;
+
+    const [meetsRequirements, failedOrgId] = this.policyService.evaluateMasterPasswordByEachPolicy(
+      passwordStrength,
+      masterPassword,
+      policies
+    );
+
+    return [!meetsRequirements, failedOrgId];
   }
 }
