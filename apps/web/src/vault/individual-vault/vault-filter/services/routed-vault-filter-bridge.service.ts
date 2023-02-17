@@ -2,7 +2,8 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { combineLatest, map, Observable } from "rxjs";
 
-import { ITreeNodeObject, TreeNode } from "@bitwarden/common/models/domain/tree-node";
+import { ServiceUtils } from "@bitwarden/common/misc/serviceUtils";
+import { TreeNode } from "@bitwarden/common/models/domain/tree-node";
 
 import { RoutedVaultFilterBridge } from "../shared/models/routed-vault-filter-bridge.model";
 import { RoutedVaultFilterModel, Unassigned } from "../shared/models/routed-vault-filter.model";
@@ -41,23 +42,32 @@ export class RoutedVaultFilterBridgeService {
         const legacyFilter = new VaultFilter();
 
         if (filter.collectionId !== undefined && filter.collectionId === Unassigned) {
-          legacyFilter.selectedCollectionNode = this.findNode(collectionTree, null);
+          legacyFilter.selectedCollectionNode = ServiceUtils.getTreeNodeObject(
+            collectionTree,
+            null
+          );
         }
 
         if (filter.collectionId !== undefined && filter.collectionId !== Unassigned) {
-          legacyFilter.selectedCollectionNode = this.findNode(collectionTree, filter.collectionId);
+          legacyFilter.selectedCollectionNode = ServiceUtils.getTreeNodeObject(
+            collectionTree,
+            filter.collectionId
+          );
         }
 
         if (filter.folderId !== undefined && filter.folderId === Unassigned) {
-          legacyFilter.selectedFolderNode = this.findNode(folderTree, null);
+          legacyFilter.selectedFolderNode = ServiceUtils.getTreeNodeObject(folderTree, null);
         }
 
         if (filter.folderId !== undefined && filter.folderId !== Unassigned) {
-          legacyFilter.selectedFolderNode = this.findNode(folderTree, filter.folderId);
+          legacyFilter.selectedFolderNode = ServiceUtils.getTreeNodeObject(
+            folderTree,
+            filter.folderId
+          );
         }
 
         if (filter.organizationId !== undefined) {
-          legacyFilter.selectedOrganizationNode = this.findNode(
+          legacyFilter.selectedOrganizationNode = ServiceUtils.getTreeNodeObject(
             organizationTree,
             filter.organizationId
           );
@@ -71,7 +81,10 @@ export class RoutedVaultFilterBridgeService {
         }
 
         if (filter.type !== undefined && filter.type !== "trash") {
-          legacyFilter.selectedCipherTypeNode = this.findNode(cipherTypeTree, filter.type);
+          legacyFilter.selectedCipherTypeNode = ServiceUtils.getTreeNodeObject(
+            cipherTypeTree,
+            filter.type
+          );
         }
 
         return new RoutedVaultFilterBridge(filter, legacyFilter, this);
@@ -82,23 +95,5 @@ export class RoutedVaultFilterBridgeService {
   navigate(filter: RoutedVaultFilterModel) {
     const route = this.routedVaultFilterService.createRoute(filter);
     this.router.navigate(route.commands, route.extras);
-  }
-
-  private findNode<T extends ITreeNodeObject>(
-    node: TreeNode<T>,
-    id: string
-  ): TreeNode<T> | undefined {
-    if (node.node.id === id) {
-      return node;
-    }
-
-    for (const child of node.children) {
-      const result = this.findNode(child, id);
-      if (result !== undefined) {
-        return result;
-      }
-    }
-
-    return undefined;
   }
 }
