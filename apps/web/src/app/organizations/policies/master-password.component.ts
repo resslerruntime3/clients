@@ -26,6 +26,7 @@ export class MasterPasswordPolicyComponent extends BasePolicyComponent {
     requireLower: [null],
     requireNumbers: [null],
     requireSpecial: [null],
+    enforceOnLogin: [null],
   });
 
   passwordScores: { name: string; value: number }[];

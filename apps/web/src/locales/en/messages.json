@@ -6404,5 +6404,8 @@
   },
   "errorReadingImportFile": {
     "message": "An error occurred when trying to read the import file"
+  },
+  "enforceOnLoginDesc": {
+    "message": "Require existing members to change their passwords"
   }
 }
