@@ -697,7 +697,14 @@
     "message": "Неабходна паўторна ўвесці асноўны пароль."
   },
   "masterPasswordMinlength": {
-    "message": "Асноўны пароль павінен змяшчаць прынамсі 8 сімвалаў."
+    "message": "Master password must be at least $VALUE$ characters long.",
+    "description": "The Master Password must be at least a specific number of characters long.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
   },
   "masterPassDoesntMatch": {
     "message": "Пацвярджэнне асноўнага пароля не супадае."
@@ -1247,6 +1254,9 @@
   },
   "importSuccess": {
     "message": "Даныя былі паспяхова імпартаваны ў ваша сховішча."
+  },
+  "dataExportSuccess": {
+    "message": "Data successfully exported"
   },
   "importWarning": {
     "message": "Вы імпартуеце даныя ў $ORGANIZATION$. Вашы даныя могуць быць абагулены з удзельнікамі арганізацыі. Вы сапраўды хочаце працягнуць?",
@@ -3017,7 +3027,7 @@
     "message": "Доступ да групы"
   },
   "groupAccessUserDesc": {
-    "message": "Рэдагуйце групы да якіх належыць гэты карыстальнік."
+    "message": "Даць удзельнікам доступ да калекцый, дадаўшы іх у 1 або некалькі груп."
   },
   "invitedUsers": {
     "message": "Запрошаныя карыстальнікі."
@@ -4055,7 +4065,7 @@
     "message": "Прызначаны ў якасці экстраннага кантакту"
   },
   "noGrantedAccess": {
-    "message": "У вас пакуль няма экстранных кантактаў."
+    "message": "Вас пакуль яшчэ ніхто не прызначаў у якасці экстраннага кантакту."
   },
   "inviteEmergencyContact": {
     "message": "Запрасіць экстранны кантакт"
@@ -4085,7 +4095,7 @@
     "message": "Час чакання"
   },
   "waitTimeDesc": {
-    "message": "Час, пасля якога доступ будзе дазволены аўтаматычна."
+    "message": "Час, пасля якога доступ надаецца аўтаматычна."
   },
   "oneDay": {
     "message": "1 дзень"
@@ -4246,7 +4256,7 @@
     "message": "Карыстальніцкі"
   },
   "customDesc": {
-    "message": "Дазваляе больш паглыблена кантраляваць дазволы карыстальніка для дадатковых канфігурацый."
+    "message": "Даць удзельнікам карыстальніцкія дазволы"
   },
   "customDescNonEnterpriseStart": {
     "message": "Карыстальніцкія ролі з'яўляюцца ",
@@ -4654,7 +4664,7 @@
     "message": "Памылка"
   },
   "resetPasswordManageUsers": {
-    "message": "Кіраванне карыстальнікамі павінна таксама быць уключана з дазволам \"Кіраванне скіданнем пароля\""
+    "message": "Для кіравання карыстальнікамі неабходна даць дазвол на кіраванне скідання пароля"
   },
   "setupProvider": {
     "message": "Налады пастаўшчыка"
@@ -5670,6 +5680,9 @@
   "customColor": {
     "message": "Карыстальніцкі колер"
   },
+  "selectPlaceholder": {
+    "message": "-- Выбраць --"
+  },
   "multiSelectPlaceholder": {
     "message": "- Увядзіце для фільтрацыі -"
   },
@@ -5720,11 +5733,8 @@
   "secretProjectAssociationDescription": {
     "message": "Выберыце праекты з якімі будзе звязаны сакрэт. Толькі карыстальнікі арганізацыі з доступам да гэтых праектаў змогуць бачыць сакрэт."
   },
-  "typeOrSelectProjects": {
-    "message": "Увядзіце або выберыце праекты"
-  },
-  "typeOrSelectProject": {
-    "message": "Увядзіце або выберыце праект"
+  "selectProjects": {
+    "message": "Выберыце праекты"
   },
   "project": {
     "message": "Праект"
@@ -5945,6 +5955,16 @@
   "revokeAccessToken": {
     "message": "Адклікаць токен доступу"
   },
+  "revokeAccessTokens": {
+    "message": "Revoke access tokens"
+  },
+  "revokeAccessTokenDesc": {
+    "message": "Revoking access tokens is permanent and irreversible."
+  },
+  "accessTokenRevoked": {
+    "message": "Access tokens revoked",
+    "description": "Toast message after deleting one or multiple access tokens."
+  },
   "submenu": {
     "message": "Падменю"
   },
@@ -5973,13 +5993,13 @@
     "message": "Інфармацыя пра групу"
   },
   "editGroupMembersDesc": {
-    "message": "Забяспечыць удзельнікам групы доступ да прызначаных калекцый."
+    "message": "Даць удзельнікам групы доступ да прызначаных калекцый."
   },
   "editGroupCollectionsDesc": {
     "message": "Забяспечыць доступ да калекцый, дадаўшы іх у гэту групу."
   },
   "accessAllCollectionsDesc": {
-    "message": "Забяспечыць доступ да ўсіх бягучых і будучых калекцый."
+    "message": "Даць доступ да ўсіх бягучых і будучых калекцый."
   },
   "accessAllCollectionsHelp": {
     "message": "Калі пазначана, то гэта заменіць усе іншыя дазволы на калекцыю."
@@ -5998,6 +6018,9 @@
   },
   "collection": {
     "message": "Калекцыя"
+  },
+  "noCollection": {
+    "message": "Няма калекцый"
   },
   "canView": {
     "message": "Можа праглядаць"
@@ -6028,6 +6051,135 @@
   },
   "memberAccessAll": {
     "message": "Гэты ўдзельнік можа атрымліваць доступ і змяняць усе элементы."
+  },
+  "domainVerification": {
+    "message": "Domain verification"
+  },
+  "newDomain": {
+    "message": "New domain"
+  },
+  "noDomains": {
+    "message": "No domains"
+  },
+  "noDomainsSubText": {
+    "message": "Connecting a domain allows members to skip the SSO identifier field during Login with SSO."
+  },
+  "verifyDomain": {
+    "message": "Verify domain"
+  },
+  "reverifyDomain": {
+    "message": "Reverify domain"
+  },
+  "copyDnsTxtRecord": {
+    "message": "Copy DNS TXT record"
+  },
+  "dnsTxtRecord": {
+    "message": "DNS TXT record"
+  },
+  "dnsTxtRecordInputHint": {
+    "message": "Copy and paste the TXT record into your DNS Provider."
+  },
+  "domainNameInputHint": {
+    "message": "Example: mydomain.com. Subdomains require separate entries to be verified."
+  },
+  "automaticDomainVerification": {
+    "message": "Automatic Domain Verification"
+  },
+  "automaticDomainVerificationProcess": {
+    "message": "Bitwarden will attempt to verify the domain 3 times during the first 72 hours. If the domain can’t be verified, check the DNS record in your host and manually verify. The domain will be removed from your organization in 7 days if it is not verified"
+  },
+  "invalidDomainNameMessage": {
+    "message": "Input is not a valid format. Format: mydomain.com. Subdomains require separate entries to be verified."
+  },
+  "removeDomain": {
+    "message": "Remove domain"
+  },
+  "removeDomainWarning": {
+    "message": "Removing a domain cannot be undone. Are you sure you want to continue?"
+  },
+  "domainRemoved": {
+    "message": "Domain removed"
+  },
+  "domainSaved": {
+    "message": "Domain saved"
+  },
+  "domainVerified": {
+    "message": "Domain verified"
+  },
+  "duplicateDomainError": {
+    "message": "You can't claim the same domain twice."
+  },
+  "domainNotAvailable": {
+    "message": "Someone else is using $DOMAIN$. Use a different domain to continue.",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainNotVerified": {
+    "message": "$DOMAIN$ not verified. Check your DNS record.",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainStatusVerified": {
+    "message": "Verified"
+  },
+  "domainStatusUnverified": {
+    "message": "Unverified"
+  },
+  "domainNameTh": {
+    "message": "Name"
+  },
+  "domainStatusTh": {
+    "message": "Status"
+  },
+  "lastChecked": {
+    "message": "Last checked"
+  },
+  "domainFormInvalid": {
+    "message": "There are form errors that need your attention"
+  },
+  "addedDomain": {
+    "message": "Added domain $DOMAIN$",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "removedDomain": {
+    "message": "Removed domain $DOMAIN$",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainVerifiedEvent": {
+    "message": "$DOMAIN$ verified",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainNotVerifiedEvent": {
+    "message": "$DOMAIN$ not verified",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
   },
   "membersColumnHeader": {
     "message": "Удзельнік/Група"
@@ -6104,6 +6256,36 @@
       }
     }
   },
+  "server": {
+    "message": "Server"
+  },
+  "exportData": {
+    "message": "Export data"
+  },
+  "exportingOrganizationSecretDataTitle": {
+    "message": "Exporting Organization Secret Data"
+  },
+  "exportingOrganizationSecretDataDescription": {
+    "message": "Only the Secrets Manager data associated with $ORGANIZATION$ will be exported. Items in other products or from other organizations will not be included.",
+    "placeholders": {
+      "ORGANIZATION": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "fileUpload": {
+    "message": "File upload"
+  },
+  "acceptedFormats": {
+    "message": "Accepted Formats:"
+  },
+  "copyPasteImportContents": {
+    "message": "Copy & paste import contents:"
+  },
+  "or": {
+    "message": "or"
+  },
   "licenseAndBillingManagement": {
     "message": "Кіраванне ліцэнзіямі і плацяжамі"
   },
@@ -6134,6 +6316,33 @@
   "uploadLicense": {
     "message": "Запампаваць ліцэнзію"
   },
+  "projectPeopleDescription": {
+    "message": "Даць групам або людзям доступ да гэтых праектаў."
+  },
+  "projectPeopleSelectHint": {
+    "message": "Увядзіце або выберыце людзей (групы)"
+  },
+  "projectServiceAccountsDescription": {
+    "message": "Даць сэрвісным уліковым запісам доступ да гэтага праекта."
+  },
+  "projectServiceAccountsSelectHint": {
+    "message": "Увядзіце або выберыце сэрвісныя ўліковы запісы"
+  },
+  "projectEmptyPeopleAccessPolicies": {
+    "message": "Дадаць людзей або групы, каб пачаць сумесную працу"
+  },
+  "projectEmptyServiceAccountAccessPolicies": {
+    "message": "Дадаць сэрвісныя ўліковы запісы для надання доступу"
+  },
+  "canWrite": {
+    "message": "Можа запісваць"
+  },
+  "canReadWrite": {
+    "message": "Можа чытаць і запісваць"
+  },
+  "groupSlashUser": {
+    "message": "Група/Карыстальнік"
+  },
   "lowKdfIterations": {
     "message": "Нізкае значэнне ітэрацыі KDF"
   },
@@ -6154,5 +6363,33 @@
   },
   "userAccessSecretsManager": {
     "message": "Гэты карыстальнік можа атрымаць доступ да Менеджара сакрэтаў у рэжыме бэта-тэсціравання"
+  },
+  "important": {
+    "message": "Important:"
+  },
+  "viewAll": {
+    "message": "View all"
+  },
+  "showingPortionOfTotal": {
+    "message": "Showing $PORTION$ of $TOTAL$",
+    "placeholders": {
+      "portion": {
+        "content": "$1",
+        "example": "2"
+      },
+      "total": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "resolveTheErrorsBelowAndTryAgain": {
+    "message": "Resolve the errors below and try again."
+  },
+  "description": {
+    "message": "Description"
+  },
+  "errorReadingImportFile": {
+    "message": "An error occurred when trying to read the import file"
   }
 }

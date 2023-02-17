@@ -1,5 +1,3 @@
-<!-- Please remove this disable statement when editing this file! -->
-<!-- eslint-disable @angular-eslint/template/button-has-type -->
 <div *ngIf="!tokens" class="tw-items-center tw-justify-center tw-pt-64 tw-text-center">
   <i class="bwi bwi-spinner bwi-spin bwi-3x"></i>
 </div>
@@ -7,7 +5,13 @@
 <sm-no-items *ngIf="tokens?.length == 0">
   <ng-container slot="title">{{ "accessTokensNoItemsTitle" | i18n }}</ng-container>
   <ng-container slot="description">{{ "accessTokensNoItemsDesc" | i18n }}</ng-container>
-  <button slot="button" bitButton buttonType="secondary" (click)="newAccessTokenEvent.emit()">
+  <button
+    type="button"
+    slot="button"
+    bitButton
+    buttonType="secondary"
+    (click)="newAccessTokenEvent.emit()"
+  >
     <i class="bwi bwi-plus" aria-hidden="true"></i>
     {{ "createAccessToken" | i18n }}
   </button>
@@ -33,8 +37,10 @@
       <th bitCell>{{ "lastEdited" | i18n }}</th>
       <th bitCell class="tw-w-0">
         <button
+          type="button"
           bitIconButton="bwi-ellipsis-v"
           buttonType="main"
+          [bitMenuTriggerFor]="tableMenu"
           [title]="'options' | i18n"
           [attr.aria-label]="'options' | i18n"
         ></button>
@@ -58,6 +64,7 @@
       <td bitCell>{{ token.revisionDate | date: "medium" }}</td>
       <td bitCell>
         <button
+          type="button"
           bitIconButton="bwi-ellipsis-v"
           buttonType="main"
           [title]="'options' | i18n"
@@ -67,7 +74,7 @@
       </td>
 
       <bit-menu #tokenMenu>
-        <button type="button" bitMenuItem>
+        <button type="button" bitMenuItem (click)="revokeAccessTokensEvent.emit([token])">
           <span class="tw-text-danger">
             <i class="bwi bwi-fw bwi-minus-circle" aria-hidden="true"></i>
             {{ "revokeAccessToken" | i18n }}
@@ -77,3 +84,10 @@
     </tr>
   </ng-template>
 </bit-table>
+
+<bit-menu #tableMenu>
+  <button type="button" bitMenuItem (click)="revokeSelected()">
+    <i class="bwi bwi-fw bwi-minus-circle" aria-hidden="true"></i>
+    <span class="tw-text-danger">{{ "revokeAccessTokens" | i18n }}</span>
+  </button>
+</bit-menu>

@@ -430,7 +430,14 @@
     "message": "Ana parolun yenidən yazılması lazımdır."
   },
   "masterPasswordMinlength": {
-    "message": "Ana parol ən azı 8 simvol uzunluğunda olmalıdır."
+    "message": "Master password must be at least $VALUE$ characters long.",
+    "description": "The Master Password must be at least a specific number of characters long.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
   },
   "masterPassDoesntMatch": {
     "message": "Ana parol təsdiqləməsi uyğun gəlmir."
@@ -960,7 +967,7 @@
     "message": "Giriş formu aşkarlananda, səhifə yüklənən zaman formu avto-doldurma icra edilsin."
   },
   "experimentalFeature": {
-    "message": "Compromised or untrusted websites can exploit auto-fill on page load."
+    "message": "Təhlükəli və ya güvənilməyən veb saytlar, səhifə yüklənərkən avto-doldurmanı istifadə edə bilər."
   },
   "learnMoreAboutAutofill": {
     "message": "Avto-doldurma haqqında daha ətraflı"
@@ -2103,5 +2110,26 @@
         "example": "14"
       }
     }
+  },
+  "tryAutofillPageLoad": {
+    "message": "Səhifə yüklənəndə avto-doldurma sınansın?"
+  },
+  "tryAutofill": {
+    "message": "Avto-doldurma necə edilir"
+  },
+  "autofillPageLoadInfo": {
+    "message": "Səhifə yüklənərkən avto-doldurmanı işə salsanız giriş formları uyğun gələn kimlik məlumatlarını avtomatik dolduracaq."
+  },
+  "autofillSelectInfo": {
+    "message": "Aktiv vərəqin formunu avtomatik doldurmaq üçün bu səhifədən bir element seçin."
+  },
+  "autofillTurnedOn": {
+    "message": "Səhifə yüklənərkən avto-doldurma işə salındı"
+  },
+  "turnOn": {
+    "message": "İşə sal"
+  },
+  "notNow": {
+    "message": "İndi yox"
   }
 }

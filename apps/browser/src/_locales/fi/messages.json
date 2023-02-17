@@ -430,7 +430,14 @@
     "message": "Pääsalasanan uudelleensyöttö vaaditaan."
   },
   "masterPasswordMinlength": {
-    "message": "Pääsalasanan tulee sisältää ainakin 8 merkkiä."
+    "message": "Master password must be at least $VALUE$ characters long.",
+    "description": "The Master Password must be at least a specific number of characters long.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
   },
   "masterPassDoesntMatch": {
     "message": "Pääsalasanan vahvistus ei täsmää."
@@ -2103,5 +2110,26 @@
         "example": "14"
       }
     }
+  },
+  "tryAutofillPageLoad": {
+    "message": "Pyritäänkö lomakkeet täyttämään sivun avautuessa automaattisesti?"
+  },
+  "tryAutofill": {
+    "message": "Miten täytetään automaattisesti"
+  },
+  "autofillPageLoadInfo": {
+    "message": "Jos otat automaattisen täytön sivun avautuessa käyttöön, täytetään kirjautumislomakkeet automaattisesti sopivilla tunnuksilla."
+  },
+  "autofillSelectInfo": {
+    "message": "Valitse tältä sivulta aktiivisella välilehdellä olevan lomakkeen automaattiseen täyttöön käytettävä kohde."
+  },
+  "autofillTurnedOn": {
+    "message": "Automaattinen täyttö sivun avautuessa otettiin käyttöön"
+  },
+  "turnOn": {
+    "message": "Ota käyttöön"
+  },
+  "notNow": {
+    "message": "Ei nyt"
   }
 }
