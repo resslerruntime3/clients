@@ -698,7 +698,14 @@
     "message": "Master password retype is required."
   },
   "masterPasswordMinlength": {
-    "message": "Master password must be at least 8 characters long."
+    "message": "Master password must be at least $VALUE$ characters long.",
+    "description": "The Master Password must be at least a specific number of characters long.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
   },
   "masterPassDoesntMatch": {
     "message": "Master password confirmation does not match."
@@ -6139,6 +6146,9 @@
   "lastChecked": {
     "message": "Last checked"
   },
+  "editDomain": {
+    "message": "Edit domain"
+  },
   "domainFormInvalid": {
     "message": "There are form errors that need your attention"
   },
@@ -6361,6 +6371,9 @@
   "userAccessSecretsManager": {
     "message": "This user can access the Secrets Manager Beta"
   },
+  "important": {
+    "message": "Important:"
+  },
   "viewAll": {
     "message": "View all"
   },
@@ -6385,5 +6398,8 @@
   },
   "errorReadingImportFile": {
     "message": "An error occurred when trying to read the import file"
+  },
+  "selectionIsRequired": {
+    "message": "Selection is required."
   }
 }
