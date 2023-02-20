@@ -145,10 +145,6 @@ button {
   font-family: $font-family-sans-serif;
 }
 
-[data-is-vault-locked="true"] {
-  display: none;
-}
-
 @media screen and (max-width: 768px) {
   #select-folder {
     display: none;

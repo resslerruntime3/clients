@@ -39,13 +39,15 @@ function load() {
   neverButton.textContent = i18n.never;
 
   const selectFolder = addTemplate.content.getElementById("select-folder");
+  selectFolder.hidden = isVaultLocked || removeIndividualVault();
   selectFolder.setAttribute("aria-label", i18n.folder);
-  selectFolder.dataset.isVaultLocked = isVaultLocked.toString();
 
   const addButton = addTemplate.content.getElementById("add-save");
   addButton.textContent = i18n.notificationAddSave;
 
   const addEditButton = addTemplate.content.getElementById("add-edit");
+  // If Remove Individual Vault policy applies, "Add" opens the edit tab, so we hide the Edit button
+  addEditButton.hidden = removeIndividualVault();
   addEditButton.textContent = i18n.notificationEdit;
 
   addTemplate.content.getElementById("add-text").textContent = i18n.notificationAddDesc;
@@ -66,7 +68,7 @@ function load() {
   closeButton.title = i18n.close;
 
   if (getQueryVariable("type") === "add") {
-    handleTypeAdd(isVaultLocked);
+    handleTypeAdd();
   } else if (getQueryVariable("type") === "change") {
     handleTypeChange();
   }
@@ -96,19 +98,25 @@ function getQueryVariable(variable: string) {
   return null;
 }
 
-function handleTypeAdd(isVaultLocked: boolean) {
+function handleTypeAdd() {
   setContent(document.getElementById("template-add") as HTMLTemplateElement);
 
   const addButton = document.getElementById("add-save");
   addButton.addEventListener("click", (e) => {
     e.preventDefault();
 
+    // If Remove Individual Vault policy applies, "Add" opens the edit tab
     sendPlatformMessage({
       command: "bgAddSave",
       folder: getSelectedFolder(),
-      edit: false,
+      edit: removeIndividualVault(),
     });
   });
+
+  if (removeIndividualVault()) {
+    // Everything past this point is only required if user has an individual vault
+    return;
+  }
 
   const editButton = document.getElementById("add-edit");
   editButton.addEventListener("click", (e) => {
@@ -129,18 +137,7 @@ function handleTypeAdd(isVaultLocked: boolean) {
     });
   });
 
-  if (!isVaultLocked) {
-    const responseFoldersCommand = "notificationBarGetFoldersList";
-    chrome.runtime.onMessage.addListener((msg) => {
-      if (msg.command === responseFoldersCommand && msg.data) {
-        fillSelectorWithFolders(msg.data.folders);
-      }
-    });
-    sendPlatformMessage({
-      command: "bgGetDataForTab",
-      responseCommand: responseFoldersCommand,
-    });
-  }
+  loadFolderSelector();
 }
 
 function handleTypeChange() {
@@ -180,17 +177,35 @@ function sendPlatformMessage(msg: Record<string, unknown>) {
   chrome.runtime.sendMessage(msg);
 }
 
-function fillSelectorWithFolders(folders: Jsonify<FolderView[]>) {
-  const select = document.getElementById("select-folder");
-  select.appendChild(new Option(chrome.i18n.getMessage("selectFolder"), null, true));
-  folders.forEach((folder) => {
-    // Select "No Folder" (id=null) folder by default
-    select.appendChild(new Option(folder.name, folder.id || "", false));
+function loadFolderSelector() {
+  const responseFoldersCommand = "notificationBarGetFoldersList";
+
+  chrome.runtime.onMessage.addListener((msg) => {
+    if (msg.command !== responseFoldersCommand || msg.data == null) {
+      return;
+    }
+
+    const folders = msg.data.folders as Jsonify<FolderView[]>;
+    const select = document.getElementById("select-folder");
+    select.appendChild(new Option(chrome.i18n.getMessage("selectFolder"), null, true));
+    folders.forEach((folder) => {
+      // Select "No Folder" (id=null) folder by default
+      select.appendChild(new Option(folder.name, folder.id || "", false));
+    });
+  });
+
+  sendPlatformMessage({
+    command: "bgGetDataForTab",
+    responseCommand: responseFoldersCommand,
   });
 }
 
 function getSelectedFolder(): string {
   return (document.getElementById("select-folder") as HTMLSelectElement).value;
+}
+
+function removeIndividualVault(): boolean {
+  return getQueryVariable("removeIndividualVault") == "true";
 }
 
 function adjustHeight() {

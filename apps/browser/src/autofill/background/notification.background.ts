@@ -166,6 +166,7 @@ export default class NotificationBackground {
           typeData: {
             isVaultLocked: this.notificationQueue[i].wasVaultLocked,
             theme: await this.getCurrentTheme(),
+            removeIndividualVault: await this.removeIndividualVault(),
           },
         });
       } else if (this.notificationQueue[i].type === NotificationQueueMessageType.ChangePassword) {
@@ -223,10 +224,6 @@ export default class NotificationBackground {
         return;
       }
 
-      if (!(await this.allowPersonalOwnership())) {
-        return;
-      }
-
       this.pushAddLoginToQueue(loginDomain, loginInfo, tab, true);
       return;
     }
@@ -237,10 +234,6 @@ export default class NotificationBackground {
     );
     if (usernameMatches.length === 0) {
       if (disabledAddLogin) {
-        return;
-      }
-
-      if (!(await this.allowPersonalOwnership())) {
         return;
       }
 
@@ -458,9 +451,9 @@ export default class NotificationBackground {
     await BrowserApi.tabSendMessageData(tab, responseCommand, responseData);
   }
 
-  private async allowPersonalOwnership(): Promise<boolean> {
-    return !(await firstValueFrom(
+  private async removeIndividualVault(): Promise<boolean> {
+    return await firstValueFrom(
       this.policyService.policyAppliesToActiveUser$(PolicyType.PersonalOwnership)
-    ));
+    );
   }
 }
