@@ -3,7 +3,7 @@ import { ActivatedRoute, NavigationExtras } from "@angular/router";
 import { combineLatest, map, Observable, Subject, takeUntil } from "rxjs";
 
 import {
-  RoutedVaultFilterItemType,
+  isRoutedVaultFilterItemType,
   RoutedVaultFilterModel,
 } from "../shared/models/routed-vault-filter.model";
 
@@ -27,11 +27,8 @@ export class RoutedVaultFilterService implements OnDestroy {
   constructor(activatedRoute: ActivatedRoute) {
     this.filter$ = combineLatest([activatedRoute.paramMap, activatedRoute.queryParamMap]).pipe(
       map(([params, queryParams]) => {
-        const type = queryParams.get("type");
-        let safeType: RoutedVaultFilterItemType | undefined = undefined;
-        if (["favorites", "login", "card", "identity", "note", "trash", "all"].includes(type)) {
-          safeType = type as RoutedVaultFilterItemType;
-        }
+        const unsafeType = queryParams.get("type");
+        const type = isRoutedVaultFilterItemType(unsafeType) ? unsafeType : undefined;
 
         return {
           collectionId: queryParams.get("collectionId") ?? undefined,
@@ -40,7 +37,7 @@ export class RoutedVaultFilterService implements OnDestroy {
             params.get("organizationId") ?? queryParams.get("organizationId") ?? undefined,
           organizationIdParamType:
             params.get("organizationId") != undefined ? ("path" as const) : ("query" as const),
-          type: safeType,
+          type,
         };
       }),
       takeUntil(this.onDestroy)

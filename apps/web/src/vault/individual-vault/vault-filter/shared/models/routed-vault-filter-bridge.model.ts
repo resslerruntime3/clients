@@ -5,6 +5,7 @@ import { RoutedVaultFilterBridgeService } from "../../services/routed-vault-filt
 
 import {
   All,
+  isRoutedVaultFilterItemType,
   RoutedVaultFilterItemType,
   RoutedVaultFilterModel,
   Unassigned,
@@ -70,10 +71,8 @@ export class RoutedVaultFilterBridge implements VaultFilter {
       this.routedFilter.organizationIdParamType === "query"
     ) {
       type = undefined;
-    } else if (
-      ["favorites", "login", "card", "identity", "note", "trash", "all"].includes(value?.node.id)
-    ) {
-      type = value?.node.id as RoutedVaultFilterItemType;
+    } else if (isRoutedVaultFilterItemType(value?.node.id)) {
+      type = value?.node.id;
     }
 
     this.bridgeService.navigate({

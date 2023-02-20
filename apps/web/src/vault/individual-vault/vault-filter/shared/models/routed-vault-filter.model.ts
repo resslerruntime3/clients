@@ -2,14 +2,14 @@ export const Unassigned = "unassigned";
 
 export const All = "all";
 
-export type RoutedVaultFilterItemType =
-  | "favorites"
-  | "login"
-  | "card"
-  | "identity"
-  | "note"
-  | "trash"
-  | typeof All; // TODO: Remove `All` when moving to vertical navigation.
+// TODO: Remove `All` when moving to vertical navigation.
+const itemTypes = ["favorites", "login", "card", "identity", "note", "trash", All] as const;
+
+export type RoutedVaultFilterItemType = typeof itemTypes[number];
+
+export function isRoutedVaultFilterItemType(value: unknown): value is RoutedVaultFilterItemType {
+  return itemTypes.includes(value as any);
+}
 
 export interface RoutedVaultFilterModel {
   collectionId?: string;
