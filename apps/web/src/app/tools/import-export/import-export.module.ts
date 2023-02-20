@@ -13,8 +13,8 @@ import { FolderService } from "@bitwarden/common/vault/abstractions/folder/folde
 
 import { LooseComponentsModule, SharedModule } from "../../shared";
 
+import { FilePasswordPromptComponent } from "./dialog/index";
 import { ExportComponent } from "./export.component";
-import { FilePasswordPromptComponent } from "./file-password-prompt.component";
 import { ImportExportRoutingModule } from "./import-export-routing.module";
 import { ImportComponent } from "./import.component";
 

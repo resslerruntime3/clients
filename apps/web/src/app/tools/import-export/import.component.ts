@@ -14,7 +14,7 @@ import { ImportOption, ImportType } from "@bitwarden/common/enums/importOptions"
 import { PolicyType } from "@bitwarden/common/enums/policyType";
 import { SyncService } from "@bitwarden/common/vault/abstractions/sync/sync.service.abstraction";
 
-import { FilePasswordPromptComponent } from "./file-password-prompt.component";
+import { FilePasswordPromptComponent } from "./dialog/index";
 
 @Component({
   selector: "app-import",
