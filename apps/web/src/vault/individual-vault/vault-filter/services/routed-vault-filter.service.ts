@@ -48,8 +48,10 @@ export class RoutedVaultFilterService implements OnDestroy {
   }
 
   /**
-   * Create a route that can be used with Router or RouterLink.
-   * To subscribe to changes use {@link RoutedVaultFilterService.filter$}
+   * Create a route that can be used to modify filters with Router or RouterLink.
+   * This method is specifically built to leave other query parameters untouched,
+   * meaning that navigation will only affect filters and not e.g. `cipherId`.
+   * To subscribe to changes use {@link RoutedVaultFilterService.filter$}.
    *
    * @param filter Filter values that should be applied to the URL.
    * @returns route that can be used with Router or RouterLink
