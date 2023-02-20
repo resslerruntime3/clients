@@ -6,7 +6,11 @@ import { ServiceUtils } from "@bitwarden/common/misc/serviceUtils";
 import { TreeNode } from "@bitwarden/common/models/domain/tree-node";
 
 import { RoutedVaultFilterBridge } from "../shared/models/routed-vault-filter-bridge.model";
-import { RoutedVaultFilterModel, Unassigned } from "../shared/models/routed-vault-filter.model";
+import {
+  RoutedVaultFilterModel,
+  Unassigned,
+  All,
+} from "../shared/models/routed-vault-filter.model";
 import { VaultFilter } from "../shared/models/vault-filter.model";
 import { CipherTypeFilter } from "../shared/models/vault-filter.type";
 
@@ -46,9 +50,12 @@ export class RoutedVaultFilterBridgeService {
             collectionTree,
             null
           );
-        }
-
-        if (filter.collectionId !== undefined && filter.collectionId !== Unassigned) {
+        } else if (filter.collectionId !== undefined && filter.collectionId === All) {
+          legacyFilter.selectedCollectionNode = ServiceUtils.getTreeNodeObject(
+            collectionTree,
+            "AllCollections"
+          );
+        } else if (filter.collectionId !== undefined) {
           legacyFilter.selectedCollectionNode = ServiceUtils.getTreeNodeObject(
             collectionTree,
             filter.collectionId

@@ -1,5 +1,7 @@
 export const Unassigned = "unassigned";
 
+export const All = "all";
+
 export type RoutedVaultFilterItemType =
   | "favorites"
   | "login"

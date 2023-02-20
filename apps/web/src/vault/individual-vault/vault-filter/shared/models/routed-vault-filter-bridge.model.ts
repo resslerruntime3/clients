@@ -4,6 +4,7 @@ import { CipherType } from "@bitwarden/common/vault/enums/cipher-type";
 import { RoutedVaultFilterBridgeService } from "../../services/routed-vault-filter-bridge.service";
 
 import {
+  All,
   RoutedVaultFilterItemType,
   RoutedVaultFilterModel,
   Unassigned,
@@ -90,7 +91,16 @@ export class RoutedVaultFilterBridge implements VaultFilter {
     return this.legacyFilter.selectedCollectionNode;
   }
   set selectedCollectionNode(value: TreeNode<CollectionFilter>) {
-    const collectionId = value != null && value.node.id === null ? Unassigned : value?.node.id;
+    let collectionId: string | undefined;
+
+    if (value != null && value.node.id === null) {
+      collectionId = Unassigned;
+    } else if (value?.node.id === "AllCollections") {
+      collectionId = All;
+    } else {
+      collectionId = value?.node.id;
+    }
+
     this.bridgeService.navigate({
       ...this.routedFilter,
       collectionId,
