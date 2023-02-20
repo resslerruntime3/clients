@@ -107,7 +107,7 @@ export class RoutedVaultFilterBridgeService {
   }
 
   navigate(filter: RoutedVaultFilterModel) {
-    const route = this.routedVaultFilterService.createRoute(filter);
-    this.router.navigate(route.commands, route.extras);
+    const [commands, extras] = this.routedVaultFilterService.createRoute(filter);
+    this.router.navigate(commands, extras);
   }
 }

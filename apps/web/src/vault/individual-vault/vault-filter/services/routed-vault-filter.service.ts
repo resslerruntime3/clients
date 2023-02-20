@@ -54,20 +54,22 @@ export class RoutedVaultFilterService implements OnDestroy {
    * @param filter Filter values that should be applied to the URL.
    * @returns route that can be used with Router or RouterLink
    */
-  createRoute(filter: RoutedVaultFilterModel): { commands: any[]; extras?: NavigationExtras } {
-    return {
-      commands: [],
-      extras: {
-        queryParams: {
-          collectionId: filter.collectionId ?? null,
-          folderId: filter.folderId ?? null,
-          organizationId:
-            filter.organizationIdParamType === "path" ? null : filter.organizationId ?? null,
-          type: filter.type ?? null,
-        },
-        queryParamsHandling: "merge",
+  createRoute(filter: RoutedVaultFilterModel): [commands: any[], extras?: NavigationExtras] {
+    const commands =
+      filter.organizationIdParamType === "path"
+        ? ["/", "organizations", filter.organizationId]
+        : [];
+    const extras: NavigationExtras = {
+      queryParams: {
+        collectionId: filter.collectionId ?? null,
+        folderId: filter.folderId ?? null,
+        organizationId:
+          filter.organizationIdParamType === "path" ? null : filter.organizationId ?? null,
+        type: filter.type ?? null,
       },
+      queryParamsHandling: "merge",
     };
+    return [commands, extras];
   }
 
   ngOnDestroy(): void {
