@@ -8,7 +8,8 @@ export type RoutedVaultFilterItemType =
   | "card"
   | "identity"
   | "note"
-  | "trash";
+  | "trash"
+  | typeof All; // TODO: Remove `All` when moving to vertical navigation.
 
 export interface RoutedVaultFilterModel {
   collectionId?: string;

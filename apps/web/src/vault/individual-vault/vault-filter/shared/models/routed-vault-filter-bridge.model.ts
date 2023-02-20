@@ -61,16 +61,24 @@ export class RoutedVaultFilterBridge implements VaultFilter {
     return this.legacyFilter.selectedCipherTypeNode;
   }
   set selectedCipherTypeNode(value: TreeNode<CipherTypeFilter>) {
-    const type = value?.node.id === "AllItems" ? null : value?.node.id;
+    let type: RoutedVaultFilterItemType | undefined;
 
-    let safeType: RoutedVaultFilterItemType | undefined = undefined;
-    if (["favorites", "login", "card", "identity", "note", "trash"].includes(type)) {
-      safeType = type as RoutedVaultFilterItemType;
+    if (value?.node.id === "AllItems" && this.routedFilter.organizationIdParamType === "path") {
+      type = "all";
+    } else if (
+      value?.node.id === "AllItems" &&
+      this.routedFilter.organizationIdParamType === "query"
+    ) {
+      type = undefined;
+    } else if (
+      ["favorites", "login", "card", "identity", "note", "trash", "all"].includes(value?.node.id)
+    ) {
+      type = value?.node.id as RoutedVaultFilterItemType;
     }
 
     this.bridgeService.navigate({
       ...this.routedFilter,
-      type: safeType,
+      type,
       folderId: undefined,
       collectionId: undefined,
     });
@@ -95,7 +103,15 @@ export class RoutedVaultFilterBridge implements VaultFilter {
 
     if (value != null && value.node.id === null) {
       collectionId = Unassigned;
-    } else if (value?.node.id === "AllCollections") {
+    } else if (
+      value?.node.id === "AllCollections" &&
+      this.routedFilter.organizationIdParamType === "path"
+    ) {
+      collectionId = undefined;
+    } else if (
+      value?.node.id === "AllCollections" &&
+      this.routedFilter.organizationIdParamType === "query"
+    ) {
       collectionId = All;
     } else {
       collectionId = value?.node.id;

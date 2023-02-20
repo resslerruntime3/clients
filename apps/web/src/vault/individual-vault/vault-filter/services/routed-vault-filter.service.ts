@@ -29,7 +29,7 @@ export class RoutedVaultFilterService implements OnDestroy {
       map(([params, queryParams]) => {
         const type = queryParams.get("type");
         let safeType: RoutedVaultFilterItemType | undefined = undefined;
-        if (["favorites", "login", "card", "identity", "note"].includes(type)) {
+        if (["favorites", "login", "card", "identity", "note", "trash", "all"].includes(type)) {
           safeType = type as RoutedVaultFilterItemType;
         }
 
