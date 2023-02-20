@@ -137,7 +137,10 @@ export class RoutedVaultFilterBridge implements VaultFilter {
       ...this.routedFilter,
       collectionId: undefined,
       folderId: undefined,
-      organizationId: undefined,
+      organizationId:
+        this.routedFilter.organizationIdParamType === "path"
+          ? this.routedFilter.organizationId
+          : undefined,
       type: undefined,
     });
   }

@@ -57,7 +57,7 @@ export class RoutedVaultFilterService implements OnDestroy {
   createRoute(filter: RoutedVaultFilterModel): [commands: any[], extras?: NavigationExtras] {
     const commands =
       filter.organizationIdParamType === "path"
-        ? ["/", "organizations", filter.organizationId]
+        ? ["/", "organizations", filter.organizationId, "vault"]
         : [];
     const extras: NavigationExtras = {
       queryParams: {
