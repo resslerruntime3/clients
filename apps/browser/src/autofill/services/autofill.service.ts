@@ -49,6 +49,10 @@ export default class AutofillService implements AutofillServiceInterface {
     const formData: FormData[] = [];
 
     const passwordFields = AutofillService.loadPasswordFields(pageDetails, true, true, false, true);
+
+    // TODO: this logic prevents multi-step account creation forms (that just start with email)
+    // from being passed on to the notification bar content script - even if autofill.js found the form and email field.
+    // ex: https://signup.live.com/
     if (passwordFields.length === 0) {
       return formData;
     }
