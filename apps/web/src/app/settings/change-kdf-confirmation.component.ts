@@ -1,7 +1,7 @@
-import { Component } from "@angular/core";
+import { DIALOG_DATA } from "@angular/cdk/dialog";
+import { Component, Inject } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 
-import { ModalConfig } from "@bitwarden/angular/services/modal.service";
 import { ApiService } from "@bitwarden/common/abstractions/api.service";
 import { CryptoService } from "@bitwarden/common/abstractions/crypto.service";
 import { I18nService } from "@bitwarden/common/abstractions/i18n.service";
@@ -9,8 +9,8 @@ import { LogService } from "@bitwarden/common/abstractions/log.service";
 import { MessagingService } from "@bitwarden/common/abstractions/messaging.service";
 import { PlatformUtilsService } from "@bitwarden/common/abstractions/platformUtils.service";
 import { StateService } from "@bitwarden/common/abstractions/state.service";
+import { KdfConfig } from "@bitwarden/common/auth/models/domain/kdf-config";
 import { KdfType } from "@bitwarden/common/enums/kdfType";
-import { KdfConfig } from "@bitwarden/common/models/domain/kdf-config";
 import { KdfRequest } from "@bitwarden/common/models/request/kdf.request";
 
 @Component({
@@ -37,10 +37,10 @@ export class ChangeKdfConfirmationComponent {
     private messagingService: MessagingService,
     private stateService: StateService,
     private logService: LogService,
-    config: ModalConfig
+    @Inject(DIALOG_DATA) params: { kdf: KdfType; kdfConfig: KdfConfig }
   ) {
-    this.kdf = config.data.kdf;
-    this.kdfConfig = config.data.kdfConfig;
+    this.kdf = params.kdf;
+    this.kdfConfig = params.kdfConfig;
     this.masterPassword = null;
   }
 
