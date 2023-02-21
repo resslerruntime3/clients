@@ -1,5 +1,3 @@
-<!-- Please remove this disable statement when editing this file! -->
-<!-- eslint-disable @angular-eslint/template/button-has-type -->
 <div *ngIf="!projects" class="tw-items-center tw-justify-center tw-pt-64 tw-text-center">
   <i class="bwi bwi-spinner bwi-spin bwi-3x"></i>
 </div>
@@ -7,7 +5,13 @@
 <sm-no-items *ngIf="projects?.length == 0">
   <ng-container slot="title">{{ "projectsNoItemsTitle" | i18n }}</ng-container>
   <ng-container slot="description">{{ "projectsNoItemsMessage" | i18n }}</ng-container>
-  <button slot="button" bitButton buttonType="secondary" (click)="newProjectEvent.emit()">
+  <button
+    type="button"
+    slot="button"
+    bitButton
+    buttonType="secondary"
+    (click)="newProjectEvent.emit()"
+  >
     <i class="bwi bwi-plus" aria-hidden="true"></i>
     {{ "newProject" | i18n }}
   </button>
@@ -27,10 +31,11 @@
           {{ "all" | i18n }}
         </label>
       </th>
-      <th bitCell colspan="2" bitSortable="name" default>{{ "name" | i18n }}</th>
+      <th bitCell class="tw-w-full tw-text-left" bitSortable="name" default>{{ "name" | i18n }}</th>
       <th bitCell bitSortable="revisionDate">{{ "lastEdited" | i18n }}</th>
       <th bitCell class="tw-w-0">
         <button
+          type="button"
           bitIconButton="bwi-ellipsis-v"
           buttonType="main"
           [bitMenuTriggerFor]="tableMenu"
@@ -49,15 +54,18 @@
           [checked]="selection.isSelected(project.id)"
         />
       </td>
-      <td bitCell class="tw-w-0 tw-pr-0">
-        <i class="bwi bwi-collection tw-text-xl tw-text-muted" aria-hidden="true"></i>
+      <td bitCell>
+        <div class="tw-flex tw-items-center tw-gap-4 tw-break-all">
+          <i class="bwi bwi-collection tw-text-xl tw-text-muted" aria-hidden="true"></i>
+          <a bitLink [routerLink]="['/sm', project.organizationId, 'projects', project.id]">{{
+            project.name
+          }}</a>
+        </div>
       </td>
-      <td bitCell class="tw-break-all">
-        <a [routerLink]="[project.id]">{{ project.name }}</a>
-      </td>
-      <td bitCell>{{ project.revisionDate | date: "medium" }}</td>
+      <td bitCell class="tw-whitespace-nowrap">{{ project.revisionDate | date: "medium" }}</td>
       <td bitCell>
         <button
+          type="button"
           bitIconButton="bwi-ellipsis-v"
           buttonType="main"
           [bitMenuTriggerFor]="projectMenu"
@@ -70,7 +78,7 @@
           <i class="bwi bwi-fw bwi-pencil tw-text-xl" aria-hidden="true"></i>
           {{ "editProject" | i18n }}
         </button>
-        <a bitMenuItem [routerLink]="project.id">
+        <a bitMenuItem [routerLink]="['/sm', project.organizationId, 'projects', project.id]">
           <i class="bwi bwi-fw bwi-eye tw-text-xl" aria-hidden="true"></i>
           {{ "viewProject" | i18n }}
         </a>

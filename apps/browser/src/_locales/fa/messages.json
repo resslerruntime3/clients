@@ -430,7 +430,14 @@
     "message": "نوشتن مجدد کلمه عبور اصلی ضروری است."
   },
   "masterPasswordMinlength": {
-    "message": "طول کلمه عبور اصلی باید حداقل ۸ کاراکتر باشد."
+    "message": "Master password must be at least $VALUE$ characters long.",
+    "description": "The Master Password must be at least a specific number of characters long.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
   },
   "masterPassDoesntMatch": {
     "message": "کلمه عبور اصلی با تکرار آن مطابقت ندارد."
@@ -2103,5 +2110,26 @@
         "example": "14"
       }
     }
+  },
+  "tryAutofillPageLoad": {
+    "message": "پر کردن خودکار در بارگیری صفحه را امتحان می‌کنید؟"
+  },
+  "tryAutofill": {
+    "message": "نحوه پر کردن خودکار"
+  },
+  "autofillPageLoadInfo": {
+    "message": "اگر در بارگذاری صفحه، پر کردن خودکار را روشن کنید، فرم‌های ورود به‌طور خودکار اعتبارنامه‌های منطبق را پر می‌کنند."
+  },
+  "autofillSelectInfo": {
+    "message": "برای پر کردن خودکار فرم برگه فعال، موردی را از این صفحه انتخاب کنید."
+  },
+  "autofillTurnedOn": {
+    "message": "پر کردن خودکار در بارگیری صفحه روشن شد"
+  },
+  "turnOn": {
+    "message": "روشن"
+  },
+  "notNow": {
+    "message": "الان نه"
   }
 }

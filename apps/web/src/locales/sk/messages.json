@@ -697,7 +697,14 @@
     "message": "Vyžaduje sa opätovné zadanie hlavného hesla."
   },
   "masterPasswordMinlength": {
-    "message": "Hlavné heslo musí mať aspoň 8 znakov."
+    "message": "Master password must be at least $VALUE$ characters long.",
+    "description": "The Master Password must be at least a specific number of characters long.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
   },
   "masterPassDoesntMatch": {
     "message": "Potvrdenie hlavného hesla sa nezhoduje."
@@ -1247,6 +1254,9 @@
   },
   "importSuccess": {
     "message": "Dáta boli úspešne importované do trezora."
+  },
+  "dataExportSuccess": {
+    "message": "Dáta boli úspešne exportované"
   },
   "importWarning": {
     "message": "Importujete údaje do $ORGANIZATION$. Vaše údaje môžu byť zdieľané s členmi tejto organizácie. Chcete pokračovať?",
@@ -5670,6 +5680,9 @@
   "customColor": {
     "message": "Vlastná farba"
   },
+  "selectPlaceholder": {
+    "message": "-- Vyberte --"
+  },
   "multiSelectPlaceholder": {
     "message": "-- Začnite písať pre filtrovanie --"
   },
@@ -5720,11 +5733,8 @@
   "secretProjectAssociationDescription": {
     "message": "Vyberte projekty ku ktorým bude heslo patriť. Iba tí používatelia organizácie, ktorí majú prístup k zvoleným projektom budú môcť vidieť heslo."
   },
-  "typeOrSelectProjects": {
-    "message": "Zadajte alebo vyberte Projekty"
-  },
-  "typeOrSelectProject": {
-    "message": "Zadajte alebo vyberte Projekt"
+  "selectProjects": {
+    "message": "Vyberte projekty"
   },
   "project": {
     "message": "Project"
@@ -5910,7 +5920,7 @@
     "message": "Expires"
   },
   "canRead": {
-    "message": "Can Read"
+    "message": "Can read"
   },
   "accessTokensNoItemsTitle": {
     "message": "No access tokens to show"
@@ -5944,6 +5954,16 @@
   },
   "revokeAccessToken": {
     "message": "Revoke access token"
+  },
+  "revokeAccessTokens": {
+    "message": "Zrušiť prístupové tokeny"
+  },
+  "revokeAccessTokenDesc": {
+    "message": "Zrušenie prístupových tokenov je nenávratné."
+  },
+  "accessTokenRevoked": {
+    "message": "Prístupové tokeny boli zrušené",
+    "description": "Toast message after deleting one or multiple access tokens."
   },
   "submenu": {
     "message": "Submenu"
@@ -5999,6 +6019,9 @@
   "collection": {
     "message": "Zbierka"
   },
+  "noCollection": {
+    "message": "Žiadna zbierka"
+  },
   "canView": {
     "message": "Môže zobraziť"
   },
@@ -6028,6 +6051,135 @@
   },
   "memberAccessAll": {
     "message": "Tento člen môže upravovať a pristupovať k všetkým položkám."
+  },
+  "domainVerification": {
+    "message": "Overenie domény"
+  },
+  "newDomain": {
+    "message": "Nová doména"
+  },
+  "noDomains": {
+    "message": "Žiadne domény"
+  },
+  "noDomainsSubText": {
+    "message": "Pripojenie domény umožňuje členom preskočiť počas prihlasovania sa prostredníctvom SSO pole identifikátora SSO."
+  },
+  "verifyDomain": {
+    "message": "Overiť doménu"
+  },
+  "reverifyDomain": {
+    "message": "Opätovne overiť doménu"
+  },
+  "copyDnsTxtRecord": {
+    "message": "Kopírovať DNS TXT záznam"
+  },
+  "dnsTxtRecord": {
+    "message": "DNS TXT záznam"
+  },
+  "dnsTxtRecordInputHint": {
+    "message": "Kopírujte TXT záznam k vášmu poskytovateľovi DNS."
+  },
+  "domainNameInputHint": {
+    "message": "Príklad: mydomain.com. Pre overenie subdomén musia byť tieto každá zadaná individuálne."
+  },
+  "automaticDomainVerification": {
+    "message": "Automatické Overenie Domény"
+  },
+  "automaticDomainVerificationProcess": {
+    "message": "Bitwarden sa pokúsi overiť doménu 3 krát počas prvých 72 hodín. Ak sa doménu nepodarilo overiť, skontrolujte DNS záznam u svojho hostiteľa a overte manuálne. Doména bude z organizácie odstránená po 7 dňoch ak nie je overená"
+  },
+  "invalidDomainNameMessage": {
+    "message": "Zadaný neplatný formát. Formát: mydomain.com. Pre overenie subdomén musia byť tieto každá zadaná individuálne."
+  },
+  "removeDomain": {
+    "message": "Odstrániť doménu"
+  },
+  "removeDomainWarning": {
+    "message": "Odstranenie domény nejde vrátiť späť. Naozaj chcete pokračovať?"
+  },
+  "domainRemoved": {
+    "message": "Doména odstránená"
+  },
+  "domainSaved": {
+    "message": "Doména uložená"
+  },
+  "domainVerified": {
+    "message": "Doména overená"
+  },
+  "duplicateDomainError": {
+    "message": "Nemôžete si privlastniť tú istú doménu dva krát."
+  },
+  "domainNotAvailable": {
+    "message": "Niekto iný používa doménu $DOMAIN$. Ak chcete pokračovať, použite inú doménu.",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainNotVerified": {
+    "message": "$DOMAIN$ nie je overená. Overte si DNS záznam.",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainStatusVerified": {
+    "message": "Overená"
+  },
+  "domainStatusUnverified": {
+    "message": "Neoverená"
+  },
+  "domainNameTh": {
+    "message": "Názov"
+  },
+  "domainStatusTh": {
+    "message": "Stav"
+  },
+  "lastChecked": {
+    "message": "Posledná kontrola"
+  },
+  "domainFormInvalid": {
+    "message": "Vo formulári sú chyby, ktoré vyžadujú vašu pozornosť"
+  },
+  "addedDomain": {
+    "message": "Pridaná doména $DOMAIN$",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "removedDomain": {
+    "message": "Odstránená doména $DOMAIN$",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainVerifiedEvent": {
+    "message": "$DOMAIN$ overená",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainNotVerifiedEvent": {
+    "message": "$DOMAIN$ neoverená",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
   },
   "membersColumnHeader": {
     "message": "Člen/Skupina"
@@ -6104,6 +6256,36 @@
       }
     }
   },
+  "server": {
+    "message": "Server"
+  },
+  "exportData": {
+    "message": "Exportovať dáta"
+  },
+  "exportingOrganizationSecretDataTitle": {
+    "message": "Exportovať tajné dáta Organizácie"
+  },
+  "exportingOrganizationSecretDataDescription": {
+    "message": "Exportované budú iba Secrets Manager dáta spojené s organizáciou $ORGANIZATION$. Položky v ostatných produktoch a položky z iných organizácií nebudú zahrnuté.",
+    "placeholders": {
+      "ORGANIZATION": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "fileUpload": {
+    "message": "Nahrať súbor"
+  },
+  "acceptedFormats": {
+    "message": "Akceptované formáty:"
+  },
+  "copyPasteImportContents": {
+    "message": "Kopírovať a vložiť obsah pre import:"
+  },
+  "or": {
+    "message": "alebo"
+  },
   "licenseAndBillingManagement": {
     "message": "License and billing management"
   },
@@ -6134,6 +6316,33 @@
   "uploadLicense": {
     "message": "Upload license"
   },
+  "projectPeopleDescription": {
+    "message": "Povoľte skupinám, alebo jednotlivcom prístup k tomuto projektu."
+  },
+  "projectPeopleSelectHint": {
+    "message": "Zadajte alebo vyberte jednotlivcov alebo skupiny"
+  },
+  "projectServiceAccountsDescription": {
+    "message": "Povoľte služobným kontám prístup k tomuto projektu."
+  },
+  "projectServiceAccountsSelectHint": {
+    "message": "Zadajte alebo vyberte služobné kontá"
+  },
+  "projectEmptyPeopleAccessPolicies": {
+    "message": "Pridajte jednotlivcov alebo skupiny a začnite spolupracovať"
+  },
+  "projectEmptyServiceAccountAccessPolicies": {
+    "message": "Pridajte služobné kontá pre povolenie prístupu"
+  },
+  "canWrite": {
+    "message": "Môže zapisovať"
+  },
+  "canReadWrite": {
+    "message": "Môže čítať, zapisovať"
+  },
+  "groupSlashUser": {
+    "message": "Skupina/Používateľ"
+  },
   "lowKdfIterations": {
     "message": "Nízky počet iterácií KDF"
   },
@@ -6154,5 +6363,33 @@
   },
   "userAccessSecretsManager": {
     "message": "Tento používateľ má prístup k beta verzii Secrets Manager"
+  },
+  "important": {
+    "message": "Important:"
+  },
+  "viewAll": {
+    "message": "Zobraziť všetko"
+  },
+  "showingPortionOfTotal": {
+    "message": "Zobrazuje sa $PORTION$ z $TOTAL$",
+    "placeholders": {
+      "portion": {
+        "content": "$1",
+        "example": "2"
+      },
+      "total": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "resolveTheErrorsBelowAndTryAgain": {
+    "message": "Vyriešte problémy nižšie a skúste to znova."
+  },
+  "description": {
+    "message": "Popis"
+  },
+  "errorReadingImportFile": {
+    "message": "Pri pokuse o prečítanie súboru na import sa vyskytla chyba"
   }
 }

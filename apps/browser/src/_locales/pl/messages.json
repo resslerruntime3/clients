@@ -430,7 +430,14 @@
     "message": "Wymagane jest ponowne wpisanie hasła głównego."
   },
   "masterPasswordMinlength": {
-    "message": "Hasło główne musi zawierać co najmniej 8 znaków."
+    "message": "Hasło główne musi zawierać co najmniej $VALUE$ znaki(-ów).",
+    "description": "The Master Password must be at least a specific number of characters long.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
   },
   "masterPassDoesntMatch": {
     "message": "Hasła nie pasują do siebie."
@@ -2103,5 +2110,26 @@
         "example": "14"
       }
     }
+  },
+  "tryAutofillPageLoad": {
+    "message": "Spróbować autouzupełnić po załadowaniu strony?"
+  },
+  "tryAutofill": {
+    "message": "Jak autouzupełniać"
+  },
+  "autofillPageLoadInfo": {
+    "message": "Formularze logowania automatycznie wypełnią się pasującymi danymi uwierzytelniającymi, jeśli włączysz autouzupełnianie po załadowaniu strony."
+  },
+  "autofillSelectInfo": {
+    "message": "Wybierz element z tej strony, aby automatycznie wypełnić formularz na aktywnej karcie."
+  },
+  "autofillTurnedOn": {
+    "message": "Automatyczne uzupełnianie przy wczytywaniu strony zostało włączone"
+  },
+  "turnOn": {
+    "message": "Włącz"
+  },
+  "notNow": {
+    "message": "Nie teraz"
   }
 }
