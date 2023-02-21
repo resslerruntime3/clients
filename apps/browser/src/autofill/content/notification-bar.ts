@@ -429,7 +429,12 @@ document.addEventListener("DOMContentLoaded", (event) => {
     form.removeEventListener("submit", formSubmitted, false);
     form.addEventListener("submit", formSubmitted, false);
 
-    // Use login button names and change password names since we don't know what type of form we are watching
+    findAndListenToSubmitButton(form);
+  }
+
+  function findAndListenToSubmitButton(form: HTMLFormElement) {
+    // Use login button names and change password names since we don't
+    // know what type of form we are watching
     const submitButton = getSubmitButton(
       form,
       unionSets(logInButtonNames, changePasswordButtonNames)
@@ -538,11 +543,19 @@ document.addEventListener("DOMContentLoaded", (event) => {
   function formSubmitted(e: Event) {
     let form: HTMLFormElement = null;
     // If the event is a click event, we need to find the closest form element
+    let clickedElement: HTMLElement = null;
     if (e.type === "click") {
-      form = (e.target as HTMLElement).closest("form");
+      clickedElement = e.target as HTMLElement;
+
+      // Set a flag on the clicked element so we don't set it as a submit button again
+      if (clickedElement?.dataset?.bitwardenClicked !== "1") {
+        clickedElement.dataset.bitwardenClicked = "1";
+      }
+
+      form = clickedElement.closest("form");
       // If we didn't find a form element, check if the click was within a modal
       if (form == null) {
-        const parentModal = (e.target as HTMLElement).closest("div.modal");
+        const parentModal = clickedElement.closest("div.modal");
         // If we found a modal, check if it has a single form element
         if (parentModal != null) {
           const modalForms = parentModal.querySelectorAll("form");
@@ -553,7 +566,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       }
 
       // see if the event target is a submit button with a formOpId
-      const formOpId = (e.target as HTMLElementWithFormOpId).formOpId;
+      const formOpId = (clickedElement as HTMLElementWithFormOpId).formOpId;
       if (form == null && formOpId != null) {
         // Find form in watched forms array via form op id
         form = watchedForms.find((wf: WatchedForm) => wf.formEl.opid === formOpId).formEl;
@@ -589,18 +602,25 @@ document.addEventListener("DOMContentLoaded", (event) => {
         };
 
         // if we have values for username and password, send a message to the background script to add the login
-        if (
-          login.username != null &&
-          login.username !== "" &&
-          login.password != null &&
-          login.password !== ""
-        ) {
+        const userNamePopulated = login.username != null && login.username !== "";
+        const passwordPopulated = login.password != null && login.password !== "";
+        if (userNamePopulated && passwordPopulated) {
           processedForm(form);
           sendPlatformMessage({
             command: "bgAddLogin",
             login: login,
           });
           break;
+        } else if (
+          userNamePopulated &&
+          !passwordPopulated &&
+          clickedElement !== null &&
+          !isElementVisible(clickedElement)
+        ) {
+          // Likely a multi step login form with password missing and next button no longer visible
+          // Remove click listener from previous "submit" button (next button)
+          clickedElement.removeEventListener("click", formSubmitted);
+          findAndListenToSubmitButton(form);
         }
       }
 
@@ -688,14 +708,20 @@ document.addEventListener("DOMContentLoaded", (event) => {
     const wrappingElIsForm = wrappingEl.tagName.toLowerCase() === "form";
 
     // query for submit button
-    let submitButton = wrappingEl.querySelector(
-      'input[type="submit"], input[type="image"], ' + 'button[type="submit"]'
-    ) as HTMLElement;
+    const possibleSubmitBtnSelectors = [
+      'input[type="submit"]',
+      'input[type="image"]',
+      'button[type="submit"]',
+    ];
+    const submitBtnSelector = possibleSubmitBtnSelectors
+      .map((btnSelector) => `${btnSelector}:not([data-bitwarden-clicked])`)
+      .join(", ");
+    let submitButton = wrappingEl.querySelector(submitBtnSelector) as HTMLElement;
 
     // if we didn't find a submit button and we are in a form:
     if (submitButton == null && wrappingElIsForm) {
       // query for a button that doesn't have the type attribute
-      submitButton = wrappingEl.querySelector("button:not([type])");
+      submitButton = wrappingEl.querySelector("button:not([type]):not([data-bitwarden-clicked])");
       if (submitButton != null) {
         // Retrieve "submit" button text because it might be a cancel button instead of a submit button.
         // If it is a cancel button, then we don't want to use it.
@@ -921,6 +947,46 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
 
     return set;
+  }
+
+  /**
+   * Determine if the element is visible.
+   * Visible is define as not having `display: none` or `visibility: hidden`.
+   * @param {HTMLElement} el
+   * @returns {boolean} Returns `true` if the element is visible and `false` otherwise
+   *
+   * Copied from autofill.js and converted to TypeScript;
+   * TODO: could be refactored to be in a shared location if autofill.js is converted to TS
+   */
+  function isElementVisible(el: HTMLElement): boolean {
+    let theEl: Node | null = el;
+    // Get the top level document
+    const elDocument = el.ownerDocument;
+    const elWindow = elDocument ? elDocument.defaultView : undefined;
+
+    // walk the dom tree until we reach the top
+    while (theEl && theEl !== document) {
+      // Calculate the style of the element
+      const elStyle = elWindow?.getComputedStyle
+        ? elWindow.getComputedStyle(theEl as HTMLElement, null)
+        : (theEl as HTMLElement).style;
+
+      // If there's no computed style at all, we're done, as we know that it's not hidden
+      if (!elStyle) {
+        return true;
+      }
+
+      // If the element's computed style includes `display: none` or `visibility: hidden`, we know it's hidden
+      if ("none" === elStyle.display || "hidden" === elStyle.visibility) {
+        return false;
+      }
+
+      // At this point, we aren't sure if the element is hidden or not, so we need to keep walking up the tree
+      theEl = theEl.parentNode;
+    }
+
+    // If we've reached the top of the tree, we know that the element is visible
+    return theEl === document;
   }
 
   //#endregion Helper Functions
