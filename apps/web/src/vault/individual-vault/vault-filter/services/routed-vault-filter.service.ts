@@ -50,14 +50,17 @@ export class RoutedVaultFilterService implements OnDestroy {
    * meaning that navigation will only affect filters and not e.g. `cipherId`.
    * To subscribe to changes use {@link RoutedVaultFilterService.filter$}.
    *
+   * Note:
+   * This method currently only supports changing filters that are stored
+   * in query parameters. This means that {@link RoutedVaultFilterModel.organizationId}
+   * will be ignored if {@link RoutedVaultFilterModel.organizationIdParamType}
+   * is set to `path`.
+   *
    * @param filter Filter values that should be applied to the URL.
    * @returns route that can be used with Router or RouterLink
    */
   createRoute(filter: RoutedVaultFilterModel): [commands: any[], extras?: NavigationExtras] {
-    const commands =
-      filter.organizationIdParamType === "path"
-        ? ["/", "organizations", filter.organizationId, "vault"]
-        : [];
+    const commands: string[] = [];
     const extras: NavigationExtras = {
       queryParams: {
         collectionId: filter.collectionId ?? null,
