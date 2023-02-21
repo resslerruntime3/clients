@@ -13,14 +13,19 @@ import { FolderService } from "@bitwarden/common/vault/abstractions/folder/folde
 
 import { LooseComponentsModule, SharedModule } from "../../shared";
 
-import { FilePasswordPromptComponent } from "./dialog/index";
+import { ImportSuccessDialogComponent, FilePasswordPromptComponent } from "./dialog/index";
 import { ExportComponent } from "./export.component";
 import { ImportExportRoutingModule } from "./import-export-routing.module";
 import { ImportComponent } from "./import.component";
 
 @NgModule({
   imports: [SharedModule, LooseComponentsModule, ImportExportRoutingModule],
-  declarations: [ImportComponent, ExportComponent, FilePasswordPromptComponent],
+  declarations: [
+    ImportComponent,
+    ExportComponent,
+    FilePasswordPromptComponent,
+    ImportSuccessDialogComponent,
+  ],
   providers: [
     {
       provide: ImportApiServiceAbstraction,

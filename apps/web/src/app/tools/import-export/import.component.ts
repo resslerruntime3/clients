@@ -12,9 +12,11 @@ import { PlatformUtilsService } from "@bitwarden/common/abstractions/platformUti
 import { PolicyService } from "@bitwarden/common/abstractions/policy/policy.service.abstraction";
 import { ImportOption, ImportType } from "@bitwarden/common/enums/importOptions";
 import { PolicyType } from "@bitwarden/common/enums/policyType";
+import { ImportResult } from "@bitwarden/common/models/domain/import-result";
 import { SyncService } from "@bitwarden/common/vault/abstractions/sync/sync.service.abstraction";
+import { DialogService } from "@bitwarden/components";
 
-import { FilePasswordPromptComponent } from "./dialog/index";
+import { ImportSuccessDialogComponent, FilePasswordPromptComponent } from "./dialog/index";
 
 @Component({
   selector: "app-import",
@@ -40,7 +42,8 @@ export class ImportComponent implements OnInit {
     protected policyService: PolicyService,
     private logService: LogService,
     protected modalService: ModalService,
-    protected syncService: SyncService
+    protected syncService: SyncService,
+    protected dialogService: DialogService
   ) {}
 
   async ngOnInit() {
@@ -120,10 +123,13 @@ export class ImportComponent implements OnInit {
     }
 
     try {
-      await this.importService.import(importer, fileContents, this.organizationId);
+      const result = await this.importService.import(importer, fileContents, this.organizationId);
 
       //No errors, display success message
-      this.platformUtilsService.showToast("success", null, this.i18nService.t("importSuccess"));
+      this.dialogService.open<unknown, ImportResult>(ImportSuccessDialogComponent, {
+        data: result,
+      });
+
       this.syncService.fullSync(true);
       this.router.navigate(this.successNavigate);
     } catch (e) {

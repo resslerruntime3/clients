@@ -9,6 +9,7 @@ import { OrganizationService } from "@bitwarden/common/abstractions/organization
 import { PlatformUtilsService } from "@bitwarden/common/abstractions/platformUtils.service";
 import { PolicyService } from "@bitwarden/common/abstractions/policy/policy.service.abstraction";
 import { SyncService } from "@bitwarden/common/vault/abstractions/sync/sync.service.abstraction";
+import { DialogService } from "@bitwarden/components";
 
 import { ImportComponent } from "../../../tools/import-export/import.component";
 
@@ -30,7 +31,8 @@ export class OrganizationImportComponent extends ImportComponent {
     private organizationService: OrganizationService,
     logService: LogService,
     modalService: ModalService,
-    syncService: SyncService
+    syncService: SyncService,
+    dialogService: DialogService
   ) {
     super(
       i18nService,
@@ -40,7 +42,8 @@ export class OrganizationImportComponent extends ImportComponent {
       policyService,
       logService,
       modalService,
-      syncService
+      syncService,
+      dialogService
     );
   }
 
