@@ -448,7 +448,7 @@ import { AbstractThemingService } from "./theming/theming.service.abstraction";
     {
       provide: SearchServiceAbstraction,
       useClass: SearchService,
-      deps: [CipherServiceAbstraction, LogService, I18nServiceAbstraction],
+      deps: [LogService, I18nServiceAbstraction],
     },
     {
       provide: NotificationsServiceAbstraction,

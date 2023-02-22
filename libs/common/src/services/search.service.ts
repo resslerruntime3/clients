@@ -102,7 +102,7 @@ export class SearchService implements SearchServiceAbstraction {
   async searchCiphers(
     query: string,
     filter: ((cipher: CipherView) => boolean) | ((cipher: CipherView) => boolean)[] = null,
-    ciphers: CipherView[] = null
+    ciphers: CipherView[]
   ): Promise<CipherView[]> {
     const results: CipherView[] = [];
     if (query != null) {
