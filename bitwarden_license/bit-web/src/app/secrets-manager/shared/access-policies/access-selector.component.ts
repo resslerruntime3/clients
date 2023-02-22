@@ -18,7 +18,7 @@ export type AccessSelectorRowView = {
   read: boolean;
   write: boolean;
   icon: string;
-  disabled?: boolean;
+  static?: boolean;
 };
 
 @Component({

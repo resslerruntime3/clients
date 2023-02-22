@@ -31,11 +31,14 @@
           </td>
           <td bitCell>{{ row.name }}</td>
           <td bitCell>
-            <bit-form-field class="tw-mb-auto tw-inline-block tw-w-auto">
+            <bit-form-field
+              *ngIf="!row.static; else staticPermissions"
+              class="tw-mb-auto tw-inline-block tw-w-auto"
+            >
               <select
                 bitInput
                 (change)="update($event.target, row.accessPolicyId)"
-                [disabled]="row.disabled"
+                [disabled]="row.static"
               >
                 <option value="canRead" [selected]="row.read && row.write != true">
                   {{ "canRead" | i18n }}
@@ -48,6 +51,11 @@
                 </option>
               </select>
             </bit-form-field>
+            <ng-template #staticPermissions>
+              <span *ngIf="row.read && row.write != true">{{ "canRead" | i18n }}</span>
+              <span *ngIf="row.read != true && row.write">{{ "canWrite" | i18n }}</span>
+              <span *ngIf="row.read && row.write">{{ "canReadWrite" | i18n }}</span>
+            </ng-template>
           </td>
           <td bitCell class="tw-w-0">
             <button
@@ -73,7 +81,7 @@
 </ng-template>
 
 <ng-template #spinner>
-  <div class="tw-items-center tw-justify-center tw-pt-64 tw-text-center">
+  <div class="tw-items-center tw-justify-center tw-pt-10 tw-text-center">
     <i class="bwi bwi-spinner bwi-spin bwi-3x"></i>
   </div>
 </ng-template>

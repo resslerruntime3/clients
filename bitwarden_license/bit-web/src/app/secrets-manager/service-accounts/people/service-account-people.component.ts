@@ -43,6 +43,7 @@ export class ServiceAccountPeopleComponent {
             read: policy.read,
             write: policy.write,
             icon: AccessSelectorComponent.userIcon,
+            static: true,
           });
         });
 
@@ -55,6 +56,7 @@ export class ServiceAccountPeopleComponent {
             read: policy.read,
             write: policy.write,
             icon: AccessSelectorComponent.groupIcon,
+            static: true,
           });
         });
 

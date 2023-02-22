@@ -39,6 +39,7 @@ export class ProjectServiceAccountsComponent implements OnInit, OnDestroy {
           read: policy.read,
           write: policy.write,
           icon: AccessSelectorComponent.serviceAccountIcon,
+          static: true,
         });
       });
 
