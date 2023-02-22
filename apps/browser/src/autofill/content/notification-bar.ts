@@ -938,7 +938,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
   }
 
-  // https://stackoverflow.com/a/50296208
+  // https://stackoverflow.com/a/41328397/20715409 - most efficient of the answers there
   function unionSets(...iterables: Set<any>[]): Set<any> {
     const set = new Set();
 
