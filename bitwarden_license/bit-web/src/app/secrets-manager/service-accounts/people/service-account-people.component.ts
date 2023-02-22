@@ -73,7 +73,7 @@ export class ServiceAccountPeopleComponent {
         view.grantedServiceAccountId = this.serviceAccountId;
         view.organizationUserId = filtered.id;
         view.read = true;
-        view.write = false;
+        view.write = true;
         return view;
       });
 
@@ -84,7 +84,7 @@ export class ServiceAccountPeopleComponent {
         view.grantedServiceAccountId = this.serviceAccountId;
         view.groupId = filtered.id;
         view.read = true;
-        view.write = false;
+        view.write = true;
         return view;
       });
 
