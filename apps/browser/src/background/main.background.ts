@@ -291,13 +291,15 @@ export default class MainBackground {
     );
     this.settingsService = new BrowserSettingsService(this.stateService);
     this.fileUploadService = new FileUploadService(this.logService, this.apiService);
+    this.searchService = new SearchService(this.logService, this.i18nService);
+
     this.cipherService = new CipherService(
       this.cryptoService,
       this.settingsService,
       this.apiService,
       this.fileUploadService,
       this.i18nService,
-      () => this.searchService,
+      this.searchService,
       this.logService,
       this.stateService,
       this.encryptService
@@ -314,7 +316,6 @@ export default class MainBackground {
       this.i18nService,
       this.stateService
     );
-    this.searchService = new SearchService(this.cipherService, this.logService, this.i18nService);
     this.sendService = new SendService(
       this.cryptoService,
       this.apiService,

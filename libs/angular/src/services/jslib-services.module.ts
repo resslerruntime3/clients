@@ -1,4 +1,4 @@
-import { Injector, LOCALE_ID, NgModule } from "@angular/core";
+import { LOCALE_ID, NgModule } from "@angular/core";
 
 import { AvatarUpdateService as AccountUpdateServiceAbstraction } from "@bitwarden/common/abstractions/account/avatar-update.service";
 import { AnonymousHubService as AnonymousHubServiceAbstraction } from "@bitwarden/common/abstractions/anonymousHub.service";
@@ -234,7 +234,7 @@ import { AbstractThemingService } from "./theming/theming.service.abstraction";
         apiService: ApiServiceAbstraction,
         fileUploadService: FileUploadServiceAbstraction,
         i18nService: I18nServiceAbstraction,
-        injector: Injector,
+        searchService: SearchServiceAbstraction,
         logService: LogService,
         stateService: StateServiceAbstraction,
         encryptService: EncryptService
@@ -245,7 +245,7 @@ import { AbstractThemingService } from "./theming/theming.service.abstraction";
           apiService,
           fileUploadService,
           i18nService,
-          () => injector.get(SearchServiceAbstraction),
+          searchService,
           logService,
           stateService,
           encryptService
@@ -256,7 +256,7 @@ import { AbstractThemingService } from "./theming/theming.service.abstraction";
         ApiServiceAbstraction,
         FileUploadServiceAbstraction,
         I18nServiceAbstraction,
-        Injector, // TODO: Get rid of this circular dependency!
+        SearchServiceAbstraction,
         LogService,
         StateServiceAbstraction,
         EncryptService,

@@ -6,7 +6,6 @@ import { SearchService as SearchServiceAbstraction } from "../abstractions/searc
 import { FieldType } from "../enums/fieldType";
 import { UriMatchType } from "../enums/uriMatchType";
 import { SendView } from "../models/view/send.view";
-import { CipherService } from "../vault/abstractions/cipher.service";
 import { CipherType } from "../vault/enums/cipher-type";
 import { CipherView } from "../vault/models/view/cipher.view";
 
@@ -20,11 +19,7 @@ export class SearchService implements SearchServiceAbstraction {
   private readonly defaultSearchableMinLength: number = 2;
   private searchableMinLength: number = this.defaultSearchableMinLength;
 
-  constructor(
-    private cipherService: CipherService,
-    private logService: LogService,
-    private i18nService: I18nService
-  ) {
+  constructor(private logService: LogService, private i18nService: I18nService) {
     this.i18nService.locale$.subscribe((locale) => {
       if (this.immediateSearchLocales.indexOf(locale) !== -1) {
         this.searchableMinLength = 1;
@@ -56,7 +51,7 @@ export class SearchService implements SearchServiceAbstraction {
     return !notSearchable;
   }
 
-  async indexCiphers(indexedEntityId?: string, ciphers?: CipherView[]): Promise<void> {
+  indexCiphers(ciphers: CipherView[], indexedEntityId?: string): void {
     if (this.indexing) {
       return;
     }
@@ -95,7 +90,7 @@ export class SearchService implements SearchServiceAbstraction {
       extractor: (c: CipherView) => this.attachmentExtractor(c, true),
     });
     builder.field("organizationid", { extractor: (c: CipherView) => c.organizationId });
-    ciphers = ciphers || (await this.cipherService.getAllDecrypted());
+    ciphers = ciphers || [];
     ciphers.forEach((c) => builder.add(c));
     this.index = builder.build();
 
@@ -118,7 +113,7 @@ export class SearchService implements SearchServiceAbstraction {
     }
 
     if (ciphers == null) {
-      ciphers = await this.cipherService.getAllDecrypted();
+      ciphers = [];
     }
 
     if (filter != null && Array.isArray(filter) && filter.length > 0) {

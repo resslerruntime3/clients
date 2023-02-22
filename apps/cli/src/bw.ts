@@ -213,6 +213,8 @@ export class Main {
 
     this.fileUploadService = new FileUploadService(this.logService, this.apiService);
 
+    this.searchService = new SearchService(this.logService, this.i18nService);
+
     this.cipherService = new CipherService(
       this.cryptoService,
       this.settingsService,
@@ -241,8 +243,6 @@ export class Main {
       this.i18nService,
       this.stateService
     );
-
-    this.searchService = new SearchService(this.cipherService, this.logService, this.i18nService);
 
     this.providerService = new ProviderService(this.stateService);
 
