@@ -19,7 +19,7 @@ import { ServiceAccountAccessPolicyService } from "../service-account-access-pol
 @Component({
   selector: "sm-service-account-people",
   templateUrl: "./service-account-people.component.html",
-  providers: [{ provide: BaseAccessPolicyService, useClass: ServiceAccountAccessPolicyService }],
+  providers: [{ provide: BaseAccessPolicyService, useExisting: ServiceAccountAccessPolicyService }],
 })
 export class ServiceAccountPeopleComponent {
   private destroy$ = new Subject<void>();

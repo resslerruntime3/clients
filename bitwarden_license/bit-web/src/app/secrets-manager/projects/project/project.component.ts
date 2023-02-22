@@ -11,7 +11,7 @@ import { ProjectAccessPolicyService } from "./project-access-policy.service";
 @Component({
   selector: "sm-project",
   templateUrl: "./project.component.html",
-  providers: [{ provide: BaseAccessPolicyService, useClass: ProjectAccessPolicyService }],
+  providers: [{ provide: BaseAccessPolicyService, useExisting: ProjectAccessPolicyService }],
 })
 export class ProjectComponent implements OnInit {
   project$: Observable<ProjectView>;
