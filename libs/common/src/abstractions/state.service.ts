@@ -357,4 +357,6 @@ export abstract class StateService<T extends Account = Account> {
 
   getAvatarColor: (options?: StorageOptions) => Promise<string | null | undefined>;
   setAvatarColor: (value: string, options?: StorageOptions) => Promise<void>;
+  getActivatedAutofillPolicy: (options?: StorageOptions) => Promise<boolean | undefined>;
+  setActivatedAutofillPolicy: (value: boolean, options?: StorageOptions) => Promise<void>;
 }
