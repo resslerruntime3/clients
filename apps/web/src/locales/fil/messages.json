@@ -697,7 +697,14 @@
     "message": "Kinakailangan ang ulitin ang master password."
   },
   "masterPasswordMinlength": {
-    "message": "Ang master password ay dapat hindi bababa sa 8 na mga character."
+    "message": "Master password must be at least $VALUE$ characters long.",
+    "description": "The Master Password must be at least a specific number of characters long.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
   },
   "masterPassDoesntMatch": {
     "message": "Hindi tumutugma ang kumpirmasyon ng master password."
@@ -1247,6 +1254,9 @@
   },
   "importSuccess": {
     "message": "Matagumpay na na import ang data"
+  },
+  "dataExportSuccess": {
+    "message": "Data successfully exported"
   },
   "importWarning": {
     "message": "Nag-aangkat ka ng data sa $ORGANIZATION$. Ang iyong data ay maaaring ibahagi sa mga miyembro ng organisasyong ito. Gusto mo bang magpatuloy?",
@@ -3770,7 +3780,7 @@
     "message": "Ibalik muli ang mga item"
   },
   "restoreSelectedItemsDesc": {
-    "message": "Pumili ka ng $COUNT (mga) item na ibabalik. Sigurado ka bang gusto mong ibalik ang mga item na ito?",
+    "message": "Pumili ka ng $COUNT$ (mga) item na ibabalik. Sigurado ka bang gusto mong ibalik ang mga item na ito?",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -5670,6 +5680,9 @@
   "customColor": {
     "message": "Pasadyang Kulay"
   },
+  "selectPlaceholder": {
+    "message": "--Piliin--"
+  },
   "multiSelectPlaceholder": {
     "message": "-- Uri ng filter --"
   },
@@ -5720,11 +5733,8 @@
   "secretProjectAssociationDescription": {
     "message": "Pumili ng mga proyekto na ang lihim ay maiugnay. Tanging ang mga gumagamit ng organisasyon na may access sa mga proyektong ito ang makakakita ng lihim."
   },
-  "typeOrSelectProjects": {
-    "message": "Uri o piliin ang Mga Proyekto"
-  },
-  "typeOrSelectProject": {
-    "message": "Uri o piliin ang Proyekto"
+  "selectProjects": {
+    "message": "Pilipitin ang mga proyekto"
   },
   "project": {
     "message": "Proyekto"
@@ -5945,6 +5955,16 @@
   "revokeAccessToken": {
     "message": "Bawiin ang access token"
   },
+  "revokeAccessTokens": {
+    "message": "Revoke access tokens"
+  },
+  "revokeAccessTokenDesc": {
+    "message": "Revoking access tokens is permanent and irreversible."
+  },
+  "accessTokenRevoked": {
+    "message": "Access tokens revoked",
+    "description": "Toast message after deleting one or multiple access tokens."
+  },
   "submenu": {
     "message": "Submenu"
   },
@@ -5999,6 +6019,9 @@
   "collection": {
     "message": "Koleksyon"
   },
+  "noCollection": {
+    "message": "Walang koleksyon"
+  },
   "canView": {
     "message": "Maaaring tingnan"
   },
@@ -6028,6 +6051,135 @@
   },
   "memberAccessAll": {
     "message": "Maaaring ma-access at baguhin ng miyembrong ito ang lahat ng item."
+  },
+  "domainVerification": {
+    "message": "Domain verification"
+  },
+  "newDomain": {
+    "message": "New domain"
+  },
+  "noDomains": {
+    "message": "No domains"
+  },
+  "noDomainsSubText": {
+    "message": "Connecting a domain allows members to skip the SSO identifier field during Login with SSO."
+  },
+  "verifyDomain": {
+    "message": "Verify domain"
+  },
+  "reverifyDomain": {
+    "message": "Reverify domain"
+  },
+  "copyDnsTxtRecord": {
+    "message": "Copy DNS TXT record"
+  },
+  "dnsTxtRecord": {
+    "message": "DNS TXT record"
+  },
+  "dnsTxtRecordInputHint": {
+    "message": "Copy and paste the TXT record into your DNS Provider."
+  },
+  "domainNameInputHint": {
+    "message": "Example: mydomain.com. Subdomains require separate entries to be verified."
+  },
+  "automaticDomainVerification": {
+    "message": "Automatic Domain Verification"
+  },
+  "automaticDomainVerificationProcess": {
+    "message": "Bitwarden will attempt to verify the domain 3 times during the first 72 hours. If the domain can’t be verified, check the DNS record in your host and manually verify. The domain will be removed from your organization in 7 days if it is not verified"
+  },
+  "invalidDomainNameMessage": {
+    "message": "Input is not a valid format. Format: mydomain.com. Subdomains require separate entries to be verified."
+  },
+  "removeDomain": {
+    "message": "Remove domain"
+  },
+  "removeDomainWarning": {
+    "message": "Removing a domain cannot be undone. Are you sure you want to continue?"
+  },
+  "domainRemoved": {
+    "message": "Domain removed"
+  },
+  "domainSaved": {
+    "message": "Domain saved"
+  },
+  "domainVerified": {
+    "message": "Domain verified"
+  },
+  "duplicateDomainError": {
+    "message": "You can't claim the same domain twice."
+  },
+  "domainNotAvailable": {
+    "message": "May iba pang gumagamit ng $DOMAIN$. Gamitin ang ibang domain upang magpatuloy.",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainNotVerified": {
+    "message": "$DOMAIN$ hindi napatunayan. Suriin ang iyong DNS record.",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainStatusVerified": {
+    "message": "Na-verify"
+  },
+  "domainStatusUnverified": {
+    "message": "Hindi na-verify"
+  },
+  "domainNameTh": {
+    "message": "Pangalan"
+  },
+  "domainStatusTh": {
+    "message": "Katayuan"
+  },
+  "lastChecked": {
+    "message": "Huling pagsusuri"
+  },
+  "domainFormInvalid": {
+    "message": "There are form errors that need your attention"
+  },
+  "addedDomain": {
+    "message": "Added domain $DOMAIN$",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "removedDomain": {
+    "message": "Removed domain $DOMAIN$",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainVerifiedEvent": {
+    "message": "$DOMAIN$ verified",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainNotVerifiedEvent": {
+    "message": "$DOMAIN$ not verified",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
   },
   "membersColumnHeader": {
     "message": "Miyembro/Grupo"
@@ -6104,6 +6256,36 @@
       }
     }
   },
+  "server": {
+    "message": "Server"
+  },
+  "exportData": {
+    "message": "I-export ang mga datos"
+  },
+  "exportingOrganizationSecretDataTitle": {
+    "message": "Exporting Organization Secret Data"
+  },
+  "exportingOrganizationSecretDataDescription": {
+    "message": "Only the Secrets Manager data associated with $ORGANIZATION$ will be exported. Items in other products or from other organizations will not be included.",
+    "placeholders": {
+      "ORGANIZATION": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "fileUpload": {
+    "message": "File upload"
+  },
+  "acceptedFormats": {
+    "message": "Accepted Formats:"
+  },
+  "copyPasteImportContents": {
+    "message": "Copy & paste import contents:"
+  },
+  "or": {
+    "message": "or"
+  },
   "licenseAndBillingManagement": {
     "message": "Pamamahala ng lisensya at pagsingil"
   },
@@ -6134,6 +6316,33 @@
   "uploadLicense": {
     "message": "Mag-upload ng lisensya"
   },
+  "projectPeopleDescription": {
+    "message": "Bigyan ng access ang mga grupo o tao sa proyektong ito."
+  },
+  "projectPeopleSelectHint": {
+    "message": "I-type o piliin ang mga tao o grupo"
+  },
+  "projectServiceAccountsDescription": {
+    "message": "Bigyan ng access ang mga service account sa proyektong ito."
+  },
+  "projectServiceAccountsSelectHint": {
+    "message": "I-type o piliin ang mga service account"
+  },
+  "projectEmptyPeopleAccessPolicies": {
+    "message": "Magdagdag ng mga tao o grupo upang magsimulang mag-collaborate"
+  },
+  "projectEmptyServiceAccountAccessPolicies": {
+    "message": "Magdagdag ng mga service account upang mabigyan ng access"
+  },
+  "canWrite": {
+    "message": "Maaaring magsulat"
+  },
+  "canReadWrite": {
+    "message": "Maaaring magbasa, magsulat"
+  },
+  "groupSlashUser": {
+    "message": "Grupo/User"
+  },
   "lowKdfIterations": {
     "message": "Mababang KDF Iterations"
   },
@@ -6154,5 +6363,33 @@
   },
   "userAccessSecretsManager": {
     "message": "Maaaring ma access ng gumagamit na ito ang Secrets Manager Beta"
+  },
+  "important": {
+    "message": "Important:"
+  },
+  "viewAll": {
+    "message": "View all"
+  },
+  "showingPortionOfTotal": {
+    "message": "Showing $PORTION$ of $TOTAL$",
+    "placeholders": {
+      "portion": {
+        "content": "$1",
+        "example": "2"
+      },
+      "total": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "resolveTheErrorsBelowAndTryAgain": {
+    "message": "Resolve the errors below and try again."
+  },
+  "description": {
+    "message": "Description"
+  },
+  "errorReadingImportFile": {
+    "message": "An error occurred when trying to read the import file"
   }
 }

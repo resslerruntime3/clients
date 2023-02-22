@@ -7,12 +7,7 @@ import { TableComponent } from "./table.component";
 @Component({
   selector: "th[bitSortable]",
   template: `
-    <button
-      class="tw-group"
-      [ngClass]="classList"
-      [attr.aria-pressed]="isActive"
-      (click)="setActive()"
-    >
+    <button [ngClass]="classList" [attr.aria-pressed]="isActive" (click)="setActive()">
       <ng-content></ng-content>
       <i class="bwi tw-ml-2" [ngClass]="icon"></i>
     </button>
@@ -76,18 +71,21 @@ export class SortableComponent implements OnInit {
 
   get icon() {
     if (!this.isActive) {
-      return "bwi-chevron-up tw-opacity-0 group-hover:tw-opacity-100 group-focus-visible:tw-opacity-100";
+      return "bwi-up-down-btn";
     }
-    return this.direction === "asc" ? "bwi-chevron-up" : "bwi-angle-down";
+    return this.direction === "asc" ? "bwi-up-solid" : "bwi-down-solid";
   }
 
   get classList() {
     return [
+      "tw-group",
+      "tw-min-w-max",
+
       // Offset to border and padding
       "-tw-m-1.5",
+      "tw-font-bold",
 
       // Below is copied from BitIconButtonComponent
-      "tw-font-semibold",
       "tw-border",
       "tw-border-solid",
       "tw-rounded",

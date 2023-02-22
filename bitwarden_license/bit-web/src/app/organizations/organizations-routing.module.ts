@@ -8,8 +8,9 @@ import { OrganizationPermissionsGuard } from "@bitwarden/web-vault/app/organizat
 import { OrganizationLayoutComponent } from "@bitwarden/web-vault/app/organizations/layouts/organization-layout.component";
 import { SettingsComponent } from "@bitwarden/web-vault/app/organizations/settings/settings.component";
 
-import { SsoComponent } from "../auth/sso.component";
+import { SsoComponent } from "../auth/sso/sso.component";
 
+import { DomainVerificationComponent } from "./manage/domain-verification/domain-verification.component";
 import { ScimComponent } from "./manage/scim.component";
 
 const routes: Routes = [
@@ -26,6 +27,14 @@ const routes: Routes = [
           organizationPermissions: canAccessSettingsTab,
         },
         children: [
+          {
+            path: "domain-verification",
+            component: DomainVerificationComponent,
+            canActivate: [OrganizationPermissionsGuard],
+            data: {
+              organizationPermissions: (org: Organization) => org.canManageDomainVerification,
+            },
+          },
           {
             path: "sso",
             component: SsoComponent,

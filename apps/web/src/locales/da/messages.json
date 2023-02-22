@@ -405,7 +405,7 @@
     "message": "Vis emne"
   },
   "new": {
-    "message": "New",
+    "message": "Nyt",
     "description": "for adding new items"
   },
   "item": {
@@ -697,7 +697,14 @@
     "message": "Hovedadgangskode kræves angivet igen."
   },
   "masterPasswordMinlength": {
-    "message": "Hovedadgangskoden skal være på mindst 8 tegn."
+    "message": "Master password must be at least $VALUE$ characters long.",
+    "description": "The Master Password must be at least a specific number of characters long.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
   },
   "masterPassDoesntMatch": {
     "message": "Hovedadgangskoderne matcher ikke."
@@ -899,7 +906,7 @@
     "message": "Redigér de samlinger, med hvilke dette emne deles. Kun organisationsbrugere med adgang til disse samlinger vil kunne se dette emne."
   },
   "deleteSelectedItemsDesc": {
-    "message": "$COUNT$ emne(r) markeret til sletning. Fortsæt med sletningen?",
+    "message": "$COUNT$ emne(r) sendes til papirkurven.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1149,7 +1156,7 @@
     }
   },
   "kdfIterationsWarning": {
-    "message": "Indstilles KDF-iterationer for højt, kan det resultere i dårlig ydeevne under indlogning på (og oplåsning af) Bitwarden på enheder med langsomme CPU'er. En værdiforøgelse i trin á $INCREMENT$ anbefales med efterfølgende test på alle dine enheder.",
+    "message": "Sættes KDF-iterationer for højt, kan det resultere i dårlig ydeevne under indlogning på (og oplåsning af) Bitwarden på langsomme eller ældre enheder. En værdiforøgelse i trin á $INCREMENT$ anbefales med efterfølgende test på alle dine enheder.",
     "placeholders": {
       "increment": {
         "content": "$1",
@@ -1247,6 +1254,9 @@
   },
   "importSuccess": {
     "message": "Data er nu importeret"
+  },
+  "dataExportSuccess": {
+    "message": "Data hermed eksporteret"
   },
   "importWarning": {
     "message": "Du er ved at importere data til $ORGANIZATION$, som kan blive delt med medlemmer af denne organisation. Fortsæt?",
@@ -2474,10 +2484,10 @@
     "message": "Advarsel! Denne bruger behøver Key Connector til krypteringshåndtering. Fjernes brugeren fra din organisation, deaktiveres vedkommendes konto permanent. Denne handling er irreversibel. Fortsæt alligevel?"
   },
   "externalId": {
-    "message": "Eksternt id"
+    "message": "Eksternt ID"
   },
   "externalIdDesc": {
-    "message": "Det eksterne id kan bruges som reference eller til at forbinde denne ressource til et eksternt system som f.eks. et brugerkartotek."
+    "message": "Eksternt ID er en ikke-krypteret reference brugt af Bitwarden Directory Connector and API."
   },
   "nestCollectionUnder": {
     "message": "Placér samling under"
@@ -2525,7 +2535,7 @@
     "message": "Inviter en ny bruger til din organisation ved at indtaste e-mailadressen på deres Bitwarden-konto nedenfor. Hvis de ikke allerede har en Bitwarden-konto, bliver de bedt om at oprette en ny konto."
   },
   "inviteMultipleEmailDesc": {
-    "message": "Du kan invitere op til $COUNT$ brugere ad gangen ved at kommaseparere en liste med emailadresser.",
+    "message": "Angiv op til $COUNT$ e-mailadresser separeret af kommaer.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3017,7 +3027,7 @@
     "message": "Gruppeadgang"
   },
   "groupAccessUserDesc": {
-    "message": "Redigér de grupper, som denne bruger tilhører."
+    "message": "Tildel medlemsadgang til samlinger ved at føje dem 1 eller flere grupper."
   },
   "invitedUsers": {
     "message": "Bruger(e) inviteret"
@@ -3053,10 +3063,10 @@
     }
   },
   "confirmUsers": {
-    "message": "Bekræft brugere"
+    "message": "Bekræft medlemmer"
   },
   "usersNeedConfirmed": {
-    "message": "Du har brugere, der har accepteret deres invitation, men som mangler at blive bekræftet. Brugere har ikke adgang til organisationen, før de er bekræftet."
+    "message": "Der er brugere, som har accepteret deres invitation, men stadig mangler at blive bekræftet. Brugere har ikke adgang til organisationen, før de er bekræftet."
   },
   "startDate": {
     "message": "Startdato"
@@ -3770,7 +3780,7 @@
     "message": "Gendan emner"
   },
   "restoreSelectedItemsDesc": {
-    "message": "$COUNT$ emne(r) valgt til gendannelse. Sikker på, at alle de alle skal gendannes?",
+    "message": "$COUNT$ emne(r) valgt til gendannelse. Sikker på, at de skal gendannes?",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -4324,7 +4334,7 @@
     "message": "Håndtér nulstilling af adgangskode"
   },
   "disableRequiredError": {
-    "message": "Du skal manuelt deaktivere $POLICYNAME$-politikken, før denne politik kan deaktiveres.",
+    "message": "$POLICYNAME$-politikken skal deaktiveres manuelt, før denne politik kan deaktiveres.",
     "placeholders": {
       "policyName": {
         "content": "$1",
@@ -5242,7 +5252,7 @@
     "message": "Token roteret."
   },
   "billingSyncDesc": {
-    "message": "Faktureringssynk giver gratis Familier-abonnementstyper til medlemmer samt avancerede faktureringsmuligheder ved at linke din selv-hostede Bitwarden til Bitwarden-cloudserveren."
+    "message": "Faktureringssynk oplåser Familier-sponsorater og automatisk licenssynk på din server. Når opdateringer i Bitwarden cloud-serveren er foretaget, så vælg Synk licens for at anvende ændringer."
   },
   "billingSyncKeyDesc": {
     "message": "Et faktureringssynk-token fra din cloud-organisations abonnementsindstillinger kræves for at udfylde denne formular."
@@ -5323,7 +5333,7 @@
     "message": "Eksport af organisationsboks"
   },
   "exportingPersonalVaultDescription": {
-    "message": "Kun individuelle boksemner tilknyttet $EMAIL$ eksporteres. Organisationsboksemner medtages ikke.",
+    "message": "Kun individuelle boksemner tilknyttet $EMAIL$ eksporteres. Organisationsboksemner medtages ikke. Kun boksemneinformation uden tilhørende adgangskodehistorik eller filvedhæftninger eksporteres.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -5670,6 +5680,9 @@
   "customColor": {
     "message": "Tilpasset farve"
   },
+  "selectPlaceholder": {
+    "message": "-- Vælg --"
+  },
   "multiSelectPlaceholder": {
     "message": "-- Skriv for at filtrere --"
   },
@@ -5709,7 +5722,7 @@
     "message": "Kopiér hemmeligheds navn"
   },
   "copySecretValue": {
-    "message": "Kopér hemmeligheds værdi"
+    "message": "Kopér hemmelig værdi"
   },
   "deleteSecret": {
     "message": "Slet hemmelighed"
@@ -5720,11 +5733,8 @@
   "secretProjectAssociationDescription": {
     "message": "Vælg projekter, som hemmeligheden vil blive tilknyttet. Den vil kun kunne ses af organisationsbrugere med adgang til disse projekter."
   },
-  "typeOrSelectProjects": {
-    "message": "Angiv eller vælg Projekter"
-  },
-  "typeOrSelectProject": {
-    "message": "Angiv eller vælg Projekt"
+  "selectProjects": {
+    "message": "Vælg projekter"
   },
   "project": {
     "message": "Projekt"
@@ -5778,10 +5788,10 @@
     "message": "Intet at vise endnu"
   },
   "serviceAccountsNoItemsMessage": {
-    "message": "Create a new service account to get started automating secret access."
+    "message": "Opret en ny tjenestekonto for at komme i gang med at automatisere hemmelig adgang."
   },
   "searchSecrets": {
-    "message": "Søg i hemmeligheder"
+    "message": "Find hemmeligheder"
   },
   "deleteServiceAccounts": {
     "message": "Slet tjenestekonti"
@@ -5793,7 +5803,7 @@
     "message": "Vis tjenestekonto"
   },
   "searchServiceAccounts": {
-    "message": "Søg efter tjenestekonti"
+    "message": "Find tjenestekonti"
   },
   "addProject": {
     "message": "Tilføj projekt"
@@ -5910,7 +5920,7 @@
     "message": "Udløber"
   },
   "canRead": {
-    "message": "Kan læse"
+    "message": "Læserettighed"
   },
   "accessTokensNoItemsTitle": {
     "message": "Ingen adgangstokener at vise"
@@ -5944,6 +5954,16 @@
   },
   "revokeAccessToken": {
     "message": "Ophæv adgangstoken"
+  },
+  "revokeAccessTokens": {
+    "message": "Revoke access tokens"
+  },
+  "revokeAccessTokenDesc": {
+    "message": "Revoking access tokens is permanent and irreversible."
+  },
+  "accessTokenRevoked": {
+    "message": "Access tokens revoked",
+    "description": "Toast message after deleting one or multiple access tokens."
   },
   "submenu": {
     "message": "Undermenu"
@@ -5999,6 +6019,9 @@
   "collection": {
     "message": "Samling"
   },
+  "noCollection": {
+    "message": "Ingen samling"
+  },
   "canView": {
     "message": "Kan se"
   },
@@ -6028,6 +6051,135 @@
   },
   "memberAccessAll": {
     "message": "Dette medlem kan tilgå og ændre alle emner."
+  },
+  "domainVerification": {
+    "message": "Domænebekræftelse"
+  },
+  "newDomain": {
+    "message": "Nyt domæne"
+  },
+  "noDomains": {
+    "message": "Ingen domæner"
+  },
+  "noDomainsSubText": {
+    "message": "Tilslutning af et domæne lader medlemmer overspringe SSO-identifikationsfeltet under SSO-baseret indlogning."
+  },
+  "verifyDomain": {
+    "message": "Bekræft domæne"
+  },
+  "reverifyDomain": {
+    "message": "Genbekræft domæne"
+  },
+  "copyDnsTxtRecord": {
+    "message": "Kopiér DNS TXT-post"
+  },
+  "dnsTxtRecord": {
+    "message": "DNS TXT-post"
+  },
+  "dnsTxtRecordInputHint": {
+    "message": "Kopiér og indsæt TXT-posten i din DNS-udbyder."
+  },
+  "domainNameInputHint": {
+    "message": "Eks.: mitdomaene.dk. Underdomæner kræver at separate poster bekræftes."
+  },
+  "automaticDomainVerification": {
+    "message": "Automatisk Domænebekræftelse"
+  },
+  "automaticDomainVerificationProcess": {
+    "message": "Bitwarden vil forsøge at bekræfte domænet 3 gange i løbet af de første 72 timer. Kan domænet ikke bekræftes, så tjek DNS-posten på værten og bekræft manuelt. Såfremt ubekræftet efter 7 dage, fjernes domænet fra organisationen"
+  },
+  "invalidDomainNameMessage": {
+    "message": "Input er ikke i et gyldigt format. Format: mitdomaene.dk. Underdomæner kræver at separate poster bekræftes."
+  },
+  "removeDomain": {
+    "message": "Fjern domæne"
+  },
+  "removeDomainWarning": {
+    "message": "En domænefjernelse er irreversibel. Fortsæt — helt sikker?"
+  },
+  "domainRemoved": {
+    "message": "Domæne fjernet"
+  },
+  "domainSaved": {
+    "message": "Domæne gemt"
+  },
+  "domainVerified": {
+    "message": "Domæne bekræftet"
+  },
+  "duplicateDomainError": {
+    "message": "Der kan ikke gøres krav på det samme domæne to gange."
+  },
+  "domainNotAvailable": {
+    "message": "$DOMAIN$ bruges allerede. Brug et andet domæne for at fortsætte.",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainNotVerified": {
+    "message": "$DOMAIN$ ikke bekræftet. Tjek DNS-posten.",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainStatusVerified": {
+    "message": "Bekræftet"
+  },
+  "domainStatusUnverified": {
+    "message": "Ikke-bekræftet"
+  },
+  "domainNameTh": {
+    "message": "Navn"
+  },
+  "domainStatusTh": {
+    "message": "Status"
+  },
+  "lastChecked": {
+    "message": "Senest tjekket"
+  },
+  "domainFormInvalid": {
+    "message": "Der fndes formularfejl, som kræver håndtering"
+  },
+  "addedDomain": {
+    "message": "Domænet $DOMAIN$ tilføjet",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "removedDomain": {
+    "message": "Domænet $DOMAIN$ fjernet",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainVerifiedEvent": {
+    "message": "$DOMAIN$ bekræftet",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainNotVerifiedEvent": {
+    "message": "$DOMAIN$ ikke bekræftet",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
   },
   "membersColumnHeader": {
     "message": "Medlem/Gruppe"
@@ -6104,6 +6256,36 @@
       }
     }
   },
+  "server": {
+    "message": "Server"
+  },
+  "exportData": {
+    "message": "Eksportér data"
+  },
+  "exportingOrganizationSecretDataTitle": {
+    "message": "Eksporterer organisations hemmelige data"
+  },
+  "exportingOrganizationSecretDataDescription": {
+    "message": "Kun Secrets Manager-data tilknyttet $ORGANIZATION$ eksporteres. Emner i andre produkter, eller fra andre organisationer, medtages ikke.",
+    "placeholders": {
+      "ORGANIZATION": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "fileUpload": {
+    "message": "Fil-upload"
+  },
+  "acceptedFormats": {
+    "message": "Gyldige formater:"
+  },
+  "copyPasteImportContents": {
+    "message": "Kopiér og indsæt importindhold:"
+  },
+  "or": {
+    "message": "eller"
+  },
   "licenseAndBillingManagement": {
     "message": "Håndtering af licens og fakturering"
   },
@@ -6134,6 +6316,33 @@
   "uploadLicense": {
     "message": "Upload licens"
   },
+  "projectPeopleDescription": {
+    "message": "Tildel grupper eller personer adgang til dette projekt."
+  },
+  "projectPeopleSelectHint": {
+    "message": "Angiv eller vælg personer/grupper"
+  },
+  "projectServiceAccountsDescription": {
+    "message": "Tildel tjenestekonti adgang til dette projekt."
+  },
+  "projectServiceAccountsSelectHint": {
+    "message": "Angiv eller vælg tjenestekonti"
+  },
+  "projectEmptyPeopleAccessPolicies": {
+    "message": "Tilføj personer/grupper for at begynde at samarbejde"
+  },
+  "projectEmptyServiceAccountAccessPolicies": {
+    "message": "Tilføj tjenestekonti for at tildele adgang"
+  },
+  "canWrite": {
+    "message": "Skriverettighed"
+  },
+  "canReadWrite": {
+    "message": "Læse- og skriverettighed"
+  },
+  "groupSlashUser": {
+    "message": "Gruppe/Bruger"
+  },
   "lowKdfIterations": {
     "message": "Få KDF-iterationer"
   },
@@ -6154,5 +6363,33 @@
   },
   "userAccessSecretsManager": {
     "message": "Denne bruger kan tilgå Secrets Manager Beta"
+  },
+  "important": {
+    "message": "Vigtigt:"
+  },
+  "viewAll": {
+    "message": "View all"
+  },
+  "showingPortionOfTotal": {
+    "message": "Showing $PORTION$ of $TOTAL$",
+    "placeholders": {
+      "portion": {
+        "content": "$1",
+        "example": "2"
+      },
+      "total": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "resolveTheErrorsBelowAndTryAgain": {
+    "message": "Ret fejlene nedenfor og forsøg igen."
+  },
+  "description": {
+    "message": "Beskriveslse"
+  },
+  "errorReadingImportFile": {
+    "message": "En fejl opstod under forsøget på at læse importfilen"
   }
 }

@@ -4,7 +4,7 @@ import { Subject, takeUntil } from "rxjs";
 
 import { TableDataSource } from "@bitwarden/components";
 
-import { ProjectListView } from "../../models/view/project-list.view";
+import { ProjectListView } from "../models/view/project-list.view";
 
 @Component({
   selector: "sm-projects-list",
@@ -23,6 +23,11 @@ export class ProjectsListComponent implements OnDestroy {
     this.dataSource.data = projects;
   }
   private _projects: ProjectListView[];
+
+  @Input()
+  set search(search: string) {
+    this.dataSource.filter = search;
+  }
 
   @Output() editProjectEvent = new EventEmitter<string>();
   @Output() deleteProjectEvent = new EventEmitter<ProjectListView[]>();

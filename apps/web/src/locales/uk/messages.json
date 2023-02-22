@@ -697,7 +697,14 @@
     "message": "Необхідно повторно ввести головний пароль."
   },
   "masterPasswordMinlength": {
-    "message": "Довжина головного пароля має бути принаймні 8 символів."
+    "message": "Master password must be at least $VALUE$ characters long.",
+    "description": "The Master Password must be at least a specific number of characters long.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
   },
   "masterPassDoesntMatch": {
     "message": "Підтвердження головного пароля не збігається."
@@ -1247,6 +1254,9 @@
   },
   "importSuccess": {
     "message": "Дані успішно імпортовано"
+  },
+  "dataExportSuccess": {
+    "message": "Дані успішно експортовано"
   },
   "importWarning": {
     "message": "Ви імпортуєте дані до $ORGANIZATION$. Ваші дані можуть бути доступними учасникам цієї організації. Ви хочете продовжити?",
@@ -5670,6 +5680,9 @@
   "customColor": {
     "message": "Власний колір"
   },
+  "selectPlaceholder": {
+    "message": "-- Оберіть--"
+  },
   "multiSelectPlaceholder": {
     "message": "-- Введіть для фільтрування --"
   },
@@ -5720,11 +5733,8 @@
   "secretProjectAssociationDescription": {
     "message": "Оберіть проєкти, з якими буде пов'язано секретний ключ."
   },
-  "typeOrSelectProjects": {
-    "message": "Введіть або виберіть проєкти"
-  },
-  "typeOrSelectProject": {
-    "message": "Введіть або виберіть проєкт"
+  "selectProjects": {
+    "message": "Виберіть проєкти"
   },
   "project": {
     "message": "Проєкт"
@@ -5945,6 +5955,16 @@
   "revokeAccessToken": {
     "message": "Відкликати токен доступу"
   },
+  "revokeAccessTokens": {
+    "message": "Revoke access tokens"
+  },
+  "revokeAccessTokenDesc": {
+    "message": "Revoking access tokens is permanent and irreversible."
+  },
+  "accessTokenRevoked": {
+    "message": "Access tokens revoked",
+    "description": "Toast message after deleting one or multiple access tokens."
+  },
   "submenu": {
     "message": "Підменю"
   },
@@ -5999,6 +6019,9 @@
   "collection": {
     "message": "Збірка"
   },
+  "noCollection": {
+    "message": "Немає збірки"
+  },
   "canView": {
     "message": "Може переглядати"
   },
@@ -6028,6 +6051,135 @@
   },
   "memberAccessAll": {
     "message": "Цей учасник має доступ і може редагувати всі елементи."
+  },
+  "domainVerification": {
+    "message": "Domain verification"
+  },
+  "newDomain": {
+    "message": "New domain"
+  },
+  "noDomains": {
+    "message": "No domains"
+  },
+  "noDomainsSubText": {
+    "message": "Connecting a domain allows members to skip the SSO identifier field during Login with SSO."
+  },
+  "verifyDomain": {
+    "message": "Verify domain"
+  },
+  "reverifyDomain": {
+    "message": "Reverify domain"
+  },
+  "copyDnsTxtRecord": {
+    "message": "Copy DNS TXT record"
+  },
+  "dnsTxtRecord": {
+    "message": "DNS TXT record"
+  },
+  "dnsTxtRecordInputHint": {
+    "message": "Copy and paste the TXT record into your DNS Provider."
+  },
+  "domainNameInputHint": {
+    "message": "Example: mydomain.com. Subdomains require separate entries to be verified."
+  },
+  "automaticDomainVerification": {
+    "message": "Automatic Domain Verification"
+  },
+  "automaticDomainVerificationProcess": {
+    "message": "Bitwarden will attempt to verify the domain 3 times during the first 72 hours. If the domain can’t be verified, check the DNS record in your host and manually verify. The domain will be removed from your organization in 7 days if it is not verified"
+  },
+  "invalidDomainNameMessage": {
+    "message": "Input is not a valid format. Format: mydomain.com. Subdomains require separate entries to be verified."
+  },
+  "removeDomain": {
+    "message": "Remove domain"
+  },
+  "removeDomainWarning": {
+    "message": "Removing a domain cannot be undone. Are you sure you want to continue?"
+  },
+  "domainRemoved": {
+    "message": "Domain removed"
+  },
+  "domainSaved": {
+    "message": "Domain saved"
+  },
+  "domainVerified": {
+    "message": "Domain verified"
+  },
+  "duplicateDomainError": {
+    "message": "You can't claim the same domain twice."
+  },
+  "domainNotAvailable": {
+    "message": "Someone else is using $DOMAIN$. Use a different domain to continue.",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainNotVerified": {
+    "message": "$DOMAIN$ not verified. Check your DNS record.",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainStatusVerified": {
+    "message": "Verified"
+  },
+  "domainStatusUnverified": {
+    "message": "Unverified"
+  },
+  "domainNameTh": {
+    "message": "Name"
+  },
+  "domainStatusTh": {
+    "message": "Status"
+  },
+  "lastChecked": {
+    "message": "Last checked"
+  },
+  "domainFormInvalid": {
+    "message": "There are form errors that need your attention"
+  },
+  "addedDomain": {
+    "message": "Added domain $DOMAIN$",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "removedDomain": {
+    "message": "Removed domain $DOMAIN$",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainVerifiedEvent": {
+    "message": "$DOMAIN$ verified",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainNotVerifiedEvent": {
+    "message": "$DOMAIN$ not verified",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
   },
   "membersColumnHeader": {
     "message": "Учасник/Група"
@@ -6104,6 +6256,36 @@
       }
     }
   },
+  "server": {
+    "message": "Server"
+  },
+  "exportData": {
+    "message": "Експортувати дані"
+  },
+  "exportingOrganizationSecretDataTitle": {
+    "message": "Експорт секретних даних організації"
+  },
+  "exportingOrganizationSecretDataDescription": {
+    "message": "Будуть експортовані лише дані менеджера секретів, пов'язані з $ORGANIZATION$. Елементи інших продуктів чи інших організацій не будуть включені.",
+    "placeholders": {
+      "ORGANIZATION": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "fileUpload": {
+    "message": "Вивантаження файлу"
+  },
+  "acceptedFormats": {
+    "message": "Прийнятні формати:"
+  },
+  "copyPasteImportContents": {
+    "message": "Скопіюйте і вставте вміст імпорту:"
+  },
+  "or": {
+    "message": "або"
+  },
   "licenseAndBillingManagement": {
     "message": "Керування ліцензіями й платежами"
   },
@@ -6134,6 +6316,33 @@
   "uploadLicense": {
     "message": "Вивантажити ліцензію"
   },
+  "projectPeopleDescription": {
+    "message": "Надайте групам або людям доступ до цього проєкту."
+  },
+  "projectPeopleSelectHint": {
+    "message": "Введіть або виберіть людей або групи"
+  },
+  "projectServiceAccountsDescription": {
+    "message": "Надайте службовим обліковим записам доступ до цього проєкту."
+  },
+  "projectServiceAccountsSelectHint": {
+    "message": "Введіть або виберіть службові облікові записи"
+  },
+  "projectEmptyPeopleAccessPolicies": {
+    "message": "Додайте людей або групи, щоб почати співпрацю"
+  },
+  "projectEmptyServiceAccountAccessPolicies": {
+    "message": "Додайте службові облікові записи для надання доступу"
+  },
+  "canWrite": {
+    "message": "Може записувати"
+  },
+  "canReadWrite": {
+    "message": "Може читати й записувати"
+  },
+  "groupSlashUser": {
+    "message": "Група/Користувач"
+  },
   "lowKdfIterations": {
     "message": "Низький показник KDF-ітерацій"
   },
@@ -6154,5 +6363,33 @@
   },
   "userAccessSecretsManager": {
     "message": "Цей користувач має доступ до бета-версії керування секретами"
+  },
+  "important": {
+    "message": "Important:"
+  },
+  "viewAll": {
+    "message": "View all"
+  },
+  "showingPortionOfTotal": {
+    "message": "Showing $PORTION$ of $TOTAL$",
+    "placeholders": {
+      "portion": {
+        "content": "$1",
+        "example": "2"
+      },
+      "total": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "resolveTheErrorsBelowAndTryAgain": {
+    "message": "Розв'яжіть зазначені помилки та повторіть спробу."
+  },
+  "description": {
+    "message": "Опис"
+  },
+  "errorReadingImportFile": {
+    "message": "Під час спроби прочитання імпортованого файлу сталася помилка"
   }
 }

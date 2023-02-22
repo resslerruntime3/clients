@@ -542,7 +542,14 @@
     "message": "Vyžaduje sa opätovné zadanie hlavného hesla."
   },
   "masterPasswordMinlength": {
-    "message": "Hlavné heslo musí obsahovať aspoň 8 znakov."
+    "message": "Master password must be at least $VALUE$ characters long.",
+    "description": "The Master Password must be at least a specific number of characters long.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
   },
   "masterPassDoesntMatch": {
     "message": "Potvrdenie hlavného hesla sa nezhoduje."
@@ -913,7 +920,7 @@
     "message": "Namiesto minimalizácie okna zobraziť ikonu v systémovej lište."
   },
   "enableMinToMenuBar": {
-    "message": "Minimalizovať na panel úloh"
+    "message": "Minimalizovať do lišty"
   },
   "enableMinToMenuBarDesc": {
     "message": "Namiesto minimalizácie okna zobraziť ikonu na paneli úloh."
@@ -1425,7 +1432,7 @@
     "message": "Vždy zobraziť ikonu na paneli úloh."
   },
   "hideToMenuBar": {
-    "message": "Skryť do panela úloh"
+    "message": "Skryť do lišty"
   },
   "selectOneCollection": {
     "message": "Musíte vybrať aspoň jednu zbierku."
@@ -2083,7 +2090,7 @@
     "message": "Znova odoslať upozornenie"
   },
   "toggleCharacterCount": {
-    "message": "Toggle character count",
+    "message": "Prepnúť počítadlo znakov",
     "description": "'Character count' describes a feature that displays a number next to each character of the password."
   },
   "areYouTryingtoLogin": {
