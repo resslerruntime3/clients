@@ -5,7 +5,6 @@ export class AuthResult {
   captchaSiteKey = "";
   resetMasterPassword = false;
   forcePasswordReset = false;
-  enforceMasterPasswordPolicyOnLogin = false;
   twoFactorProviders: Map<TwoFactorProviderType, { [key: string]: string }> = null;
 
   get requiresCaptcha() {

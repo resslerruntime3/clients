@@ -7,6 +7,7 @@ import { PlatformUtilsService } from "../../abstractions/platformUtils.service";
 import { StateService } from "../../abstractions/state.service";
 import { Account, AccountProfile, AccountTokens } from "../../models/domain/account";
 import { KeysRequest } from "../../models/request/keys.request";
+import { PolicyResponse } from "../../models/response/policy.response";
 import { TokenService } from "../abstractions/token.service";
 import { TwoFactorService } from "../abstractions/two-factor.service";
 import { TwoFactorProviderType } from "../enums/two-factor-provider-type";
@@ -29,6 +30,7 @@ import { IdentityTwoFactorResponse } from "../models/response/identity-two-facto
 export abstract class LogInStrategy {
   protected abstract tokenRequest: UserApiTokenRequest | PasswordTokenRequest | SsoTokenRequest;
   protected captchaBypassToken: string = null;
+  protected masterPasswordPolicies: PolicyResponse[] = [];
 
   constructor(
     protected cryptoService: CryptoService,
@@ -127,7 +129,8 @@ export abstract class LogInStrategy {
     const result = new AuthResult();
     result.resetMasterPassword = response.resetMasterPassword;
     result.forcePasswordReset = response.forcePasswordReset;
-    result.enforceMasterPasswordPolicyOnLogin = response.enforceMasterPasswordPolicyOnLogin;
+
+    this.masterPasswordPolicies = response.masterPasswordPolicies;
 
     await this.saveAccountInformation(response);
 
@@ -154,6 +157,8 @@ export abstract class LogInStrategy {
   private async processTwoFactorResponse(response: IdentityTwoFactorResponse): Promise<AuthResult> {
     const result = new AuthResult();
     result.twoFactorProviders = response.twoFactorProviders2;
+
+    this.masterPasswordPolicies = response.masterPasswordPolicies;
     this.twoFactorService.setProviders(response);
     this.captchaBypassToken = response.captchaToken ?? null;
     return result;

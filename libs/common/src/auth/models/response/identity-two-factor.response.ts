@@ -1,10 +1,12 @@
 import { BaseResponse } from "../../../models/response/base.response";
+import { PolicyResponse } from "../../../models/response/policy.response";
 import { TwoFactorProviderType } from "../../enums/two-factor-provider-type";
 
 export class IdentityTwoFactorResponse extends BaseResponse {
   twoFactorProviders: TwoFactorProviderType[];
   twoFactorProviders2 = new Map<TwoFactorProviderType, { [key: string]: string }>();
   captchaToken: string;
+  masterPasswordPolicies: PolicyResponse[];
 
   constructor(response: any) {
     super(response);
@@ -19,5 +21,10 @@ export class IdentityTwoFactorResponse extends BaseResponse {
         }
       }
     }
+    const masterPasswordPolicies = this.getResponseProperty("MasterPasswordPolicies");
+    this.masterPasswordPolicies =
+      masterPasswordPolicies == null
+        ? []
+        : masterPasswordPolicies.map((dr: any) => new PolicyResponse(dr));
   }
 }

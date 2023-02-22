@@ -29,7 +29,6 @@ import { ListResponse } from "@bitwarden/common/models/response/list.response";
 import { PolicyResponse } from "@bitwarden/common/models/response/policy.response";
 
 import { CaptchaProtectedComponent } from "./captcha-protected.component";
-import { UpdatePasswordReason } from "./update-temp-password.component";
 
 @Directive()
 export class LoginComponent extends CaptchaProtectedComponent implements OnInit {
@@ -158,19 +157,6 @@ export class LoginComponent extends CaptchaProtectedComponent implements OnInit 
           this.router.navigate([this.forcePasswordResetRoute]);
         }
       } else {
-        if (response.enforceMasterPasswordPolicyOnLogin) {
-          const [meetsRequirements, orgId] = await this.evaluateMasterPasswordPolicies();
-          if (!meetsRequirements) {
-            this.router.navigate([this.forcePasswordResetRoute], {
-              queryParams: {
-                reason: UpdatePasswordReason.WeakMasterPasswordOnLogin,
-                orgId,
-              },
-            });
-            return;
-          }
-        }
-
         const disableFavicon = await this.stateService.getDisableFavicon();
         await this.stateService.setDisableFavicon(!!disableFavicon);
         if (this.onSuccessfulLogin != null) {
