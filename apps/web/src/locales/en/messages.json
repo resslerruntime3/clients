@@ -5870,7 +5870,7 @@
   },
   "smAccess": {
     "message": "Access",
-    "description": ""
+    "description": "Title indicating what permissions a service account has"
   },
   "projectCommaSecret": {
     "message": "Project, Secret",
@@ -5998,7 +5998,7 @@
   },
   "accessTokenCallOutTitle": {
     "message": "Access tokens are not stored and cannot be retrieved",
-    "description": "Notification to inform the user that access tokens are not stored and cannot be retrieved once lost or revoked."
+    "description": "Notification to inform the user that access tokens are only displayed once and cannot be retrieved again."
   },
   "copyToken": {
     "message": "Copy token",
@@ -6022,7 +6022,7 @@
   },
   "revokeAccessToken": {
     "message": "Revoke access token",
-    "description": "Revokes an access token to remove access to secrets for the client application."
+    "description": "Invalidates / cancels an access token and as such removes access to secrets for the client application."
   },
   "submenu": {
     "message": "Submenu"
