@@ -430,7 +430,14 @@
     "message": "Необхідно повторно ввести головний пароль."
   },
   "masterPasswordMinlength": {
-    "message": "Довжина головного пароля має бути принаймні 8 символів."
+    "message": "Master password must be at least $VALUE$ characters long.",
+    "description": "The Master Password must be at least a specific number of characters long.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
   },
   "masterPassDoesntMatch": {
     "message": "Підтвердження головного пароля не збігається."
@@ -2103,5 +2110,26 @@
         "example": "14"
       }
     }
+  },
+  "tryAutofillPageLoad": {
+    "message": "Спробувати автозаповнення на сторінці?"
+  },
+  "tryAutofill": {
+    "message": "Як працює автозаповнення"
+  },
+  "autofillPageLoadInfo": {
+    "message": "Якщо ви увімкнете автозаповнення на сторінці, форми входу автоматично заповнюватимуться відповідними обліковими даними."
+  },
+  "autofillSelectInfo": {
+    "message": "Перебуваючи на цій сторінці, оберіть запис для автоматичного заповнення форми входу."
+  },
+  "autofillTurnedOn": {
+    "message": "Автозаповнення на сторінці увімкнено"
+  },
+  "turnOn": {
+    "message": "Увімкнути"
+  },
+  "notNow": {
+    "message": "Не зараз"
   }
 }

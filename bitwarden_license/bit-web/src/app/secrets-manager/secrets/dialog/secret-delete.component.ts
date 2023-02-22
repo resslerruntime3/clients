@@ -27,11 +27,15 @@ export class SecretDeleteDialogComponent {
     return this.data.secretIds.length === 1 ? "deleteSecret" : "deleteSecrets";
   }
 
+  get submitButtonText() {
+    return this.data.secretIds.length === 1 ? "deleteSecret" : "deleteSecrets";
+  }
+
   delete = async () => {
     await this.secretService.delete(this.data.secretIds);
-    this.dialogRef.close(this.data.secretIds);
     const message =
       this.data.secretIds.length === 1 ? "softDeleteSuccessToast" : "softDeletesSuccessToast";
+    this.dialogRef.close(this.data.secretIds);
     this.platformUtilsService.showToast("success", null, this.i18nService.t(message));
   };
 }

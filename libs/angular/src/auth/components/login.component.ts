@@ -184,8 +184,8 @@ export class LoginComponent extends CaptchaProtectedComponent implements OnInit 
       return;
     }
 
-    const email = this.formGroup.get("email").value;
-    this.router.navigate(["/login-with-device"], { state: { email: email } });
+    this.setFormValues();
+    this.router.navigate(["/login-with-device"]);
   }
 
   async launchSsoBrowser(clientId: string, ssoRedirectUri: string) {
@@ -221,7 +221,9 @@ export class LoginComponent extends CaptchaProtectedComponent implements OnInit 
         "&state=" +
         state +
         "&codeChallenge=" +
-        codeChallenge
+        codeChallenge +
+        "&email=" +
+        encodeURIComponent(this.formGroup.controls.email.value)
     );
   }
 

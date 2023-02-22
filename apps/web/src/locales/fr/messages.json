@@ -399,7 +399,7 @@
     "message": "Ajouter un élément"
   },
   "editItem": {
-    "message": "Modifier l'élément"
+    "message": "Éditer l'élément"
   },
   "viewItem": {
     "message": "Afficher l'élément"
@@ -697,7 +697,14 @@
     "message": "Une nouvelle saisie du mot de passe principal est nécessaire."
   },
   "masterPasswordMinlength": {
-    "message": "Le mot de passe principal doit comporter au moins 8 caractères."
+    "message": "Master password must be at least $VALUE$ characters long.",
+    "description": "The Master Password must be at least a specific number of characters long.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
   },
   "masterPassDoesntMatch": {
     "message": "La confirmation du mot de passe principal ne correspond pas."
@@ -743,7 +750,7 @@
     "message": "Mot de passe de fichier invalide, veuillez utiliser le mot de passe que vous avez entré lorsque vous avez créé le fichier d'exportation."
   },
   "lockNow": {
-    "message": "Vérrouiller maintenant"
+    "message": "Verrouiller maintenant"
   },
   "noItemsInList": {
     "message": "Aucun élément à afficher."
@@ -824,7 +831,7 @@
     "message": "Identifiant non disponible"
   },
   "noTwoStepProviders": {
-    "message": "Ce compte dispose d'une authentification à deux facteurs mise en place, cependant, aucun des fournisseurs à deux facteurs configurés n'est pris en charge par ce navigateur web."
+    "message": "Ce compte dispose d'une authentification à deux facteurs de configurée, cependant, aucun des fournisseurs à deux facteurs configurés n'est pris en charge par ce navigateur web."
   },
   "noTwoStepProviders2": {
     "message": "Merci d'utiliser un navigateur web compatible (comme Chrome) et/ou d'ajouter des services additionnels d'identification en deux étapes qui sont mieux supportés par les navigateurs web (comme par exemple une application d'authentification)."
@@ -1248,6 +1255,9 @@
   "importSuccess": {
     "message": "Les données ont été importées dans votre coffre avec succès."
   },
+  "dataExportSuccess": {
+    "message": "Données exportées avec succès"
+  },
   "importWarning": {
     "message": "Vous importez des données vers $ORGANIZATION$. Vos données pourraient être partagées avec les membres de cette organisation. Voulez-vous continuer ?",
     "placeholders": {
@@ -1371,7 +1381,7 @@
     "message": "Mise en application de l'authentification à deux facteurs"
   },
   "twoStepLoginDesc": {
-    "message": "Sécuriser votre compte en exigeant une étape supplémentaire lors de la connexion."
+    "message": "Sécurisez votre compte en exigeant une étape supplémentaire lors de la connexion."
   },
   "twoStepLoginOrganizationDescStart": {
     "message": "Imposer les options d'authentification à deux facteurs de Bitwarden pour les membres en utilisant le ",
@@ -1387,7 +1397,7 @@
     "message": "Si vous avez configuré SSO ou si vous prévoyez de le faire, l'authentification à deux facteurs peut déjà être imposée via votre fournisseur d'identité."
   },
   "twoStepLoginRecoveryWarning": {
-    "message": "La mise en place d'un système d'authentification à deux étapes peut vous bloquer définitivement l'accès à votre compte Bitwarden. Un code de récupération vous permet d'accéder à votre compte dans le cas où vous ne pouvez plus utiliser votre fournisseur normal d'authentification à deux facteurs (exemple : vous perdez votre appareil). L'assistance de Bitwarden ne pourra pas vous aider si vous perdez l'accès à votre compte. Nous vous recommandons de noter ou d'imprimer le code de récupération et de le conserver dans un lieu sûr."
+    "message": "La configuration d'un système d'authentification à deux facteurs peut définitivement verrouiler l'accès à votre compte Bitwarden. Un code de récupération vous permet d'accéder à votre compte dans le cas où vous ne pouvez plus utiliser votre fournisseur normal d'authentification à deux facteurs (exemple : vous perdez votre appareil). L'assistance de Bitwarden ne pourra pas vous aider si vous perdez l'accès à votre compte. Nous vous recommandons de noter ou d'imprimer le code de récupération et de le conserver dans un lieu sûr."
   },
   "viewRecoveryCode": {
     "message": "Voir le code de récupération"
@@ -3693,7 +3703,7 @@
     "message": "Choix laissé à l'utilisateur"
   },
   "vaultTimeoutAction": {
-    "message": "Action lors de l'expiration du délai du coffre"
+    "message": "Action après délai d'expiration du coffre"
   },
   "vaultTimeoutActionLockDesc": {
     "message": "Un mot de passe principal ou une autre méthode de déverrouillage est nécessaire pour accéder à nouveau à votre coffre."
@@ -5149,7 +5159,7 @@
     "message": "Key Connector"
   },
   "memberDecryptionKeyConnectorDesc": {
-    "message": "Connectez l'authentification par SSO à votre serveur de clés de déchiffrement auto-hébergé. En utilisant cette option, les membres n'auront pas besoin d'utiliser leurs mots de passe principaux pour déchiffrer les données du coffre. Contactez le support Bitwarden pour une assistance à la mise en place."
+    "message": "Connectez l'identifiant via SSO à votre serveur de clés de déchiffrement auto-hébergé. En utilisant cette option, les membres n'auront pas besoin d'utiliser leurs mots de passe principaux pour déchiffrer les données du coffre. Contactez le support Bitwarden pour une assistance à la configuration."
   },
   "keyConnectorPolicyRestriction": {
     "message": "\"Connexion avec SSO et déchiffrement avec Key Connector\" est activé. Cette politique ne s'appliquera qu'aux propriétaires et aux administrateurs."
@@ -5366,7 +5376,7 @@
     "description": "This is used by screen readers to indicate the organization that is currently being shown to the user."
   },
   "accountSettings": {
-    "message": "Paramètres de Compte"
+    "message": "Paramètres du compte"
   },
   "generator": {
     "message": "Générateur"
@@ -5375,7 +5385,7 @@
     "message": "Que souhaitez-vous générer ?"
   },
   "passwordType": {
-    "message": "Type de Mot de Passe"
+    "message": "Type de mot de passe"
   },
   "regenerateUsername": {
     "message": "Régénérer le Nom d'Utilisateur"
@@ -5670,6 +5680,9 @@
   "customColor": {
     "message": "Couleur Personnalisée"
   },
+  "selectPlaceholder": {
+    "message": "-- Sélectionner--"
+  },
   "multiSelectPlaceholder": {
     "message": "-- Tapez pour Filtrer --"
   },
@@ -5720,11 +5733,8 @@
   "secretProjectAssociationDescription": {
     "message": "Sélectionnez les projets auxquels le secret sera associé. Seuls les utilisateurs de l'organisation ayant accès à ces projets pourront voir le secret."
   },
-  "typeOrSelectProjects": {
-    "message": "Écrivez ou sélectionnez des Projets"
-  },
-  "typeOrSelectProject": {
-    "message": "Écrivez ou sélectionnez un Projet"
+  "selectProjects": {
+    "message": "Sélectionnez les projets"
   },
   "project": {
     "message": "Projet"
@@ -5945,6 +5955,16 @@
   "revokeAccessToken": {
     "message": "Révoquer le jeton d'accès"
   },
+  "revokeAccessTokens": {
+    "message": "Révoquer les jetons d'accès"
+  },
+  "revokeAccessTokenDesc": {
+    "message": "La révocation des jetons d'accès est permanente et irréversible."
+  },
+  "accessTokenRevoked": {
+    "message": "Jetons d'accès révoqués",
+    "description": "Toast message after deleting one or multiple access tokens."
+  },
   "submenu": {
     "message": "Sous-menu"
   },
@@ -5999,6 +6019,9 @@
   "collection": {
     "message": "Collection"
   },
+  "noCollection": {
+    "message": "Aucune collection"
+  },
   "canView": {
     "message": "Peut voir"
   },
@@ -6028,6 +6051,135 @@
   },
   "memberAccessAll": {
     "message": "Ce groupe peut voir et modifier tous les éléments."
+  },
+  "domainVerification": {
+    "message": "Vérification du domaine"
+  },
+  "newDomain": {
+    "message": "Nouveau domaine"
+  },
+  "noDomains": {
+    "message": "Aucun domaine"
+  },
+  "noDomainsSubText": {
+    "message": "La connexion d'un domaine permet aux membres de passer outre le champ de l'identifiant SSO lors de la connexion avec SSO."
+  },
+  "verifyDomain": {
+    "message": "Vérifier le domaine"
+  },
+  "reverifyDomain": {
+    "message": "Revérifier le domaine"
+  },
+  "copyDnsTxtRecord": {
+    "message": "Copier l'enregistrement DNS TXT"
+  },
+  "dnsTxtRecord": {
+    "message": "Enregistrement DNS TXT"
+  },
+  "dnsTxtRecordInputHint": {
+    "message": "Copiez-collez l'enregistrement TXT dans votre fournisseur de services DNS."
+  },
+  "domainNameInputHint": {
+    "message": "Exemple : mondomaine.com. Les sous-domaines nécessitent des entrées séparées pour être vérifiés."
+  },
+  "automaticDomainVerification": {
+    "message": "Vérification automatique du domaine"
+  },
+  "automaticDomainVerificationProcess": {
+    "message": "Bitwarden tentera de vérifier le domaine 3 fois au cours des 72 premières heures. Si le domaine ne peut pas être vérifié, vérifiez l'enregistrement DNS de votre hôte et vérifiez manuellement. Le domaine sera retiré de votre organisation dans 7 jours s'il n'est pas vérifié"
+  },
+  "invalidDomainNameMessage": {
+    "message": "L'entrée n'est pas saisie dans un format valide. Format : mondomaine.com. Les sous-domaines nécessitent des entrées séparées pour être vérifiés."
+  },
+  "removeDomain": {
+    "message": "Retirer le domaine"
+  },
+  "removeDomainWarning": {
+    "message": "Le retrait d'un domaine ne peut pas être annulé. Êtes-vous sûr de vouloir continuer ?"
+  },
+  "domainRemoved": {
+    "message": "Domaine retiré"
+  },
+  "domainSaved": {
+    "message": "Domaine sauvegardé"
+  },
+  "domainVerified": {
+    "message": "Domaine vérifié"
+  },
+  "duplicateDomainError": {
+    "message": "Vous ne pouvez pas revendiquer le même domaine deux fois."
+  },
+  "domainNotAvailable": {
+    "message": "Quelqu'un d'autre est en train d'utiliser $DOMAIN$. Utilisez un domaine différent pour continuer.",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainNotVerified": {
+    "message": "$DOMAIN$ non vérifié. Vérifiez votre enregistrement DNS.",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainStatusVerified": {
+    "message": "Vérifié"
+  },
+  "domainStatusUnverified": {
+    "message": "Non vérifié"
+  },
+  "domainNameTh": {
+    "message": "Nom"
+  },
+  "domainStatusTh": {
+    "message": "Statut"
+  },
+  "lastChecked": {
+    "message": "Dernière vérification"
+  },
+  "domainFormInvalid": {
+    "message": "Il y a des erreurs de formulaire qui nécessitent votre attention"
+  },
+  "addedDomain": {
+    "message": "Domaine $DOMAIN$ ajouté",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "removedDomain": {
+    "message": "Domaine $DOMAIN$ retiré",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainVerifiedEvent": {
+    "message": "$DOMAIN$ vérifié",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainNotVerifiedEvent": {
+    "message": "$DOMAIN$ non vérifié",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
   },
   "membersColumnHeader": {
     "message": "Membre/Groupe"
@@ -6104,6 +6256,36 @@
       }
     }
   },
+  "server": {
+    "message": "Serveur"
+  },
+  "exportData": {
+    "message": "Exporter les données"
+  },
+  "exportingOrganizationSecretDataTitle": {
+    "message": "Exportation des Données Secrètes de l'Organisation"
+  },
+  "exportingOrganizationSecretDataDescription": {
+    "message": "Seules les données du Gestionnaire de Secrets associées à $ORGANIZATION$ seront exportées. Les articles d'autres produits ou d'autres organisations ne seront pas inclus.",
+    "placeholders": {
+      "ORGANIZATION": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "fileUpload": {
+    "message": "Chargement du fichier"
+  },
+  "acceptedFormats": {
+    "message": "Formats acceptés :"
+  },
+  "copyPasteImportContents": {
+    "message": "Copier et coller le contenu de l'importation :"
+  },
+  "or": {
+    "message": "ou"
+  },
   "licenseAndBillingManagement": {
     "message": "Gestion des licences et de la facturation"
   },
@@ -6134,6 +6316,33 @@
   "uploadLicense": {
     "message": "Téléverser la licence"
   },
+  "projectPeopleDescription": {
+    "message": "Accorder l'accès à ce projet à des groupes ou à des personnes."
+  },
+  "projectPeopleSelectHint": {
+    "message": "Saisissez ou sélectionnez des personnes ou des groupes"
+  },
+  "projectServiceAccountsDescription": {
+    "message": "Accorder l'accès aux comptes de service à ce projet."
+  },
+  "projectServiceAccountsSelectHint": {
+    "message": "Saisissez ou sélectionnez les comptes de service"
+  },
+  "projectEmptyPeopleAccessPolicies": {
+    "message": "Ajouter des personnes ou des groupes pour commencer à collaborer"
+  },
+  "projectEmptyServiceAccountAccessPolicies": {
+    "message": "Ajouter des comptes de service pour accorder l'accès"
+  },
+  "canWrite": {
+    "message": "Peut écrire"
+  },
+  "canReadWrite": {
+    "message": "Peut lire, écrire"
+  },
+  "groupSlashUser": {
+    "message": "Groupe/Utilisateur"
+  },
   "lowKdfIterations": {
     "message": "Itérations KDF basses"
   },
@@ -6154,5 +6363,33 @@
   },
   "userAccessSecretsManager": {
     "message": "Cet utilisateur peut accéder au gestionnaire de secrets bêta"
+  },
+  "important": {
+    "message": "Important :"
+  },
+  "viewAll": {
+    "message": "Tout afficher"
+  },
+  "showingPortionOfTotal": {
+    "message": "Affichage de $PORTION$ sur $TOTAL$",
+    "placeholders": {
+      "portion": {
+        "content": "$1",
+        "example": "2"
+      },
+      "total": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "resolveTheErrorsBelowAndTryAgain": {
+    "message": "Résolvez les erreurs ci-dessous et réessayez."
+  },
+  "description": {
+    "message": "Description"
+  },
+  "errorReadingImportFile": {
+    "message": "Une erreur est survenue lors de la lecture du fichier importé"
   }
 }

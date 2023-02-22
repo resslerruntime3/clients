@@ -430,7 +430,14 @@
     "message": "マスターパスワードの再入力が必要です。"
   },
   "masterPasswordMinlength": {
-    "message": "マスターパスワードは、少なくとも8文字以上で設定してください。"
+    "message": "Master password must be at least $VALUE$ characters long.",
+    "description": "The Master Password must be at least a specific number of characters long.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
   },
   "masterPassDoesntMatch": {
     "message": "マスターパスワードが一致しません。"
@@ -2103,5 +2110,26 @@
         "example": "14"
       }
     }
+  },
+  "tryAutofillPageLoad": {
+    "message": "ページ読み込み時に自動入力しますか？"
+  },
+  "tryAutofill": {
+    "message": "自動入力する方法"
+  },
+  "autofillPageLoadInfo": {
+    "message": "ページ読み込み時の自動入力をオンにすると、一致するログイン情報を自動的にフォームに入力します。"
+  },
+  "autofillSelectInfo": {
+    "message": "アクティブなタブのフォームを自動入力するには、このページでアイテムを選択してください。"
+  },
+  "autofillTurnedOn": {
+    "message": "ページ読み込み時の自動入力をオンにしました"
+  },
+  "turnOn": {
+    "message": "オンにする"
+  },
+  "notNow": {
+    "message": "後でする"
   }
 }

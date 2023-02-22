@@ -5,7 +5,6 @@ import { PlanResponse } from "./plan.response";
 
 export class OrganizationResponse extends BaseResponse {
   id: string;
-  identifier: string;
   name: string;
   businessName: string;
   businessAddress1: string;
@@ -27,12 +26,12 @@ export class OrganizationResponse extends BaseResponse {
   use2fa: boolean;
   useApi: boolean;
   useResetPassword: boolean;
+  useSecretsManager: boolean;
   hasPublicAndPrivateKeys: boolean;
 
   constructor(response: any) {
     super(response);
     this.id = this.getResponseProperty("Id");
-    this.identifier = this.getResponseProperty("Identifier");
     this.name = this.getResponseProperty("Name");
     this.businessName = this.getResponseProperty("BusinessName");
     this.businessAddress1 = this.getResponseProperty("BusinessAddress1");
@@ -55,6 +54,7 @@ export class OrganizationResponse extends BaseResponse {
     this.use2fa = this.getResponseProperty("Use2fa");
     this.useApi = this.getResponseProperty("UseApi");
     this.useResetPassword = this.getResponseProperty("UseResetPassword");
+    this.useSecretsManager = this.getResponseProperty("UseSecretsManager");
     this.hasPublicAndPrivateKeys = this.getResponseProperty("HasPublicAndPrivateKeys");
   }
 }

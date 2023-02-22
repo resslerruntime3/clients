@@ -4,6 +4,7 @@ import { ActivatedRoute } from "@angular/router";
 import { combineLatest, firstValueFrom, Observable, share, switchMap, tap } from "rxjs";
 
 import { ValidationService } from "@bitwarden/common/abstractions/validation.service";
+import { Utils } from "@bitwarden/common/misc/utils";
 import { SelectItemView } from "@bitwarden/components/src/multi-select/models/select-item-view";
 
 import { BaseAccessPoliciesView, BaseAccessPolicyView } from "../../models/view/access-policy.view";
@@ -62,21 +63,25 @@ export class AccessSelectorComponent<T extends BaseAccessPoliciesView> implement
             .filter((g) => !rows.some((row) => row.granteeId === g.id))
             .map((granteeView) => {
               let icon: string;
-              let listName: string;
+              let listName = granteeView.name;
+              let labelName = granteeView.name;
               if (granteeView.type === "user") {
                 icon = AccessSelectorComponent.userIcon;
-                listName = `${granteeView.name} (${granteeView.email})`;
+                if (Utils.isNullOrWhitespace(granteeView.name)) {
+                  listName = granteeView.email;
+                  labelName = granteeView.email;
+                } else {
+                  listName = `${granteeView.name} (${granteeView.email})`;
+                }
               } else if (granteeView.type === "group") {
                 icon = AccessSelectorComponent.groupIcon;
-                listName = granteeView.name;
-              } else {
+              } else if (granteeView.type === "serviceAccount") {
                 icon = AccessSelectorComponent.serviceAccountIcon;
-                listName = granteeView.name;
               }
               return {
                 icon: icon,
                 id: granteeView.id,
-                labelName: granteeView.name,
+                labelName: labelName,
                 listName: listName,
               };
             })

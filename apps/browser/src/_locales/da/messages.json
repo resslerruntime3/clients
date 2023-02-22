@@ -430,7 +430,14 @@
     "message": "Hovedadgangskode kræves angivet igen."
   },
   "masterPasswordMinlength": {
-    "message": "Hovedadgangskode skal være mindst 8 tegn."
+    "message": "Master password must be at least $VALUE$ characters long.",
+    "description": "The Master Password must be at least a specific number of characters long.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
   },
   "masterPassDoesntMatch": {
     "message": "De to adgangskoder matcher ikke."
@@ -2103,5 +2110,26 @@
         "example": "14"
       }
     }
+  },
+  "tryAutofillPageLoad": {
+    "message": "Prøv autoudfyldning ved sideindlæsning?"
+  },
+  "tryAutofill": {
+    "message": "Sådan autoudfyldes"
+  },
+  "autofillPageLoadInfo": {
+    "message": "Login-formularer udfyldes automatisk med matchende legitimationsoplysninger, hvis autoudfyldning ved sideindlæsning aktiveres."
+  },
+  "autofillSelectInfo": {
+    "message": "Vælg et element fra denne side for at autoudfylde den aktive fanes formular."
+  },
+  "autofillTurnedOn": {
+    "message": "Autoudfyldning ved sideindlæsning aktiveret"
+  },
+  "turnOn": {
+    "message": "Aktivér"
+  },
+  "notNow": {
+    "message": "Ikke nu"
   }
 }

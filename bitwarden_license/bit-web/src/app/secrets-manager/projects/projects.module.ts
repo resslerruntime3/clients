@@ -10,7 +10,6 @@ import { ProjectPeopleComponent } from "./project/project-people.component";
 import { ProjectSecretsComponent } from "./project/project-secrets.component";
 import { ProjectServiceAccountsComponent } from "./project/project-service-accounts.component";
 import { ProjectComponent } from "./project/project.component";
-import { ProjectsListComponent } from "./projects-list/projects-list.component";
 import { ProjectsRoutingModule } from "./projects-routing.module";
 import { ProjectsComponent } from "./projects/projects.component";
 
@@ -18,7 +17,6 @@ import { ProjectsComponent } from "./projects/projects.component";
   imports: [SecretsManagerSharedModule, ProjectsRoutingModule, BreadcrumbsModule],
   declarations: [
     ProjectsComponent,
-    ProjectsListComponent,
     ProjectDialogComponent,
     ProjectDeleteDialogComponent,
     ProjectPeopleComponent,
