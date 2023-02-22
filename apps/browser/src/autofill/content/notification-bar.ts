@@ -9,10 +9,12 @@ interface HTMLElementWithFormOpId extends HTMLElement {
 }
 
 /**
- * @fileoverview This file contains the code for the Bitwarden Notification Bar
+ * @fileoverview This file contains the code for the Bitwarden Notification Bar content script.
  * The notification bar is used to notify logged in users that they can
  * save a new login, change a existing password on a password change screen,
  * or update an existing login after detecting a different password on login.
+ *
+ * Note: content scripts are reloaded on non-SPA page change.
  */
 
 /*
