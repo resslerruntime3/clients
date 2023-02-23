@@ -5824,9 +5824,6 @@
   "secretsTrashNoItemsMessage":{
     "message": "There are no secrets in the trash."
   },
-  "serviceAccountsNoItemsTitle":{
-    "message":"Nothing to show yet"
-  },
   "serviceAccountsNoItemsMessage": {
     "message": "Create a new service account to get started automating secret access.",
     "description": "Message to encourage the user to start creating service accounts."
@@ -5886,6 +5883,7 @@
   "serviceAccountCreated": {
     "message": "Service account created",
     "description": "Notifies that a new service account has been created"
+  },
   "hardDeleteSecretConfirmation": {
     "message": "Are you sure you want to permanently delete this secret?"
   },
@@ -5894,9 +5892,6 @@
   },
   "hardDeletesSuccessToast":{
     "message":"Secrets permanently deleted"
-  },
-  "serviceAccountCreated":{
-    "message":"Service account created"
   },
   "smAccess": {
     "message": "Access",
@@ -5993,11 +5988,9 @@
   "searchProjects": {
     "message": "Search projects",
     "description": "Label for the search bar used to search projects."
+  },
   "hardDeleteSuccessToast":{
     "message":"Secret permanently deleted"
-  },
-  "searchProjects":{
-    "message":"Search projects"
   },
   "accessTokens": {
     "message": "Access tokens",
