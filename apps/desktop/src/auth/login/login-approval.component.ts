@@ -67,7 +67,9 @@ export class LoginApprovalComponent implements OnInit, OnDestroy {
       this.authRequestResponse = await this.apiService.getAuthRequest(this.notificationId);
       const publicKey = Utils.fromB64ToArray(this.authRequestResponse.publicKey);
       this.email = await this.stateService.getEmail();
-      this.fingerprintPhrase =  (await this.cryptoService.getFingerprint(this.email, publicKey.buffer)).join('-');
+      this.fingerprintPhrase = (
+        await this.cryptoService.getFingerprint(this.email, publicKey.buffer)
+      ).join("-");
       this.updateTimeText();
 
       this.interval = setInterval(() => {
