@@ -168,7 +168,7 @@ export class LoginComponent extends BaseLoginComponent implements OnInit, OnDest
           this.enforcedPasswordPolicyOptions
         )
       ) {
-        await this.savePolicies(this.policies);
+        await this.savePolicies(this.policies.data);
         this.router.navigate(["update-password"]);
         return;
       }

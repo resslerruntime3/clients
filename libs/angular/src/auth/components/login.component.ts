@@ -22,10 +22,8 @@ import { AuthService } from "@bitwarden/common/auth/abstractions/auth.service";
 import { LoginService } from "@bitwarden/common/auth/abstractions/login.service";
 import { AuthResult } from "@bitwarden/common/auth/models/domain/auth-result";
 import { PasswordLogInCredentials } from "@bitwarden/common/auth/models/domain/log-in-credentials";
-import { PolicyType } from "@bitwarden/common/enums/policyType";
 import { Utils } from "@bitwarden/common/misc/utils";
 import { PolicyData } from "@bitwarden/common/models/data/policy.data";
-import { ListResponse } from "@bitwarden/common/models/response/list.response";
 import { PolicyResponse } from "@bitwarden/common/models/response/policy.response";
 
 import { CaptchaProtectedComponent } from "./captcha-protected.component";
@@ -292,38 +290,6 @@ export class LoginComponent extends CaptchaProtectedComponent implements OnInit 
     }
   }
 
-  private async evaluateMasterPasswordPolicies(): Promise<[boolean, string?]> {
-    const masterPassword = this.formGroup.value.masterPassword;
-    const passwordStrength = this.passwordGenerationService.passwordStrength(
-      masterPassword,
-      this.getPasswordStrengthUserInput()
-    )?.score;
-
-    const policiesResponse = await this.policyApiService.getAllPolicies();
-
-    // We only care about enabled, master password policies, with enforce on login enabled
-    const policies = this.policyService
-      .mapPoliciesFromToken(policiesResponse)
-      .filter((p) => p.type === PolicyType.MasterPassword && p.enabled && p.data.enforceOnLogin);
-
-    const [meetsRequirements, failedOrgId] = this.policyService.evaluateMasterPasswordByEachPolicy(
-      passwordStrength,
-      masterPassword,
-      policies
-    );
-
-    // Password meets the requirements of all required organizations
-    if (meetsRequirements) {
-      return [true];
-    }
-
-    // Password doesn't meet the requirements for all organizations
-    // Save the policies and return false to force navigation to update password page
-    await this.savePolicies(policiesResponse);
-
-    return [meetsRequirements, failedOrgId];
-  }
-
   protected getPasswordStrengthUserInput() {
     const email = this.formGroup.value.email;
     let userInput: string[] = [];
@@ -340,9 +306,9 @@ export class LoginComponent extends CaptchaProtectedComponent implements OnInit 
     return userInput;
   }
 
-  protected async savePolicies(policyResponse: ListResponse<PolicyResponse>) {
+  protected async savePolicies(policyResponse: PolicyResponse[]) {
     const policiesData: { [id: string]: PolicyData } = {};
-    policyResponse.data.map((p) => (policiesData[p.id] = new PolicyData(p)));
+    policyResponse.map((p) => (policiesData[p.id] = new PolicyData(p)));
     await this.policyService.replace(policiesData);
   }
 }
