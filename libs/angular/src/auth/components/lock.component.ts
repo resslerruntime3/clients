@@ -17,6 +17,10 @@ import { StateService } from "@bitwarden/common/abstractions/state.service";
 import { VaultTimeoutService } from "@bitwarden/common/abstractions/vaultTimeout/vaultTimeout.service";
 import { VaultTimeoutSettingsService } from "@bitwarden/common/abstractions/vaultTimeout/vaultTimeoutSettings.service";
 import { KeyConnectorService } from "@bitwarden/common/auth/abstractions/key-connector.service";
+import {
+  ForcePasswordResetOptions,
+  ForceResetPasswordReason,
+} from "@bitwarden/common/auth/models/domain/force-password-reset-options";
 import { SecretVerificationRequest } from "@bitwarden/common/auth/models/request/secret-verification.request";
 import { HashPurpose } from "@bitwarden/common/enums/hashPurpose";
 import { KeySuffixOptions } from "@bitwarden/common/enums/keySuffixOptions";
@@ -27,8 +31,6 @@ import { EncString } from "@bitwarden/common/models/domain/enc-string";
 import { SymmetricCryptoKey } from "@bitwarden/common/models/domain/symmetric-crypto-key";
 import { ListResponse } from "@bitwarden/common/models/response/list.response";
 import { PolicyResponse } from "@bitwarden/common/models/response/policy.response";
-
-import { UpdatePasswordReason } from "./update-temp-password.component";
 
 @Directive()
 export class LockComponent implements OnInit, OnDestroy {
@@ -267,12 +269,10 @@ export class LockComponent implements OnInit, OnDestroy {
 
     const [requiresChange, orgId] = await this.requirePasswordChange();
     if (requiresChange) {
-      this.router.navigate([this.forcePasswordResetRoute], {
-        queryParams: {
-          reason: UpdatePasswordReason.WeakMasterPasswordOnLogin,
-          orgId,
-        },
-      });
+      await this.stateService.setForcePasswordResetOptions(
+        new ForcePasswordResetOptions(ForceResetPasswordReason.WeakMasterPasswordOnLogin, orgId)
+      );
+      this.router.navigate([this.forcePasswordResetRoute]);
       return;
     }
 
