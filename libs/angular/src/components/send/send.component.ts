@@ -1,5 +1,5 @@
 import { Directive, NgZone, OnDestroy, OnInit } from "@angular/core";
-import { firstValueFrom, Subject, takeUntil } from "rxjs";
+import { Subject, takeUntil } from "rxjs";
 
 import { EnvironmentService } from "@bitwarden/common/abstractions/environment.service";
 import { I18nService } from "@bitwarden/common/abstractions/i18n.service";
@@ -68,8 +68,9 @@ export class SendComponent implements OnInit, OnDestroy {
 
   async load(filter: (send: SendView) => boolean = null) {
     this.loading = true;
-    const sends = await firstValueFrom(this.sendService.sendViews$);
-    this.sends = sends;
+    this.sendService.sendViews$.pipe(takeUntil(this.destroy$)).subscribe((sends) => {
+      this.sends = sends;
+    });
     if (this.onSuccessfulLoad != null) {
       await this.onSuccessfulLoad();
     } else {
