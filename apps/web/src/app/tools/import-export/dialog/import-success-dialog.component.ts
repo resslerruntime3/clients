@@ -51,12 +51,28 @@ export class ImportSuccessDialogComponent implements OnInit {
     });
 
     const list: ResultList[] = [];
-    list.push({ icon: "globe", type: "typeLogin", count: logins });
-    list.push({ icon: "credit-card", type: "typeCard", count: cards });
-    list.push({ icon: "id-card", type: "typeIdentity", count: identities });
-    list.push({ icon: "sticky-note", type: "typeSecureNote", count: secureNotes });
-    list.push({ icon: "folder", type: "folders", count: this.data.folders.length });
-    list.push({ icon: "collection", type: "collections", count: this.data.collections.length });
+    if (logins > 0) {
+      list.push({ icon: "globe", type: "typeLogin", count: logins });
+    }
+    if (cards > 0) {
+      list.push({ icon: "credit-card", type: "typeCard", count: cards });
+    }
+    if (identities > 0) {
+      list.push({ icon: "id-card", type: "typeIdentity", count: identities });
+    }
+    if (secureNotes > 0) {
+      list.push({ icon: "sticky-note", type: "typeSecureNote", count: secureNotes });
+    }
+    if (this.data.folders.length > 0) {
+      list.push({ icon: "folder", type: "folders", count: this.data.folders.length });
+    }
+    if (this.data.collections.length > 0) {
+      list.push({
+        icon: "collection",
+        type: "collections",
+        count: this.data.collections.length,
+      });
+    }
     return list;
   }
 }
