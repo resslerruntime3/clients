@@ -6362,9 +6362,6 @@
   "projectEmptyServiceAccountAccessPolicies": {
     "message": "Add service accounts to grant access"
   },
-  "serviceAccountPeopleWarning": {
-    "message": "Assigning people with the role User will give them access to all secrets in a Service Account."
-  },
   "serviceAccountPeopleDescription": {
     "message": "Grant groups or people access to this service account. Permissions set for people will override permissions set by groups."
   },
