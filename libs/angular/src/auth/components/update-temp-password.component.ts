@@ -1,6 +1,5 @@
 import { Directive } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { takeUntil } from "rxjs";
 
 import { ApiService } from "@bitwarden/common/abstractions/api.service";
 import { CryptoService } from "@bitwarden/common/abstractions/crypto.service";
@@ -14,6 +13,7 @@ import { PolicyService } from "@bitwarden/common/abstractions/policy/policy.serv
 import { StateService } from "@bitwarden/common/abstractions/state.service";
 import { UserVerificationService } from "@bitwarden/common/abstractions/userVerification/userVerification.service.abstraction";
 import { VerificationType } from "@bitwarden/common/auth/enums/verification-type";
+import { ForceResetPasswordReason } from "@bitwarden/common/auth/models/domain/force-password-reset-options";
 import { PasswordRequest } from "@bitwarden/common/auth/models/request/password.request";
 import { UpdateTempPasswordRequest } from "@bitwarden/common/auth/models/request/update-temp-password.request";
 import { EncString } from "@bitwarden/common/models/domain/enc-string";
@@ -25,26 +25,20 @@ import { SyncService } from "@bitwarden/common/vault/abstractions/sync/sync.serv
 
 import { ChangePasswordComponent as BaseChangePasswordComponent } from "./change-password.component";
 
-export enum UpdatePasswordReason {
-  AdminForcePasswordReset,
-  WeakMasterPasswordOnLogin,
-}
-
 @Directive()
 export class UpdateTempPasswordComponent extends BaseChangePasswordComponent {
   hint: string;
   key: string;
   enforcedPolicyOptions: MasterPasswordPolicyOptions;
   showPassword = false;
-
-  reason: UpdatePasswordReason = UpdatePasswordReason.AdminForcePasswordReset;
+  reason: ForceResetPasswordReason = ForceResetPasswordReason.AdminForcePasswordReset;
   organization?: Organization;
   currentMasterPassword: string;
 
   onSuccessfulChangePassword: () => Promise<any>;
 
   get requireCurrentPassword(): boolean {
-    return this.reason === UpdatePasswordReason.WeakMasterPasswordOnLogin;
+    return this.reason === ForceResetPasswordReason.WeakMasterPasswordOnLogin;
   }
 
   constructor(
@@ -76,20 +70,22 @@ export class UpdateTempPasswordComponent extends BaseChangePasswordComponent {
   async ngOnInit() {
     await this.syncService.fullSync(true);
 
-    this.route.queryParams.pipe(takeUntil(this.destroy$)).subscribe((params) => {
-      this.reason = parseInt(params.reason);
-      if (this.reason === UpdatePasswordReason.WeakMasterPasswordOnLogin) {
-        this.organization = this.organizationService.get(params.orgId);
-      }
-    });
+    const options = await this.stateService.getForcePasswordResetOptions();
 
-    super.ngOnInit();
+    if (options != undefined) {
+      this.reason = options.reason;
+      if (options.orgId != undefined) {
+        this.organization = await this.organizationService.get(options.orgId);
+      }
+    }
+
+    await super.ngOnInit();
   }
 
   get masterPasswordWarningText(): string {
-    return this.reason == UpdatePasswordReason.WeakMasterPasswordOnLogin
+    return this.reason == ForceResetPasswordReason.WeakMasterPasswordOnLogin
       ? this.i18nService.t("updateWeakMasterPasswordWarning", this.organization?.name)
-      : this.i18nService.t("masterPasswordWarning");
+      : this.i18nService.t("updateMasterPasswordWarning");
   }
 
   togglePassword(confirmField: boolean) {
@@ -169,10 +165,10 @@ export class UpdateTempPasswordComponent extends BaseChangePasswordComponent {
   ) {
     try {
       switch (this.reason) {
-        case UpdatePasswordReason.AdminForcePasswordReset:
+        case ForceResetPasswordReason.AdminForcePasswordReset:
           this.formPromise = this.updateTempPassword(masterPasswordHash, encKey);
           break;
-        case UpdatePasswordReason.WeakMasterPasswordOnLogin:
+        case ForceResetPasswordReason.WeakMasterPasswordOnLogin:
           this.formPromise = this.updatePassword(masterPasswordHash, encKey);
           break;
       }
@@ -183,6 +179,8 @@ export class UpdateTempPasswordComponent extends BaseChangePasswordComponent {
         null,
         this.i18nService.t("updatedMasterPassword")
       );
+
+      await this.stateService.setForcePasswordResetOptions(undefined);
 
       if (this.onSuccessfulChangePassword != null) {
         this.onSuccessfulChangePassword();
