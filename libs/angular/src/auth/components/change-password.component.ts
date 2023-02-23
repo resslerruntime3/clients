@@ -117,7 +117,7 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
       );
       return false;
     }
-    if (this.masterPassword.length < 8) {
+    if (this.masterPassword.length < Utils.minimumPasswordLength) {
       this.platformUtilsService.showToast(
         "error",
         this.i18nService.t("errorOccurred"),
