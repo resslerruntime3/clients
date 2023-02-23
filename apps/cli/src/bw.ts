@@ -29,7 +29,6 @@ import { EncryptServiceImplementation } from "@bitwarden/common/services/cryptog
 import { EnvironmentService } from "@bitwarden/common/services/environment.service";
 import { ExportService } from "@bitwarden/common/services/export.service";
 import { FileUploadService } from "@bitwarden/common/services/file-upload/file-upload.service";
-import { SendFileUploadService } from "@bitwarden/common/services/file-upload/send-file-upload.service";
 import { ImportApiService } from "@bitwarden/common/services/import/import-api.service";
 import { ImportService } from "@bitwarden/common/services/import/import.service";
 import { MemoryStorageService } from "@bitwarden/common/services/memoryStorage.service";
@@ -112,7 +111,6 @@ export class Main {
   logService: ConsoleLogService;
   sendService: SendService;
   fileUploadService: FileUploadService;
-  sendFileUploadService: SendFileUploadService;
   cipherFileUploadService: CipherFileUploadService;
   keyConnectorService: KeyConnectorService;
   userVerificationService: UserVerificationService;

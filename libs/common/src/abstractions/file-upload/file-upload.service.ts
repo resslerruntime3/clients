@@ -1,7 +1,6 @@
 import { FileUploadType } from "../../enums/fileUploadType";
 import { EncArrayBuffer } from "../../models/domain/enc-array-buffer";
 import { EncString } from "../../models/domain/enc-string";
-import { FileUploadApiMethods } from "../../types/file-upload-api-methods";
 
 export abstract class FileUploadService {
   upload: (
@@ -11,3 +10,9 @@ export abstract class FileUploadService {
     fileUploadMethods: FileUploadApiMethods
   ) => Promise<void>;
 }
+
+export type FileUploadApiMethods = {
+  postDirect: (fileData: FormData) => Promise<void>;
+  renewFileUploadUrl: () => Promise<string>;
+  rollback: () => Promise<void>;
+};

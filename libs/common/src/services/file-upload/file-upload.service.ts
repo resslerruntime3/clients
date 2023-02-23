@@ -1,9 +1,11 @@
-import { FileUploadService as FileUploadServiceAbstraction } from "../../abstractions/file-upload/file-upload.service";
+import {
+  FileUploadApiMethods,
+  FileUploadService as FileUploadServiceAbstraction,
+} from "../../abstractions/file-upload/file-upload.service";
 import { LogService } from "../../abstractions/log.service";
 import { FileUploadType } from "../../enums/fileUploadType";
 import { EncArrayBuffer } from "../../models/domain/enc-array-buffer";
 import { EncString } from "../../models/domain/enc-string";
-import { FileUploadApiMethods } from "../../types/file-upload-api-methods";
 import { AzureFileUploadService } from "../azureFileUpload.service";
 import { BitwardenFileUploadService } from "../bitwardenFileUpload.service";
 
