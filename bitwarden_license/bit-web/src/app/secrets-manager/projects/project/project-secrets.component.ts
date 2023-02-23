@@ -62,6 +62,7 @@ export class ProjectSecretsComponent {
     this.dialogService.open<unknown, SecretDeleteOperation>(SecretDeleteDialogComponent, {
       data: {
         secretIds: secretIds,
+        organizationId: this.organizationId,
       },
     });
   }

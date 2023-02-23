@@ -151,6 +151,7 @@ export class SecretDialogComponent implements OnInit {
       {
         data: {
           secretIds: [this.data.secretId],
+          organizationId: this.data.organizationId,
         },
       }
     );

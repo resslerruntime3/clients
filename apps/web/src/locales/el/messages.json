@@ -5904,6 +5904,9 @@
   "bulkDeleteProjectsErrorMessage": {
     "message": "The following projects could not be deleted:"
   },
+  "bulkDeleteSecretsErrorMessage": {
+    "message": "The following secrets could not be deleted:"
+  },
   "softDeleteSuccessToast": {
     "message": "Secret sent to trash"
   },

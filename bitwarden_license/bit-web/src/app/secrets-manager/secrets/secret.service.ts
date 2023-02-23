@@ -10,6 +10,7 @@ import { SymmetricCryptoKey } from "@bitwarden/common/models/domain/symmetric-cr
 import { SecretListView } from "../models/view/secret-list.view";
 import { SecretProjectView } from "../models/view/secret-project.view";
 import { SecretView } from "../models/view/secret.view";
+import { BulkOperationStatus } from "../shared/dialogs/bulk-status-dialog.component";
 
 import { SecretRequest } from "./requests/secret.request";
 import { SecretListItemResponse } from "./responses/secret-list-item.response";
@@ -82,23 +83,22 @@ export class SecretService {
     this._secret.next(await this.createSecretView(new SecretResponse(r)));
   }
 
-  async delete(secretIds: string[]) {
+  async delete(secretIds: string[], organizationId: string): Promise<BulkOperationStatus[]> {
     const r = await this.apiService.send("POST", "/secrets/delete", secretIds, true, true);
-
-    const responseErrors: string[] = [];
-    r.data.forEach((element: { error: string }) => {
-      if (element.error) {
-        responseErrors.push(element.error);
-      }
-    });
-
-    // TODO waiting to hear back on how to display multiple errors.
-    // for now send as a list of strings to be displayed in toast.
-    if (responseErrors?.length >= 1) {
-      throw new Error(responseErrors.join(","));
-    }
-
+    const orgKey = await this.getOrganizationKey(organizationId);
     this._secret.next(null);
+    return await Promise.all(
+      r.data.map(async (element: { id: string; error: string; objectDescription: string }) => {
+        const bulkOperationStatus = new BulkOperationStatus();
+        bulkOperationStatus.id = element.id;
+        bulkOperationStatus.name = await this.encryptService.decryptToUtf8(
+          new EncString(element.objectDescription),
+          orgKey
+        );
+        bulkOperationStatus.errorMessage = element.error;
+        return bulkOperationStatus;
+      })
+    );
   }
 
   async getTrashedSecrets(organizationId: string): Promise<SecretListView[]> {
