@@ -7,9 +7,9 @@ import { ValidationService } from "@bitwarden/common/abstractions/validation.ser
 import { Utils } from "@bitwarden/common/misc/utils";
 import { SelectItemView } from "@bitwarden/components/src/multi-select/models/select-item-view";
 
-import { BaseAccessPoliciesView, BaseAccessPolicyView } from "../../models/view/access-policy.view";
+import { BaseAccessPolicyView } from "../../models/view/access-policy.view";
 
-import { BaseAccessPolicyService } from "./access-policy.service";
+import { AccessPolicyService } from "./access-policy.service";
 
 export type AccessSelectorRowView = {
   type: "user" | "group" | "serviceAccount";
@@ -26,7 +26,7 @@ export type AccessSelectorRowView = {
   selector: "sm-access-selector",
   templateUrl: "./access-selector.component.html",
 })
-export class AccessSelectorComponent<T extends BaseAccessPoliciesView> implements OnInit {
+export class AccessSelectorComponent implements OnInit {
   static readonly userIcon = "bwi-user";
   static readonly groupIcon = "bwi-family";
   static readonly serviceAccountIcon = "bwi-wrench";
@@ -93,7 +93,7 @@ export class AccessSelectorComponent<T extends BaseAccessPoliciesView> implement
   );
 
   constructor(
-    private accessPolicyService: BaseAccessPolicyService<T>,
+    private accessPolicyService: AccessPolicyService,
     private validationService: ValidationService,
     private route: ActivatedRoute
   ) {}

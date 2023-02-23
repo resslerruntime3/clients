@@ -3,15 +3,11 @@ import { ActivatedRoute } from "@angular/router";
 import { Observable, switchMap } from "rxjs";
 
 import { ProjectView } from "../../models/view/project.view";
-import { BaseAccessPolicyService } from "../../shared/access-policies/access-policy.service";
 import { ProjectService } from "../project.service";
-
-import { ProjectAccessPolicyService } from "./project-access-policy.service";
 
 @Component({
   selector: "sm-project",
   templateUrl: "./project.component.html",
-  providers: [{ provide: BaseAccessPolicyService, useExisting: ProjectAccessPolicyService }],
 })
 export class ProjectComponent implements OnInit {
   project$: Observable<ProjectView>;

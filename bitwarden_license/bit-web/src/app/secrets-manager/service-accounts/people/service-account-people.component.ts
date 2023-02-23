@@ -9,28 +9,26 @@ import {
   ServiceAccountAccessPoliciesView,
   UserServiceAccountAccessPolicyView,
 } from "../../models/view/access-policy.view";
-import { BaseAccessPolicyService } from "../../shared/access-policies/access-policy.service";
+import { AccessPolicyService } from "../../shared/access-policies/access-policy.service";
 import {
   AccessSelectorComponent,
   AccessSelectorRowView,
 } from "../../shared/access-policies/access-selector.component";
-import { ServiceAccountAccessPolicyService } from "../service-account-access-policy.service";
 
 @Component({
   selector: "sm-service-account-people",
   templateUrl: "./service-account-people.component.html",
-  providers: [{ provide: BaseAccessPolicyService, useExisting: ServiceAccountAccessPolicyService }],
 })
 export class ServiceAccountPeopleComponent {
   private destroy$ = new Subject<void>();
   private serviceAccountId: string;
 
   protected rows$: Observable<AccessSelectorRowView[]> =
-    this.serviceAccountAccessPolicyService.changes$.pipe(
+    this.accessPolicyService.serviceAccountAccessPolicyChanges$.pipe(
       startWith(null),
       combineLatestWith(this.route.params),
       switchMap(([_, params]) =>
-        this.serviceAccountAccessPolicyService.getAccessPolicies(params.serviceAccountId)
+        this.accessPolicyService.getServiceAccountAccessPolicies(params.serviceAccountId)
       ),
       map((policies) => {
         const rows: AccessSelectorRowView[] = [];
@@ -88,16 +86,13 @@ export class ServiceAccountPeopleComponent {
         return view;
       });
 
-    return this.serviceAccountAccessPolicyService.createAccessPolicies(
+    return this.accessPolicyService.createServiceAccountAccessPolicies(
       this.serviceAccountId,
       serviceAccountAccessPoliciesView
     );
   }
 
-  constructor(
-    private route: ActivatedRoute,
-    private serviceAccountAccessPolicyService: ServiceAccountAccessPolicyService
-  ) {}
+  constructor(private route: ActivatedRoute, private accessPolicyService: AccessPolicyService) {}
 
   ngOnInit(): void {
     this.route.params.pipe(takeUntil(this.destroy$)).subscribe((params) => {

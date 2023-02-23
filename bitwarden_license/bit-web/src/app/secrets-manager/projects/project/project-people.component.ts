@@ -9,12 +9,12 @@ import {
   ProjectAccessPoliciesView,
   UserProjectAccessPolicyView,
 } from "../../models/view/access-policy.view";
+import { AccessPolicyService } from "../../shared/access-policies/access-policy.service";
 import {
   AccessSelectorComponent,
   AccessSelectorRowView,
 } from "../../shared/access-policies/access-selector.component";
 
-import { ProjectAccessPolicyService } from "./project-access-policy.service";
 @Component({
   selector: "sm-project-people",
   templateUrl: "./project-people.component.html",
@@ -25,10 +25,10 @@ export class ProjectPeopleComponent implements OnInit, OnDestroy {
   private projectId: string;
 
   protected rows$: Observable<AccessSelectorRowView[]> =
-    this.projectAccessPolicyService.changes$.pipe(
+    this.accessPolicyService.projectAccessPolicyChanges$.pipe(
       startWith(null),
       switchMap(() =>
-        this.projectAccessPolicyService.getAccessPolicies(this.organizationId, this.projectId)
+        this.accessPolicyService.getProjectAccessPolicies(this.organizationId, this.projectId)
       ),
       map((policies) => {
         const rows: AccessSelectorRowView[] = [];
@@ -83,17 +83,14 @@ export class ProjectPeopleComponent implements OnInit, OnDestroy {
         return view;
       });
 
-    return this.projectAccessPolicyService.createAccessPolicies(
+    return this.accessPolicyService.createProjectAccessPolicies(
       this.organizationId,
       this.projectId,
       projectAccessPoliciesView
     );
   }
 
-  constructor(
-    private route: ActivatedRoute,
-    private projectAccessPolicyService: ProjectAccessPolicyService
-  ) {}
+  constructor(private route: ActivatedRoute, private accessPolicyService: AccessPolicyService) {}
 
   ngOnInit(): void {
     this.route.params.pipe(takeUntil(this.destroy$)).subscribe((params) => {

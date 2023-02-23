@@ -8,12 +8,12 @@ import {
   ProjectAccessPoliciesView,
   ServiceAccountProjectAccessPolicyView,
 } from "../../models/view/access-policy.view";
+import { AccessPolicyService } from "../../shared/access-policies/access-policy.service";
 import {
   AccessSelectorComponent,
   AccessSelectorRowView,
 } from "../../shared/access-policies/access-selector.component";
 
-import { ProjectAccessPolicyService } from "./project-access-policy.service";
 @Component({
   selector: "sm-project-service-accounts",
   templateUrl: "./project-service-accounts.component.html",
@@ -23,29 +23,30 @@ export class ProjectServiceAccountsComponent implements OnInit, OnDestroy {
   private organizationId: string;
   private projectId: string;
 
-  protected rows$: Observable<AccessSelectorRowView[]> = this.accessPolicyService.changes$.pipe(
-    startWith(null),
-    switchMap(() =>
-      this.accessPolicyService.getAccessPolicies(this.organizationId, this.projectId)
-    ),
-    map((policies) => {
-      const rows: AccessSelectorRowView[] = [];
-      policies.serviceAccountAccessPolicies.forEach((policy) => {
-        rows.push({
-          type: "serviceAccount",
-          name: policy.serviceAccountName,
-          granteeId: policy.serviceAccountId,
-          accessPolicyId: policy.id,
-          read: policy.read,
-          write: policy.write,
-          icon: AccessSelectorComponent.serviceAccountIcon,
-          static: true,
+  protected rows$: Observable<AccessSelectorRowView[]> =
+    this.accessPolicyService.projectAccessPolicyChanges$.pipe(
+      startWith(null),
+      switchMap(() =>
+        this.accessPolicyService.getProjectAccessPolicies(this.organizationId, this.projectId)
+      ),
+      map((policies) => {
+        const rows: AccessSelectorRowView[] = [];
+        policies.serviceAccountAccessPolicies.forEach((policy) => {
+          rows.push({
+            type: "serviceAccount",
+            name: policy.serviceAccountName,
+            granteeId: policy.serviceAccountId,
+            accessPolicyId: policy.id,
+            read: policy.read,
+            write: policy.write,
+            icon: AccessSelectorComponent.serviceAccountIcon,
+            static: true,
+          });
         });
-      });
 
-      return rows;
-    })
-  );
+        return rows;
+      })
+    );
 
   protected handleCreateAccessPolicies(selected: SelectItemView[]) {
     const projectAccessPoliciesView = new ProjectAccessPoliciesView();
@@ -62,17 +63,14 @@ export class ProjectServiceAccountsComponent implements OnInit, OnDestroy {
         return view;
       });
 
-    return this.accessPolicyService.createAccessPolicies(
+    return this.accessPolicyService.createProjectAccessPolicies(
       this.organizationId,
       this.projectId,
       projectAccessPoliciesView
     );
   }
 
-  constructor(
-    private route: ActivatedRoute,
-    private accessPolicyService: ProjectAccessPolicyService
-  ) {}
+  constructor(private route: ActivatedRoute, private accessPolicyService: AccessPolicyService) {}
 
   ngOnInit(): void {
     this.route.params.pipe(takeUntil(this.destroy$)).subscribe((params) => {

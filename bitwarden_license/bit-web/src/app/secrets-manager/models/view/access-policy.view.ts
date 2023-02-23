@@ -36,15 +36,13 @@ export class ServiceAccountProjectAccessPolicyView extends BaseAccessPolicyView 
   grantedProjectId: string;
 }
 
-export abstract class BaseAccessPoliciesView {}
-
-export class ProjectAccessPoliciesView extends BaseAccessPoliciesView {
+export class ProjectAccessPoliciesView {
   userAccessPolicies: UserProjectAccessPolicyView[];
   groupAccessPolicies: GroupProjectAccessPolicyView[];
   serviceAccountAccessPolicies: ServiceAccountProjectAccessPolicyView[];
 }
 
-export class ServiceAccountAccessPoliciesView extends BaseAccessPoliciesView {
+export class ServiceAccountAccessPoliciesView {
   userAccessPolicies: UserServiceAccountAccessPolicyView[];
   groupAccessPolicies: GroupServiceAccountAccessPolicyView[];
 }
