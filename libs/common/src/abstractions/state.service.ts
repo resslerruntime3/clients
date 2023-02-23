@@ -1,6 +1,7 @@
 import { Observable } from "rxjs";
 
 import { EnvironmentUrls } from "../auth/models/domain/environment-urls";
+import { ForcePasswordResetOptions } from "../auth/models/domain/force-password-reset-options";
 import { KdfConfig } from "../auth/models/domain/kdf-config";
 import { KdfType } from "../enums/kdfType";
 import { ThemeType } from "../enums/themeType";
@@ -250,8 +251,11 @@ export abstract class StateService<T extends Account = Account> {
   setEventCollection: (value: EventData[], options?: StorageOptions) => Promise<void>;
   getEverBeenUnlocked: (options?: StorageOptions) => Promise<boolean>;
   setEverBeenUnlocked: (value: boolean, options?: StorageOptions) => Promise<void>;
-  getForcePasswordReset: (options?: StorageOptions) => Promise<boolean>;
-  setForcePasswordReset: (value: boolean, options?: StorageOptions) => Promise<void>;
+  getForcePasswordResetOptions: (options?: StorageOptions) => Promise<ForcePasswordResetOptions>;
+  setForcePasswordResetOptions: (
+    value: ForcePasswordResetOptions,
+    options?: StorageOptions
+  ) => Promise<void>;
   getInstalledVersion: (options?: StorageOptions) => Promise<string>;
   setInstalledVersion: (value: string, options?: StorageOptions) => Promise<void>;
   getIsAuthenticated: (options?: StorageOptions) => Promise<boolean>;

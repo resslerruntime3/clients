@@ -2,6 +2,7 @@ import { Jsonify } from "type-fest";
 
 import { AuthenticationStatus } from "../../auth/enums/authentication-status";
 import { EnvironmentUrls } from "../../auth/models/domain/environment-urls";
+import { ForcePasswordResetOptions } from "../../auth/models/domain/force-password-reset-options";
 import { KdfType } from "../../enums/kdfType";
 import { UriMatchType } from "../../enums/uriMatchType";
 import { Utils } from "../../misc/utils";
@@ -181,7 +182,7 @@ export class AccountProfile {
   entityId?: string;
   entityType?: string;
   everBeenUnlocked?: boolean;
-  forcePasswordReset?: boolean;
+  forcePasswordResetOptions?: ForcePasswordResetOptions;
   hasPremiumPersonally?: boolean;
   hasPremiumFromOrganization?: boolean;
   lastSync?: string;

@@ -9,6 +9,7 @@ import {
   AbstractStorageService,
 } from "../abstractions/storage.service";
 import { EnvironmentUrls } from "../auth/models/domain/environment-urls";
+import { ForcePasswordResetOptions } from "../auth/models/domain/force-password-reset-options";
 import { KdfConfig } from "../auth/models/domain/kdf-config";
 import { HtmlStorageLocation } from "../enums/htmlStorageLocation";
 import { KdfType } from "../enums/kdfType";
@@ -1637,21 +1638,27 @@ export class StateService<
     );
   }
 
-  async getForcePasswordReset(options?: StorageOptions): Promise<boolean> {
+  async getForcePasswordResetOptions(options?: StorageOptions): Promise<ForcePasswordResetOptions> {
     return (
-      (await this.getAccount(this.reconcileOptions(options, await this.defaultInMemoryOptions())))
-        ?.profile?.forcePasswordReset ?? false
+      (
+        await this.getAccount(
+          this.reconcileOptions(options, await this.defaultOnDiskMemoryOptions())
+        )
+      )?.profile?.forcePasswordResetOptions ?? undefined
     );
   }
 
-  async setForcePasswordReset(value: boolean, options?: StorageOptions): Promise<void> {
+  async setForcePasswordResetOptions(
+    value?: ForcePasswordResetOptions,
+    options?: StorageOptions
+  ): Promise<void> {
     const account = await this.getAccount(
-      this.reconcileOptions(options, await this.defaultInMemoryOptions())
+      this.reconcileOptions(options, await this.defaultOnDiskMemoryOptions())
     );
-    account.profile.forcePasswordReset = value;
+    account.profile.forcePasswordResetOptions = value;
     await this.saveAccount(
       account,
-      this.reconcileOptions(options, await this.defaultInMemoryOptions())
+      this.reconcileOptions(options, await this.defaultOnDiskMemoryOptions())
     );
   }
 

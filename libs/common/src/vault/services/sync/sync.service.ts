@@ -10,6 +10,10 @@ import { SendService } from "../../../abstractions/send.service";
 import { SettingsService } from "../../../abstractions/settings.service";
 import { StateService } from "../../../abstractions/state.service";
 import { KeyConnectorService } from "../../../auth/abstractions/key-connector.service";
+import {
+  ForcePasswordResetOptions,
+  ForceResetPasswordReason,
+} from "../../../auth/models/domain/force-password-reset-options";
 import { sequentialize } from "../../../misc/sequentialize";
 import { CollectionData } from "../../../models/data/collection.data";
 import { OrganizationData } from "../../../models/data/organization.data";
@@ -309,8 +313,14 @@ export class SyncService implements SyncServiceAbstraction {
     await this.stateService.setEmailVerified(response.emailVerified);
     await this.stateService.setHasPremiumPersonally(response.premiumPersonally);
     await this.stateService.setHasPremiumFromOrganization(response.premiumFromOrganization);
-    await this.stateService.setForcePasswordReset(response.forcePasswordReset);
     await this.keyConnectorService.setUsesKeyConnector(response.usesKeyConnector);
+
+    // The `forcePasswordReset` flag indicates an admin has reset the user's password and must be updated
+    if (response.forcePasswordReset) {
+      await this.stateService.setForcePasswordResetOptions(
+        new ForcePasswordResetOptions(ForceResetPasswordReason.AdminForcePasswordReset)
+      );
+    }
 
     const organizations: { [id: string]: OrganizationData } = {};
     response.organizations.forEach((o) => {
