@@ -2364,17 +2364,20 @@ export class StateService<
     );
   }
 
-  async getActivatedAutofillPolicy(options?: StorageOptions): Promise<boolean> {
+  async getActivateAutoFillOnPageLoadFromPolicy(options?: StorageOptions): Promise<boolean> {
     return (
       await this.getAccount(this.reconcileOptions(options, await this.defaultOnDiskLocalOptions()))
-    )?.settings?.activatedAutofillPolicy;
+    )?.settings?.activateAutoFillOnPageLoadFromPolicy;
   }
 
-  async setActivatedAutofillPolicy(value: boolean, options?: StorageOptions): Promise<void> {
+  async setActivateAutoFillOnPageLoadFromPolicy(
+    value: boolean,
+    options?: StorageOptions
+  ): Promise<void> {
     const account = await this.getAccount(
       this.reconcileOptions(options, await this.defaultOnDiskLocalOptions())
     );
-    account.settings.activatedAutofillPolicy = value;
+    account.settings.activateAutoFillOnPageLoadFromPolicy = value;
     return await this.saveAccount(
       account,
       this.reconcileOptions(options, await this.defaultOnDiskLocalOptions())

@@ -2111,6 +2111,9 @@
       }
     }
   },
+  "autofillPageLoadPolicyActivated": {
+    "message": "Your organization policies have turned on auto-fill on page load."
+  },
   "tryAutofillPageLoad": {
     "message": "Try auto-fill on page load?"
   },

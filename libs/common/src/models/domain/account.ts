@@ -238,7 +238,7 @@ export class AccountSettings {
   serverConfig?: ServerConfigData;
   approveLoginRequests?: boolean;
   avatarColor?: string;
-  activatedAutofillPolicy?: boolean;
+  activateAutoFillOnPageLoadFromPolicy?: boolean;
 
   static fromJSON(obj: Jsonify<AccountSettings>): AccountSettings {
     if (obj == null) {
