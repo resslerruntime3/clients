@@ -146,7 +146,6 @@ export class AccessPolicyService {
       true
     );
   }
-  //--- Project
 
   private async createProjectAccessPoliciesView(
     organizationId: string,
@@ -233,8 +232,6 @@ export class AccessPolicyService {
     return view;
   }
 
-  //--- ServiceAccount
-
   private getServiceAccountAccessPoliciesCreateRequest(
     serviceAccountAccessPoliciesView: ServiceAccountAccessPoliciesView
   ): AccessPoliciesCreateRequest {
@@ -291,7 +288,6 @@ export class AccessPolicyService {
     view.groupName = response.groupName;
     return view;
   }
-  //---
 
   async getPeoplePotentialGrantees(organizationId: string) {
     const r = await this.apiService.send(
