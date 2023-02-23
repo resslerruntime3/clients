@@ -29,7 +29,7 @@
           <td bitCell class="tw-w-0 tw-pr-0">
             <i class="bwi {{ row.icon }} tw-text-xl tw-text-muted" aria-hidden="true"></i>
           </td>
-          <td bitCell>{{ row.name }}</td>
+          <td bitCell class="tw-max-w-sm tw-truncate">{{ row.name }}</td>
           <td bitCell>
             <bit-form-field
               *ngIf="!row.static; else staticPermissions"
