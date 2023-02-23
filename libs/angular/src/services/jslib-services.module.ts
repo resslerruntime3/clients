@@ -24,8 +24,8 @@ import { MessagingService as MessagingServiceAbstraction } from "@bitwarden/comm
 import { NotificationsService as NotificationsServiceAbstraction } from "@bitwarden/common/abstractions/notifications.service";
 import { OrgDomainApiServiceAbstraction } from "@bitwarden/common/abstractions/organization-domain/org-domain-api.service.abstraction";
 import {
-  OrgDomainServiceAbstraction,
   OrgDomainInternalServiceAbstraction,
+  OrgDomainServiceAbstraction,
 } from "@bitwarden/common/abstractions/organization-domain/org-domain.service.abstraction";
 import { OrganizationUserService } from "@bitwarden/common/abstractions/organization-user/organization-user.service";
 import { OrganizationApiServiceAbstraction } from "@bitwarden/common/abstractions/organization/organization-api.service.abstraction";
@@ -224,6 +224,9 @@ import { AbstractThemingService } from "./theming/theming.service.abstraction";
         StateServiceAbstraction,
         TwoFactorServiceAbstraction,
         I18nServiceAbstraction,
+        EncryptService,
+        PasswordGenerationServiceAbstraction,
+        PolicyServiceAbstraction,
       ],
     },
     {
