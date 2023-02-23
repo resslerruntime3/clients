@@ -12,8 +12,15 @@ import { ProjectService } from "../../projects/project.service";
 import { SecretService } from "../../secrets/secret.service";
 import { ServiceAccountService } from "../service-account.service";
 
+export enum OperationType {
+  Add,
+  Edit,
+}
+
 export interface ServiceAccountOperation {
   organizationId: string;
+  serviceAccountId?: string;
+  operation: OperationType;
 }
 
 @Component({
@@ -23,6 +30,9 @@ export interface ServiceAccountOperation {
 export class ServiceAccountDialogComponent implements OnInit {
   projects: ProjectListView[];
   secrets: SecretListView[];
+  showProjectsSecretsInfo = true;
+
+  protected loading = false;
 
   formGroup = new FormGroup({
     name: new FormControl("", [Validators.required]),
@@ -39,8 +49,27 @@ export class ServiceAccountDialogComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
-    this.projects = await this.projectService.getProjects(this.data.organizationId);
-    this.secrets = await this.secretService.getSecrets(this.data.organizationId);
+    if (this.data.operation == OperationType.Add) {
+      this.projects = await this.projectService.getProjects(this.data.organizationId);
+      this.secrets = await this.secretService.getSecrets(this.data.organizationId);
+    } else {
+      this.showProjectsSecretsInfo = false;
+      this.loadData();
+    }
+  }
+
+  async loadData() {
+    this.loading = true;
+    const serviceAccount: ServiceAccountView = await (
+      await this.serviceAccountService.getServiceAccounts(this.data.organizationId)
+    )[0];
+    this.formGroup.get("name").setValue(serviceAccount.name);
+    this.formGroup.setValue({ name: serviceAccount.name });
+    this.loading = false;
+  }
+
+  get title() {
+    return this.data.operation === OperationType.Add ? "newServiceAccount" : "editServiceAccount";
   }
 
   submit = async () => {
@@ -51,12 +80,21 @@ export class ServiceAccountDialogComponent implements OnInit {
     }
 
     const serviceAccountView = this.getServiceAccountView();
-    await this.serviceAccountService.create(this.data.organizationId, serviceAccountView);
-    this.platformUtilsService.showToast(
-      "success",
-      null,
-      this.i18nService.t("serviceAccountCreated")
-    );
+    let serviceAccountMessage: string;
+
+    if (this.data.operation == OperationType.Add) {
+      await this.serviceAccountService.create(this.data.organizationId, serviceAccountView);
+      serviceAccountMessage = this.i18nService.t("serviceAccountCreated");
+    } else {
+      await this.serviceAccountService.update(
+        this.data.serviceAccountId,
+        this.data.organizationId,
+        serviceAccountView
+      );
+      serviceAccountMessage = this.i18nService.t("serviceAccountUpdated");
+    }
+
+    this.platformUtilsService.showToast("success", null, serviceAccountMessage);
     this.dialogRef.close();
   };
 

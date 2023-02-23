@@ -10,6 +10,7 @@ import { ListResponse } from "@bitwarden/common/models/response/list.response";
 
 import { ServiceAccountView } from "../models/view/service-account.view";
 
+import { ServiceAccountUpdateRequest } from "./models/requests/service-account-update.request";
 import { ServiceAccountRequest } from "./models/requests/service-account.request";
 import { ServiceAccountResponse } from "./models/responses/service-account.response";
 
@@ -39,6 +40,25 @@ export class ServiceAccountService {
     return await this.createServiceAccountViews(organizationId, results.data);
   }
 
+  async update(
+    serviceAccountId: string,
+    organizationId: string,
+    serviceAccountView: ServiceAccountView
+  ) {
+    const orgKey = await this.getOrganizationKey(organizationId);
+    const request = await this.getServiceAccountUpdateRequest(orgKey, serviceAccountView);
+    const r = await this.apiService.send(
+      "PUT",
+      "/service-accounts/" + serviceAccountId,
+      request,
+      true,
+      true
+    );
+    this._serviceAccount.next(
+      await this.createServiceAccountView(orgKey, new ServiceAccountResponse(r))
+    );
+  }
+
   async create(organizationId: string, serviceAccountView: ServiceAccountView) {
     const orgKey = await this.getOrganizationKey(organizationId);
     const request = await this.getServiceAccountRequest(orgKey, serviceAccountView);
@@ -63,6 +83,15 @@ export class ServiceAccountService {
     serviceAccountView: ServiceAccountView
   ) {
     const request = new ServiceAccountRequest();
+    request.name = await this.encryptService.encrypt(serviceAccountView.name, organizationKey);
+    return request;
+  }
+
+  private async getServiceAccountUpdateRequest(
+    organizationKey: SymmetricCryptoKey,
+    serviceAccountView: ServiceAccountView
+  ) {
+    const request = new ServiceAccountUpdateRequest();
     request.name = await this.encryptService.encrypt(serviceAccountView.name, organizationKey);
     return request;
   }

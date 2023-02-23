@@ -5815,6 +5815,9 @@
   "viewServiceAccount":{
     "message":"View service account"
   },
+  "editServiceAccount":{
+    "message":"Edit service account"
+  },
   "searchServiceAccounts":{
     "message":"Search service accounts"
   },
@@ -5853,6 +5856,9 @@
   },
   "serviceAccountCreated":{
     "message":"Service account created"
+  },
+  "serviceAccountUpdated":{
+    "message":"Service account updated"
   },
   "smAccess":{
     "message":"Access"

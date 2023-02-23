@@ -12,6 +12,11 @@ import {
 } from "./dialog/service-account-dialog.component";
 import { ServiceAccountService } from "./service-account.service";
 
+export enum OperationType {
+  Add,
+  Edit,
+}
+
 @Component({
   selector: "sm-service-accounts",
   templateUrl: "./service-accounts.component.html",
@@ -27,7 +32,7 @@ export class ServiceAccountsComponent implements OnInit {
     private serviceAccountService: ServiceAccountService
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     this.serviceAccounts$ = this.serviceAccountService.serviceAccount$.pipe(
       startWith(null),
       combineLatestWith(this.route.params),
@@ -42,6 +47,17 @@ export class ServiceAccountsComponent implements OnInit {
     this.dialogService.open<unknown, ServiceAccountOperation>(ServiceAccountDialogComponent, {
       data: {
         organizationId: this.organizationId,
+        operation: OperationType.Add,
+      },
+    });
+  }
+
+  openEditServiceAccountDialog(serviceAccountId: string) {
+    this.dialogService.open<unknown, ServiceAccountOperation>(ServiceAccountDialogComponent, {
+      data: {
+        organizationId: this.organizationId,
+        serviceAccountId: serviceAccountId,
+        operation: OperationType.Edit,
       },
     });
   }
