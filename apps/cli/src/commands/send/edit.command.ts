@@ -74,7 +74,7 @@ export class SendEditCommand {
       encSend.deletionDate = sendView.deletionDate;
       encSend.expirationDate = sendView.expirationDate;
 
-      await this.sendApiService.saveWithServer([encSend, encFileData]);
+      await this.sendApiService.save([encSend, encFileData]);
     } catch (e) {
       return Response.error(e);
     }

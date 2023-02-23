@@ -193,7 +193,7 @@ export class AddEditComponent implements OnInit, OnDestroy {
     }
 
     this.formPromise = this.encryptSend(file).then(async (encSend) => {
-      const uploadPromise = this.sendApiService.saveWithServer(encSend);
+      const uploadPromise = this.sendApiService.save(encSend);
       await uploadPromise;
       if (this.send.id == null) {
         this.send.id = encSend[0].id;
@@ -243,7 +243,7 @@ export class AddEditComponent implements OnInit, OnDestroy {
     }
 
     try {
-      this.deletePromise = this.sendApiService.deleteWithServer(this.send.id);
+      this.deletePromise = this.sendApiService.delete(this.send.id);
       await this.deletePromise;
       this.platformUtilsService.showToast("success", null, this.i18nService.t("deletedSend"));
       await this.load();

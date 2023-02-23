@@ -14,7 +14,7 @@ export class SendDeleteCommand {
     }
 
     try {
-      await this.sendApiService.deleteWithServer(id);
+      await this.sendApiService.delete(id);
       return Response.success();
     } catch (e) {
       return Response.error(e);

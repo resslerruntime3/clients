@@ -122,7 +122,7 @@ export class SendCreateCommand {
       encSend.deletionDate = sendView.deletionDate;
       encSend.expirationDate = sendView.expirationDate;
 
-      await this.sendApiService.saveWithServer([encSend, fileData]);
+      await this.sendApiService.save([encSend, fileData]);
       const newSend = await this.sendService.getFromState(encSend.id);
       const decSend = await newSend.decrypt();
       const res = new SendResponse(decSend, this.environmentService.getWebVaultUrl());

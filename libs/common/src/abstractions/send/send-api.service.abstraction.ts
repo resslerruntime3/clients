@@ -34,7 +34,7 @@ export abstract class SendApiService {
     apiUrl?: string
   ) => Promise<SendFileDownloadDataResponse>;
   renewSendFileUploadUrl: (sendId: string, fileId: string) => Promise<SendFileUploadDataResponse>;
-  removePasswordWithServer: (id: string) => Promise<any>;
-  deleteWithServer: (id: string) => Promise<any>;
-  saveWithServer: (sendData: [Send, EncArrayBuffer]) => Promise<any>;
+  removePassword: (id: string) => Promise<any>;
+  delete: (id: string) => Promise<any>;
+  save: (sendData: [Send, EncArrayBuffer]) => Promise<any>;
 }

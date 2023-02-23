@@ -9,7 +9,7 @@ export class SendRemovePasswordCommand {
 
   async run(id: string) {
     try {
-      await this.sendApiService.removePasswordWithServer(id);
+      await this.sendApiService.removePassword(id);
 
       const updatedSend = await this.sendService.get(id);
       const decSend = await updatedSend.decrypt();
