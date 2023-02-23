@@ -5684,9 +5684,6 @@
   "selectPlaceholder": {
     "message": "-- Select --"
   },
-  "selectPlaceholder": {
-    "message": "-- Select --"
-  },
   "multiSelectPlaceholder": {
     "message": "-- Type to filter --"
   },
@@ -5745,14 +5742,12 @@
   "secretProjectAssociationDescription": {
     "message": "Select projects that the secret will be associated with. Only organization users with access to these projects will be able to see the secret.",
     "description": "A prompt explaining how secrets can be associated with projects."
+  },
   "hardDeleteSecret":{
     "message": "Permanently delete secret"
   },
   "hardDeleteSecrets":{
     "message": "Permanently delete secrets"
-  },
-  "secretProjectAssociationDescription" :{
-    "message": "Select projects that the secret will be associated with. Only organization users with access to these projects will be able to see the secret."
   },
   "selectProjects": {
     "message": "Select projects",
@@ -5825,6 +5820,7 @@
   "serviceAccountsNoItemsTitle": {
     "message": "Nothing to show yet",
     "description": "Title to indicate that there are no service accounts to display."
+  },
   "secretsTrashNoItemsMessage":{
     "message": "There are no secrets in the trash."
   },
