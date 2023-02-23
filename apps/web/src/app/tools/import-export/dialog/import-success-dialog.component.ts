@@ -29,7 +29,7 @@ export class ImportSuccessDialogComponent implements OnInit {
   private buildResultList(): ResultList[] {
     let logins = 0;
     let cards = 0;
-    let identies = 0;
+    let identities = 0;
     let secureNotes = 0;
     this.data.ciphers.map((c) => {
       switch (c.type) {
@@ -43,7 +43,7 @@ export class ImportSuccessDialogComponent implements OnInit {
           secureNotes++;
           break;
         case CipherType.Identity:
-          identies++;
+          identities++;
           break;
         default:
           break;
@@ -53,7 +53,7 @@ export class ImportSuccessDialogComponent implements OnInit {
     const list: ResultList[] = [];
     list.push({ icon: "globe", type: "typeLogin", count: logins });
     list.push({ icon: "credit-card", type: "typeCard", count: cards });
-    list.push({ icon: "id-card", type: "typeIdentity", count: identies });
+    list.push({ icon: "id-card", type: "typeIdentity", count: identities });
     list.push({ icon: "sticky-note", type: "typeSecureNote", count: secureNotes });
     list.push({ icon: "folder", type: "folders", count: this.data.folders.length });
     list.push({ icon: "collection", type: "collections", count: this.data.collections.length });
