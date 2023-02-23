@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { map, Observable, share, startWith, Subject, switchMap, takeUntil } from "rxjs";
+import { map, Observable, startWith, Subject, switchMap, takeUntil } from "rxjs";
 
 import { SelectItemView } from "@bitwarden/components";
 
@@ -44,8 +44,7 @@ export class ProjectServiceAccountsComponent implements OnInit, OnDestroy {
       });
 
       return rows;
-    }),
-    share()
+    })
   );
 
   protected handleCreateAccessPolicies(selected: SelectItemView[]) {

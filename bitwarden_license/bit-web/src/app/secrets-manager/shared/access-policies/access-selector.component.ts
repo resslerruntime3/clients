@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
-import { combineLatest, firstValueFrom, Observable, share, switchMap, tap } from "rxjs";
+import { combineLatest, firstValueFrom, Observable, share, Subject, switchMap, tap } from "rxjs";
 
 import { ValidationService } from "@bitwarden/common/abstractions/validation.service";
 import { Utils } from "@bitwarden/common/misc/utils";
@@ -31,21 +31,66 @@ export class AccessSelectorComponent<T extends BaseAccessPoliciesView> implement
   static readonly groupIcon = "bwi-family";
   static readonly serviceAccountIcon = "bwi-wrench";
 
+  @Output() onCreateAccessPolicies = new EventEmitter<SelectItemView[]>();
+
   @Input() label: string;
   @Input() hint: string;
   @Input() columnTitle: string;
   @Input() emptyMessage: string;
-  @Input() rows$: Observable<AccessSelectorRowView[]>;
   @Input() granteeType: "people" | "serviceAccounts";
 
-  @Output() onCreateAccessPolicies = new EventEmitter<SelectItemView[]>();
+  protected rows$ = new Subject<AccessSelectorRowView[]>();
+  @Input() private set rows(value: AccessSelectorRowView[]) {
+    this.rows$.next(value);
+  }
 
   private maxLength = 15;
   protected formGroup = new FormGroup({
     multiSelect: new FormControl([], [Validators.required, Validators.maxLength(this.maxLength)]),
   });
   protected loading = true;
-  protected selectItems$: Observable<SelectItemView[]>;
+
+  protected selectItems$: Observable<SelectItemView[]> = combineLatest([
+    this.rows$,
+    this.route.params,
+  ]).pipe(
+    switchMap(([rows, params]) =>
+      this.getPotentialGrantees(params.organizationId).then((grantees) =>
+        grantees
+          .filter((g) => !rows.some((row) => row.granteeId === g.id))
+          .map((granteeView) => {
+            let icon: string;
+            let listName = granteeView.name;
+            let labelName = granteeView.name;
+            if (granteeView.type === "user") {
+              icon = AccessSelectorComponent.userIcon;
+              if (Utils.isNullOrWhitespace(granteeView.name)) {
+                listName = granteeView.email;
+                labelName = granteeView.email;
+              } else {
+                listName = `${granteeView.name} (${granteeView.email})`;
+              }
+            } else if (granteeView.type === "group") {
+              icon = AccessSelectorComponent.groupIcon;
+            } else if (granteeView.type === "serviceAccount") {
+              icon = AccessSelectorComponent.serviceAccountIcon;
+            }
+            return {
+              icon: icon,
+              id: granteeView.id,
+              labelName: labelName,
+              listName: listName,
+            };
+          })
+      )
+    ),
+    tap(() => {
+      this.loading = false;
+      this.formGroup.reset();
+      this.formGroup.enable();
+    }),
+    share()
+  );
 
   constructor(
     private accessPolicyService: BaseAccessPolicyService<T>,
@@ -55,45 +100,6 @@ export class AccessSelectorComponent<T extends BaseAccessPoliciesView> implement
 
   ngOnInit(): void {
     this.formGroup.disable();
-
-    this.selectItems$ = combineLatest([this.rows$, this.route.params]).pipe(
-      switchMap(async ([rows, params]) =>
-        this.getPotentialGrantees(params.organizationId).then((grantees) =>
-          grantees
-            .filter((g) => !rows.some((row) => row.granteeId === g.id))
-            .map((granteeView) => {
-              let icon: string;
-              let listName = granteeView.name;
-              let labelName = granteeView.name;
-              if (granteeView.type === "user") {
-                icon = AccessSelectorComponent.userIcon;
-                if (Utils.isNullOrWhitespace(granteeView.name)) {
-                  listName = granteeView.email;
-                  labelName = granteeView.email;
-                } else {
-                  listName = `${granteeView.name} (${granteeView.email})`;
-                }
-              } else if (granteeView.type === "group") {
-                icon = AccessSelectorComponent.groupIcon;
-              } else if (granteeView.type === "serviceAccount") {
-                icon = AccessSelectorComponent.serviceAccountIcon;
-              }
-              return {
-                icon: icon,
-                id: granteeView.id,
-                labelName: labelName,
-                listName: listName,
-              };
-            })
-        )
-      ),
-      tap(() => {
-        this.loading = false;
-        this.formGroup.reset();
-        this.formGroup.enable();
-      }),
-      share()
-    );
   }
 
   submit = async () => {

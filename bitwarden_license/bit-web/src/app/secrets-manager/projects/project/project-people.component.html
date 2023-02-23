@@ -3,7 +3,7 @@
     {{ "projectPeopleDescription" | i18n }}
   </p>
   <sm-access-selector
-    [rows$]="rows$"
+    [rows]="rows$ | async"
     granteeType="people"
     [label]="'people' | i18n"
     [hint]="'projectPeopleSelectHint' | i18n"
