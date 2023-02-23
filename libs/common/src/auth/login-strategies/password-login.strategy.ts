@@ -5,7 +5,7 @@ import { LogService } from "../../abstractions/log.service";
 import { MessagingService } from "../../abstractions/messaging.service";
 import { PasswordGenerationService } from "../../abstractions/passwordGeneration.service";
 import { PlatformUtilsService } from "../../abstractions/platformUtils.service";
-import { InternalPolicyService } from "../../abstractions/policy/policy.service.abstraction";
+import { PolicyService } from "../../abstractions/policy/policy.service.abstraction";
 import { StateService } from "../../abstractions/state.service";
 import { HashPurpose } from "../../enums/hashPurpose";
 import { PolicyType } from "../../enums/policyType";
@@ -58,7 +58,7 @@ export class PasswordLogInStrategy extends LogInStrategy {
     protected stateService: StateService,
     twoFactorService: TwoFactorService,
     private passwordGenerationService: PasswordGenerationService,
-    private policyService: InternalPolicyService,
+    private policyService: PolicyService,
     private authService: AuthService
   ) {
     super(
@@ -92,7 +92,6 @@ export class PasswordLogInStrategy extends LogInStrategy {
       this.forcePasswordResetOptions != undefined
     ) {
       await this.stateService.setForcePasswordResetOptions(this.forcePasswordResetOptions);
-      await this.saveMasterPasswordPolicies();
       result.forcePasswordReset = true;
     }
 
@@ -138,7 +137,6 @@ export class PasswordLogInStrategy extends LogInStrategy {
         // Authentication was successful, save the force update password options with the state service
         if (await this.stateService.getIsAuthenticated()) {
           await this.stateService.setForcePasswordResetOptions(resetOptions);
-          await this.saveMasterPasswordPolicies();
           result.forcePasswordReset = true;
         } else {
           // Authentication was not fully successful (likely 2FA), save the flag to this strategy for later use
@@ -176,12 +174,6 @@ export class PasswordLogInStrategy extends LogInStrategy {
     }
 
     return [meetsRequirements, failedOrgId];
-  }
-
-  private async saveMasterPasswordPolicies() {
-    const policiesData: { [id: string]: PolicyData } = {};
-    this.masterPasswordPolicies.map((p) => (policiesData[p.id] = new PolicyData(p)));
-    await this.policyService.replace(policiesData);
   }
 
   protected getPasswordStrengthUserInput(email: string) {

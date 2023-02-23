@@ -10,7 +10,7 @@ import { LogService } from "../../abstractions/log.service";
 import { MessagingService } from "../../abstractions/messaging.service";
 import { PasswordGenerationService } from "../../abstractions/passwordGeneration.service";
 import { PlatformUtilsService } from "../../abstractions/platformUtils.service";
-import { InternalPolicyService } from "../../abstractions/policy/policy.service.abstraction";
+import { PolicyService } from "../../abstractions/policy/policy.service.abstraction";
 import { StateService } from "../../abstractions/state.service";
 import { KdfType } from "../../enums/kdfType";
 import { KeySuffixOptions } from "../../enums/keySuffixOptions";
@@ -97,7 +97,7 @@ export class AuthService implements AuthServiceAbstraction {
     protected i18nService: I18nService,
     protected encryptService: EncryptService,
     protected passwordGenerationService: PasswordGenerationService,
-    protected policyService: InternalPolicyService
+    protected policyService: PolicyService
   ) {}
 
   async logIn(
