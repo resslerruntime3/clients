@@ -221,7 +221,7 @@ export class Main {
       this.apiService,
       this.fileUploadService,
       this.i18nService,
-      null,
+      this.searchService,
       this.logService,
       this.stateService,
       this.encryptService
