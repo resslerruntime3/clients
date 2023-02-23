@@ -53,7 +53,7 @@ describe("Cipher Service", () => {
       apiService,
       fileUploadService,
       i18nService,
-      () => searchService,
+      searchService,
       logService,
       stateService,
       encryptService
