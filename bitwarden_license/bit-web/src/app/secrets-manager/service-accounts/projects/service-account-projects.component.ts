@@ -4,10 +4,7 @@ import { combineLatestWith, map, Observable, startWith, Subject, switchMap, take
 
 import { SelectItemView } from "@bitwarden/components/src/multi-select/models/select-item-view";
 
-import {
-  ServiceAccountAccessPoliciesView,
-  ServiceAccountProjectAccessPolicyView,
-} from "../../models/view/access-policy.view";
+import { ServiceAccountProjectAccessPolicyView } from "../../models/view/access-policy.view";
 import { AccessPolicyService } from "../../shared/access-policies/access-policy.service";
 import {
   AccessSelectorComponent,
@@ -24,17 +21,14 @@ export class ServiceAccountProjectsComponent {
   private organizationId: string;
 
   protected rows$: Observable<AccessSelectorRowView[]> =
-    this.accessPolicyService.serviceAccountAccessPolicyChanges$.pipe(
+    this.accessPolicyService.serviceAccountGrantedPolicyChanges$.pipe(
       startWith(null),
       combineLatestWith(this.route.params),
       switchMap(([_, params]) =>
-        this.accessPolicyService.getServiceAccountAccessPolicies(
-          params.organizationId,
-          params.serviceAccountId
-        )
+        this.accessPolicyService.getGrantedPolicies(params.serviceAccountId, params.organizationId)
       ),
       map((policies) => {
-        return policies.projectAccessPolicies.map((policy) => {
+        return policies.map((policy) => {
           return {
             type: "project",
             name: policy.grantedProjectName,
@@ -50,21 +44,21 @@ export class ServiceAccountProjectsComponent {
     );
 
   protected handleCreateAccessPolicies(selected: SelectItemView[]) {
-    const serviceAccountAccessPoliciesView = new ServiceAccountAccessPoliciesView();
-    serviceAccountAccessPoliciesView.projectAccessPolicies = selected
+    const serviceAccountProjectAccessPolicyView = selected
       .filter((selection) => AccessSelectorComponent.getAccessItemType(selection) === "project")
       .map((filtered) => {
         const view = new ServiceAccountProjectAccessPolicyView();
         view.serviceAccountId = this.serviceAccountId;
         view.grantedProjectId = filtered.id;
         view.read = true;
+        view.write = false;
         return view;
       });
 
-    return this.accessPolicyService.createServiceAccountAccessPolicies(
+    return this.accessPolicyService.createGrantedPolicies(
       this.organizationId,
       this.serviceAccountId,
-      serviceAccountAccessPoliciesView
+      serviceAccountProjectAccessPolicyView
     );
   }
 

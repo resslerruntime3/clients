@@ -4,5 +4,4 @@ export class AccessPoliciesCreateRequest {
   userAccessPolicyRequests?: AccessPolicyRequest[];
   groupAccessPolicyRequests?: AccessPolicyRequest[];
   serviceAccountAccessPolicyRequests?: AccessPolicyRequest[];
-  projectAccessPolicyRequests?: AccessPolicyRequest[];
 }

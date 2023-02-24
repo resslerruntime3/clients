@@ -2,14 +2,12 @@ import { BaseResponse } from "@bitwarden/common/models/response/base.response";
 
 import {
   GroupServiceAccountAccessPolicyResponse,
-  ServiceAccountProjectAccessPolicyResponse,
   UserServiceAccountAccessPolicyResponse,
 } from "./access-policy.response";
 
 export class ServiceAccountAccessPoliciesResponse extends BaseResponse {
   userAccessPolicies: UserServiceAccountAccessPolicyResponse[];
   groupAccessPolicies: GroupServiceAccountAccessPolicyResponse[];
-  projectAccessPolicies: ServiceAccountProjectAccessPolicyResponse[];
 
   constructor(response: any) {
     super(response);

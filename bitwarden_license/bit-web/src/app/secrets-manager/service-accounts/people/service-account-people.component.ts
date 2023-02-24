@@ -22,17 +22,13 @@ import {
 export class ServiceAccountPeopleComponent {
   private destroy$ = new Subject<void>();
   private serviceAccountId: string;
-  private organizationId: string;
 
   protected rows$: Observable<AccessSelectorRowView[]> =
     this.accessPolicyService.serviceAccountAccessPolicyChanges$.pipe(
       startWith(null),
       combineLatestWith(this.route.params),
       switchMap(([_, params]) =>
-        this.accessPolicyService.getServiceAccountAccessPolicies(
-          params.organizationId,
-          params.serviceAccountId
-        )
+        this.accessPolicyService.getServiceAccountAccessPolicies(params.serviceAccountId)
       ),
       map((policies) => {
         const rows: AccessSelectorRowView[] = [];
@@ -91,7 +87,6 @@ export class ServiceAccountPeopleComponent {
       });
 
     return this.accessPolicyService.createServiceAccountAccessPolicies(
-      this.organizationId,
       this.serviceAccountId,
       serviceAccountAccessPoliciesView
     );
@@ -102,7 +97,6 @@ export class ServiceAccountPeopleComponent {
   ngOnInit(): void {
     this.route.params.pipe(takeUntil(this.destroy$)).subscribe((params) => {
       this.serviceAccountId = params.serviceAccountId;
-      this.organizationId = params.organizationId;
     });
   }
 
