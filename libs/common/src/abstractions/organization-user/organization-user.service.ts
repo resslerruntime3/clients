@@ -1,6 +1,7 @@
 import { ListResponse } from "../../models/response/list.response";
 
 import {
+  OrganizationUserAcceptInitRequest,
   OrganizationUserAcceptRequest,
   OrganizationUserBulkConfirmRequest,
   OrganizationUserConfirmRequest,
@@ -93,6 +94,18 @@ export abstract class OrganizationUserService {
     organizationId: string,
     ids: string[]
   ): Promise<ListResponse<OrganizationUserBulkResponse>>;
+
+  /**
+   * Accept an organization user invitation and initialize the organization
+   * @param organizationId - Identifier for the organization to accept
+   * @param id - Organization user identifier
+   * @param request - Request details for accepting the invitation
+   */
+  abstract postOrganizationUserAcceptInit(
+    organizationId: string,
+    id: string,
+    request: OrganizationUserAcceptInitRequest
+  ): Promise<void>;
 
   /**
    * Accept an organization user invitation
