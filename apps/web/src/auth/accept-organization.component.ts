@@ -97,7 +97,6 @@ export class AcceptOrganizationComponent extends BaseAcceptComponent {
       // Add reset password key to accept request
       request.resetPasswordKey = encryptedKey.encryptedString;
     }
-
     return request;
   }
 
