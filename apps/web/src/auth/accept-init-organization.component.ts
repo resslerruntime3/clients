@@ -3,7 +3,6 @@ import { ActivatedRoute, Params, Router } from "@angular/router";
 
 import { CryptoService } from "@bitwarden/common/abstractions/crypto.service";
 import { I18nService } from "@bitwarden/common/abstractions/i18n.service";
-import { MessagingService } from "@bitwarden/common/abstractions/messaging.service";
 import { OrganizationUserService } from "@bitwarden/common/abstractions/organization-user/organization-user.service";
 import { OrganizationUserAcceptInitRequest } from "@bitwarden/common/abstractions/organization-user/requests";
 import { PlatformUtilsService } from "@bitwarden/common/abstractions/platformUtils.service";
@@ -28,22 +27,12 @@ export class AcceptInitOrganizationComponent extends BaseAcceptComponent {
     route: ActivatedRoute,
     stateService: StateService,
     private cryptoService: CryptoService,
-    private organizationUserService: OrganizationUserService,
-    private messagingService: MessagingService
+    private organizationUserService: OrganizationUserService
   ) {
     super(router, platformUtilsService, i18nService, route, stateService);
   }
 
   async authedHandler(qParams: Params): Promise<void> {
-    const needsReAuth = (await this.stateService.getOrganizationInvitation()) != null;
-    if (!needsReAuth) {
-      // Accepting an org invite requires authentication from a logged out state
-      this.messagingService.send("logout", { redirect: false });
-      await this.prepareOrganizationInvitation(qParams);
-      return;
-    }
-
-    // User has already logged in and passed the Master Password policy check
     this.actionPromise = this.prepareAcceptRequest(qParams).then(async (request) => {
       await this.organizationUserService.postOrganizationUserAcceptInit(
         qParams.organizationId,
