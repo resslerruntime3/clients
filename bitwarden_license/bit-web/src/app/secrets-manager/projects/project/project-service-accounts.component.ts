@@ -29,23 +29,18 @@ export class ProjectServiceAccountsComponent implements OnInit, OnDestroy {
       switchMap(() =>
         this.accessPolicyService.getProjectAccessPolicies(this.organizationId, this.projectId)
       ),
-      map((policies) => {
-        const rows: AccessSelectorRowView[] = [];
-        policies.serviceAccountAccessPolicies.forEach((policy) => {
-          rows.push({
-            type: "serviceAccount",
-            name: policy.serviceAccountName,
-            granteeId: policy.serviceAccountId,
-            accessPolicyId: policy.id,
-            read: policy.read,
-            write: policy.write,
-            icon: AccessSelectorComponent.serviceAccountIcon,
-            static: true,
-          });
-        });
-
-        return rows;
-      })
+      map((policies) =>
+        policies.serviceAccountAccessPolicies.map((policy) => ({
+          type: "serviceAccount",
+          name: policy.serviceAccountName,
+          granteeId: policy.serviceAccountId,
+          accessPolicyId: policy.id,
+          read: policy.read,
+          write: policy.write,
+          icon: AccessSelectorComponent.serviceAccountIcon,
+          static: true,
+        }))
+      )
     );
 
   protected handleCreateAccessPolicies(selected: SelectItemView[]) {
