@@ -35,7 +35,7 @@ export class ProjectServiceAccountsComponent implements OnInit, OnDestroy {
           rows.push({
             type: "serviceAccount",
             name: policy.serviceAccountName,
-            granteeId: policy.serviceAccountId,
+            id: policy.serviceAccountId,
             accessPolicyId: policy.id,
             read: policy.read,
             write: policy.write,

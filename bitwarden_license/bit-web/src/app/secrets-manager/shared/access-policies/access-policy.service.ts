@@ -75,6 +75,7 @@ export class AccessPolicyService {
   }
 
   async getServiceAccountAccessPolicies(
+    organizationId: string,
     serviceAccountId: string
   ): Promise<ServiceAccountAccessPoliciesView> {
     const r = await this.apiService.send(
@@ -86,7 +87,7 @@ export class AccessPolicyService {
     );
 
     const results = new ServiceAccountAccessPoliciesResponse(r);
-    return await this.createServiceAccountAccessPoliciesView(results);
+    return await this.createServiceAccountAccessPoliciesView(organizationId, results);
   }
 
   async createProjectAccessPolicies(
@@ -109,6 +110,7 @@ export class AccessPolicyService {
   }
 
   async createServiceAccountAccessPolicies(
+    organizationId: string,
     serviceAccountId: string,
     serviceAccountAccessPoliciesView: ServiceAccountAccessPoliciesView
   ): Promise<ServiceAccountAccessPoliciesView> {
@@ -123,7 +125,7 @@ export class AccessPolicyService {
       true
     );
     const results = new ServiceAccountAccessPoliciesResponse(r);
-    const view = await this.createServiceAccountAccessPoliciesView(results);
+    const view = await this.createServiceAccountAccessPoliciesView(organizationId, results);
     this._serviceAccountAccessPolicyChanges$.next(view);
     return view;
   }
@@ -251,10 +253,18 @@ export class AccessPolicyService {
         });
     }
 
+    if (serviceAccountAccessPoliciesView.projectAccessPolicies?.length > 0) {
+      createRequest.projectAccessPolicyRequests =
+        serviceAccountAccessPoliciesView.projectAccessPolicies.map((ap) => {
+          return this.getAccessPolicyRequest(ap.grantedProjectId, ap);
+        });
+    }
+
     return createRequest;
   }
 
   private async createServiceAccountAccessPoliciesView(
+    organizationId: string,
     serviceAccountAccessPoliciesResponse: ServiceAccountAccessPoliciesResponse
   ): Promise<ServiceAccountAccessPoliciesView> {
     const view = new ServiceAccountAccessPoliciesView();
@@ -265,6 +275,12 @@ export class AccessPolicyService {
       (ap) => {
         return this.createGroupServiceAccountAccessPolicyView(ap);
       }
+    );
+    const orgKey = await this.getOrganizationKey(organizationId);
+    view.projectAccessPolicies = await Promise.all(
+      serviceAccountAccessPoliciesResponse.projectAccessPolicies.map(async (ap) => {
+        return await this.createProjectServiceAccountAccessPolicyView(ap, orgKey);
+      })
     );
     return view;
   }
@@ -289,10 +305,36 @@ export class AccessPolicyService {
     return view;
   }
 
+  private async createProjectServiceAccountAccessPolicyView(
+    response: ServiceAccountProjectAccessPolicyResponse,
+    orgKey: SymmetricCryptoKey
+  ): Promise<ServiceAccountProjectAccessPolicyView> {
+    const view = <ServiceAccountProjectAccessPolicyView>this.createBaseAccessPolicyView(response);
+    view.serviceAccountId = response.serviceAccountId;
+    view.grantedProjectName = await this.encryptService.decryptToUtf8(
+      new EncString(response.grantedProjectName),
+      orgKey
+    );
+    view.grantedProjectId = response.grantedProjectId;
+    return view;
+  }
+
   async getPeoplePotentialGrantees(organizationId: string) {
     const r = await this.apiService.send(
       "GET",
       "/organizations/" + organizationId + "/access-policies/people/potential-grantees",
+      null,
+      true,
+      true
+    );
+    const results = new ListResponse(r, PotentialGranteeResponse);
+    return await this.createPotentialGranteeViews(organizationId, results.data);
+  }
+
+  async getProjectsPotentialGrantees(organizationId: string) {
+    const r = await this.apiService.send(
+      "GET",
+      "/organizations/" + organizationId + "/access-policies/projects/potential-grantees",
       null,
       true,
       true
@@ -362,7 +404,7 @@ export class AccessPolicyService {
         view.type = r.type;
         view.email = r.email;
 
-        if (r.type === "serviceAccount") {
+        if (r.type === "serviceAccount" || r.type === "project") {
           view.name = await this.encryptService.decryptToUtf8(new EncString(r.name), orgKey);
         } else {
           view.name = r.name;

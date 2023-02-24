@@ -5,9 +5,8 @@ import { combineLatestWith, map, Observable, startWith, Subject, switchMap, take
 import { SelectItemView } from "@bitwarden/components/src/multi-select/models/select-item-view";
 
 import {
-  GroupServiceAccountAccessPolicyView,
   ServiceAccountAccessPoliciesView,
-  UserServiceAccountAccessPolicyView,
+  ServiceAccountProjectAccessPolicyView,
 } from "../../models/view/access-policy.view";
 import { AccessPolicyService } from "../../shared/access-policies/access-policy.service";
 import {
@@ -16,10 +15,10 @@ import {
 } from "../../shared/access-policies/access-selector.component";
 
 @Component({
-  selector: "sm-service-account-people",
-  templateUrl: "./service-account-people.component.html",
+  selector: "sm-service-account-projects",
+  templateUrl: "./service-account-projects.component.html",
 })
-export class ServiceAccountPeopleComponent {
+export class ServiceAccountProjectsComponent {
   private destroy$ = new Subject<void>();
   private serviceAccountId: string;
   private organizationId: string;
@@ -35,58 +34,30 @@ export class ServiceAccountPeopleComponent {
         )
       ),
       map((policies) => {
-        const rows: AccessSelectorRowView[] = [];
-        policies.userAccessPolicies.forEach((policy) => {
-          rows.push({
-            type: "user",
-            name: policy.organizationUserName,
-            id: policy.organizationUserId,
+        return policies.projectAccessPolicies.map((policy) => {
+          return {
+            type: "project",
+            name: policy.grantedProjectName,
+            id: policy.grantedProjectId,
             accessPolicyId: policy.id,
             read: policy.read,
             write: policy.write,
-            icon: AccessSelectorComponent.userIcon,
+            icon: AccessSelectorComponent.projectIcon,
             static: true,
-          });
+          } as AccessSelectorRowView;
         });
-
-        policies.groupAccessPolicies.forEach((policy) => {
-          rows.push({
-            type: "group",
-            name: policy.groupName,
-            id: policy.groupId,
-            accessPolicyId: policy.id,
-            read: policy.read,
-            write: policy.write,
-            icon: AccessSelectorComponent.groupIcon,
-            static: true,
-          });
-        });
-
-        return rows;
       })
     );
 
   protected handleCreateAccessPolicies(selected: SelectItemView[]) {
     const serviceAccountAccessPoliciesView = new ServiceAccountAccessPoliciesView();
-    serviceAccountAccessPoliciesView.userAccessPolicies = selected
-      .filter((selection) => AccessSelectorComponent.getAccessItemType(selection) === "user")
+    serviceAccountAccessPoliciesView.projectAccessPolicies = selected
+      .filter((selection) => AccessSelectorComponent.getAccessItemType(selection) === "project")
       .map((filtered) => {
-        const view = new UserServiceAccountAccessPolicyView();
-        view.grantedServiceAccountId = this.serviceAccountId;
-        view.organizationUserId = filtered.id;
+        const view = new ServiceAccountProjectAccessPolicyView();
+        view.serviceAccountId = this.serviceAccountId;
+        view.grantedProjectId = filtered.id;
         view.read = true;
-        view.write = true;
-        return view;
-      });
-
-    serviceAccountAccessPoliciesView.groupAccessPolicies = selected
-      .filter((selection) => AccessSelectorComponent.getAccessItemType(selection) === "group")
-      .map((filtered) => {
-        const view = new GroupServiceAccountAccessPolicyView();
-        view.grantedServiceAccountId = this.serviceAccountId;
-        view.groupId = filtered.id;
-        view.read = true;
-        view.write = true;
         return view;
       });
 
@@ -101,8 +72,8 @@ export class ServiceAccountPeopleComponent {
 
   ngOnInit(): void {
     this.route.params.pipe(takeUntil(this.destroy$)).subscribe((params) => {
-      this.serviceAccountId = params.serviceAccountId;
       this.organizationId = params.organizationId;
+      this.serviceAccountId = params.serviceAccountId;
     });
   }
 
