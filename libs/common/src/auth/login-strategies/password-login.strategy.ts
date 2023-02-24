@@ -93,6 +93,7 @@ export class PasswordLogInStrategy extends LogInStrategy {
     ) {
       await this.stateService.setForcePasswordResetOptions(this.forcePasswordResetOptions);
       result.forcePasswordReset = true;
+      result.forcePasswordResetOptions = this.forcePasswordResetOptions;
     }
 
     return result;
@@ -138,6 +139,7 @@ export class PasswordLogInStrategy extends LogInStrategy {
         if (await this.stateService.getIsAuthenticated()) {
           await this.stateService.setForcePasswordResetOptions(resetOptions);
           result.forcePasswordReset = true;
+          result.forcePasswordResetOptions = resetOptions;
         } else {
           // Authentication was not fully successful (likely 2FA), save the flag to this strategy for later use
           this.forcePasswordResetOptions = resetOptions;
