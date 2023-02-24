@@ -119,6 +119,17 @@ export class CurrentTabComponent implements OnInit, OnDestroy {
       this.loginCiphers.length > 0 &&
       !(await this.stateService.getEnableAutoFillOnPageLoad()) &&
       !(await this.stateService.getDismissedAutofillCallout());
+
+    // activate autofill on page load if policy is set
+    if (await this.stateService.getActivateAutoFillOnPageLoadFromPolicy()) {
+      await this.stateService.setEnableAutoFillOnPageLoad(true);
+      await this.stateService.setActivateAutoFillOnPageLoadFromPolicy(false);
+      this.platformUtilsService.showToast(
+        "info",
+        null,
+        this.i18nService.t("autofillPageLoadPolicyActivated")
+      );
+    }
   }
 
   ngOnDestroy() {

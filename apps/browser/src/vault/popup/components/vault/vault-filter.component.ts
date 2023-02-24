@@ -139,17 +139,6 @@ export class VaultFilterComponent implements OnInit, OnDestroy {
         window.setTimeout(() => this.popupUtils.setContentScrollY(window, this.state?.scrollY), 0);
       }
     });
-
-    // activate autofill on page load if policy is set
-    if (await this.browserStateService.getActivateAutoFillOnPageLoadFromPolicy()) {
-      await this.browserStateService.setEnableAutoFillOnPageLoad(true);
-      await this.browserStateService.setActivateAutoFillOnPageLoadFromPolicy(false);
-      this.platformUtilsService.showToast(
-        "info",
-        null,
-        this.i18nService.t("autofillPageLoadPolicyActivated")
-      );
-    }
   }
 
   ngOnDestroy() {
