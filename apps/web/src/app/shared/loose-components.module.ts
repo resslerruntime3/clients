@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 
 import { AcceptEmergencyComponent } from "../../auth/accept-emergency.component";
+import { AcceptInitOrganizationComponent } from "../../auth/accept-init-organization.component";
 import { AcceptOrganizationComponent } from "../../auth/accept-organization.component";
 import { HintComponent } from "../../auth/hint.component";
 import { LockComponent } from "../../auth/lock.component";
@@ -122,6 +123,7 @@ import { SharedModule } from "./shared.module";
     PremiumBadgeComponent,
     AcceptEmergencyComponent,
     AcceptFamilySponsorshipComponent,
+    AcceptInitOrganizationComponent,
     AcceptOrganizationComponent,
     AccessComponent,
     AccountComponent,
@@ -233,6 +235,7 @@ import { SharedModule } from "./shared.module";
   exports: [
     PremiumBadgeComponent,
     AcceptEmergencyComponent,
+    AcceptInitOrganizationComponent,
     AcceptOrganizationComponent,
     AccessComponent,
     AccountComponent,
