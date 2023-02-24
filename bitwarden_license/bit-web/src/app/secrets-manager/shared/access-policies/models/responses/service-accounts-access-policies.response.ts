@@ -11,7 +11,13 @@ export class ServiceAccountAccessPoliciesResponse extends BaseResponse {
 
   constructor(response: any) {
     super(response);
-    this.userAccessPolicies = this.getResponseProperty("UserAccessPolicies");
-    this.groupAccessPolicies = this.getResponseProperty("GroupAccessPolicies");
+    const userAccessPolicies = this.getResponseProperty("UserAccessPolicies");
+    this.userAccessPolicies = userAccessPolicies.map(
+      (k: any) => new UserServiceAccountAccessPolicyResponse(k)
+    );
+    const groupAccessPolicies = this.getResponseProperty("GroupAccessPolicies");
+    this.groupAccessPolicies = groupAccessPolicies.map(
+      (k: any) => new GroupServiceAccountAccessPolicyResponse(k)
+    );
   }
 }
