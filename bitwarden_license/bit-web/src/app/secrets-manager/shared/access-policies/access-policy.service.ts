@@ -203,35 +203,38 @@ export class AccessPolicyService {
   private createUserProjectAccessPolicyView(
     response: UserProjectAccessPolicyResponse
   ): UserProjectAccessPolicyView {
-    const view = <UserProjectAccessPolicyView>this.createBaseAccessPolicyView(response);
-    view.grantedProjectId = response.grantedProjectId;
-    view.organizationUserId = response.organizationUserId;
-    view.organizationUserName = response.organizationUserName;
-    return view;
+    return {
+      ...this.createBaseAccessPolicyView(response),
+      grantedProjectId: response.grantedProjectId,
+      organizationUserId: response.organizationUserId,
+      organizationUserName: response.organizationUserName,
+    };
   }
 
   private createGroupProjectAccessPolicyView(
     response: GroupProjectAccessPolicyResponse
   ): GroupProjectAccessPolicyView {
-    const view = <GroupProjectAccessPolicyView>this.createBaseAccessPolicyView(response);
-    view.grantedProjectId = response.grantedProjectId;
-    view.groupId = response.groupId;
-    view.groupName = response.groupName;
-    return view;
+    return {
+      ...this.createBaseAccessPolicyView(response),
+      grantedProjectId: response.grantedProjectId,
+      groupId: response.groupId,
+      groupName: response.groupName,
+    };
   }
 
   private async createServiceAccountProjectAccessPolicyView(
     organizationKey: SymmetricCryptoKey,
     response: ServiceAccountProjectAccessPolicyResponse
   ): Promise<ServiceAccountProjectAccessPolicyView> {
-    const view = <ServiceAccountProjectAccessPolicyView>this.createBaseAccessPolicyView(response);
-    view.grantedProjectId = response.grantedProjectId;
-    view.serviceAccountId = response.serviceAccountId;
-    view.serviceAccountName = await this.encryptService.decryptToUtf8(
-      new EncString(response.serviceAccountName),
-      organizationKey
-    );
-    return view;
+    return {
+      ...this.createBaseAccessPolicyView(response),
+      grantedProjectId: response.grantedProjectId,
+      serviceAccountId: response.serviceAccountId,
+      serviceAccountName: await this.encryptService.decryptToUtf8(
+        new EncString(response.serviceAccountName),
+        organizationKey
+      ),
+    };
   }
 
   private getServiceAccountAccessPoliciesCreateRequest(
@@ -288,21 +291,23 @@ export class AccessPolicyService {
   private createUserServiceAccountAccessPolicyView(
     response: UserServiceAccountAccessPolicyResponse
   ): UserServiceAccountAccessPolicyView {
-    const view = <UserServiceAccountAccessPolicyView>this.createBaseAccessPolicyView(response);
-    view.grantedServiceAccountId = response.grantedServiceAccountId;
-    view.organizationUserId = response.organizationUserId;
-    view.organizationUserName = response.organizationUserName;
-    return view;
+    return {
+      ...this.createBaseAccessPolicyView(response),
+      grantedServiceAccountId: response.grantedServiceAccountId,
+      organizationUserId: response.organizationUserId,
+      organizationUserName: response.organizationUserName,
+    };
   }
 
   private createGroupServiceAccountAccessPolicyView(
     response: GroupServiceAccountAccessPolicyResponse
   ): GroupServiceAccountAccessPolicyView {
-    const view = <GroupServiceAccountAccessPolicyView>this.createBaseAccessPolicyView(response);
-    view.grantedServiceAccountId = response.grantedServiceAccountId;
-    view.groupId = response.groupId;
-    view.groupName = response.groupName;
-    return view;
+    return {
+      ...this.createBaseAccessPolicyView(response),
+      grantedServiceAccountId: response.grantedServiceAccountId,
+      groupId: response.groupId,
+      groupName: response.groupName,
+    };
   }
 
   private async createProjectServiceAccountAccessPolicyView(

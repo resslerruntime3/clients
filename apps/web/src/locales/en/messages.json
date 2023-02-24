@@ -6363,7 +6363,7 @@
     "message": "Add service accounts to grant access"
   },
   "serviceAccountPeopleDescription": {
-    "message": "Grant groups or people access to this service account. Permissions set for people will override permissions set by groups."
+    "message": "Grant groups or people access to this service account."
   },
   "serviceAccountProjectsDescription": {
     "message": "Assign projects to this service account. "
