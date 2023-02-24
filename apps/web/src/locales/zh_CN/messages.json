@@ -697,7 +697,14 @@
     "message": "必须再次输入主密码。"
   },
   "masterPasswordMinlength": {
-    "message": "主密码至少需要 8 个字符。"
+    "message": "Master password must be at least $VALUE$ characters long.",
+    "description": "The Master Password must be at least a specific number of characters long.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
   },
   "masterPassDoesntMatch": {
     "message": "两次填写的主密码不一致。"
@@ -5723,6 +5730,12 @@
   "deleteSecrets": {
     "message": "删除机密"
   },
+  "hardDeleteSecret": {
+    "message": "Permanently delete secret"
+  },
+  "hardDeleteSecrets": {
+    "message": "Permanently delete secrets"
+  },
   "secretProjectAssociationDescription": {
     "message": "选择与机密相关联的项目。仅有权访问该项目的组织用户能查看该机密。"
   },
@@ -5777,6 +5790,9 @@
   "secretsNoItemsMessage": {
     "message": "要开始，请添加一个新的机密或导入机密。"
   },
+  "secretsTrashNoItemsMessage": {
+    "message": "There are no secrets in the trash."
+  },
   "serviceAccountsNoItemsTitle": {
     "message": "还没有要显示的内容"
   },
@@ -5821,6 +5837,15 @@
   },
   "softDeletesSuccessToast": {
     "message": "机密已发送到回收站"
+  },
+  "hardDeleteSecretConfirmation": {
+    "message": "Are you sure you want to permanently delete this secret?"
+  },
+  "hardDeleteSecretsConfirmation": {
+    "message": "Are you sure you want to permanently delete these secrets?"
+  },
+  "hardDeletesSuccessToast": {
+    "message": "Secrets permanently deleted"
   },
   "serviceAccountCreated": {
     "message": "服务帐户已创建"
@@ -5900,6 +5925,9 @@
   "softDeleteSuccessToast": {
     "message": "机密已发送到回收站"
   },
+  "hardDeleteSuccessToast": {
+    "message": "Secret permanently deleted"
+  },
   "searchProjects": {
     "message": "搜索项目"
   },
@@ -5947,6 +5975,16 @@
   },
   "revokeAccessToken": {
     "message": "撤销访问令牌"
+  },
+  "revokeAccessTokens": {
+    "message": "Revoke access tokens"
+  },
+  "revokeAccessTokenDesc": {
+    "message": "Revoking access tokens is permanent and irreversible."
+  },
+  "accessTokenRevoked": {
+    "message": "Access tokens revoked",
+    "description": "Toast message after deleting one or multiple access tokens."
   },
   "submenu": {
     "message": "子菜单"
@@ -6035,6 +6073,138 @@
   "memberAccessAll": {
     "message": "此成员可以访问和修改所有项目。"
   },
+  "domainVerification": {
+    "message": "域验证"
+  },
+  "newDomain": {
+    "message": "新域"
+  },
+  "noDomains": {
+    "message": "无域"
+  },
+  "noDomainsSubText": {
+    "message": "连接域允许成员在使用 SSO 登录时跳过 SSO 标识符字段。"
+  },
+  "verifyDomain": {
+    "message": "验证域"
+  },
+  "reverifyDomain": {
+    "message": "重新验证域"
+  },
+  "copyDnsTxtRecord": {
+    "message": "复制 DNS TXT 记录"
+  },
+  "dnsTxtRecord": {
+    "message": "DNS TXT 记录"
+  },
+  "dnsTxtRecordInputHint": {
+    "message": "复制并粘贴 TXT 记录到您的 DNS 供应商。"
+  },
+  "domainNameInputHint": {
+    "message": "例如：mydomain.com。子域需要单独的条目进行验证。"
+  },
+  "automaticDomainVerification": {
+    "message": "自动域验证"
+  },
+  "automaticDomainVerificationProcess": {
+    "message": "Bitwarden 将尝试在 72 小时内验证域名 3 次。 如果无法验证域，请检查主机中的 DNS 记录并手动验证。 如果域无法验证，将在 7 天内从您的组织中删除。"
+  },
+  "invalidDomainNameMessage": {
+    "message": "输入格式不正确。格式：mydomain.com。子域需要单独的条目进行验证。"
+  },
+  "removeDomain": {
+    "message": "删除域"
+  },
+  "removeDomainWarning": {
+    "message": "删除域不能撤消。您确定要继续吗？"
+  },
+  "domainRemoved": {
+    "message": "域已删除"
+  },
+  "domainSaved": {
+    "message": "域已保存"
+  },
+  "domainVerified": {
+    "message": "域已验证"
+  },
+  "duplicateDomainError": {
+    "message": "同样的域不能申请两次。"
+  },
+  "domainNotAvailable": {
+    "message": "其他人正在使用 $DOMAIN$。请用一个不同的域。",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainNotVerified": {
+    "message": "$DOMAIN$ 未验证。请检查您的DNS记录。",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainStatusVerified": {
+    "message": "已验证"
+  },
+  "domainStatusUnverified": {
+    "message": "未验证"
+  },
+  "domainNameTh": {
+    "message": "域名"
+  },
+  "domainStatusTh": {
+    "message": "状态"
+  },
+  "lastChecked": {
+    "message": "上次检查"
+  },
+  "editDomain": {
+    "message": "编辑域"
+  },
+  "domainFormInvalid": {
+    "message": "表单错误需要您注意。"
+  },
+  "addedDomain": {
+    "message": "已添加域 $DOMAIN$",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "removedDomain": {
+    "message": "已删除域 $DOMAIN$",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainVerifiedEvent": {
+    "message": "$DOMAIN$ 已验证",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainNotVerifiedEvent": {
+    "message": "$DOMAIN$ 未验证",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
   "membersColumnHeader": {
     "message": "Member/Group"
   },
@@ -6109,6 +6279,9 @@
         "example": "2"
       }
     }
+  },
+  "server": {
+    "message": "服务器"
   },
   "exportData": {
     "message": "导出数据"
@@ -6215,6 +6388,25 @@
   "userAccessSecretsManager": {
     "message": "此用户可以访问 Secrets Manager 测试版"
   },
+  "important": {
+    "message": "Important:"
+  },
+  "viewAll": {
+    "message": "View all"
+  },
+  "showingPortionOfTotal": {
+    "message": "Showing $PORTION$ of $TOTAL$",
+    "placeholders": {
+      "portion": {
+        "content": "$1",
+        "example": "2"
+      },
+      "total": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
   "resolveTheErrorsBelowAndTryAgain": {
     "message": "Resolve the errors below and try again."
   },
@@ -6223,5 +6415,100 @@
   },
   "errorReadingImportFile": {
     "message": "An error occurred when trying to read the import file"
+  },
+  "createSecret": {
+    "message": "Create a secret"
+  },
+  "createProject": {
+    "message": "Create a project"
+  },
+  "createServiceAccount": {
+    "message": "Create a service account"
+  },
+  "downloadThe": {
+    "message": "Download the",
+    "description": "Link to a downloadable resource. This will be used as part of a larger phrase. Example: Download the Secrets Manager CLI"
+  },
+  "smCLI": {
+    "message": "Secrets Manager CLI"
+  },
+  "importSecrets": {
+    "message": "Import secrets"
+  },
+  "getStarted": {
+    "message": "Get started"
+  },
+  "complete": {
+    "message": "$COMPLETED$/$TOTAL$ Complete",
+    "placeholders": {
+      "COMPLETED": {
+        "content": "$1",
+        "example": "1"
+      },
+      "TOTAL": {
+        "content": "$2",
+        "example": "4"
+      }
+    }
+  },
+  "restoreSecret": {
+    "message": "Restore secret"
+  },
+  "restoreSecrets": {
+    "message": "Restore secrets"
+  },
+  "restoreSecretPrompt": {
+    "message": "Are you sure you want to restore this secret?"
+  },
+  "restoreSecretsPrompt": {
+    "message": "Are you sure you want to restore these secrets?"
+  },
+  "secretRestoredSuccessToast": {
+    "message": "Secret restored"
+  },
+  "secretsRestoredSuccessToast": {
+    "message": "Secrets restored"
+  },
+  "selectionIsRequired": {
+    "message": "必须选择"
+  },
+  "secretsManagerSubscriptionDesc": {
+    "message": "Turn on organization access to the Secrets Manager at no charge during the Beta program. Users can be granted access to the Beta in Members."
+  },
+  "secretsManagerEnable": {
+    "message": "Enable Secrets Manager Beta"
+  },
+  "checkForBreaches": {
+    "message": "检查已知的数据泄露是否包含此密码"
+  },
+  "exposedMasterPassword": {
+    "message": "已暴露的主密码"
+  },
+  "exposedMasterPasswordDesc": {
+    "message": "一起数据泄露中存在该密码。使用独特的密码有助保护您的账户。确定要使用曾经暴露的密码吗？"
+  },
+  "weakAndExposedMasterPassword": {
+    "message": "主密码弱且曾经暴露"
+  },
+  "weakAndBreachedMasterPasswordDesc": {
+    "message": "密码太弱并出现在数据泄露。使用强悍且独特的密码有助保护您的账户。确定继续使用当前密码吗？"
+  },
+  "characterMinimum": {
+    "message": "至少 $LENGTH$ 个字符",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
+  },
+  "masterPasswordMinimumlength": {
+    "message": "主密码长度最少为 $LENGTH$ 个字符。",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
   }
 }

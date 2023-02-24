@@ -697,7 +697,14 @@
     "message": "Une nouvelle saisie du mot de passe principal est nécessaire."
   },
   "masterPasswordMinlength": {
-    "message": "Le mot de passe principal doit comporter au moins 8 caractères."
+    "message": "Le mot de passe principal doit comporter au moins $VALUE$ caractères.",
+    "description": "The Master Password must be at least a specific number of characters long.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
   },
   "masterPassDoesntMatch": {
     "message": "La confirmation du mot de passe principal ne correspond pas."
@@ -899,7 +906,7 @@
     "message": "Modifier les collections avec lesquelles cet élément est partagé. Seuls les utilisateurs de l'organisation avec un accès à ces collections pourront voir cet élément."
   },
   "deleteSelectedItemsDesc": {
-    "message": "Vous avez sélectionné $COUNT$ élément(s) à supprimer. Êtes-vous sûr de vouloir supprimer tous ces éléments ?",
+    "message": "$COUNT$ élément(s) va(vont) être envoyé(s) à la corbeille.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1374,7 +1381,7 @@
     "message": "Mise en application de l'authentification à deux facteurs"
   },
   "twoStepLoginDesc": {
-    "message": "Sécuriser votre compte en exigeant une étape supplémentaire lors de la connexion."
+    "message": "Sécurisez votre compte en exigeant une étape supplémentaire lors de la connexion."
   },
   "twoStepLoginOrganizationDescStart": {
     "message": "Imposer les options d'authentification à deux facteurs de Bitwarden pour les membres en utilisant le ",
@@ -5369,7 +5376,7 @@
     "description": "This is used by screen readers to indicate the organization that is currently being shown to the user."
   },
   "accountSettings": {
-    "message": "Paramètres de Compte"
+    "message": "Paramètres du compte"
   },
   "generator": {
     "message": "Générateur"
@@ -5378,7 +5385,7 @@
     "message": "Que souhaitez-vous générer ?"
   },
   "passwordType": {
-    "message": "Type de Mot de Passe"
+    "message": "Type de mot de passe"
   },
   "regenerateUsername": {
     "message": "Régénérer le Nom d'Utilisateur"
@@ -5723,6 +5730,12 @@
   "deleteSecrets": {
     "message": "Supprimer les Secrets"
   },
+  "hardDeleteSecret": {
+    "message": "Supprimer définitivement le secret"
+  },
+  "hardDeleteSecrets": {
+    "message": "Supprimer définitivement les secrets"
+  },
   "secretProjectAssociationDescription": {
     "message": "Sélectionnez les projets auxquels le secret sera associé. Seuls les utilisateurs de l'organisation ayant accès à ces projets pourront voir le secret."
   },
@@ -5777,6 +5790,9 @@
   "secretsNoItemsMessage": {
     "message": "Pour commencer, ajoutez un nouveau secret ou importez des secrets."
   },
+  "secretsTrashNoItemsMessage": {
+    "message": "Il n'y a pas de secrets dans la corbeille."
+  },
   "serviceAccountsNoItemsTitle": {
     "message": "Rien à afficher pour l'instant"
   },
@@ -5821,6 +5837,15 @@
   },
   "softDeletesSuccessToast": {
     "message": "Secrets envoyés à la corbeille"
+  },
+  "hardDeleteSecretConfirmation": {
+    "message": "Êtes-vous sûr de vouloir supprimer définitivement ce secret ?"
+  },
+  "hardDeleteSecretsConfirmation": {
+    "message": "Êtes-vous sûr de vouloir supprimer définitivement ces secrets ?"
+  },
+  "hardDeletesSuccessToast": {
+    "message": "Secrets définitivement supprimés"
   },
   "serviceAccountCreated": {
     "message": "Compte de Service créé"
@@ -5900,6 +5925,9 @@
   "softDeleteSuccessToast": {
     "message": "Secret envoyé à la corbeille"
   },
+  "hardDeleteSuccessToast": {
+    "message": "Secret définitivement supprimé"
+  },
   "searchProjects": {
     "message": "Rechercher des Projets"
   },
@@ -5947,6 +5975,16 @@
   },
   "revokeAccessToken": {
     "message": "Révoquer le jeton d'accès"
+  },
+  "revokeAccessTokens": {
+    "message": "Révoquer les jetons d'accès"
+  },
+  "revokeAccessTokenDesc": {
+    "message": "La révocation des jetons d'accès est permanente et irréversible."
+  },
+  "accessTokenRevoked": {
+    "message": "Jetons d'accès révoqués",
+    "description": "Toast message after deleting one or multiple access tokens."
   },
   "submenu": {
     "message": "Sous-menu"
@@ -6035,6 +6073,138 @@
   "memberAccessAll": {
     "message": "Ce groupe peut voir et modifier tous les éléments."
   },
+  "domainVerification": {
+    "message": "Vérification du domaine"
+  },
+  "newDomain": {
+    "message": "Nouveau domaine"
+  },
+  "noDomains": {
+    "message": "Aucun domaine"
+  },
+  "noDomainsSubText": {
+    "message": "La connexion d'un domaine permet aux membres de passer outre le champ de l'identifiant SSO lors de la connexion avec SSO."
+  },
+  "verifyDomain": {
+    "message": "Vérifier le domaine"
+  },
+  "reverifyDomain": {
+    "message": "Revérifier le domaine"
+  },
+  "copyDnsTxtRecord": {
+    "message": "Copier l'enregistrement DNS TXT"
+  },
+  "dnsTxtRecord": {
+    "message": "Enregistrement DNS TXT"
+  },
+  "dnsTxtRecordInputHint": {
+    "message": "Copiez-collez l'enregistrement TXT dans votre fournisseur de services DNS."
+  },
+  "domainNameInputHint": {
+    "message": "Exemple : mondomaine.com. Les sous-domaines nécessitent des entrées séparées pour être vérifiés."
+  },
+  "automaticDomainVerification": {
+    "message": "Vérification automatique du domaine"
+  },
+  "automaticDomainVerificationProcess": {
+    "message": "Bitwarden tentera de vérifier le domaine 3 fois au cours des 72 premières heures. Si le domaine ne peut pas être vérifié, vérifiez l'enregistrement DNS de votre hôte et vérifiez manuellement. Le domaine sera retiré de votre organisation dans 7 jours s'il n'est pas vérifié"
+  },
+  "invalidDomainNameMessage": {
+    "message": "L'entrée n'est pas saisie dans un format valide. Format : mondomaine.com. Les sous-domaines nécessitent des entrées séparées pour être vérifiés."
+  },
+  "removeDomain": {
+    "message": "Retirer le domaine"
+  },
+  "removeDomainWarning": {
+    "message": "Le retrait d'un domaine ne peut pas être annulé. Êtes-vous sûr de vouloir continuer ?"
+  },
+  "domainRemoved": {
+    "message": "Domaine retiré"
+  },
+  "domainSaved": {
+    "message": "Domaine sauvegardé"
+  },
+  "domainVerified": {
+    "message": "Domaine vérifié"
+  },
+  "duplicateDomainError": {
+    "message": "Vous ne pouvez pas revendiquer le même domaine deux fois."
+  },
+  "domainNotAvailable": {
+    "message": "Quelqu'un d'autre est en train d'utiliser $DOMAIN$. Utilisez un domaine différent pour continuer.",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainNotVerified": {
+    "message": "$DOMAIN$ non vérifié. Vérifiez votre enregistrement DNS.",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainStatusVerified": {
+    "message": "Vérifié"
+  },
+  "domainStatusUnverified": {
+    "message": "Non vérifié"
+  },
+  "domainNameTh": {
+    "message": "Nom"
+  },
+  "domainStatusTh": {
+    "message": "Statut"
+  },
+  "lastChecked": {
+    "message": "Dernière vérification"
+  },
+  "editDomain": {
+    "message": "Éditer le domaine"
+  },
+  "domainFormInvalid": {
+    "message": "Il y a des erreurs de formulaire qui nécessitent votre attention"
+  },
+  "addedDomain": {
+    "message": "Domaine $DOMAIN$ ajouté",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "removedDomain": {
+    "message": "Domaine $DOMAIN$ retiré",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainVerifiedEvent": {
+    "message": "$DOMAIN$ vérifié",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainNotVerifiedEvent": {
+    "message": "$DOMAIN$ non vérifié",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
   "membersColumnHeader": {
     "message": "Membre/Groupe"
   },
@@ -6109,6 +6279,9 @@
         "example": "2"
       }
     }
+  },
+  "server": {
+    "message": "Serveur"
   },
   "exportData": {
     "message": "Exporter les données"
@@ -6215,6 +6388,25 @@
   "userAccessSecretsManager": {
     "message": "Cet utilisateur peut accéder au gestionnaire de secrets bêta"
   },
+  "important": {
+    "message": "Important :"
+  },
+  "viewAll": {
+    "message": "Tout afficher"
+  },
+  "showingPortionOfTotal": {
+    "message": "Affichage de $PORTION$ sur $TOTAL$",
+    "placeholders": {
+      "portion": {
+        "content": "$1",
+        "example": "2"
+      },
+      "total": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
   "resolveTheErrorsBelowAndTryAgain": {
     "message": "Résolvez les erreurs ci-dessous et réessayez."
   },
@@ -6223,5 +6415,100 @@
   },
   "errorReadingImportFile": {
     "message": "Une erreur est survenue lors de la lecture du fichier importé"
+  },
+  "createSecret": {
+    "message": "Créer un secret"
+  },
+  "createProject": {
+    "message": "Créer un projet"
+  },
+  "createServiceAccount": {
+    "message": "Créer un compte de service"
+  },
+  "downloadThe": {
+    "message": "Télécharger le",
+    "description": "Link to a downloadable resource. This will be used as part of a larger phrase. Example: Download the Secrets Manager CLI"
+  },
+  "smCLI": {
+    "message": "CLI du Gestionnaire de Secrets"
+  },
+  "importSecrets": {
+    "message": "Importer des secrets"
+  },
+  "getStarted": {
+    "message": "Commencer"
+  },
+  "complete": {
+    "message": "$COMPLETED$/$TOTAL$ Complété(s)",
+    "placeholders": {
+      "COMPLETED": {
+        "content": "$1",
+        "example": "1"
+      },
+      "TOTAL": {
+        "content": "$2",
+        "example": "4"
+      }
+    }
+  },
+  "restoreSecret": {
+    "message": "Restaurer le secret"
+  },
+  "restoreSecrets": {
+    "message": "Restaurer les secrets"
+  },
+  "restoreSecretPrompt": {
+    "message": "Êtes-vous sûr de vouloir restaurer ce secret ?"
+  },
+  "restoreSecretsPrompt": {
+    "message": "Êtes-vous sûr de vouloir restaurer ces secrets ?"
+  },
+  "secretRestoredSuccessToast": {
+    "message": "Secret restauré"
+  },
+  "secretsRestoredSuccessToast": {
+    "message": "Secrets restaurés"
+  },
+  "selectionIsRequired": {
+    "message": "Une sélection est requise."
+  },
+  "secretsManagerSubscriptionDesc": {
+    "message": "Activez l'accès de l'organisation au gestionnaire de secrets sans frais pendant le programme bêta. Les utilisateurs peuvent se voir accorder l'accès à la bêta dans Membres."
+  },
+  "secretsManagerEnable": {
+    "message": "Activer le gestionnaire de secrets bêta"
+  },
+  "checkForBreaches": {
+    "message": "Vérifier les brèches de données connues pour ce mot de passe"
+  },
+  "exposedMasterPassword": {
+    "message": "Mot de passe principal exposé"
+  },
+  "exposedMasterPasswordDesc": {
+    "message": "Mot de passe trouvé dans une brèche de données. Utilisez un mot de passe unique pour protéger votre compte. Êtes-vous sûr de vouloir utiliser un mot de passe exposé ?"
+  },
+  "weakAndExposedMasterPassword": {
+    "message": "Mot de passe principal faible et exposé"
+  },
+  "weakAndBreachedMasterPasswordDesc": {
+    "message": "Mot de passe faible identifié et trouvé dans une brèche de données. Utilisez un mot de passe robuste et unique pour protéger votre compte. Êtes-vous sûr de vouloir utiliser ce mot de passe ?"
+  },
+  "characterMinimum": {
+    "message": "$LENGTH$ caractère minimum",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
+  },
+  "masterPasswordMinimumlength": {
+    "message": "Le mot de passe principal doit comporter au moins $LENGTH$ caractères.",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
   }
 }

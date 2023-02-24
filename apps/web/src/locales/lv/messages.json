@@ -697,7 +697,14 @@
     "message": "Ir nepieciešama galvenās paroles atkārtota ievadīšana."
   },
   "masterPasswordMinlength": {
-    "message": "Galvenajai parolei ir jābūt vismaz 8 rakstzīmes garai."
+    "message": "Master password must be at least $VALUE$ characters long.",
+    "description": "The Master Password must be at least a specific number of characters long.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
   },
   "masterPassDoesntMatch": {
     "message": "Galvenās paroles apstiprinājums nesakrīt."
@@ -5723,6 +5730,12 @@
   "deleteSecrets": {
     "message": "Izdzēst noslēpumus"
   },
+  "hardDeleteSecret": {
+    "message": "Neatgriezeniski izdzēst noslēpumu"
+  },
+  "hardDeleteSecrets": {
+    "message": "Neatgriezeniski izdzēst noslēpumus"
+  },
   "secretProjectAssociationDescription": {
     "message": "Atlasīt projektus, ar kuriem tiks saistīts noslēpums. Tikai apvienību lietotāji ar piekļuvi šiem projektiem varēs redzēt noslēpumu."
   },
@@ -5777,6 +5790,9 @@
   "secretsNoItemsMessage": {
     "message": "Lai sākut, ir jāpievieno jauns noslēpums vai jāievieto esoši."
   },
+  "secretsTrashNoItemsMessage": {
+    "message": "Atkritnē nav noslēpumu."
+  },
   "serviceAccountsNoItemsTitle": {
     "message": "Vēl nav nekā, ko parādīt"
   },
@@ -5821,6 +5837,15 @@
   },
   "softDeletesSuccessToast": {
     "message": "Noslēpumi ir pārvietoti uz atkritni"
+  },
+  "hardDeleteSecretConfirmation": {
+    "message": "Vai tiešām neatgriezeniski izdzēst šo noslēpumu?"
+  },
+  "hardDeleteSecretsConfirmation": {
+    "message": "Vai tiešām neatgriezeniski izdzēst šos noslēpumus?"
+  },
+  "hardDeletesSuccessToast": {
+    "message": "Noslēpumi ir neatgriezeniski izdzēsti"
   },
   "serviceAccountCreated": {
     "message": "Pakalpojumu konts ir izveidots"
@@ -5900,6 +5925,9 @@
   "softDeleteSuccessToast": {
     "message": "Noslēpums ir pārvietots uz atkritni"
   },
+  "hardDeleteSuccessToast": {
+    "message": "Noslēpums ir neatgriezeniski izdzēsts"
+  },
   "searchProjects": {
     "message": "Meklēt projektus"
   },
@@ -5947,6 +5975,16 @@
   },
   "revokeAccessToken": {
     "message": "Atsaukt piekļuves pilnvaru"
+  },
+  "revokeAccessTokens": {
+    "message": "Atsaukt piekļuves pilnvaras"
+  },
+  "revokeAccessTokenDesc": {
+    "message": "Piekļuves pilnvaru atsaukšana ir paliekoša un neatgriezeniska."
+  },
+  "accessTokenRevoked": {
+    "message": "Piekļuves pilnvaras ir atsauktas",
+    "description": "Toast message after deleting one or multiple access tokens."
   },
   "submenu": {
     "message": "Apakšizvēlne"
@@ -6035,6 +6073,138 @@
   "memberAccessAll": {
     "message": "Šis dalībnieks var piekļūt visiem vienumiem un mainīt tos."
   },
+  "domainVerification": {
+    "message": "Domēna apstiprināšana"
+  },
+  "newDomain": {
+    "message": "Jauns domēns"
+  },
+  "noDomains": {
+    "message": "Nav domēnu"
+  },
+  "noDomainsSubText": {
+    "message": "Savienošanās ar domēnu ļauj dalībniekiem pieteikšanās ar SSO laikā izlaist vienotās pieteikšanās identifikatora lauku."
+  },
+  "verifyDomain": {
+    "message": "Apstiprināt domēnu"
+  },
+  "reverifyDomain": {
+    "message": "Atkārtoti apstiprināt domēnu"
+  },
+  "copyDnsTxtRecord": {
+    "message": "Ievietot starpliktuvē DNS TXT ierakstu"
+  },
+  "dnsTxtRecord": {
+    "message": "DNS TXT ieraksts"
+  },
+  "dnsTxtRecordInputHint": {
+    "message": "TXT ieraksts ir jāievieto starpliktuvē un jāielīmē DNS nodrošinātāja pārvaldības lapā."
+  },
+  "domainNameInputHint": {
+    "message": "Piemērs: mansdomens.lv. Apakšdomēniem ir nepieciešams apstiprināt atsevišķus ierakstus."
+  },
+  "automaticDomainVerification": {
+    "message": "Automātiska domēnu apstiprināšana"
+  },
+  "automaticDomainVerificationProcess": {
+    "message": "Bitwarden mēģinās pārbaudīt domēnu 3 reizes pirmajās 72 stundās. Ja domēnu nevarēs apstiprināt, būs jāpārbauda DNS ieraksts saimniekdatorā un pašrocīgi jāapstiprina. Domēns tiks noņemts no apvienības pēc 7 dienām, ja tas nebūs apstiprināts"
+  },
+  "invalidDomainNameMessage": {
+    "message": "Ievadītā vērtība ir nederīga. Piemēram: mansdomens.lv. Apakšdomēniem ir nepieciešams apstiprināt atsevišķus ierakstus."
+  },
+  "removeDomain": {
+    "message": "Noņemt domēnu"
+  },
+  "removeDomainWarning": {
+    "message": "Domēna noņemšanu nevar atsaukt. Vai tiešām turpināt?"
+  },
+  "domainRemoved": {
+    "message": "Domēns ir noņemts"
+  },
+  "domainSaved": {
+    "message": "Domēns ir saglabāts"
+  },
+  "domainVerified": {
+    "message": "Domēns ir apstiprināts"
+  },
+  "duplicateDomainError": {
+    "message": "Vienu domēnu nevar pieprasīt divreiz."
+  },
+  "domainNotAvailable": {
+    "message": "Kāds cits izmanto $DOMAIN$. Jāizmanto cits domēns, lai turpinātu.",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainNotVerified": {
+    "message": "$DOMAIN$ nav apstiprināts. Jāpārbauda DNS ieraksts.",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainStatusVerified": {
+    "message": "Apstiprināts"
+  },
+  "domainStatusUnverified": {
+    "message": "Nav apstiprināts"
+  },
+  "domainNameTh": {
+    "message": "Nosaukums"
+  },
+  "domainStatusTh": {
+    "message": "Stāvoklis"
+  },
+  "lastChecked": {
+    "message": "Pēdējoreiz pārbaudīts"
+  },
+  "editDomain": {
+    "message": "Labot domēnu"
+  },
+  "domainFormInvalid": {
+    "message": "Veidlapā ir kļūdas, kurām ir jāpievērš uzmanība"
+  },
+  "addedDomain": {
+    "message": "Domēns $DOMAIN$ ir pievienots",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "removedDomain": {
+    "message": "Domēns $DOMAIN$ ir noņemts",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainVerifiedEvent": {
+    "message": "$DOMAIN$ ir apstiprināts",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainNotVerifiedEvent": {
+    "message": "$DOMAIN$ nav apstiprināts",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
   "membersColumnHeader": {
     "message": "Dalībnieks/Grupa"
   },
@@ -6109,6 +6279,9 @@
         "example": "2"
       }
     }
+  },
+  "server": {
+    "message": "Serveris"
   },
   "exportData": {
     "message": "Izgūt datus"
@@ -6215,6 +6388,25 @@
   "userAccessSecretsManager": {
     "message": "Šis lietotājs var piekļūt Noslēpumu pārvaldniekam Beta"
   },
+  "important": {
+    "message": "Svarīgi:"
+  },
+  "viewAll": {
+    "message": "Skatīt visu"
+  },
+  "showingPortionOfTotal": {
+    "message": "Rāda $PORTION$ no $TOTAL$",
+    "placeholders": {
+      "portion": {
+        "content": "$1",
+        "example": "2"
+      },
+      "total": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
   "resolveTheErrorsBelowAndTryAgain": {
     "message": "Jāatrisina zemāk norādītās kļūdas un jāmēģina vēlreiz."
   },
@@ -6223,5 +6415,100 @@
   },
   "errorReadingImportFile": {
     "message": "Atgadījās kļūda, kad tika mēģināts nolasīt ievietošanas datni"
+  },
+  "createSecret": {
+    "message": "Izveidot noslēpumu"
+  },
+  "createProject": {
+    "message": "Izveidot projektu"
+  },
+  "createServiceAccount": {
+    "message": "Izveidot pakalpojumu kontu"
+  },
+  "downloadThe": {
+    "message": "Lejupielādēt",
+    "description": "Link to a downloadable resource. This will be used as part of a larger phrase. Example: Download the Secrets Manager CLI"
+  },
+  "smCLI": {
+    "message": "Noslēpumu pārvaldnieka komandrindas saskarne"
+  },
+  "importSecrets": {
+    "message": "Ievietot noslēpumus"
+  },
+  "getStarted": {
+    "message": "Aiziet!"
+  },
+  "complete": {
+    "message": "Pabeigti $COMPLETED$/$TOTAL$",
+    "placeholders": {
+      "COMPLETED": {
+        "content": "$1",
+        "example": "1"
+      },
+      "TOTAL": {
+        "content": "$2",
+        "example": "4"
+      }
+    }
+  },
+  "restoreSecret": {
+    "message": "Atjaunot noslēpumu"
+  },
+  "restoreSecrets": {
+    "message": "Atjaunot noslēpumus"
+  },
+  "restoreSecretPrompt": {
+    "message": "Vai tiešām atjaunot šo noslēpumu?"
+  },
+  "restoreSecretsPrompt": {
+    "message": "Vai tiešām atjaunot šos noslēpumus?"
+  },
+  "secretRestoredSuccessToast": {
+    "message": "Noslēpums ir atjaunots"
+  },
+  "secretsRestoredSuccessToast": {
+    "message": "Noslēpumi ir atjaunoti"
+  },
+  "selectionIsRequired": {
+    "message": "Nepieciešams veikt atlasi."
+  },
+  "secretsManagerSubscriptionDesc": {
+    "message": "Ieslēgt apvienības piekļuvi Noslēpumu pārvaldniekam bez papildu maksas Beta programmas laikā. Lietotājiem Bet piekļuvi var nodrošināt sadaļā \"Dalībnieki\"."
+  },
+  "secretsManagerEnable": {
+    "message": "Iespējot Noslēpumu pārvaldnieks Beta"
+  },
+  "checkForBreaches": {
+    "message": "Check known data breaches for this password"
+  },
+  "exposedMasterPassword": {
+    "message": "Exposed Master Password"
+  },
+  "exposedMasterPasswordDesc": {
+    "message": "Password found in a data breach. Use a unique password to protect your account. Are you sure you want to use an exposed password?"
+  },
+  "weakAndExposedMasterPassword": {
+    "message": "Weak and Exposed Master Password"
+  },
+  "weakAndBreachedMasterPasswordDesc": {
+    "message": "Weak password identified and found in a data breach. Use a strong and unique password to protect your account. Are you sure you want to use this password?"
+  },
+  "characterMinimum": {
+    "message": "$LENGTH$ character minimum",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
+  },
+  "masterPasswordMinimumlength": {
+    "message": "Master password must be at least $LENGTH$ characters long.",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
   }
 }

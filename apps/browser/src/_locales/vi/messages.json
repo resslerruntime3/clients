@@ -430,7 +430,14 @@
     "message": "Yêu cầu nhập lại mật khẩu chính."
   },
   "masterPasswordMinlength": {
-    "message": "Mật khẩu chính phải có ít nhất 8 kí tự."
+    "message": "Master password must be at least $VALUE$ characters long.",
+    "description": "The Master Password must be at least a specific number of characters long.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
   },
   "masterPassDoesntMatch": {
     "message": "Xác nhận mật khẩu chính không khớp."
@@ -2104,25 +2111,49 @@
       }
     }
   },
-  "tryAutofillPageLoad": {
-    "message": "Try auto-fill on page load?"
-  },
-  "tryAutofill": {
-    "message": "Cách tự động điền"
-  },
-  "autofillPageLoadInfo": {
-    "message": "Login forms will automatically fill in matching credentials if you turn on auto-fill on page load."
+  "howToAutofill": {
+    "message": "How to auto-fill"
   },
   "autofillSelectInfo": {
-    "message": "Select an item from this page to auto-fill the active tab's form."
+    "message": "Select an item from this page or use the shortcut: $COMMAND$. You can also try auto-fill on page load.",
+    "placeholders": {
+      "command": {
+        "content": "$1",
+        "example": "CTRL+Shift+L"
+      }
+    }
   },
-  "autofillTurnedOn": {
-    "message": "Auto-fill on page load turned on"
+  "autofillSelectInfoNoCommand": {
+    "message": "Select an item from this page or set a shortcut in settings. You can also try auto-fill on page load."
   },
-  "turnOn": {
-    "message": "Bật"
+  "gotIt": {
+    "message": "Got it"
   },
-  "notNow": {
-    "message": "Không phải bây giờ"
+  "autofillSettings": {
+    "message": "Auto-fill settings"
+  },
+  "autofillShortcut": {
+    "message": "Auto-fill keyboard shortcut"
+  },
+  "autofillShortcutNotSet": {
+    "message": "The auto-fill shortcut is not set. Change this in the browser's settings."
+  },
+  "autofillShortcutText": {
+    "message": "The auto-fill shortcut is: $COMMAND$. Change this in the browser's settings.",
+    "placeholders": {
+      "command": {
+        "content": "$1",
+        "example": "CTRL+Shift+L"
+      }
+    }
+  },
+  "autofillShortcutTextSafari": {
+    "message": "Default auto-fill shortcut: $COMMAND$.",
+    "placeholders": {
+      "command": {
+        "content": "$1",
+        "example": "CTRL+Shift+L"
+      }
+    }
   }
 }

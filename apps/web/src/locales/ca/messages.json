@@ -697,7 +697,14 @@
     "message": "Cal tornar a escriure la contrasenya mestra."
   },
   "masterPasswordMinlength": {
-    "message": "La contrasenya mestra ha de contenir almenys 8 caràcters."
+    "message": "La contrasenya mestra ha de contenir almenys $VALUE$ caràcters.",
+    "description": "The Master Password must be at least a specific number of characters long.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
   },
   "masterPassDoesntMatch": {
     "message": "La confirmació de la contrasenya mestra no coincideix."
@@ -5723,6 +5730,12 @@
   "deleteSecrets": {
     "message": "Suprimeix els secrets"
   },
+  "hardDeleteSecret": {
+    "message": "Suprimeix definitivament el secret"
+  },
+  "hardDeleteSecrets": {
+    "message": "Suprimeix definitivament els secrets"
+  },
   "secretProjectAssociationDescription": {
     "message": "Selecciona los proyectos a los que se asociará el secreto. Sólo los usuarios de la organización con acceso a estos proyectos podrán verlo."
   },
@@ -5777,6 +5790,9 @@
   "secretsNoItemsMessage": {
     "message": "Per començar, afig un secret nou o importa secrets."
   },
+  "secretsTrashNoItemsMessage": {
+    "message": "No hi ha secrets a la paperera."
+  },
   "serviceAccountsNoItemsTitle": {
     "message": "Encara no hi ha res a mostrar"
   },
@@ -5821,6 +5837,15 @@
   },
   "softDeletesSuccessToast": {
     "message": "Secrets enviats a la paperera"
+  },
+  "hardDeleteSecretConfirmation": {
+    "message": "Esteu segur que voleu suprimir definitivament aquest secret?"
+  },
+  "hardDeleteSecretsConfirmation": {
+    "message": "Esteu segur que voleu suprimir definitivament aquests secrets?"
+  },
+  "hardDeletesSuccessToast": {
+    "message": "Secrets suprimits definitivament"
   },
   "serviceAccountCreated": {
     "message": "Compte de servei creat"
@@ -5900,6 +5925,9 @@
   "softDeleteSuccessToast": {
     "message": "S'ha enviat el secret a la paperera"
   },
+  "hardDeleteSuccessToast": {
+    "message": "Secret suprimit definitivament"
+  },
   "searchProjects": {
     "message": "Cerca projectes"
   },
@@ -5947,6 +5975,16 @@
   },
   "revokeAccessToken": {
     "message": "Revoca el token d'accés"
+  },
+  "revokeAccessTokens": {
+    "message": "Revoca tokens d'accés"
+  },
+  "revokeAccessTokenDesc": {
+    "message": "La revocació de tokens d'accés és permanent i irreversible."
+  },
+  "accessTokenRevoked": {
+    "message": "S'han revocat tokens d'accés",
+    "description": "Toast message after deleting one or multiple access tokens."
   },
   "submenu": {
     "message": "Submenú"
@@ -6035,6 +6073,138 @@
   "memberAccessAll": {
     "message": "Aquest usuari pot accedir i modificar tots els elements."
   },
+  "domainVerification": {
+    "message": "Verificació de dominis"
+  },
+  "newDomain": {
+    "message": "Domini nou"
+  },
+  "noDomains": {
+    "message": "Sense dominis"
+  },
+  "noDomainsSubText": {
+    "message": "La connexió d'un domini permet als membres ometre el camp d'identificador de SSO durant l'inici de sessió amb aquest."
+  },
+  "verifyDomain": {
+    "message": "Verifica domini"
+  },
+  "reverifyDomain": {
+    "message": "Torna a verificar el domini"
+  },
+  "copyDnsTxtRecord": {
+    "message": "Copia registre DNS TXT"
+  },
+  "dnsTxtRecord": {
+    "message": "Registre DNS TXT"
+  },
+  "dnsTxtRecordInputHint": {
+    "message": "Copieu i enganxeu el registre TXT al vostre proveïdor de DNS."
+  },
+  "domainNameInputHint": {
+    "message": "Exemple: el meudomini.com. Els subdominis requereixen que es verifiquen entrades separades."
+  },
+  "automaticDomainVerification": {
+    "message": "Verificació automàtica de dominis"
+  },
+  "automaticDomainVerificationProcess": {
+    "message": "Bitwarden intentarà verificar el domini 3 vegades durant les primeres 72 hores. Si el domini no es pot verificar, comproveu el registre DNS del vostre amfitrió i verifiqueu-lo manualment. El domini s'eliminarà de la vostra organització en 7 dies si no es verifica"
+  },
+  "invalidDomainNameMessage": {
+    "message": "L'entrada no és un format vàlid. Format: el meudomini.com. Els subdominis requereixen que es verifiquen entrades separades."
+  },
+  "removeDomain": {
+    "message": "Suprimeix domini"
+  },
+  "removeDomainWarning": {
+    "message": "L'eliminació d'un domini no es pot desfer. Esteu segur que voleu continuar?"
+  },
+  "domainRemoved": {
+    "message": "Domini suprimit"
+  },
+  "domainSaved": {
+    "message": "Domini guardat"
+  },
+  "domainVerified": {
+    "message": "Domini verificat"
+  },
+  "duplicateDomainError": {
+    "message": "No pots reclamar el mateix domini dues vegades."
+  },
+  "domainNotAvailable": {
+    "message": "Algú més està utilitzant $DOMAIN$. Utilitzeu un domini diferent per continuar.",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainNotVerified": {
+    "message": "$DOMAIN$ no verificat. Comproveu el vostre registre DNS.",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainStatusVerified": {
+    "message": "Verificat"
+  },
+  "domainStatusUnverified": {
+    "message": "Sense verificar"
+  },
+  "domainNameTh": {
+    "message": "Nom"
+  },
+  "domainStatusTh": {
+    "message": "Estat"
+  },
+  "lastChecked": {
+    "message": "Última comprovació"
+  },
+  "editDomain": {
+    "message": "Editar el domini"
+  },
+  "domainFormInvalid": {
+    "message": "Hi ha errors de forma que necessiten la vostra atenció"
+  },
+  "addedDomain": {
+    "message": "S'ha afegit el domini $DOMAIN$",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "removedDomain": {
+    "message": "S'ha suprimit el domini $DOMAIN$",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainVerifiedEvent": {
+    "message": "$DOMAIN$ verificat",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainNotVerifiedEvent": {
+    "message": "$DOMAIN$ sense verificar",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
   "membersColumnHeader": {
     "message": "Membre/grup"
   },
@@ -6109,6 +6279,9 @@
         "example": "2"
       }
     }
+  },
+  "server": {
+    "message": "Servidor"
   },
   "exportData": {
     "message": "Exportar dades"
@@ -6215,6 +6388,25 @@
   "userAccessSecretsManager": {
     "message": "Aquest usuari pot accedir a la beta de l'administrador de secrets"
   },
+  "important": {
+    "message": "Important:"
+  },
+  "viewAll": {
+    "message": "Mostra-ho tot"
+  },
+  "showingPortionOfTotal": {
+    "message": "S'estan mostrant $PORTION$ de $TOTAL$",
+    "placeholders": {
+      "portion": {
+        "content": "$1",
+        "example": "2"
+      },
+      "total": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
   "resolveTheErrorsBelowAndTryAgain": {
     "message": "Resoleu els errors següents i torneu-ho a provar."
   },
@@ -6223,5 +6415,100 @@
   },
   "errorReadingImportFile": {
     "message": "S'ha produït un error en intentar llegir el fitxer d'importació"
+  },
+  "createSecret": {
+    "message": "Crea un secret"
+  },
+  "createProject": {
+    "message": "Crea un projecte"
+  },
+  "createServiceAccount": {
+    "message": "Crea un compte de servei"
+  },
+  "downloadThe": {
+    "message": "Baixa el",
+    "description": "Link to a downloadable resource. This will be used as part of a larger phrase. Example: Download the Secrets Manager CLI"
+  },
+  "smCLI": {
+    "message": "Administrador de secrets CLI"
+  },
+  "importSecrets": {
+    "message": "Importa secrets"
+  },
+  "getStarted": {
+    "message": "Comencem"
+  },
+  "complete": {
+    "message": "$COMPLETED$/$TOTAL$ Completat",
+    "placeholders": {
+      "COMPLETED": {
+        "content": "$1",
+        "example": "1"
+      },
+      "TOTAL": {
+        "content": "$2",
+        "example": "4"
+      }
+    }
+  },
+  "restoreSecret": {
+    "message": "Restaura secret"
+  },
+  "restoreSecrets": {
+    "message": "Restaura secrets"
+  },
+  "restoreSecretPrompt": {
+    "message": "Esteu segur que voleu restaurar aquest secret?"
+  },
+  "restoreSecretsPrompt": {
+    "message": "Esteu segur que voleu restaurar aquests secrets?"
+  },
+  "secretRestoredSuccessToast": {
+    "message": "Secret restaurat"
+  },
+  "secretsRestoredSuccessToast": {
+    "message": "Secrets restaurats"
+  },
+  "selectionIsRequired": {
+    "message": "La selecció és necessària."
+  },
+  "secretsManagerSubscriptionDesc": {
+    "message": "Activeu l’accés a l’organització al Gestor de secrets sense cap càrrec durant el programa beta. Els usuaris poden rebre accés a la beta en membres."
+  },
+  "secretsManagerEnable": {
+    "message": "Habilita l'administrador de secrets Beta"
+  },
+  "checkForBreaches": {
+    "message": "Comproveu les filtracions de dades conegudes per a aquesta contrasenya"
+  },
+  "exposedMasterPassword": {
+    "message": "Contrasenya mestra exposada"
+  },
+  "exposedMasterPasswordDesc": {
+    "message": "S'ha trobat la contrasenya en una filtració de dades. Utilitzeu una contrasenya única per protegir el vostre compte. Esteu segur que voleu utilitzar una contrasenya exposada?"
+  },
+  "weakAndExposedMasterPassword": {
+    "message": "Contrasenya mestra exposada i poc segura"
+  },
+  "weakAndBreachedMasterPasswordDesc": {
+    "message": "Contrasenya feble identificada i trobada en una filtració de dades. Utilitzeu una contrasenya única i segura per protegir el vostre compte. Esteu segur que voleu utilitzar aquesta contrasenya?"
+  },
+  "characterMinimum": {
+    "message": "$LENGTH$ caràcters mínim",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
+  },
+  "masterPasswordMinimumlength": {
+    "message": "La contrasenya mestra ha de tenir almenys $LENGTH$ caràcters.",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
   }
 }

@@ -697,7 +697,14 @@
     "message": "Необходимо повторно ввести мастер-пароль."
   },
   "masterPasswordMinlength": {
-    "message": "Мастер-пароль должен содержать не менее 8 символов."
+    "message": "Мастер-пароль должен содержать не менее $VALUE$ символов.",
+    "description": "The Master Password must be at least a specific number of characters long.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
   },
   "masterPassDoesntMatch": {
     "message": "Мастер-пароли не совпадают."
@@ -5723,6 +5730,12 @@
   "deleteSecrets": {
     "message": "Удалить секреты"
   },
+  "hardDeleteSecret": {
+    "message": "Окончательно удалить секрет"
+  },
+  "hardDeleteSecrets": {
+    "message": "Окончательно удалить секреты"
+  },
   "secretProjectAssociationDescription": {
     "message": "Выберите проекты, с которыми будет связан секрет. Только пользователи организации, имеющие доступ к этим проектам, смогут увидеть секрет."
   },
@@ -5777,6 +5790,9 @@
   "secretsNoItemsMessage": {
     "message": "Чтобы начать, добавьте новый секрет или импортируйте их."
   },
+  "secretsTrashNoItemsMessage": {
+    "message": "В корзине нет секретов."
+  },
   "serviceAccountsNoItemsTitle": {
     "message": "Пока нечего показать"
   },
@@ -5821,6 +5837,15 @@
   },
   "softDeletesSuccessToast": {
     "message": "Секреты отправлены в корзину"
+  },
+  "hardDeleteSecretConfirmation": {
+    "message": "Вы уверены, что хотите удалить этот секрет?"
+  },
+  "hardDeleteSecretsConfirmation": {
+    "message": "Вы уверены, что хотите удалить эти секреты?"
+  },
+  "hardDeletesSuccessToast": {
+    "message": "Секреты удалены окончательно"
   },
   "serviceAccountCreated": {
     "message": "Сервисный аккаунт создан"
@@ -5900,6 +5925,9 @@
   "softDeleteSuccessToast": {
     "message": "Секрет отправлен в корзину"
   },
+  "hardDeleteSuccessToast": {
+    "message": "Секрет удален окончательно"
+  },
   "searchProjects": {
     "message": "Поиск проектов"
   },
@@ -5947,6 +5975,16 @@
   },
   "revokeAccessToken": {
     "message": "Отозвать токен доступа"
+  },
+  "revokeAccessTokens": {
+    "message": "Отозвать токены доступа"
+  },
+  "revokeAccessTokenDesc": {
+    "message": "Отзыв токенов доступа является окончательным и необратимым."
+  },
+  "accessTokenRevoked": {
+    "message": "Токены доступа отозваны",
+    "description": "Toast message after deleting one or multiple access tokens."
   },
   "submenu": {
     "message": "Подменю"
@@ -6035,6 +6073,138 @@
   "memberAccessAll": {
     "message": "Эта пользователь может иметь доступ и изменять все элементы."
   },
+  "domainVerification": {
+    "message": "Верификация домена"
+  },
+  "newDomain": {
+    "message": "Новый домен"
+  },
+  "noDomains": {
+    "message": "Нет доменов"
+  },
+  "noDomainsSubText": {
+    "message": "Подключение домена позволит пользователям пропускать поле идентификатора SSO при авторизации с помощью SSO."
+  },
+  "verifyDomain": {
+    "message": "Верифицировать домен"
+  },
+  "reverifyDomain": {
+    "message": "Повторно верифицировать домен"
+  },
+  "copyDnsTxtRecord": {
+    "message": "Скопировать запись DNS TXT"
+  },
+  "dnsTxtRecord": {
+    "message": "Запись DNS TXT"
+  },
+  "dnsTxtRecordInputHint": {
+    "message": "Скопируйте и вставьте TXT-запись к своему провайдеру DNS."
+  },
+  "domainNameInputHint": {
+    "message": "Пример: mydomain.com. Для верификации субдоменов необходимы отдельные записи."
+  },
+  "automaticDomainVerification": {
+    "message": "Автоматическая верификация домена"
+  },
+  "automaticDomainVerificationProcess": {
+    "message": "Bitwarden попытается верифицировать домен 3 раза в течение первых 72 часов. Если верифицировать домен не удастся, проверьте DNS-запись на вашем хосте и верифицируйте вручную. Домен будет удален из вашей организации через 7 дней, если он не будет верифицирован"
+  },
+  "invalidDomainNameMessage": {
+    "message": "Введенные данные не соответствуют формату. Формат: mydomain.com. Для верификации субдоменов необходимы отдельные записи."
+  },
+  "removeDomain": {
+    "message": "Удалить домен"
+  },
+  "removeDomainWarning": {
+    "message": "Удаление домена не может быть отменено. Вы уверены, что хотите продолжить?"
+  },
+  "domainRemoved": {
+    "message": "Домен удален"
+  },
+  "domainSaved": {
+    "message": "Домен сохранен"
+  },
+  "domainVerified": {
+    "message": "Домен верифицирован"
+  },
+  "duplicateDomainError": {
+    "message": "Вы не можете заявить один и тот же домен дважды."
+  },
+  "domainNotAvailable": {
+    "message": "Кто-то другой использует домен $DOMAIN$. Для продолжения используйте другой домен.",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainNotVerified": {
+    "message": "$DOMAIN$ не верифицирован. Проверьте запись DNS.",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainStatusVerified": {
+    "message": "Верифицирован"
+  },
+  "domainStatusUnverified": {
+    "message": "Неверифицирован"
+  },
+  "domainNameTh": {
+    "message": "Название"
+  },
+  "domainStatusTh": {
+    "message": "Статус"
+  },
+  "lastChecked": {
+    "message": "Последняя проверка"
+  },
+  "editDomain": {
+    "message": "Редактировать домен"
+  },
+  "domainFormInvalid": {
+    "message": "Имеются ошибки в форме, которые требуют вашего внимания"
+  },
+  "addedDomain": {
+    "message": "Добавлен домен $DOMAIN$",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "removedDomain": {
+    "message": "Удален домен $DOMAIN$",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainVerifiedEvent": {
+    "message": "$DOMAIN$ верифицирован",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainNotVerifiedEvent": {
+    "message": "$DOMAIN$ не верифицирован",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
   "membersColumnHeader": {
     "message": "Участник/Группа"
   },
@@ -6109,6 +6279,9 @@
         "example": "2"
       }
     }
+  },
+  "server": {
+    "message": "Сервер"
   },
   "exportData": {
     "message": "Экспорт данных"
@@ -6215,6 +6388,25 @@
   "userAccessSecretsManager": {
     "message": "Этот пользователь может получить доступ к Менеджеру секретов Beta"
   },
+  "important": {
+    "message": "Важно:"
+  },
+  "viewAll": {
+    "message": "Посмотреть все"
+  },
+  "showingPortionOfTotal": {
+    "message": "Показаны $PORTION$ из $TOTAL$",
+    "placeholders": {
+      "portion": {
+        "content": "$1",
+        "example": "2"
+      },
+      "total": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
   "resolveTheErrorsBelowAndTryAgain": {
     "message": "Устраните указанные ниже ошибки и повторите попытку."
   },
@@ -6223,5 +6415,100 @@
   },
   "errorReadingImportFile": {
     "message": "Произошла ошибка при попытке чтения импортируемого файла"
+  },
+  "createSecret": {
+    "message": "Создать секрет"
+  },
+  "createProject": {
+    "message": "Создать проект"
+  },
+  "createServiceAccount": {
+    "message": "Создать сервисный аккаунт"
+  },
+  "downloadThe": {
+    "message": "Скачать",
+    "description": "Link to a downloadable resource. This will be used as part of a larger phrase. Example: Download the Secrets Manager CLI"
+  },
+  "smCLI": {
+    "message": "Менеджер секретов CLI"
+  },
+  "importSecrets": {
+    "message": "Импорт секретов"
+  },
+  "getStarted": {
+    "message": "Начать"
+  },
+  "complete": {
+    "message": "Выполнено $COMPLETED$/$TOTAL$",
+    "placeholders": {
+      "COMPLETED": {
+        "content": "$1",
+        "example": "1"
+      },
+      "TOTAL": {
+        "content": "$2",
+        "example": "4"
+      }
+    }
+  },
+  "restoreSecret": {
+    "message": "Восстановить секрет"
+  },
+  "restoreSecrets": {
+    "message": "Восстановить секреты"
+  },
+  "restoreSecretPrompt": {
+    "message": "Уверены, что хотите восстановить этот секрет?"
+  },
+  "restoreSecretsPrompt": {
+    "message": "Уверены, что хотите восстановить эти секреты?"
+  },
+  "secretRestoredSuccessToast": {
+    "message": "Секрет восстановлен"
+  },
+  "secretsRestoredSuccessToast": {
+    "message": "Секреты восстановлены"
+  },
+  "selectionIsRequired": {
+    "message": "Требуется выбор."
+  },
+  "secretsManagerSubscriptionDesc": {
+    "message": "Включите доступ организации к Менеджеру секретов бесплатно во время программы бета-тестирования. Пользователям может быть предоставлен доступ к бета-версии в разделе Участники."
+  },
+  "secretsManagerEnable": {
+    "message": "Менеджер секретов Бета"
+  },
+  "checkForBreaches": {
+    "message": "Check known data breaches for this password"
+  },
+  "exposedMasterPassword": {
+    "message": "Exposed Master Password"
+  },
+  "exposedMasterPasswordDesc": {
+    "message": "Password found in a data breach. Use a unique password to protect your account. Are you sure you want to use an exposed password?"
+  },
+  "weakAndExposedMasterPassword": {
+    "message": "Weak and Exposed Master Password"
+  },
+  "weakAndBreachedMasterPasswordDesc": {
+    "message": "Weak password identified and found in a data breach. Use a strong and unique password to protect your account. Are you sure you want to use this password?"
+  },
+  "characterMinimum": {
+    "message": "$LENGTH$ character minimum",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
+  },
+  "masterPasswordMinimumlength": {
+    "message": "Master password must be at least $LENGTH$ characters long.",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
   }
 }

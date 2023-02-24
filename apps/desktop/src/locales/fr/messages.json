@@ -67,7 +67,7 @@
     "message": "Pièces jointes"
   },
   "viewItem": {
-    "message": "Voir l'élément"
+    "message": "Afficher l'élément"
   },
   "name": {
     "message": "Nom"
@@ -542,7 +542,14 @@
     "message": "Une nouvelle saisie du mot de passe principal est nécessaire."
   },
   "masterPasswordMinlength": {
-    "message": "Le mot de passe principal doit comporter au moins 8 caractères."
+    "message": "Le mot de passe principal doit comporter au moins $VALUE$ caractères.",
+    "description": "The Master Password must be at least a specific number of characters long.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
   },
   "masterPassDoesntMatch": {
     "message": "La confirmation du mot de passe principal ne correspond pas."
@@ -746,7 +753,7 @@
     "message": "Ajouter un dossier"
   },
   "view": {
-    "message": "Voir"
+    "message": "Affichage"
   },
   "account": {
     "message": "Compte"

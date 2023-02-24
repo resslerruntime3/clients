@@ -697,7 +697,14 @@
     "message": "Поновно уписивање главне лозинке је неопходно."
   },
   "masterPasswordMinlength": {
-    "message": "Главна лозинка треба имати барем 8 карактера."
+    "message": "Master password must be at least $VALUE$ characters long.",
+    "description": "The Master Password must be at least a specific number of characters long.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
   },
   "masterPassDoesntMatch": {
     "message": "Потврђена Главна Лозинка се не подудара."
@@ -5723,6 +5730,12 @@
   "deleteSecrets": {
     "message": "Обрисати тајне"
   },
+  "hardDeleteSecret": {
+    "message": "Трајно избрисати тајну"
+  },
+  "hardDeleteSecrets": {
+    "message": "Трајно избрисати тајне"
+  },
   "secretProjectAssociationDescription": {
     "message": "Select projects that the secret will be associated with. Only organization users with access to these projects will be able to see the secret."
   },
@@ -5777,6 +5790,9 @@
   "secretsNoItemsMessage": {
     "message": "To get started, add a new secret or import secrets."
   },
+  "secretsTrashNoItemsMessage": {
+    "message": "У отпад нема тајне."
+  },
   "serviceAccountsNoItemsTitle": {
     "message": "Nothing to show yet"
   },
@@ -5821,6 +5837,15 @@
   },
   "softDeletesSuccessToast": {
     "message": "Secrets sent to trash"
+  },
+  "hardDeleteSecretConfirmation": {
+    "message": "Да ли сте сигурни да желите да трајно избришете ову тајну?"
+  },
+  "hardDeleteSecretsConfirmation": {
+    "message": "Да ли сте сигурни да желите да трајно избришете ове тајне?"
+  },
+  "hardDeletesSuccessToast": {
+    "message": "Тајне трајно избрисане"
   },
   "serviceAccountCreated": {
     "message": "Service account created"
@@ -5900,6 +5925,9 @@
   "softDeleteSuccessToast": {
     "message": "Тајна послана у отпад"
   },
+  "hardDeleteSuccessToast": {
+    "message": "Тајна трајно избрисана"
+  },
   "searchProjects": {
     "message": "Претражити пројекте"
   },
@@ -5947,6 +5975,16 @@
   },
   "revokeAccessToken": {
     "message": "Revoke access token"
+  },
+  "revokeAccessTokens": {
+    "message": "Опозови приступ токена"
+  },
+  "revokeAccessTokenDesc": {
+    "message": "Опозив приступних токена је трајно и неповратно."
+  },
+  "accessTokenRevoked": {
+    "message": "Приступ токена опозван",
+    "description": "Toast message after deleting one or multiple access tokens."
   },
   "submenu": {
     "message": "Под-мени"
@@ -6035,6 +6073,138 @@
   "memberAccessAll": {
     "message": "Овај члан може приступити и изменити све ставке."
   },
+  "domainVerification": {
+    "message": "Верификација домена"
+  },
+  "newDomain": {
+    "message": "Нови домен"
+  },
+  "noDomains": {
+    "message": "Нема домена"
+  },
+  "noDomainsSubText": {
+    "message": "Повезивање домена омогућава члановима да прескоче SSO идентификацију при пријављивање са SSO."
+  },
+  "verifyDomain": {
+    "message": "Потврди домен"
+  },
+  "reverifyDomain": {
+    "message": "Поново верификујте домен"
+  },
+  "copyDnsTxtRecord": {
+    "message": "Копирати DNS TXT запис"
+  },
+  "dnsTxtRecord": {
+    "message": "DNS TXT запис"
+  },
+  "dnsTxtRecordInputHint": {
+    "message": "Копирајте и налепите TXT запис у DNS провајдер."
+  },
+  "domainNameInputHint": {
+    "message": "Пример: mydomain.com. Под-домени захтевају посебне уносе да би били верификовани."
+  },
+  "automaticDomainVerification": {
+    "message": "Аутоматска верификација домена"
+  },
+  "automaticDomainVerificationProcess": {
+    "message": "Bitwarden ће покушати да верификује домен 3 пута током прва 72 сата. Ако домен не може да се верификује, проверите DNS запис у вашен хосту и верификујте ручно. Домен ће бити уклоњен из ваше организације за 7 дана ако не буде верификован"
+  },
+  "invalidDomainNameMessage": {
+    "message": "Унос није важећи формат. Формат: mydomain.com. Под-домени захтевају посебне уносе за проверу."
+  },
+  "removeDomain": {
+    "message": "Уклони домен"
+  },
+  "removeDomainWarning": {
+    "message": "Уклањање домена се не може опозвати. Сигурно наставити?"
+  },
+  "domainRemoved": {
+    "message": "Домен уклоњен"
+  },
+  "domainSaved": {
+    "message": "Домен сачуван"
+  },
+  "domainVerified": {
+    "message": "Домен верификован"
+  },
+  "duplicateDomainError": {
+    "message": "Не можете два пута тражити исти домен."
+  },
+  "domainNotAvailable": {
+    "message": "Неко други користи $DOMAIN$. Користите други домен да бисте наставили.",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainNotVerified": {
+    "message": "$DOMAIN$ није проверен. Проверите ваш DNS запис.",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainStatusVerified": {
+    "message": "Проверено"
+  },
+  "domainStatusUnverified": {
+    "message": "Није потврђен"
+  },
+  "domainNameTh": {
+    "message": "Име"
+  },
+  "domainStatusTh": {
+    "message": "Статус"
+  },
+  "lastChecked": {
+    "message": "Последња провера"
+  },
+  "editDomain": {
+    "message": "Уреди домен"
+  },
+  "domainFormInvalid": {
+    "message": "Постоје грешке у формулару које захтевају вашу пажњу"
+  },
+  "addedDomain": {
+    "message": "Домен $DOMAIN$ додат",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "removedDomain": {
+    "message": "Домен $DOMAIN$ уклоњен",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainVerifiedEvent": {
+    "message": "$DOMAIN$ проверен",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainNotVerifiedEvent": {
+    "message": "$DOMAIN$ није проверен",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
   "membersColumnHeader": {
     "message": "Member/Group"
   },
@@ -6109,6 +6279,9 @@
         "example": "2"
       }
     }
+  },
+  "server": {
+    "message": "Сервер"
   },
   "exportData": {
     "message": "Увези податке"
@@ -6215,6 +6388,25 @@
   "userAccessSecretsManager": {
     "message": "Овај корисник може приступити Secrets Manager Beta"
   },
+  "important": {
+    "message": "Важно:"
+  },
+  "viewAll": {
+    "message": "Прегледај све"
+  },
+  "showingPortionOfTotal": {
+    "message": "Приказ $PORTION$ од $TOTAL$",
+    "placeholders": {
+      "portion": {
+        "content": "$1",
+        "example": "2"
+      },
+      "total": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
   "resolveTheErrorsBelowAndTryAgain": {
     "message": "Поправите грешке испод и покушајте поново."
   },
@@ -6223,5 +6415,100 @@
   },
   "errorReadingImportFile": {
     "message": "Дошло је до грешке у покушају читања датотеке за увоз"
+  },
+  "createSecret": {
+    "message": "Креирати тајну"
+  },
+  "createProject": {
+    "message": "Креирај пројекат"
+  },
+  "createServiceAccount": {
+    "message": "Креирајте налог сервиса"
+  },
+  "downloadThe": {
+    "message": "Преузети",
+    "description": "Link to a downloadable resource. This will be used as part of a larger phrase. Example: Download the Secrets Manager CLI"
+  },
+  "smCLI": {
+    "message": "Secrets Manager CLI"
+  },
+  "importSecrets": {
+    "message": "Увоз тајне"
+  },
+  "getStarted": {
+    "message": "Почните"
+  },
+  "complete": {
+    "message": "$COMPLETED$/$TOTAL$ завршено",
+    "placeholders": {
+      "COMPLETED": {
+        "content": "$1",
+        "example": "1"
+      },
+      "TOTAL": {
+        "content": "$2",
+        "example": "4"
+      }
+    }
+  },
+  "restoreSecret": {
+    "message": "Врати тајну"
+  },
+  "restoreSecrets": {
+    "message": "Врати тајне"
+  },
+  "restoreSecretPrompt": {
+    "message": "Да ли сте сигурни да желите да вратите ову тајну?"
+  },
+  "restoreSecretsPrompt": {
+    "message": "Да ли сте сигурни да желите да вратите ове тајне?"
+  },
+  "secretRestoredSuccessToast": {
+    "message": "Тајна враћена"
+  },
+  "secretsRestoredSuccessToast": {
+    "message": "Тајне враћене"
+  },
+  "selectionIsRequired": {
+    "message": "Потребно је да изаберете нешто."
+  },
+  "secretsManagerSubscriptionDesc": {
+    "message": "Укључите приступ организације за Secrets Manager бесплатно током Бета програма. Корисницима се може одобрити приступ Бета у Члановима."
+  },
+  "secretsManagerEnable": {
+    "message": "Омогућити Secrets Manager Бета"
+  },
+  "checkForBreaches": {
+    "message": "Проверите познате упада података за ову лозинку"
+  },
+  "exposedMasterPassword": {
+    "message": "Изложена главна лозинка"
+  },
+  "exposedMasterPasswordDesc": {
+    "message": "Лозинка је пронађена у случају повреде података. Користите јединствену лозинку да бисте заштитили свој налог. Да ли сте сигурни да желите да користите откривену лозинку?"
+  },
+  "weakAndExposedMasterPassword": {
+    "message": "Слаба и зложена главна лозинка"
+  },
+  "weakAndBreachedMasterPasswordDesc": {
+    "message": "Идентификована је слаба лозинка и пронађена у упаду података. Користите јаку и јединствену лозинку да заштитите свој налог. Да ли сте сигурни да желите да користите ову лозинку?"
+  },
+  "characterMinimum": {
+    "message": "Минимум $LENGTH$ карактера",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
+  },
+  "masterPasswordMinimumlength": {
+    "message": "Главна лозинка треба имати барем $LENGTH$ карактера.",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
   }
 }

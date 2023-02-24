@@ -658,7 +658,7 @@
     "message": "Hovedadgangskoden er den adgangskode, du bruger, når du tilgår din boks. Det er meget vigtigt, at hovedadgangskoden ikke glemmes, da der ikke er nogen måde, hvorpå den kan genoprettes."
   },
   "masterPassImportant": {
-    "message": "Hovedadgangskoder kan ikke gendannes, hvis de glemmes!"
+    "message": "Hovedadgangskoder kan ikke gendannes, hvis du glemmer dem!"
   },
   "masterPassHintDesc": {
     "message": "Et hovedadgangskodetip kan bidrage til at komme i tanke om adgangskoden, hvis den glemmes."
@@ -697,7 +697,14 @@
     "message": "Hovedadgangskode kræves angivet igen."
   },
   "masterPasswordMinlength": {
-    "message": "Hovedadgangskoden skal være på mindst 8 tegn."
+    "message": "Master password must be at least $VALUE$ characters long.",
+    "description": "The Master Password must be at least a specific number of characters long.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
   },
   "masterPassDoesntMatch": {
     "message": "Hovedadgangskoderne matcher ikke."
@@ -5723,6 +5730,12 @@
   "deleteSecrets": {
     "message": "Slet hemmeligheder"
   },
+  "hardDeleteSecret": {
+    "message": "Slet hemmelighed permanent"
+  },
+  "hardDeleteSecrets": {
+    "message": "Slet hemmeligheder permanent"
+  },
   "secretProjectAssociationDescription": {
     "message": "Vælg projekter, som hemmeligheden vil blive tilknyttet. Den vil kun kunne ses af organisationsbrugere med adgang til disse projekter."
   },
@@ -5777,6 +5790,9 @@
   "secretsNoItemsMessage": {
     "message": "Tilføj en ny hemmelighed eller importér hemmeligheder for at komme i gang."
   },
+  "secretsTrashNoItemsMessage": {
+    "message": "Der er ingen hemmeligheder i papirkurven."
+  },
   "serviceAccountsNoItemsTitle": {
     "message": "Intet at vise endnu"
   },
@@ -5821,6 +5837,15 @@
   },
   "softDeletesSuccessToast": {
     "message": "Hemmelighed sendt til papirkurv"
+  },
+  "hardDeleteSecretConfirmation": {
+    "message": "Sikker på, at denne hemmelighed skal slettes permanent?"
+  },
+  "hardDeleteSecretsConfirmation": {
+    "message": "Sikker på, at disse hemmeligheder skal slettes permanent?"
+  },
+  "hardDeletesSuccessToast": {
+    "message": "Hemmeligheder slettet permanent"
   },
   "serviceAccountCreated": {
     "message": "Tjenestekonto oprettet"
@@ -5900,6 +5925,9 @@
   "softDeleteSuccessToast": {
     "message": "Hemmelighed sendt til papirkurv"
   },
+  "hardDeleteSuccessToast": {
+    "message": "Hemmelighed slettet permanent"
+  },
   "searchProjects": {
     "message": "Søg i projekter"
   },
@@ -5947,6 +5975,16 @@
   },
   "revokeAccessToken": {
     "message": "Ophæv adgangstoken"
+  },
+  "revokeAccessTokens": {
+    "message": "Revoke access tokens"
+  },
+  "revokeAccessTokenDesc": {
+    "message": "Revoking access tokens is permanent and irreversible."
+  },
+  "accessTokenRevoked": {
+    "message": "Access tokens revoked",
+    "description": "Toast message after deleting one or multiple access tokens."
   },
   "submenu": {
     "message": "Undermenu"
@@ -6035,6 +6073,138 @@
   "memberAccessAll": {
     "message": "Dette medlem kan tilgå og ændre alle emner."
   },
+  "domainVerification": {
+    "message": "Domænebekræftelse"
+  },
+  "newDomain": {
+    "message": "Nyt domæne"
+  },
+  "noDomains": {
+    "message": "Ingen domæner"
+  },
+  "noDomainsSubText": {
+    "message": "Tilslutning af et domæne lader medlemmer overspringe SSO-identifikationsfeltet under SSO-baseret indlogning."
+  },
+  "verifyDomain": {
+    "message": "Bekræft domæne"
+  },
+  "reverifyDomain": {
+    "message": "Genbekræft domæne"
+  },
+  "copyDnsTxtRecord": {
+    "message": "Kopiér DNS TXT-post"
+  },
+  "dnsTxtRecord": {
+    "message": "DNS TXT-post"
+  },
+  "dnsTxtRecordInputHint": {
+    "message": "Kopiér og indsæt TXT-posten i din DNS-udbyder."
+  },
+  "domainNameInputHint": {
+    "message": "Eks.: mitdomaene.dk. Underdomæner kræver at separate poster bekræftes."
+  },
+  "automaticDomainVerification": {
+    "message": "Automatisk Domænebekræftelse"
+  },
+  "automaticDomainVerificationProcess": {
+    "message": "Bitwarden vil forsøge at bekræfte domænet 3 gange i løbet af de første 72 timer. Kan domænet ikke bekræftes, så tjek DNS-posten på værten og bekræft manuelt. Såfremt ubekræftet efter 7 dage, fjernes domænet fra organisationen"
+  },
+  "invalidDomainNameMessage": {
+    "message": "Input er ikke i et gyldigt format. Format: mitdomaene.dk. Underdomæner kræver at separate poster bekræftes."
+  },
+  "removeDomain": {
+    "message": "Fjern domæne"
+  },
+  "removeDomainWarning": {
+    "message": "En domænefjernelse er irreversibel. Fortsæt — helt sikker?"
+  },
+  "domainRemoved": {
+    "message": "Domæne fjernet"
+  },
+  "domainSaved": {
+    "message": "Domæne gemt"
+  },
+  "domainVerified": {
+    "message": "Domæne bekræftet"
+  },
+  "duplicateDomainError": {
+    "message": "Der kan ikke gøres krav på det samme domæne to gange."
+  },
+  "domainNotAvailable": {
+    "message": "$DOMAIN$ bruges allerede. Brug et andet domæne for at fortsætte.",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainNotVerified": {
+    "message": "$DOMAIN$ ikke bekræftet. Tjek DNS-posten.",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainStatusVerified": {
+    "message": "Bekræftet"
+  },
+  "domainStatusUnverified": {
+    "message": "Ikke-bekræftet"
+  },
+  "domainNameTh": {
+    "message": "Navn"
+  },
+  "domainStatusTh": {
+    "message": "Status"
+  },
+  "lastChecked": {
+    "message": "Senest tjekket"
+  },
+  "editDomain": {
+    "message": "Redigér domæne"
+  },
+  "domainFormInvalid": {
+    "message": "Der fndes formularfejl, som kræver håndtering"
+  },
+  "addedDomain": {
+    "message": "Domænet $DOMAIN$ tilføjet",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "removedDomain": {
+    "message": "Domænet $DOMAIN$ fjernet",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainVerifiedEvent": {
+    "message": "$DOMAIN$ bekræftet",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "domainNotVerifiedEvent": {
+    "message": "$DOMAIN$ ikke bekræftet",
+    "placeholders": {
+      "DOMAIN": {
+        "content": "$1",
+        "example": "bitwarden.com"
+      }
+    }
+  },
   "membersColumnHeader": {
     "message": "Medlem/Gruppe"
   },
@@ -6109,6 +6279,9 @@
         "example": "2"
       }
     }
+  },
+  "server": {
+    "message": "Server"
   },
   "exportData": {
     "message": "Eksportér data"
@@ -6215,6 +6388,25 @@
   "userAccessSecretsManager": {
     "message": "Denne bruger kan tilgå Secrets Manager Beta"
   },
+  "important": {
+    "message": "Vigtigt:"
+  },
+  "viewAll": {
+    "message": "Vis alle"
+  },
+  "showingPortionOfTotal": {
+    "message": "Viser $PORTION$ af $TOTAL$",
+    "placeholders": {
+      "portion": {
+        "content": "$1",
+        "example": "2"
+      },
+      "total": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
   "resolveTheErrorsBelowAndTryAgain": {
     "message": "Ret fejlene nedenfor og forsøg igen."
   },
@@ -6223,5 +6415,100 @@
   },
   "errorReadingImportFile": {
     "message": "En fejl opstod under forsøget på at læse importfilen"
+  },
+  "createSecret": {
+    "message": "Opret en hemmelighed"
+  },
+  "createProject": {
+    "message": "Opret et projekt"
+  },
+  "createServiceAccount": {
+    "message": "Opret en tjenestekonto"
+  },
+  "downloadThe": {
+    "message": "Download",
+    "description": "Link to a downloadable resource. This will be used as part of a larger phrase. Example: Download the Secrets Manager CLI"
+  },
+  "smCLI": {
+    "message": "Secrets Manager CLI"
+  },
+  "importSecrets": {
+    "message": "Importér hemmeligheder"
+  },
+  "getStarted": {
+    "message": "Komme i gang"
+  },
+  "complete": {
+    "message": "$COMPLETED$/$TOTAL$ Færdig(e)",
+    "placeholders": {
+      "COMPLETED": {
+        "content": "$1",
+        "example": "1"
+      },
+      "TOTAL": {
+        "content": "$2",
+        "example": "4"
+      }
+    }
+  },
+  "restoreSecret": {
+    "message": "Gendan hemmelighed"
+  },
+  "restoreSecrets": {
+    "message": "Gendan hemmeligheder"
+  },
+  "restoreSecretPrompt": {
+    "message": "Sikker på, at denne hemmelighed skal gendannes?"
+  },
+  "restoreSecretsPrompt": {
+    "message": "Sikker på, at disse hemmeligheder skal gendannes?"
+  },
+  "secretRestoredSuccessToast": {
+    "message": "Hemmelighed gendannet"
+  },
+  "secretsRestoredSuccessToast": {
+    "message": "Hemmeligheder gendannet"
+  },
+  "selectionIsRequired": {
+    "message": "Valg er obligatorisk."
+  },
+  "secretsManagerSubscriptionDesc": {
+    "message": "Slå organisationsadgang til Secrets Manager til uden beregning under Beta-programmet. Brugere kan få adgang til Beta under Medlemmer."
+  },
+  "secretsManagerEnable": {
+    "message": "Aktivér Secrets Manager Beta"
+  },
+  "checkForBreaches": {
+    "message": "Tjek kendte datalæk for denne adgangskode"
+  },
+  "exposedMasterPassword": {
+    "message": "Kompromitteret hovedadgangskode"
+  },
+  "exposedMasterPasswordDesc": {
+    "message": "Adgangskode fundet i datalæk. Brug en unik adgangskode til kontobeskyttelse. Sikker på, at den kompromitterede adgangskode skal benyttes?"
+  },
+  "weakAndExposedMasterPassword": {
+    "message": "Svag og kompromitteret hovedadgangskode"
+  },
+  "weakAndBreachedMasterPasswordDesc": {
+    "message": "Svag adgangskode identificeret og fundet i datalæk. Brug en unik adgangskode til kontobeskyttelse. Sikker på, at at denne adgangskode skal bruges?"
+  },
+  "characterMinimum": {
+    "message": "Minimum $LENGTH$ tegn",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
+  },
+  "masterPasswordMinimumlength": {
+    "message": "Hovedadgangskode skal udgøre minimum $LENGTH$ tegn.",
+    "placeholders": {
+      "length": {
+        "content": "$1",
+        "example": "14"
+      }
+    }
   }
 }
