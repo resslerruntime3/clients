@@ -20,6 +20,7 @@ import { KeyConnectorService } from "@bitwarden/common/auth/abstractions/key-con
 import { TwoFactorService } from "@bitwarden/common/auth/abstractions/two-factor.service";
 import { TwoFactorProviderType } from "@bitwarden/common/auth/enums/two-factor-provider-type";
 import { AuthResult } from "@bitwarden/common/auth/models/domain/auth-result";
+import { ForceResetPasswordReason } from "@bitwarden/common/auth/models/domain/force-password-reset-options";
 import {
   PasswordLogInCredentials,
   SsoLogInCredentials,
@@ -297,17 +298,17 @@ export class LoginCommand {
       }
 
       // Handle updating passwords if NOT using an API Key for authentication
-      if (clientId == null && clientSecret == null) {
-        if (response.forcePasswordReset) {
+      if (response.forcePasswordReset && clientId == null && clientSecret == null) {
+        if (
+          response.forcePasswordResetOptions.reason ===
+          ForceResetPasswordReason.AdminForcePasswordReset
+        ) {
           return await this.updateTempPassword();
-        }
-
-        if (response.enforceMasterPasswordPolicyOnLogin) {
-          const [needsUpdate, failedOrgId] = await this.requirePasswordUpdateOnLogin(password);
-
-          if (needsUpdate) {
-            await this.updateWeakPassword(password, failedOrgId);
-          }
+        } else if (
+          response.forcePasswordResetOptions.reason ===
+          ForceResetPasswordReason.WeakMasterPasswordOnLogin
+        ) {
+          return await this.updateWeakPassword(password, response.forcePasswordResetOptions.orgId);
         }
       }
 
@@ -357,6 +358,21 @@ export class LoginCommand {
     return Response.success(res);
   }
 
+  private async handleUpdatePasswordSuccessResponse(): Promise<Response> {
+    await this.logoutCallback();
+    this.authService.logOut(() => {
+      /* Do nothing */
+    });
+
+    // TODO: Run this by product to adjust language if necessary
+    const res = new MessageResponse(
+      "Your master password has been updated!",
+      "\n" + "You have been logged out and must log in again to access the vault."
+    );
+
+    return Response.success(res);
+  }
+
   private async updateWeakPassword(currentPassword: string, orgId: string) {
     // Force a sync so we have access to organization details
     await this.syncService.fullSync(true);
@@ -390,7 +406,7 @@ export class LoginCommand {
 
       await this.apiService.postPassword(request);
 
-      return this.handleSuccessResponse();
+      return await this.handleUpdatePasswordSuccessResponse();
     } catch (e) {
       await this.logoutCallback();
       this.authService.logOut(() => {
@@ -427,7 +443,7 @@ export class LoginCommand {
 
       await this.apiService.putUpdateTempPassword(request);
 
-      return this.handleSuccessResponse();
+      return await this.handleUpdatePasswordSuccessResponse();
     } catch (e) {
       await this.logoutCallback();
       this.authService.logOut(() => {
@@ -764,32 +780,5 @@ export class LoginCommand {
     this.masterPasswordPolicies = this.policyService
       .mapPoliciesFromToken(policiesResponse)
       .filter((p) => p.type === PolicyType.MasterPassword && p.enabled);
-  }
-  private async requirePasswordUpdateOnLogin(masterPassword: string): Promise<[boolean, string?]> {
-    // Ensure we have the master password policies available
-    if (this.masterPasswordPolicies == undefined) {
-      await this.loadMasterPasswordPolicies();
-    }
-
-    // We only care about policies that are enforced on login here
-    const policies = this.masterPasswordPolicies.filter((p) => p.data.enforceOnLogin);
-
-    // No policies to enforce, so we can return early
-    if (policies.length === 0) {
-      return [false];
-    }
-
-    const passwordStrength = this.passwordGenerationService.passwordStrength(
-      masterPassword,
-      this.getPasswordStrengthUserInput()
-    )?.score;
-
-    const [meetsRequirements, failedOrgId] = this.policyService.evaluateMasterPasswordByEachPolicy(
-      passwordStrength,
-      masterPassword,
-      policies
-    );
-
-    return [!meetsRequirements, failedOrgId];
   }
 }
