@@ -14,7 +14,6 @@ import { PolicyService } from "@bitwarden/common/abstractions/policy/policy.serv
 import { StateService } from "@bitwarden/common/abstractions/state.service";
 import { Utils } from "@bitwarden/common/misc/utils";
 import { Policy } from "@bitwarden/common/models/domain/policy";
-import { OrganizationKeysRequest } from "@bitwarden/common/models/request/organization-keys.request";
 
 import { BaseAcceptComponent } from "../app/common/base.accept.component";
 
@@ -97,15 +96,6 @@ export class AcceptOrganizationComponent extends BaseAcceptComponent {
 
       // Add reset password key to accept request
       request.resetPasswordKey = encryptedKey.encryptedString;
-    }
-
-    if (qParams.initOrganization) {
-      const shareKey = await this.cryptoService.makeShareKey();
-      const key = shareKey[0].encryptedString;
-      const orgKeys = await this.cryptoService.makeKeyPair(shareKey[1]);
-
-      request.key = key;
-      request.keys = new OrganizationKeysRequest(orgKeys[0], orgKeys[1].encryptedString);
     }
 
     return request;
