@@ -35,10 +35,12 @@ import {
   MessagingServiceInitOptions,
   messagingServiceFactory,
 } from "../../../background/service_factories/messaging-service.factory";
+import { passwordGenerationServiceFactory } from "../../../background/service_factories/password-generation-service.factory";
 import {
   PlatformUtilsServiceInitOptions,
   platformUtilsServiceFactory,
 } from "../../../background/service_factories/platform-utils-service.factory";
+import { policyServiceFactory } from "../../../background/service_factories/policy-service.factory";
 import {
   stateServiceFactory,
   StateServiceInitOptions,
@@ -89,7 +91,9 @@ export function authServiceFactory(
         await stateServiceFactory(cache, opts),
         await twoFactorServiceFactory(cache, opts),
         await i18nServiceFactory(cache, opts),
-        await encryptServiceFactory(cache, opts)
+        await encryptServiceFactory(cache, opts),
+        await passwordGenerationServiceFactory(cache, opts),
+        await policyServiceFactory(cache, opts)
       )
   );
 }
