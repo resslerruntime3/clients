@@ -5,7 +5,9 @@ import { AppIdService } from "../../abstractions/appId.service";
 import { CryptoService } from "../../abstractions/crypto.service";
 import { LogService } from "../../abstractions/log.service";
 import { MessagingService } from "../../abstractions/messaging.service";
+import { PasswordGenerationService } from "../../abstractions/passwordGeneration.service";
 import { PlatformUtilsService } from "../../abstractions/platformUtils.service";
+import { PolicyService } from "../../abstractions/policy/policy.service.abstraction";
 import { StateService } from "../../abstractions/state.service";
 import { Utils } from "../../misc/utils";
 import { Account, AccountProfile, AccountTokens } from "../../models/domain/account";
@@ -77,6 +79,8 @@ describe("LogInStrategy", () => {
   let stateService: MockProxy<StateService>;
   let twoFactorService: MockProxy<TwoFactorService>;
   let authService: MockProxy<AuthService>;
+  let policyService: MockProxy<PolicyService>;
+  let passwordGenerationService: MockProxy<PasswordGenerationService>;
 
   let passwordLogInStrategy: PasswordLogInStrategy;
   let credentials: PasswordLogInCredentials;
@@ -92,6 +96,8 @@ describe("LogInStrategy", () => {
     stateService = mock<StateService>();
     twoFactorService = mock<TwoFactorService>();
     authService = mock<AuthService>();
+    policyService = mock<PolicyService>();
+    passwordGenerationService = mock<PasswordGenerationService>();
 
     appIdService.getAppId.mockResolvedValue(deviceId);
     tokenService.decodeToken.calledWith(accessToken).mockResolvedValue(decodedToken);
@@ -107,6 +113,8 @@ describe("LogInStrategy", () => {
       logService,
       stateService,
       twoFactorService,
+      passwordGenerationService,
+      policyService,
       authService
     );
     credentials = new PasswordLogInCredentials(email, masterPassword);
